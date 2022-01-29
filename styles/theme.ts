@@ -7,8 +7,8 @@ const colors = {
     900: '#7b68ee',
     800: '#153e75',
     700: '#2a69ac',
-  },
-}
+  }}
+
 const config: ThemeConfig = {
   initialColorMode: 'light',
   useSystemColorMode: true,
@@ -18,6 +18,22 @@ const config: ThemeConfig = {
 export const theme = extendTheme({ 
     colors, 
     config,
+    fonts: {
+      // heading: 'Open Sans',
+      body: 'Raleway',
+    },
+    styles:{
+      global: {
+        // body:{
+        //   letterSpacing:"0.9px"
+          
+        // },
+        // heading:{
+        //   letterSpacing:"1px"
+          
+        // }
+      }
+    },
     components:{
     Steps,
 } })

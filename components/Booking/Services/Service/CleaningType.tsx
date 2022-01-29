@@ -14,7 +14,7 @@ const CleaningType = ({ selectedService, setSelectedService }: Props) => {
       <Heading fontSize={20}>
         What kind of clean would you like to schedule?
       </Heading>
-      <Flex mx={8}>
+      <Flex w={{md:"400px"}} mx="auto">
         <Box
           my={10}
           px={6}

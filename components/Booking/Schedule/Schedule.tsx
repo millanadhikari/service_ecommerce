@@ -11,7 +11,7 @@ interface Props {
 }
 const Schedule = ({date, setDate, time, setTime}:Props) => {
   return (
-    <Box py={6} px={4} my={2} backgroundColor="gray.100">
+    <Box rounded="md" py={{base:8, md:16}} px={{base:"6", md:"16" }} my={{md:10}} backgroundColor="gray.100">
       <Heading fontSize={20}>When would you like your Bond Cleaning?</Heading>
       <Date time={time} setTime={setTime} date={date} setDate={setDate} />
     </Box>

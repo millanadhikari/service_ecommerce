@@ -28,13 +28,13 @@ const ServiceSummary = () => {
           Service Summary
         </Text>
         <Spacer />
-        <Accordion defaultIndex={[0]} allowMultiple w={60} allowToggle>
-          <AccordionItem>
+        <Accordion  allowMultiple w={60} >
+          <AccordionItem >
             <h2
               style={{
                 display: "flex",
                 justifyContent: "right",
-                width: "80px",
+                width: "160px",
                 marginLeft: "auto",
               }}
             >
@@ -42,12 +42,14 @@ const ServiceSummary = () => {
                 _focus={{ borderColor: "none" }}
                 display="flex"
                 justify="center"
-                maxWidth="80px"
-                _expanded={{ w: "80px", backgroundColor: "gray.300" }}
+                maxWidth="160px"
+                
+                _expanded={{base:"false"}}
+                // _expanded={{ w: "80px", backgroundColor: "gray.300" }}
                 backgroundcolor="red"
               >
                 <Box flex="1" textAlign="left">
-                  $500
+                  Total: $500
                 </Box>
                 <AccordionIcon />
               </AccordionButton>

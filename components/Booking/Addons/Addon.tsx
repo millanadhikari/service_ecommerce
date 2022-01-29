@@ -4,10 +4,28 @@ import React, { useEffect, useState } from "react";
 
 const Addon = ({ item, addons, setAddons }) => {
   const [match, setMatch] = useState(false);
+
+  const handleAdd = () => {
+    // setAddons([ ...addons , item])
+    // const newAddons = addons.filter(a => a.id !== item.id)
+
+    const newData = addons.map((addon) => {
+      if (addon.id === item.id) {
+        return {
+          ...addon,
+          complete: !addon.complete,
+        };
+      }
+      return addon 
+          
+    });
+
+    setAddons(newData)
+  };
+  // match && setAddons(newAddons)
+
   useEffect(() => {
-    addons && addons.map((addon) => addon.id === item.id && setMatch(!match));
-    console.log(addons);
-  }, [addons]);
+  }, []);
   return (
     <Flex
       position="relative"
@@ -17,25 +35,39 @@ const Addon = ({ item, addons, setAddons }) => {
       border="1px solid gray"
       flexDirection="column"
       borderColor="blue.500"
-      w="150px"
-      h="150px"
+      w="140px"
+      h="120px"
       px={5}
-      backgroundColor={match ? 'blue.600' : 'white'}
-      color={!match ? 'blue.600' : 'white'}
+      backgroundColor={item.complete ? "blue.600" : "white"}
+      color={!item.complete ? "blue.600" : "white"}
       rounded="md"
       cursor="pointer"
       pl={6}
-      onClick={() => setAddons([{ ...addons }, item])}
+      pb={4}
+      onClick={handleAdd}
     >
-      <Box mr={3} fontSize="40px" textAlign="center" mx="auto" >
+      <Box mr={3} fontSize="26px" textAlign="center" mx="auto">
         {item.icon}
       </Box>
-      
 
-      <Box fontWeight="semibold" textAlign="center" mt={3} >
+      <Box fontWeight="semibold" textAlign="center" mt={3} fontSize="13px">
         {item.title}
       </Box>
-     {match &&  <Box position="absolute" right="2" top="0"><CheckCircleIcon/></Box>}
+      {item.complete && (
+        <Box position="absolute" right="2" top="0">
+          <CheckCircleIcon />
+        </Box>
+      )}
+      {item.complete && (
+        <Box position="absolute" right="2" bottom="1">
+          x 1
+        </Box>
+      )}
+      {/* {item.complete && (
+        <Box position="absolute" left="2" bottom="1">
+          + 0 -
+        </Box>
+      )} */}
     </Flex>
   );
 };

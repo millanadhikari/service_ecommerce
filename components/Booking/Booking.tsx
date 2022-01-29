@@ -17,6 +17,9 @@ import Addons from "./Addons/Addons";
 import ServiceSummary from "./ServiceSummary";
 import Locationier from './Location/Locationier'
 import Payment from "./Payments/Payment";
+import { GiBookshelf, GiBrickWall, GiWashingMachine, GiWindow } from "react-icons/gi";
+import { FaToilet } from "react-icons/fa";
+import { MdBalcony } from "react-icons/md";
 
 
 const content = (
@@ -44,22 +47,37 @@ interface Location {
   email:string
   buildingNumber:string
   streetName:string
-  postcode:number
+  postcode:string
 }
+interface Addon { 
+  id:number
+  icon: any
+  title:string
+  quantity:number
+}
+const data = [
+  { id: 1, icon: <GiBookshelf />, title: "Study Room", quantity: 0, isSelected:false},
+  { id: 2, icon: <GiWashingMachine />, title: "Laundry", quantity: 0, isSelected:false},
+  { id: 3, icon: <FaToilet />, title: "Separate Toilet", quantity: 0, isSelected:false},
+  { id: 4, icon: <MdBalcony />, title: "Balcony", quantity: 0, isSelected:false},
+  { id: 5, icon: <GiWindow />, title: "Blinds", quantity: 0, isSelected:false},
+  { id: 6, icon: <GiBrickWall />, title: "Walls", quantity: 0, isSelected:false},
+];
 const Booking = () => {
   const [selectedService, setSelectedService] = useState<string>("House Cleaning");
   const [toilets, setToilets] = useState<number>(1);
-  const [bedrooms, setBedrooms] = useState<number>(1);
-  const [postcode, setPostCode] = useState<number>();
+  const [bedrooms, setBedrooms] = useState<number>(0);
+  const [postcode, setPostCode] = useState<string>('');
   const [date, setDate] = useState<Date>(new Date())
   const [time, setTime] = useState<string>('')
   const [location, setLocation] = useState<Location[]>([])
-useEffect(() => {
-  const initialLocation ={ id: Math.random(), fullname: "", phone: "", email: "", buildingNumber:"", streetName:"", postcode:postcode  }
+  const [addons, setAddons] = useState<Addon[]>(data)                                                                                                      
 
+  useEffect(() => {
+  const initialLocation ={ id: Math.random(), fullname: "", phone: "", email: "", buildingNumber:"", streetName:"", postcode:`${postcode}`  }
+    console.log(addons)
   setLocation([initialLocation])
-}, [])
-  const [addons, setAddons] = useState<[]>([])
+}, [addons])
   const steps = [
     {
       label: "Services",
@@ -73,6 +91,7 @@ useEffect(() => {
           setBedrooms={setBedrooms}
           postcode={postcode}
           setPostCode={setPostCode}
+        
         />
       ),
     },
@@ -86,10 +105,10 @@ useEffect(() => {
     initialStep: 0,
   });
   return (
-    <Box>
+    <Box position="relative" w="100%" mb={20}>
       <ServiceSummary/>
-    <VStack w="100%" p={2} pt="70px" fontSize="14px" >
-      <Steps activeStep={activeStep} w="100%" colorScheme="blue">
+    <VStack w={{base:"100%", sm:"100%", md:"1000px"}} p={2} pt="100px" fontSize="15px" mx={{md:'auto'}} >
+      <Steps activeStep={activeStep} w="100%" colorScheme="blue" pb={4}>
         {steps.map(({ label, content }) => (
           <Step label={label} key={label} >
             {content}
@@ -112,13 +131,13 @@ useEffect(() => {
           p={4}
           borderTop="1px solid black"
           borderColor="gray.300"
-          h='65px'
+                    h='65px'
           zIndex="999"
           justify="right"
         >
           <Button
             mr={4}
-            size="md"
+            size="sm"
             variant="solid"
             colorScheme="gray"
             onClick={prevStep}
@@ -127,10 +146,11 @@ useEffect(() => {
             Prev
           </Button>
           <Button
-            size="md"
+            size="sm"
+            
             onClick={nextStep}
             colorScheme="blue"
-            isDisabled={!postcode }
+            isDisabled={postcode === '' || postcode.length <=3}
             
            
           >

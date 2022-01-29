@@ -11,8 +11,8 @@ interface Props {
   setToilets: React.Dispatch<React.SetStateAction<number>>;
   bedrooms: number;
   setBedrooms: React.Dispatch<React.SetStateAction<number>>;
-  postcode: number;
-  setPostCode: React.Dispatch<React.SetStateAction<number>>;
+  postcode: string;
+  setPostCode: React.Dispatch<React.SetStateAction<string>>;
 }
 const Services = ({
   selectedService,
@@ -25,7 +25,7 @@ const Services = ({
   setPostCode,
 }:Props) => {
   return (
-    <Box py={6} px={4} my={2} backgroundColor="gray.100">
+    <Box rounded="md" py={{base:8, md:16}} px={{base:"6", md:"16" }} my={{md:10}} backgroundColor="gray.100">
       <CleaningType
         selectedService={selectedService}
         setSelectedService={setSelectedService}

@@ -2,7 +2,9 @@ import { Box, Flex, Heading, Spacer, Text } from "@chakra-ui/react";
 import React from "react";
 import { BiBed } from "react-icons/bi";
 import {FaToilet} from 'react-icons/fa'
-const arr = [1, 2, 3, 4, 5, 6, 7];
+const arr = [0, 1, 2, 3, 4, 5, 6, 7];
+const arr2 = [1, 2, 3, 4, 5, 6, 7];
+
 
 interface Props {
   toilets: number;
@@ -20,13 +22,14 @@ const Toilets = ({ toilets, setToilets, bedrooms, setBedrooms }: Props) => {
         <Box
           backgroundColor="white"
           p={2}
-          py={4}
+          py={{base:4}}
+          px={{md:10}}
           my={4}
           rounded="md"
           display="flex"
           alignItems="center"
         >
-          <Box mr={0.5} color="blue.600">
+          <Box mr={{base:0.5}} color="blue.600">
             {" "}
             <BiBed size="28px" />
           </Box>
@@ -39,7 +42,7 @@ const Toilets = ({ toilets, setToilets, bedrooms, setBedrooms }: Props) => {
               cursor="pointer"
               p={2}
               px={2.5}
-              ml={2.5}
+              ml={{base:2.5, md:4}}
               onClick={() => setBedrooms(item)}
             >
               <Text key={item} fontWeight="light" fontSize="12px">
@@ -53,6 +56,8 @@ const Toilets = ({ toilets, setToilets, bedrooms, setBedrooms }: Props) => {
           backgroundColor="white"
           p={2}
           py={4}
+          px={{md:10}}
+
           my={4}
           rounded="md"
           display="flex"
@@ -63,7 +68,7 @@ const Toilets = ({ toilets, setToilets, bedrooms, setBedrooms }: Props) => {
             <FaToilet size="28px" />
           </Box>
 
-          {arr.map((item) => (
+          {arr2.map((item) => (
             <Flex
               backgroundColor={toilets == item ? "blue.600" : "gray.100"}
               color={toilets == item ? 'white' : "black"}
@@ -71,7 +76,7 @@ const Toilets = ({ toilets, setToilets, bedrooms, setBedrooms }: Props) => {
               cursor="pointer"
               p={2}
               px={2.5}
-              ml={2.5}
+              ml={{base:2.5, md:4}}
               onClick={() => setToilets(item)}
             >
               <Text key={item} fontWeight="light" fontSize="12px">
