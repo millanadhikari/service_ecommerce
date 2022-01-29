@@ -93,9 +93,10 @@ const Ways = () => {
               <Spacer mx={2} />
               <InputGroup w="160px">
                 <Input fontSize="15px" value={postcode} onChange={(e) => setPostcode(e.target.value)} placeholder="Postcode" />
-                <InputRightElement
-                  children={<BiCurrentLocation color="gray.200" />}
-                />
+                <InputRightElement>
+                  <BiCurrentLocation color="gray.200" />
+                  </InputRightElement>
+                
               </InputGroup>
             </Flex>
             <Button

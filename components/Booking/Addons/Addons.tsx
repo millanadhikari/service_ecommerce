@@ -29,9 +29,8 @@ const Addons = ({ addons, setAddons }) => {
         my={5}
       >
         {addons.map((item) => (
-          <GridItem mx={4}>
+          <GridItem mx={4} key={item.id}>
             <Addon
-              key={item.id}
               item={item}
               addons={addons}
               setAddons={setAddons}

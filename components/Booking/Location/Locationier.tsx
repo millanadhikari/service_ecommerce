@@ -50,7 +50,7 @@ const Locationier = ({
 
       <Box>
         {location.map((contact: Location) => (
-          <Box >
+          <Box key={contact.id} >
             {!menu ? (
               <Box >
                 <Flex w="100%" alignItems="center" ml={8} pt={5}>

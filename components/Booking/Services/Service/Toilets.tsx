@@ -40,6 +40,7 @@ const Toilets = ({ toilets, setToilets, bedrooms, setBedrooms }: Props) => {
               color={bedrooms == item ? 'white' : "black"}
               rounded="md"
               cursor="pointer"
+              key={item}
               p={2}
               px={2.5}
               ml={{base:2.5, md:4}}
@@ -74,6 +75,7 @@ const Toilets = ({ toilets, setToilets, bedrooms, setBedrooms }: Props) => {
               color={toilets == item ? 'white' : "black"}
               rounded="md"
               cursor="pointer"
+              key={item}
               p={2}
               px={2.5}
               ml={{base:2.5, md:4}}
