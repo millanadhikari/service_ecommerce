@@ -20,28 +20,28 @@ const CheckoutElement = () => {
     },
   };
 
-  useEffect(() => {
-    const makeRequest = async () => {
-      try {
-          const res = await fetch("http://localhost:3001/v1/payment",
+//   useEffect(() => {
+//     const makeRequest = async () => {
+//       try {
+//           const res = await fetch("http://localhost:3001/v1/payment",
           
           
-          {
-              clientSecret:strikeToken,
-              amount:2000,
-          });
+//           {
+//               clientSecret:strikeToken,
+//               amount:2000,
+//           });
 
 
           
          
-      } catch(err) {
-          console.log(err)
-      }
-  }
-  stripeToken && makeRequest()
+//       } catch(err) {
+//           console.log(err)
+//       }
+//   }
+//   stripeToken && makeRequest()
 
-}, [])
-  }, []) 
+// }, [])
+//   }, []) 
 
   return (
     <div>
