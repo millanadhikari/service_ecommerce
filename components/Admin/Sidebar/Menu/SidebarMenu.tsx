@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Box, Flex, Icon, Link, Spacer } from '@chakra-ui/react'
 import { ArrowUpIcon, ArrowDownIcon } from '@chakra-ui/icons'
-import { AiOutlineHome } from 'react-icons/Ai'
+import {  AiOutlineHome as Aioutlinehome } from 'react-icons/Ai'
 import { BiBellMinus } from 'react-icons/Bi'
 import { GiBowlingPropulsion } from 'react-icons/Gi'
 import { GiTargetPrize } from 'react-icons/Gi'
@@ -21,7 +21,7 @@ const SidebarMenu = () => {
                 fontSize="15px" >
                 <Icon
                     fontSize="20px" _groupHover={{ backgroundColor: "gray.100" }} backgroundColor="white" aria-label='Search database' textAlign="center" mr="3"
-                    as={AiOutlineHome} />
+                    as={Aioutlinehome} />
                 Home</Flex>
             <Flex role="group"
                 px="8"

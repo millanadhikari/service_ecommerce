@@ -17,9 +17,9 @@ import Addons from "./Addons/Addons";
 import ServiceSummary from "./ServiceSummary";
 import Locationier from './Location/Locationier'
 import Payment from "./Payments/Payment";
-import { GiBookshelf, GiBrickWall, GiWashingMachine, GiWindow } from "react-icons/gi";
-import { FaToilet } from "react-icons/fa";
-import { MdBalcony } from "react-icons/md";
+import { GiBookshelf, GiBrickWall, GiWashingMachine, GiWindow } from "react-icons/Gi";
+import { FaToilet } from "react-icons/Fa";
+import { MdBalcony } from "react-icons/Md";
 
 
 const content = (

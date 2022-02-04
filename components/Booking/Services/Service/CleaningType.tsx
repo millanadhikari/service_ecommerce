@@ -1,7 +1,6 @@
 import { Box, Flex, Heading, Image, Spacer, Text } from "@chakra-ui/react";
 import React from "react";
-import { GiHouseKeys, GiVacuumCleaner } from "react-icons/gi";
-import { MdOutlineHouseboat } from "react-icons/md";
+import { GiHouseKeys, GiVacuumCleaner } from "react-icons/Gi";
 
 interface Props {
   selectedService: string;

@@ -1,7 +1,7 @@
 import { AddIcon, ChevronRightIcon } from '@chakra-ui/icons'
 import { Box, Flex, Spacer, Text, Tooltip } from '@chakra-ui/react'
 import React from 'react'
-import { AiFillFolder } from 'react-icons/ai'
+import { AiFillFolder } from 'react-icons/Ai'
 import { FiMoreHorizontal } from 'react-icons/fi'
 
 import { Folder } from './spaceMode'
