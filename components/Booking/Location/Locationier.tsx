@@ -8,9 +8,9 @@ import {
   Text,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-import { BsPersonCircle } from "react-icons/bs";
-import { AiOutlineEdit } from "react-icons/ai";
-import { HiLocationMarker } from "react-icons/hi";
+import { BsPersonCircle } from "react-icons/Bs";
+import { AiOutlineEdit } from "react-icons/Ai";
+import { HiLocationMarker } from "react-icons/Hi";
 interface Props {
   location: Location[];
   setLocation: React.Dispatch<React.SetStateAction<Location[]>>;

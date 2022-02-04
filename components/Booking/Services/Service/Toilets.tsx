@@ -1,7 +1,7 @@
 import { Box, Flex, Heading, Spacer, Text } from "@chakra-ui/react";
 import React from "react";
-import { BiBed } from "react-icons/bi";
-import {FaToilet} from 'react-icons/fa'
+import { BiBed } from "react-icons/Bi";
+import {FaToilet} from 'react-icons/Fa'
 const arr = [0, 1, 2, 3, 4, 5, 6, 7];
 const arr2 = [1, 2, 3, 4, 5, 6, 7];
 
