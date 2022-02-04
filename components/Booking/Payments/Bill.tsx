@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Table,
   Thead,
@@ -11,9 +11,20 @@ import {
   Box,
   Button,
 } from "@chakra-ui/react";
-import {PaymentElement} from '@stripe/react-stripe-js';
+import {PaymentElement, useElements, useStripe} from '@stripe/react-stripe-js';
 
 const Bill = () => {
+  const [success, setSuccess] = useState(false)
+  const stripe = useStripe()
+  const elements = useElements()
+
+  const handleSubmit = async (e) => {
+    e.PreventDefault()
+    const result = await stripe.confirmPayment({
+        elements,
+        // card:elements.getElement(CardElement)
+    })
+  }
   return (
     <Box w="100%" h="1000px">
       <Table variant="simple" size="sm" colorScheme="blackAlpha" mt={2}>

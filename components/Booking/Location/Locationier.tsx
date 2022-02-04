@@ -53,7 +53,7 @@ const Locationier = ({
           <Box key={contact.id} >
             {!menu ? (
               <Box >
-                <Flex w="100%" alignItems="center" ml={8} pt={5}>
+                <Flex w="100%" alignItems=" center" ml={8} pt={5}>
                   <Text fontWeight="semibold" fontSize="14px" mr={3}>
                     Full Name*
                   </Text>
@@ -70,7 +70,7 @@ const Locationier = ({
                           buildingNumber: contact.buildingNumber,
                           streetName: contact.streetName,
                           postcode: contact.postcode,
-                        },
+                        }, 
                       ])
                     }
                     placeholder="e.g. John Doe"

@@ -45,7 +45,8 @@ const CheckoutElement = () => {
 
   return (
     <div>
-      <Elements stripe={stripePromise} options={options}>
+      <Elements stripe={stripePromise}>
+      {/* options={options}v */}
         <Bill />
      
       </Elements>
