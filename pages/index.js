@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Booking from '../components/Booking/Booking.tsx'
 import 'react-calendar/dist/Calendar.css';
-
+import Sidebar from '../components/Admin/Sidebar/Sidebar'
 export default function Home() {
   return (
     <div>
@@ -11,7 +11,8 @@ export default function Home() {
    
             </Head>
 
-            <Booking />
+            {/* <Booking /> */}
+            {/* <Sidebar/> */}
           </div>
           )
 }
