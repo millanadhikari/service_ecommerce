@@ -1,5 +1,5 @@
 import { Link as ChakraLink, LinkProps, useColorModeValue } from '@chakra-ui/react'
-import Link from 'next/link'
+// import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
 
@@ -16,9 +16,7 @@ const NavLink = ({ to, activeProps, children, _hover, ...props }: NavLinkProps) 
     const color = useColorModeValue('black', 'selected')
 
     return (
-       <Link href={to}>
-     
-       </Link>
+        color
     )
 
 }
