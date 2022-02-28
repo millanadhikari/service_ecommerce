@@ -1,65 +1,153 @@
-import { Box, Flex, Heading, Text } from '@chakra-ui/react';
-import React, { useState } from 'react';
-import { AiOutlinePlusCircle } from 'react-icons/ai';
-import SingleBookings from './SingleBooking/SingleBookings';
+import {
+  Box,
+  Flex,
+  Heading,
+  Spinner,
+  Table,
+  Tbody,
+  Td,
+  Text,
+  Th,
+  Thead,
+  Tr,
+} from "@chakra-ui/react";
+import React, { useEffect, useState } from "react";
+import { AiOutlinePlusCircle } from "react-icons/ai";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
+import { fetchAllBookings } from "./bookingAction";
+import BookingPagination from "./BookingPagination";
+import SingleBookings from "./SingleBooking/SingleBookings";
 
-const data = [
-    { id: 1, description: "2 bedroom End of Lease", assignee: "Online", suburb: "Hornsby", priority: "Clear", completed: false, address:"2/29, Ada Street, Burwwod, NSW", customerName:"Rajesh Hamal", customerEmail:"rajeshHamal@gmail.com", customerPhone:"0434343433", dateOpen: "2022-02-01" },
-    { id: 2, description: "Studio Apartment End of Lease", assignee: "Milan", suburb: "Ashfield", priority: "Clear", completed: false, address:"2/29, Ada Street, Burwwod, NSW", customerName:"Rajesh Hamal", customerEmail:"rajeshHamal@gmail.com", customerPhone:"0434343433", dateOpen: "2022-02-01" },
-    { id: 3, description: "5 bedroom End of Lease", assignee: "App", suburb: "Hurstville", priority: "Urgent", completed: false, address:"2/29, Ada Street, Burwwod, NSW", customerName:"Rajesh Hamal", customerEmail:"rajeshHamal@gmail.com", customerPhone:"0434343433", dateOpen: "2022-02-01" },
-    { id: 4, description: "1 bedroom End of Lease", assignee: "Online", suburb: "Waitara", priority: "Clear", completed: false, address:"2/29, Ada Street, Burwwod, NSW", customerName:"Rajesh Hamal", customerEmail:"rajeshHamal@gmail.com", customerPhone:"0434343433", dateOpen: "2022-02-01" },
-    { id: 5, description: "Studio Apartment End of Lease", assignee: "Milan", suburb: "Starthfield", priority: "Clear", completed: false, address:"2/29, Ada Street, Burwwod, NSW", customerName:"Rajesh Hamal", customerEmail:"rajeshHamal@gmail.com", customerPhone:"0434343433", dateOpen: "2022-02-01" },
-    { id: 6, description: "4 bedroom End of Lease", assignee: "App", suburb: "Flemington", priority: "Clear", completed: false, address:"2/29, Ada Street, Burwwod, NSW", customerName:"Rajesh Hamal", customerEmail:"rajeshHamal@gmail.com", customerPhone:"0434343433", dateOpen: "2022-02-01" }
-
-
-
-
-]
 
 const BookingList = () => {
-    const [modal, setModal] = useState(false)
-    const [single, setSingle] = useState({})
-    const [books, setBooks] = useState(data)
+  const [modal, setModal] = useState(false);
+  const [single, setSingle] = useState({});
+  const [pageNumber, setPageNumber]= useState<Number>(1)
 
-    return <Box mx={4} backgroundColor="white" py={4} rounded="md" mr={{ md: 20 }} h="700px"  >
-        <Flex borderBottom="1px solid gray" borderColor="gray.200">
-            <Text fontWeight="semibold" borderColor="gray.200" px={4} pb={3} fontSize="16px">Booking List</Text>
+  const dispatch = useAppDispatch();
+  const bookings = useAppSelector((state) => state.bookings);
 
-        </Flex>
-        <Box mt={5}>
-            <Flex justifyContent="space-between" px={5}>
-                <Flex alignItems="center">
-                    <Text backgroundColor="gray.300" color="gray.600" fontSize="14px" p={2} rounded="sm" fontWeight='light'>Description</Text>
-                    <Text ml={2} fontSize="13px" fontWeight="semibold" color="gray.400">1 TASK</Text>
-                </Flex>
-                <Flex justifyContent="space-between" fontSize="13px" fontWeight="semibold" color="gray.400" alignItems="center" w="50%">
-                    <Text cursor="pointer">ASSIGNEE</Text>
-                    <Text cursor="pointer" >SUBURB</Text>
-                    <Text cursor="pointer">DATE OPEN</Text>
-                    {/* <AiOutlinePlusCircle fontSize="22px" /> */}
-                </Flex>
-            </Flex>
-            {books.map((booking) => (
-                <Box key={booking.id} onClick={() => (setModal(!modal), setSingle(booking))}>
-                    <Flex cursor="pointer" justifyContent="space-between" px={5} my={3}>
-                        <Flex alignItems="center" ml={3}>
-                            <Text ml={2} fontSize="13px" >{booking.description}</Text>
+  function randomColor() {
+    let randomize = Math.floor(Math.random() * 16777215).toString(16);
+    console.log(randomize);
+    if (randomize !== "ffffff") {
+      return randomize;
+    }
+  }
+
+  useEffect(() => {
+    dispatch(fetchAllBookings(pageNumber));
+
+    
+  }, [dispatch, pageNumber  ]);
+
+  return (
+    <Box
+      mx={4}
+      backgroundColor="white"
+      position="relative"
+      rounded="md"
+      overflow="hidden"
+      mr={{ md: 20 }}
+      h="700px"
+    >
+      <Flex
+        borderBottom="1px solid gray"
+        borderColor="gray.200"
+        backgroundColor="white"
+        py={1}
+        pt={4}
+        w="auto"
+      >
+        <Text
+          fontWeight="semibold"
+          borderColor="gray.200"
+          px={4}
+          pb={3}
+          fontSize="16px"
+        >
+          Booking List
+        </Text>
+      </Flex>
+      <Box mt={10}>
+        <Box w="100%">
+          <Table variant="simple">
+            <Thead backgroundColor="white">
+              <Tr>
+                <Th>NAME AND TYPE</Th>
+                <Th>SUBURB</Th>
+                <Th isNumeric>multiply by</Th>
+              </Tr>
+            </Thead>
+            {bookings.isLoading ? (
+              <Spinner />
+            ) : (
+              <Tbody>
+                {bookings.bookings.paginatedResults?.map((booking) => (
+                  <Tr
+                    key={booking.id}
+                    onClick={() => (setModal(!modal), setSingle(booking))}
+                    _hover={{ backgroundColor: "gray.200" }}
+                    cursor="pointer"
+                  >
+                    <Td>
+                      <Flex>
+                        <Flex
+                          alignItems="center"
+                          justifyContent="center"
+                          rounded="full"
+                          backgroundColor={`#${randomColor()}`}
+                          h={10}
+                          w={10}
+                          fontSize="14px"
+                          color="white"
+                          mr={4}
+                        >
+                          {booking.name
+                            .split(" ")
+                            .map((n) => n[0])
+                            .join("")}{" "}
                         </Flex>
-                        <Flex justifyContent="space-between" fontSize="13px" fontWeight="semibold" alignItems="center" w="50%">
-                            <Text cursor="pointer" pl={4}>{booking.assignee}</Text>
-                            <Text cursor="pointer" >{booking.suburb}</Text>
-                            <Text cursor="pointer">{booking.dateOpen}</Text>
-                        </Flex>
-
-                    </Flex>
-
-                </Box>
-            ))}                <SingleBookings modal={modal} setModal={setModal} single={single} setSingle={setSingle} />
-
-
-
+                        <Box>
+                          <Text
+                            fontWeight="semibold"
+                            fontSize="14px"
+                            color="purple.500"
+                          >
+                            {booking.name}
+                          </Text>
+                          <Text
+                            fontSize="13px"
+                            mt={0.5}
+                            fontWeight="semibold"
+                            color="gray.400"
+                          >
+                            Guest
+                          </Text>
+                        </Box>
+                      </Flex>
+                    </Td>
+                    <Td>{booking.suburb} </Td>
+                    <Td isNumeric>25.4</Td>
+                  </Tr>
+                ))}
+              </Tbody>
+            )}
+          </Table>
         </Box>
-    </Box>;
+
+        <SingleBookings
+          modal={modal}
+          setModal={setModal}
+          single={single}
+          setSingle={setSingle}
+        />
+      </Box>
+      <Flex position="absolute" bottom="0" w="100%" >
+        <BookingPagination pageNumber={pageNumber} setPageNumber={setPageNumber}/>
+      </Flex>
+    </Box>
+  );
 };
 
 export default BookingList;

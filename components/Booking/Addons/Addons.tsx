@@ -10,12 +10,14 @@ import Addon from "./Addon";
 //   setAddons: React.Dispatch<React.SetStateAction<[]>>;
 // }
 const Addons = ({ addons, setAddons }) => {
+ 
+
   return (
     <Flex
       flexDirection="column"
       rounded="md"
       py={{ base: 8, md: 16 }}
-      px={{ base: "6", md: "16" }}
+      px={{ base: "1", md: "16" }}
       my={2}
       backgroundColor="gray.100"
       alignItems="left"

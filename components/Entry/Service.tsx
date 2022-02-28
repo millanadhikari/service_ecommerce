@@ -7,16 +7,16 @@ import Question from "./Question";
 const Service = () => {
   return (
     <Box
-      mt={{ base: "2200px", sm: "2150px", md: "1450px", lg: "1300px" }}
+      mt={{ base: "1900px", sm: "1850px", md: "1300px", lg: "1150px" }}
       textAlign="center"
       zIndex="2"
     >
-      <Image src="./thumb.png" h={8} w={8} mx="auto" mb={3} />
+      <Image src="./thumb.png" h={7} w={7} mx="auto" mb={3} />
       <Text mb={6} fontWeight="bold">
         OUR SERVICE
       </Text>
       <Box
-        fontSize="30px"
+        fontSize="22px"
         fontWeight="semibold"
         texttAlign="center"
         display={{ md: "flex" }}
@@ -28,7 +28,7 @@ const Service = () => {
           WeDoCLEAN
         </Text>
       </Box>
-      <Text color="gray.400" my={3} fontSize="14px" fonWeight="semibold" mx={8}>
+      <Text color="gray.400" my={3} fontSize="13px" fonWeight="light" mx={8}>
         There are serveral choices of services that WeDo Clean provides, there
         are three tyopes of options to suit your needs.
       </Text>
@@ -49,7 +49,7 @@ const Service = () => {
           <Text mt={4} fontSize="20px" fontWeight="semibold">
             Basic Care
           </Text>
-          <Text mt={10} fontSize="sm">
+          <Text mt={10} fontSize="13px" color="gray.300">
             Packages with a choice of cleaning services with or without
             equipment include Bedroom, Bathroom, Living Room, Kitchen. Cleaning
             Duration 3-5 hours.
@@ -71,7 +71,7 @@ const Service = () => {
           <Text mt={4} fontSize="20px" fontWeight="semibold">
             Medium Care
           </Text>
-          <Text mt={10} fontSize="sm">
+          <Text mt={10} fontSize="13px" color="gray.300">
             Detailed cleaning for specific areas such as deep cleaning for
             kitcens bathrooms, mattresses and so on. Can be ordered in addition
             to Basic Care or separately.
@@ -93,7 +93,7 @@ const Service = () => {
           <Text mt={4} fontSize="20px" fontWeight="semibold">
             Special Care
           </Text>
-          <Text mt={10} fontSize="sm">
+          <Text mt={10} fontSize="13px" color="gray.300">
             Service packages for vacant homes before occupancy or after
             renovation including windows, balconies and wardrobes. Cleaning time
             is approximately 4-5 hours.

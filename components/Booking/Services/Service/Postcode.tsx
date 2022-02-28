@@ -8,8 +8,8 @@ interface Props {
 
 const Postcode = ({ postcode, setPostCode }) => {
   return (
-    <Box textAlign="left">
-      <Heading fontSize={20} mt={10} mb={3}>
+    <Box textAlign="left" px={4}>
+      <Heading fontSize={18} mt={10} mb={3}>
         Enter your postcode*
       </Heading>
       <Input

@@ -1,8 +1,14 @@
 import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Box, Button, Collapse, Input } from '@chakra-ui/react'
 import { AddIcon, ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon, SearchIcon } from '@chakra-ui/icons'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import SpaceMenuAccordion from './SpaceMenuAccordion'
 import { Space } from './spaceMode'
+import { useAppDispatch, useAppSelector } from '../../app/hooks'
+import {createNewSpace, fetchAllSpaces} from '../../space/spaceAction'
+import { createSpaceFail, createSpaceLoading, createSpaceSuccess } from '../../space/spaceSlice'
+import Createspace from './Createspace'
+import uuid from 'react-uuid'
+import { GiConsoleController } from 'react-icons/gi'
 
 
 const SpaceAccordion = () => {
@@ -10,23 +16,55 @@ const SpaceAccordion = () => {
     const [searchSpace, setSearchSpace] = useState<boolean>(false)
     const [showSpace, setShowSpace] = useState<boolean>(false)
     const [showMenu, setShowMenu] = useState<boolean>(false)
+    const [createSpace, setCreateSpace] = useState<boolean>(false)
+    const [spaceInput, setSpaceInput] = useState<string>()
 
     const [spaces, setSpaces] = useState<Space[]>([
-        {
-            _id: 2,
-            _name: 'lsdkjf'
-        }
+       
     ])
     const [name, setName] = useState<String>('milan')
+    const dispatch = useAppDispatch()
+    const databaseSpaces = useAppSelector((state) => state.spaces.spaces)
+
+
 
     const handleAdd = () => {
-        setSpaces([...spaces, {
-            _id: 2,
-            _name: 'milan'
-        }]
-        )
-        console.log(spaces)
+        setCreateSpace(!createSpace)
+
     }
+
+    const addSpace = async (e) => {
+        dispatch(createSpaceLoading())
+       try {
+           const result = await createNewSpace(
+               {
+                   _id:uuid(),
+                   _name:spaceInput
+
+               }
+               )
+            if (result.status === "error") {
+                 dispatch(createSpaceFail(result.message) )
+            } else {
+                dispatch(createSpaceSuccess())
+                dispatch(fetchAllSpaces())
+                setCreateSpace(!createSpace)
+
+            }
+           
+
+       } catch (error) {
+           dispatch(createSpaceFail(error.message) )
+       }
+
+
+    }
+
+    useEffect(() => {
+
+        dispatch(fetchAllSpaces())
+        setSpaces(databaseSpaces)
+    }, [])
     return (
         <Box w="300px" position="relative" h="full"   onMouseMove={() => setShowMenu(true)}
         onMouseOut={() => setShowMenu(false)}>
@@ -69,7 +107,7 @@ const SpaceAccordion = () => {
 
                 </Box>
                 <Box top="0" left="0" max-h="100%" mt="2">
-                    {spaces.map((space) => (
+                    {databaseSpaces.map((space) => (
                         <SpaceMenuAccordion key={space._id} space={space} showMenu={showMenu} setShowMenu={setShowMenu} />
 
                     ))}
@@ -93,6 +131,7 @@ const SpaceAccordion = () => {
                     commodo consequat.
                 </AccordionPanel>
             </AccordionItem> */}
+            <Createspace createSpace={createSpace} setCreateSpace={setCreateSpace} spaceInput={spaceInput} setSpaceInput={setSpaceInput} addSpace={addSpace}/>
         </Box>
     )
 }

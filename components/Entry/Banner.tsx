@@ -166,10 +166,10 @@ const Banner = () => {
                 <StarIcon />
                 <StarIcon />
               </Stack>
-              <Heading mt={2} mb={1} fontSize="18px">
+              <Heading mt={1.5} mb={.5} fontSize="16px">
                 Saroj KP
               </Heading>
-              <Text fontSize="12px" color="gray.500" fontWeight="semibold">
+              <Text fontSize="11px" color="gray.500" fontWeight="semibold">
                 Sydney, NSW
               </Text>
             </Box>

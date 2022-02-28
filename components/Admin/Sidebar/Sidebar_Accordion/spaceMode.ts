@@ -1,5 +1,5 @@
 export interface Space {
-    _id: number
+    _id: string
     _name: string
 }
 

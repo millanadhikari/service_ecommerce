@@ -1,9 +1,13 @@
 import { CheckCircleIcon } from "@chakra-ui/icons";
 import { Box, Flex, Heading, Spacer } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
+import { useAppDispatch, useAppSelector } from "../../Admin/app/hooks";
+import { setAdons } from "../customerBookingSlice";
 
 const Addon = ({ item, addons, setAddons }) => {
   const [match, setMatch] = useState(false);
+  const dispatch = useAppDispatch();
+  const adon = useAppSelector((state) => state.cBookings.cBookings.addons);
 
   const handleAdd = () => {
     // setAddons([ ...addons , item])
@@ -16,16 +20,20 @@ const Addon = ({ item, addons, setAddons }) => {
           complete: !addon.complete,
         };
       }
-      return addon 
-          
+      return addon;
     });
 
-    setAddons(newData)
+    setAddons(newData);
   };
   // match && setAddons(newAddons)
 
   useEffect(() => {
-  }, []);
+    dispatch(setAdons(addons.map((adon) => {
+      if(adon.isSelected) { 
+        adon
+      }
+    })));
+  }, [addons]);
   return (
     <Flex
       position="relative"

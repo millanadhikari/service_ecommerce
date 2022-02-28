@@ -11,8 +11,14 @@ import {
 } from "@chakra-ui/react";
 import { GiHomeGarage } from "react-icons/Gi";
 import { FaToilet } from "react-icons/Fa";
+import { useAppSelector } from "../Admin/app/hooks";
 
 const ServiceSummary = () => {
+  const price = useAppSelector((state) => state.cBookings.price);
+  const isLoading = useAppSelector((state) => state.cBookings.isLoading);
+  const cBookings = useAppSelector((state) => state.cBookings.cBookings);
+
+
   return (
     <Box
       w="100%"
@@ -48,7 +54,7 @@ const ServiceSummary = () => {
                 backgroundcolor="red"
               >
                 <Box flex="1" textAlign="left">
-                  Total: $500
+                 {isLoading ? 'Loading' : <div> Total: $ {price}</div>}
                 </Box>
                 <AccordionIcon />
               </AccordionButton>
@@ -85,7 +91,7 @@ const ServiceSummary = () => {
                 <Spacer mr={5} />
                 <Box minWidth="120px">
                   <Heading fontSize="15px" ml="3px">
-                    2 Bedroom
+                    {cBookings.bedrooms.id} Bedroom
                   </Heading>
                   <Spacer my={1.5} />
                   <Flex alignItems="center">
@@ -99,11 +105,11 @@ const ServiceSummary = () => {
                         <span style={{ marginLeft: "2px" }}>:</span>
                       </Flex>
                       <Text ml="4px" fontWeight="semibold" fontSize="15px">
-                        2
+                        {cBookings.toilets.id}
                       </Text>
                     </Flex>
                     <Spacer mr={5} />
-                    <Flex fontSize="14px">
+                    {/* <Flex fontSize="14px">
                       <Flex
                         alignItems="center"
                         color="gray.500"
@@ -115,7 +121,7 @@ const ServiceSummary = () => {
                       <Text ml="4px" fontWeight="semibold" fontSize="16px">
                         2
                       </Text>
-                    </Flex>
+                    </Flex> */}
                   </Flex>
                   <Spacer my="2px" />
                   <Flex fontSize="14px">
@@ -144,7 +150,7 @@ const ServiceSummary = () => {
               <Flex p={5} bottom="0" alignItems="center" justify="center" py={4} backgroundColor="gray.200">
                   <Heading fontSize={20}>Total</Heading>
                   <Spacer/>
-                  <Text fontWeight="semibold">$177.00</Text>
+                  <Text fontWeight="semibold">$ {price} .00</Text>
               </Flex>
             </AccordionPanel>
           </AccordionItem>

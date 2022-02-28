@@ -1,6 +1,8 @@
 import { Box, Flex, Heading, Image, Spacer, Text } from "@chakra-ui/react";
 import React from "react";
 import { GiHouseKeys, GiVacuumCleaner } from "react-icons/Gi";
+import { useAppDispatch, useAppSelector } from "../../../Admin/app/hooks";
+import { toggleType } from "../../customerBookingSlice";
 
 interface Props {
   selectedService: string;
@@ -8,10 +10,16 @@ interface Props {
 }
 
 const CleaningType = ({ selectedService, setSelectedService }: Props) => {
+
+  const dispatch = useAppDispatch();
+  const book = useAppSelector((state) => state.cBookings);
+
+
   return (
-    <Box  textAlign="left">
-      <Heading fontSize={20}>
+    <Box  textAlign="left" px={{base:4}} >
+      <Heading fontSize={18}>
         What kind of clean would you like to schedule?
+        
       </Heading>
       <Flex w={{md:"400px"}} mx="auto">
         <Box
@@ -23,11 +31,11 @@ const CleaningType = ({ selectedService, setSelectedService }: Props) => {
           boxShadow="xl"
           cursor="pointer"
           backgroundColor={
-            selectedService === "House Cleaning" ? "blue.600" : "white"
+            book.cBookings.selectedService === "House Cleaning" ? "blue.600" : "white"
           }
-          color={selectedService === "House Cleaning" ? "white" : "blue.600"}
-          onClick={() => setSelectedService("House Cleaning")}
-          fontWeight={selectedService === "House Cleaning" && "semibold"}
+          color={book.cBookings.selectedService === "House Cleaning" ? "white" : "blue.600"}
+          onClick={() => dispatch(toggleType(("House Cleaning")))}
+          fontWeight={book.cBookings.selectedService === "House Cleaning" && "semibold"}
         >
           <Flex alignItems="center" justify="center">
             {" "}
@@ -47,11 +55,11 @@ const CleaningType = ({ selectedService, setSelectedService }: Props) => {
           boxShadow="xl"
           cursor="pointer"
           backgroundColor={
-            selectedService === "Bond Cleaning" ? "blue.600" : "white"
+            book.cBookings.selectedService === "Bond Cleaning" ? "blue.600" : "white"
           }
-          color={selectedService === "Bond Cleaning" ? "white" : "blue.600"}
-          onClick={() => setSelectedService("Bond Cleaning")}
-          fontWeight={selectedService === "Bond Cleaning" && "semibold"}
+          color={book.cBookings.selectedService === "Bond Cleaning" ? "white" : "blue.600"}
+          onClick={() => dispatch(toggleType(("Bond Cleaning")))}
+          fontWeight={book.cBookings.selectedService === "Bond Cleaning" && "semibold"}
         >
           <Flex alignItems="center" justify="center">
             {" "}

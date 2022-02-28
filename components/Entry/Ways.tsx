@@ -77,14 +77,14 @@ const Ways = () => {
             rounded="xl"
             boxShadow="md"
           >
-            <Heading fontSize="28px">Get Our Service</Heading>
-            <Flex mt={10}>
+            <Heading fontSize="23px">Get Our Service</Heading>
+            <Flex mt={6}>
               <FormControl w="160px">
                 <Select
                   id="services"
                   placeholder="Service Type"
                   color="gray.400"
-                  fontSize="15px"
+                  fontSize="13px"
                 >
                   <option value={serviceChoosed} onChange={(e) => setServiceChoosed('End of Lease')}>End of Lease</option>
                   <option  value={serviceChoosed} onChange={(e) => setServiceChoosed('Home Clean')}>Home Clean</option>
@@ -92,9 +92,9 @@ const Ways = () => {
               </FormControl>
               <Spacer mx={2} />
               <InputGroup w="160px">
-                <Input fontSize="15px" value={postcode} onChange={(e) => setPostcode(e.target.value)} placeholder="Postcode" />
-                <InputRightElement>
-                  <BiCurrentLocation color="gray.200" />
+                <Input fontSize="13px" value={postcode} onChange={(e) => setPostcode(e.target.value)} placeholder="Postcode" />
+                <InputRightElement color="gray.400">
+                  <BiCurrentLocation  />
                   </InputRightElement>
                 
               </InputGroup>
@@ -103,7 +103,7 @@ const Ways = () => {
               backgroundColor="green.400"
               textAlign="center"
               isLoading={loading}
-              onClick={() => (setLoading(!loading), router.push('/'))}
+              onClick={() => (setLoading(!loading), router.push('/booking'))}
               loadingText="Loading"
               spinnerPlacement='start'
               py={4}
@@ -111,10 +111,9 @@ const Ways = () => {
               mt={8}
               mb={3}
               colorScheme="green"
-              fontSize="17px"
+              fontSize="15px"
               color="white"
-              fontWeight="semibold"
-              isDisabled={!postcode}
+                            isDisabled={!postcode}
               cursor="pointer"
             >
               Get a Quote
@@ -122,7 +121,7 @@ const Ways = () => {
           </Box>
         </Box>
         <Flex
-          fontSize="20px"
+          fontSize="18px"
           fontWeight="semibold"
           alignItems="center"
           mb={3}
@@ -136,7 +135,7 @@ const Ways = () => {
             mb={6}
             w={{ base: "100%", md: "60%" }}
             textAlign="left"
-            fontSize="30px"
+            fontSize="25px"
           >
             Some of the ways of working from{" "}
             <Text mt={1} color="#0195ff">
@@ -144,9 +143,9 @@ const Ways = () => {
             </Text>
           </Heading>
           <Text
-            fontWeight="semibold"
             color="gray.400"
             w={{ base: "90%", md: "40%" }}
+            fontSize="13px"
           >
             The system carried out by WeDoCleaning can make it easier for those
             of you who are confused about finding workers to clean your home,
@@ -188,12 +187,13 @@ const Ways = () => {
               >
                 {plan.icon}
               </Flex>
-              <Heading fontSize="24px">{plan.title}</Heading>
+              <Heading fontSize="20px">{plan.title}</Heading>
               <Text
                 fontWeight="semibold"
                 mt={5}
                 w={{ base: "80%", md: "100%" }}
-                color="gray.700"
+                color="gray.500"
+                fontSize="13px"
               >
                 {" "}
                 {plan.des}{" "}

@@ -11,12 +11,12 @@ import {
   RadioGroup,
   VStack,
 } from "@chakra-ui/react";
-import Services from "./Services/Services";
-import Schedule from "./Schedule/Schedule";
-import Addons from "./Addons/Addons";
-import ServiceSummary from "./ServiceSummary";
-import Locationier from './Location/Locationier'
-import Payment from "./Payments/Payment";
+import Services from "../components/Booking/Services/Services";
+import Schedule from "../components/Booking/Schedule/Schedule";
+import Addons from "../components/Booking/Addons/Addons";
+import ServiceSummary from "../components/Booking/ServiceSummary";
+import Locationier from '../components/Booking/Location/Locationier'
+import Payment from "../components/Booking/Payments/Payment";
 import { GiBookshelf, GiBrickWall, GiWashingMachine, GiWindow } from "react-icons/Gi";
 import { FaToilet } from "react-icons/Fa";
 import { MdBalcony } from "react-icons/Md";
@@ -56,12 +56,12 @@ interface Addon {
   quantity:number
 }
 const data = [
-  { id: 1, icon: <GiBookshelf />, title: "Study Room", quantity: 0, isSelected:false},
-  { id: 2, icon: <GiWashingMachine />, title: "Laundry", quantity: 0, isSelected:false},
-  { id: 3, icon: <FaToilet />, title: "Separate Toilet", quantity: 0, isSelected:false},
-  { id: 4, icon: <MdBalcony />, title: "Balcony", quantity: 0, isSelected:false},
-  { id: 5, icon: <GiWindow />, title: "Blinds", quantity: 0, isSelected:false},
-  { id: 6, icon: <GiBrickWall />, title: "Walls", quantity: 0, isSelected:false},
+  { id: 1, icon: <GiBookshelf />, title: "Study Room", quantity: 0, isSelected:false, price: 50},
+  { id: 2, icon: <GiWashingMachine />, title: "Laundry", quantity: 0, isSelected:false, price: 50},
+  { id: 3, icon: <FaToilet />, title: "Separate Toilet", quantity: 0, isSelected:false, price: 50},
+  { id: 4, icon: <MdBalcony />, title: "Balcony", quantity: 0, isSelected:false, price: 40},
+  { id: 5, icon: <GiWindow />, title: "Blinds", quantity: 0, isSelected:false, price: 40},
+  { id: 6, icon: <GiBrickWall />, title: "Walls", quantity: 0, isSelected:false, price: 30},
 ];
 const Booking = () => {
   const [selectedService, setSelectedService] = useState<string>("House Cleaning");
@@ -105,18 +105,18 @@ const Booking = () => {
     initialStep: 0,
   });
   return (
-    <Box position="relative" w="100%" mb={20}>
+    <Box maxWidth={{base:"80%", sm:"100%"}}  >
       <ServiceSummary/>
-    <VStack w={{base:"100%", sm:"100%", md:"1000px"}} p={2} pt="100px" fontSize="15px" mx={{md:'auto'}} >
-      <Steps activeStep={activeStep} w="100%" colorScheme="blue" pb={4}>
+    <Flex flexDir="column" pt={20} fontSize="15px" px={{base:2, sm:4}}  >
+      <Steps orientation="vertical" activeStep={activeStep} colorScheme="blue" pb={4}>
         {steps.map(({ label, content }) => (
-          <Step label={label} key={label} >
-            {content}
+          <Step label={label} key={label}  >
+            <Flex>{content}</Flex>
           </Step>
         ))}
       </Steps>
       {activeStep === 5 ? (
-        <Center p={4} VStackDir="row">
+        <Center p={4} >
           <Heading fontSize="xl">Woohoo! All steps completed!</Heading>
           <Button mt={6} size="sm" onClick={reset}>
             Reset
@@ -158,7 +158,7 @@ const Booking = () => {
           </Button>
         </Flex>
       )}
-    </VStack>
+    </Flex>
     </Box>
   );
 };

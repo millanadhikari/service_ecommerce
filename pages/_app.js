@@ -3,13 +3,20 @@ import { theme } from '../styles/theme.ts'
 
 import '@fontsource/raleway/400.css'
 import Sidebar from '../components/Admin/Sidebar/Sidebar'
+import {Provider, useSelector} from 'react-redux'
+import store from '../components/Admin/store'
+
 
 function MyApp({ Component, pageProps }) {
+
+
   return (
-    <ChakraProvider theme={theme}>
+  <Provider store={store} >
+      <ChakraProvider theme={theme}>
       <Component {...pageProps} />
-      <Sidebar/>
+       <Sidebar/>
     </ChakraProvider>
+  </Provider>
   )
 }
 

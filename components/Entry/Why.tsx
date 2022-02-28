@@ -16,7 +16,7 @@ const Why = () => {
     <Box
       position="absolute"
       w={{ md: "100%" }}
-      top={{ base: "2320px", sm: "2340", md: "1340", lg: "1300" }}
+      top={{ base: "2140px", sm: "2100", md: "1250px", lg: "1200px" }}
       mx={{ base: "4", sm: "4", md: "auto" }}
       my={{md:10}}
     >
@@ -54,14 +54,14 @@ const Why = () => {
           h="400px"
         />
         <Box zIndex="2" ml={{ base: 4, md: "380px", lg: "400px" }}>
-          <Heading textAlign="left">
+          <Heading textAlign="left" fontSize="25px">
             Why Order WeDo Home Cleaning Services?{" "}
           </Heading>
-          <List spacing={3} textAlign="left" px={3} my={8} fontSize="15px">
+          <List spacing={3} textAlign="left" px={3} my={8} fontSize="13px">
             <ListItem display="flex" alignItems="center">
               <ListIcon
                 mr={4}
-                fontSize="28px"
+                fontSize="24px"
                 as={AiFillCheckCircle}
                 color="white"
               />
@@ -72,7 +72,7 @@ const Why = () => {
                 mr={4}
                 as={AiFillCheckCircle}
                 color="white"
-                fontSize="28px"
+                fontSize="24px"
               />
               Have a very reliable workforce to help clean your house
             </ListItem>
@@ -81,7 +81,7 @@ const Why = () => {
                 mr={4}
                 as={AiFillCheckCircle}
                 color="white"
-                fontSize="28px"
+                fontSize="24px"
               />
               WeDo Cleaning prioritizes client omfort and always maintains the
               quality of employee work
@@ -92,14 +92,15 @@ const Why = () => {
                 mr={4}
                 as={AiFillCheckCircle}
                 color="white"
-                fontSize="28px"
+                fontSize="24px"
               />
               Quidem, ipsam illum quis sed voluptatum quae eum fugit earum
             </ListItem>
             <Button
               colorScheme="green"
-              fontSize="14px"
+              fontSize="14x"
               rounded="3xl"
+              fontWeight="light"
               boxShadow="md"
               px={8}
             >
