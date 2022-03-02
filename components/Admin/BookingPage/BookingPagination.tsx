@@ -5,36 +5,36 @@ import { useAppSelector } from "../app/hooks";
 
 const BookingPagination = ({ setPageNumber, pageNumber }) => {
 
-    const isLoading = useAppSelector(
-        (state) => state.bookings.isLoading
-      );
-  const totalPages = useAppSelector(
-    (state) => state.bookings.bookings.totalPages
-  );
-  const prevPages = useAppSelector(
-    (state) => state.bookings.bookings.previous?.page
-  );
+  //   const isLoading = useAppSelector(
+  //       (state) => state.bookings.isLoading
+  //     );
+  // const totalPages = useAppSelector(
+  //   (state) => state.bookings.bookings.totalPages
+  // );
+  // const prevPages = useAppSelector(
+  //   (state) => state.bookings.bookings.previous?.page
+  // );
 
-  const nextPages = useAppSelector(
-    (state) => state.bookings.bookings.next?.page
-  );
+  // const nextPages = useAppSelector(
+  //   (state) => state.bookings.bookings.next?.page
+  // );
 
-  const handleArray = (num) => {
-    const arr = [];
-    for (let i = 1; i <= num; i++) {
-      arr.push(i);
-    }
-    return arr;
-  };
+  // const handleArray = (num) => {
+  //   const arr = [];
+  //   for (let i = 1; i <= num; i++) {
+  //     arr.push(i);
+  //   }
+  //   return arr;
+  // };
 
-  const setPrevious = () => {
-    setPageNumber(pageNumber - 1 * 1);
-  };
+  // const setPrevious = () => {
+  //   setPageNumber(pageNumber - 1 * 1);
+  // };
 
-  const handleNext = (e) => { 
-    e.preventDefault();
-    setPageNumber(pageNumber + 1 * 1)
-  }
+  // const handleNext = (e) => { 
+  //   e.preventDefault();
+  //   setPageNumber(pageNumber + 1 * 1)
+  // }
 
   return (
     <Flex alignItems="center" justifyContent="space-between" w="100%" px={4}>
@@ -42,7 +42,7 @@ const BookingPagination = ({ setPageNumber, pageNumber }) => {
         PAGE {pageNumber} OF {totalPages}
       </Text>
       
-      <Flex alignItems="center">
+      {/* <Flex alignItems="center">
         <Button disabled={isLoading || prevPages == 0} onClick={setPrevious}>
           {" "}
           <ChevronLeftIcon />{" "}
@@ -72,7 +72,7 @@ const BookingPagination = ({ setPageNumber, pageNumber }) => {
         >
           <ChevronRightIcon />
         </Button>
-      </Flex>
+      </Flex> */}
     </Flex>
   );
 };
