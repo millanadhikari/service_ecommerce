@@ -35,37 +35,37 @@ import { useRouter } from "next/router";
 import { getSidebarStatus } from "../user/userSlice";
 
 const Sidebar = () => {
-  const user = useAppSelector((state) => state.user) || undefined;
+  // const user = useAppSelector((state) => state.user) || undefined;
 
-  const sidebarOpen =
-    useAppSelector((state) => state.user.sidebarOpen) || undefined;
-  const dispatch = useAppDispatch();
+  // const sidebarOpen =
+  //   useAppSelector((state) => state.user.sidebarOpen) || undefined;
+  // const dispatch = useAppDispatch();
 
-  const Router = useRouter();
+  // const Router = useRouter();
 
-  const handleSidebar = () => {
-    dispatch(getSidebarStatus(!sidebarOpen));
-  };
-  const logmeOut = () => {
-    sessionStorage.removeItem("accessJWT");
-    localStorage.removeItem("service_ecommerce");
-    userLogout();
-    Router.replace("/admin/login");
-  };
+  // const handleSidebar = () => {
+  //   dispatch(getSidebarStatus(!sidebarOpen));
+  // };
+  // const logmeOut = () => {
+  //   sessionStorage.removeItem("accessJWT");
+  //   localStorage.removeItem("service_ecommerce");
+  //   userLogout();
+  //   Router.replace("/admin/login");
+  // };
 
-  console.log(user);
+  // console.log(user);
 
   return (
     <Box
       position="fixed"
       top="0"
-      w={sidebarOpen ? "300px" : "80px"}
+      // w={sidebarOpen ? "300px" : "80px"}
       boxShadow="xs"
       h="100vh"
       borderColor="red"
       fontFamily="sans-serif"
     >
-      <Flex p={5} pt={2} alignItems="center">
+      {/* <Flex p={5} pt={2} alignItems="center">
         <Flex alignItems="center">
           <Image
             src="https://app-cdn.clickup.com/assets/images/brand/clickup-symbol_color.svg"
@@ -280,7 +280,6 @@ const Sidebar = () => {
             </Box>
           </PopoverContent>
         </Popover>
-        {/* {JSON.stringify(user)} */}
 
         {sidebarOpen && (
           <Box _hover={{ color: "purple.600" }} cursor="pointer">
@@ -288,6 +287,9 @@ const Sidebar = () => {
           </Box>
         )}
       </Flex>
+
+ */}
+
     </Box>
   );
 };
