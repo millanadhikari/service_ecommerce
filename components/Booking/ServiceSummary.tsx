@@ -9,8 +9,8 @@ import {
   AccordionPanel,
   Box,
 } from "@chakra-ui/react";
-import { GiHomeGarage } from "react-icons/Gi";
-import { FaToilet } from "react-icons/Fa";
+import { GiHomeGarage } from "react-icons/gi";
+import { FaToilet } from "react-icons/fa";
 import { useAppSelector } from "../Admin/app/hooks";
 
 const ServiceSummary = () => {
