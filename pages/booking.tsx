@@ -17,9 +17,9 @@ import Addons from "../components/Booking/Addons/Addons";
 import ServiceSummary from "../components/Booking/ServiceSummary";
 import Locationier from '../components/Booking/Location/Locationier'
 import Payment from "../components/Booking/Payments/Payment";
-import { GiBookshelf, GiBrickWall, GiWashingMachine, GiWindow } from "react-icons/Gi";
-import { FaToilet } from "react-icons/Fa";
-import { MdBalcony } from "react-icons/Md";
+import { GiBookshelf, GiBrickWall, GiWashingMachine, GiWindow } from "react-icons/gi";
+import { FaToilet } from "react-icons/fa";
+import { MdBalcony } from "react-icons/md";
 
 
 const content = (

@@ -12,7 +12,6 @@ import {
   Tr,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-import { AiOutlinePlusCircle } from "react-icons/ai";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { fetchAllBookings } from "./bookingAction";
 import BookingPagination from "./BookingPagination";

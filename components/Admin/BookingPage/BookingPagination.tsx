@@ -39,7 +39,8 @@ const BookingPagination = ({ setPageNumber, pageNumber }) => {
   return (
     <Flex alignItems="center" justifyContent="space-between" w="100%" px={4}>
       <Text fontSize="14px" color="gray.500" >
-        PAGE {pageNumber} OF {totalPages}
+        PAGE
+         {/* {pageNumber} OF {totalPages} */}
       </Text>
       
       {/* <Flex alignItems="center">

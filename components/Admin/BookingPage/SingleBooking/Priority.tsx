@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Box, Flex, Input, Popover, PopoverArrow, PopoverBody, PopoverCloseButton, PopoverContent, PopoverHeader, PopoverTrigger, Tooltip } from '@chakra-ui/react';
-import { AiOutlineUserAdd } from 'react-icons/ai';
-import { BiSearchAlt } from 'react-icons/bi';
+
 import { FiFlag } from 'react-icons/fi';
 import { BsFillFlagFill } from 'react-icons/bs';
 

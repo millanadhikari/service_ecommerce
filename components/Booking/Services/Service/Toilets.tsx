@@ -1,7 +1,7 @@
 import { Box, Flex, Heading, Spacer, Text } from "@chakra-ui/react";
 import React from "react";
-import { BiBed } from "react-icons/Bi";
-import { FaToilet } from "react-icons/Fa";
+import { BiBed } from "react-icons/bi";
+import { FaToilet } from "react-icons/fa";
 import { useAppDispatch, useAppSelector } from "../../../Admin/app/hooks";
 import { setBedroom, setToilet } from "../../customerBookingSlice";
 const arr2 = [

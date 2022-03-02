@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { Box, Flex, Icon, Link, Spacer } from '@chakra-ui/react'
 import { ArrowUpIcon, ArrowDownIcon } from '@chakra-ui/icons'
-import {  AiOutlineHome as Aioutlinehome } from 'react-icons/Ai'
-import { BiBellMinus } from 'react-icons/Bi'
-import { GiBowlingPropulsion } from 'react-icons/Gi'
-import { GiTargetPrize } from 'react-icons/Gi'
+import {  AiOutlineHome as Aioutlinehome } from 'react-icons/ai'
+import { BiBellMinus } from 'react-icons/bi'
+import { GiBowlingPropulsion } from 'react-icons/gi'
+import { GiTargetPrize } from 'react-icons/gi'
 import { useAppSelector } from '../../app/hooks'
 
 const SidebarMenu = () => {
