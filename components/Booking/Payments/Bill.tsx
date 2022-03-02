@@ -18,13 +18,13 @@ const Bill = () => {
   const stripe = useStripe()
   const elements = useElements()
 
-  const handleSubmit = async (e) => {
-    e.PreventDefault()
-    const result = await stripe.confirmPayment({
-        elements,
-        // card:elements.getElement(CardElement)
-    })
-  }
+  // const handleSubmit = async (e) => {
+  //   e.PreventDefault()
+  //   const result = await stripe.confirmPayment({
+  //       elements,
+  //       // card:elements.getElement(CardElement)
+  //   })
+  // }
   return (
     <Box w="100%" h="1000px">
       <Table variant="simple" size="sm" colorScheme="blackAlpha" mt={2}>
