@@ -6,7 +6,7 @@ import { BiRefresh } from 'react-icons/bi';
 import { useAppDispatch, useAppSelector } from '../../components/Admin/app/hooks';
 import { fetchAllBookings } from '../../components/Admin/BookingPage/bookingAction';
 import BookingList from '../../components/Admin/BookingPage/BookingList';
-import withAuth from '../../components/Admin/privateRoute/withAuth';
+// import withAuth from '../../components/Admin/privateRoute/withAuth';
 
 const Bookings = () => {
 
@@ -48,4 +48,4 @@ const Bookings = () => {
     </Box>;
 };
 
-export default withAuth(Bookings);
+export default Bookings
