@@ -8,6 +8,7 @@ import Service from './Entry/Service'
 import EntryTabs from "./Entry/EntryTabs";
 import Newsletter from "./Entry/Newsletter";
 import Review from "./Entry/Review";
+import Footer from "./Entry/Footer";
 
 function Entry() {
   return (
@@ -21,6 +22,7 @@ function Entry() {
       <EntryTabs/>
       <Newsletter/>
       <Review/>
+      <Footer/>
     </Box>
   );
 }
