@@ -5,6 +5,7 @@ import Navbar from "./Entry/Navbar";
 import Ways from "./Entry/Ways";
 import Why from "./Entry/Why";
 import Service from './Entry/Service'
+import EntryTabs from "./Entry/EntryTabs";
 
 function Entry() {
   return (
@@ -15,6 +16,7 @@ function Entry() {
       <Ways />
       <Why/>
       <Service />
+      <EntryTabs/>
     </Box>
   );
 }
