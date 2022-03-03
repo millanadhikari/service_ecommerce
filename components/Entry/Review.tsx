@@ -78,7 +78,7 @@ const Review = () => {
             
           </Box>
           <Box backgroundColor="white" mx={14} mt="-32" rounded="lg" p={6} shadow="lg">
-            <Heading fontSize="15px" fontFamily="Raleway" textAlign="left">
+            <Heading fontSize="15px" fontFamily="Raleway" textAlign="left" lineHeight="1.6rem">
              5 star deserved cleaning company. Well done team! House is Sparkling.
             </Heading>
             <Text fontSize="11px" lineHeight="1.5rem" textAlign="left" mt={7} fontWeight="semibold" color="gray.400"> This guys has cleaned my house beyond my expectation. I celebrated my great festival with a very clean house. Thank you WeDo for your five star service. Will definately recommend to the colleagues.</Text>
@@ -128,7 +128,7 @@ const Review = () => {
             
           </Box>
           <Box backgroundColor="white" mx={14} mt="-32" rounded="lg" p={6} shadow="lg">
-            <Heading fontSize="15px" fontFamily="Raleway" textAlign="left">
+            <Heading fontSize="15px" fontFamily="Raleway" textAlign="left" lineHeight="1.6rem">
               Thank you very much for excellent and very professional job today!
             </Heading>
             <Text fontSize="11px" lineHeight="1.5rem" textAlign="left" mt={7} fontWeight="semibold" color="gray.400"> Really Appreciate and Thank you very much for excellent and very professional job today! You always do more than we expecting. Will recommend to friends and family. I wish you Merry Christmas! THANKS!</Text>
