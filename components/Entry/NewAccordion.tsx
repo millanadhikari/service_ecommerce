@@ -14,7 +14,7 @@ const NewAccordion = ({ section1, section2, desc1, desc2, section3, desc3}) => {
       <AccordionItem >
         <h2>
           <AccordionButton _focus={{outline: 'none'}}>
-            <Box flex="1" textAlign="left" fontWeight="bold" py={2}>
+            <Box flex="1" textAlign="left" fontWeight="bold" py={2} fontSize="15px">
               {section1}
             </Box>
             <AccordionIcon />
@@ -26,7 +26,7 @@ const NewAccordion = ({ section1, section2, desc1, desc2, section3, desc3}) => {
       <AccordionItem>
         <h2>
           <AccordionButton  _focus={{outline: 'none'}} >
-            <Box flex="1" textAlign="left" fontWeight="bold"  py={2}>
+            <Box flex="1" textAlign="left" fontWeight="bold" fontSize="15px"  py={2}>
               {section2}
             </Box>
             <AccordionIcon />
@@ -37,7 +37,7 @@ const NewAccordion = ({ section1, section2, desc1, desc2, section3, desc3}) => {
       <AccordionItem>
         <h2>
           <AccordionButton  _focus={{outline: 'none'}} >
-            <Box flex="1" textAlign="left" fontWeight="bold"  py={2}>
+            <Box flex="1" textAlign="left" fontWeight="bold" fontSize="15px" py={2}>
               {section3}
             </Box>
             <AccordionIcon />

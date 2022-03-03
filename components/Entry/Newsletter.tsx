@@ -36,7 +36,7 @@ const Newsletter = () => {
           always offer you when you subscribe to us. For that lets join us for
           better offer.
         </Text>
-        <InputGroup size="md" w="350px">
+        <InputGroup size="md" w={{base:"100%", md:"350px"}}>
           <Input
             pr="4.5rem"
             _placeholder={{ fontSize: "12px", color: "gray.200", px: 2 }}
