@@ -6,6 +6,8 @@ import Ways from "./Entry/Ways";
 import Why from "./Entry/Why";
 import Service from './Entry/Service'
 import EntryTabs from "./Entry/EntryTabs";
+import Newsletter from "./Entry/Newsletter";
+import Review from "./Entry/Review";
 
 function Entry() {
   return (
@@ -17,6 +19,8 @@ function Entry() {
       <Why/>
       <Service />
       <EntryTabs/>
+      <Newsletter/>
+      <Review/>
     </Box>
   );
 }

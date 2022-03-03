@@ -103,7 +103,7 @@ const Ways = () => {
               backgroundColor="green.400"
               textAlign="center"
               isLoading={loading}
-              onClick={() => (setLoading(!loading), router.push('/booking'))}
+              // onClick={() => (setLoading(!loading), router.push('/booking'))}
               loadingText="Loading"
               spinnerPlacement='start'
               py={4}
