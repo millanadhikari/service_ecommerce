@@ -33,7 +33,7 @@ const Newsletter = () => {
         <Heading fontSize="27px">Follow Our Newsletter</Heading>
         <Text color="gray.200" fontSize="14px" lineHeight="1.8rem">
           Keep an eye on our activities, there will be some promos that we
-          always offer you when you subscribe to us. For that let's join us for
+          always offer you when you subscribe to us. For that lets join us for
           better offer.
         </Text>
         <InputGroup size="md" w="350px">
