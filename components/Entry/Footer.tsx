@@ -56,7 +56,7 @@ const Footer = () => {
         </Flex>
         
     </Flex>
-    <Text textAlign="center" fontSize="12px" color="gray.400"mt={6}>(c) Copyright 2021 by WeDo Cleaning Services. All rights reserved.</Text>
+    <Text textAlign="center" fontSize="12px" color="gray.400"mt={12}>(c) Copyright 2021 by WeDo Cleaning Services. All rights reserved.</Text>
       </Box>
   )
 }

@@ -11,7 +11,7 @@ import React from "react";
 const NewAccordion = ({ section1, section2, desc1, desc2, section3, desc3}) => {
   return (
     <Accordion>
-      <AccordionItem >
+      <AccordionItem borderTop="none" >
         <h2>
           <AccordionButton _focus={{outline: 'none'}}>
             <Box flex="1" textAlign="left" fontWeight="bold" py={2} fontSize="15px">
@@ -34,7 +34,7 @@ const NewAccordion = ({ section1, section2, desc1, desc2, section3, desc3}) => {
         </h2>
         <AccordionPanel fontSize="14px" color="gray.500"  pb={4}>{desc2}</AccordionPanel>
       </AccordionItem>
-      <AccordionItem>
+      <AccordionItem borderBottom="none">
         <h2>
           <AccordionButton  _focus={{outline: 'none'}} >
             <Box flex="1" textAlign="left" fontWeight="bold" fontSize="15px" py={2}>
