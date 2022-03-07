@@ -36,7 +36,7 @@ const Newsletter = () => {
           always offer you when you subscribe to us. For that lets join us for
           better offer.
         </Text>
-        <InputGroup size="md" w={{base:"100%", md:"350px"}}>
+        <InputGroup size="md" w={{ base: "100%", md: "350px" }}>
           <Input
             pr="4.5rem"
             _placeholder={{ fontSize: "12px", color: "gray.200", px: 2 }}
@@ -58,7 +58,6 @@ const Newsletter = () => {
               px={4}
               py="15px"
               cursor="pointer"
-              
               color="gray.600"
             >
               Subscribe
@@ -66,8 +65,13 @@ const Newsletter = () => {
           </InputRightElement>
         </InputGroup>
       </Flex>
-      <Box position="absolute" right="0" bottom="0" display={{base:"none", md:"inline"}}>
-      <Image src="/girl.png" h={350} w={320}/>
+      <Box
+        position="absolute"
+        right="0"
+        bottom="0"
+        display={{ base: "none", md: "inline" }}
+      >
+        <Image src="/girl.png" h={350} w={320} />
       </Box>
     </Flex>
   );

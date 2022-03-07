@@ -30,7 +30,7 @@ const ServiceSummary = () => {
     >
       <Flex alignItems="center">
         <Text position="absolute" top="6" fontSize="16px" fontWeight="semibold">
-          Service Summary
+          Online Booking
         </Text>
         <Spacer />
         <Accordion  allowMultiple w={60} >

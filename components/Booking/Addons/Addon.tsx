@@ -28,54 +28,59 @@ const Addon = ({ item, addons, setAddons }) => {
   // match && setAddons(newAddons)
 
   useEffect(() => {
-    dispatch(setAdons(addons.map((adon) => {
-      if(adon.isSelected) { 
-        adon
-      }
-    })));
+    dispatch(
+      setAdons(
+        addons.map((adon) => {
+          if (adon.isSelected) {
+            adon;
+          }
+        })
+      )
+    );
   }, [addons]);
   return (
-    <Flex
-      position="relative"
-      alignItems="center"
-      justifyContent="center"
-      my={4}
-      border="1px solid gray"
-      flexDirection="column"
-      borderColor="blue.500"
-      w="140px"
-      h="120px"
-      px={5}
-      backgroundColor={item.complete ? "blue.600" : "white"}
-      color={!item.complete ? "blue.600" : "white"}
-      rounded="md"
-      cursor="pointer"
-      pl={6}
-      pb={4}
-      onClick={handleAdd}
-    >
-      <Box mr={3} fontSize="26px" textAlign="center" mx="auto">
-        {item.icon}
-      </Box>
+    <Flex>
+      <Flex
+        position="relative"
+        alignItems="center"
+        my={4}
+        border="1px solid gray"
+        borderColor="blue.500"
+        textAlign="left"
+        px={5}
+        py={6}
+        gap={4}
+        w="100%"
+        backgroundColor={item.complete ? "blue.600" : "white"}
+        color={!item.complete ? "blue.600" : "white"}
+        rounded="md"
+        cursor="pointer"
+        onClick={handleAdd}
+      >
+        <Box fontSize="23px" textAlign="center">
+          {item.icon}
+        </Box>
 
-      <Box fontWeight="semibold" textAlign="center" mt={3} fontSize="13px">
-        {item.title}
-      </Box>
-      {item.complete && (
-        <Box position="absolute" right="2" top="0">
-          <CheckCircleIcon />
+        <Box fontWeight="semibold" textAlign="center" fontSize="12px">
+          {item.title}
         </Box>
-      )}
-      {item.complete && (
-        <Box position="absolute" right="2" bottom="1">
-          x 1
-        </Box>
-      )}
-      {/* {item.complete && (
+        {item.complete && (
+          <Box position="absolute" right="2" top="0" fontSize="12px">
+            <CheckCircleIcon />
+          </Box>
+        )}
+        {item.complete && (
+          <Box position="absolute" right="2" bottom="1" fontSize="11px">
+            x 1
+          </Box>
+        )}
+        {/* {item.complete && (
         <Box position="absolute" left="2" bottom="1">
           + 0 -
         </Box>
       )} */}
+      </Flex>
+      <Box>lkjsdf</Box>
     </Flex>
   );
 };

@@ -107,11 +107,11 @@ const Booking = () => {
   return (
     <Box maxWidth={{base:"80%", sm:"100%"}}  >
       <ServiceSummary/>
-    <Flex flexDir="column" pt={20} fontSize="15px" px={{base:2, sm:4}}  >
-      <Steps orientation="vertical" activeStep={activeStep} colorScheme="blue" pb={4}>
+    <Flex flexDir="column" pt={20}  px={{base:2, sm:4}}  >
+      <Steps  orientation="vertical" activeStep={activeStep} colorScheme="blue" pb={4}>
         {steps.map(({ label, content }) => (
-          <Step label={label} key={label}  >
-            <Flex>{content}</Flex>
+          <Step  label={label} key={label}  >
+            <Flex >{content}</Flex>
           </Step>
         ))}
       </Steps>

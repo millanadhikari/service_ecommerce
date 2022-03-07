@@ -38,8 +38,8 @@ const Toilets = ({ toilets, setToilets, bedrooms, setBedrooms }: Props) => {
   const main = useAppSelector((state) => state.cBookings.cBookings.toilets);
   const next = useAppSelector((state) => state.cBookings.cBookings.bedrooms);
   return (
-    <Box textAlign="left" px={4}>
-      <Heading fontSize={18} mb={6}>
+    <Box textAlign="left" px={4} mt={2}>
+      <Heading fontSize={15} mb={6}>
         How many bedrooms and bathrooms are in your home ?
       </Heading>
 

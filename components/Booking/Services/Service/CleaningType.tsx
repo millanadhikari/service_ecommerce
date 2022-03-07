@@ -16,19 +16,23 @@ const CleaningType = ({ selectedService, setSelectedService }: Props) => {
 
 
   return (
-    <Box  textAlign="left" px={{base:4}} >
-      <Heading fontSize={18}>
+    <Box  textAlign="left" px={{base:7}} >
+      <Heading fontSize={15}>
         What kind of clean would you like to schedule?
         
       </Heading>
       <Flex w={{md:"400px"}} mx="auto">
-        <Box
-          my={10}
-          px={6}
-          py={10}
+        <Flex
+          my={5}
+          flexDirection="column"
+          alignItems="center"
+          justifyContent="center"
+          px={5}
           textAlign="left"
           rounded="md"
           boxShadow="xl"
+          h="120px"
+
           cursor="pointer"
           backgroundColor={
             book.cBookings.selectedService === "House Cleaning" ? "blue.600" : "white"
@@ -39,21 +43,25 @@ const CleaningType = ({ selectedService, setSelectedService }: Props) => {
         >
           <Flex alignItems="center" justify="center">
             {" "}
-            <GiVacuumCleaner size="50px" />
+            <GiVacuumCleaner size="30px" />
           </Flex>
-          <Text mt={4} fontSize="16px">
-            House Cleaning{" "}
+          <Text mt={3} fontSize="13px" w={20} textAlign="center" >
+            House Cleaning
           </Text>
-        </Box>
+        </Flex>
         <Spacer />
-        <Box
-          my={10}
-          px={6}
-          py={10}
-          textAlign="center"
-          rounded="md"
-          boxShadow="xl"
-          cursor="pointer"
+        <Flex
+           my={5}
+           flexDirection="column"
+           alignItems="center"
+           justifyContent="center"
+           px={5}
+           textAlign="left"
+           rounded="md"
+           boxShadow="xl"
+           h="120px"
+ 
+           cursor="pointer"
           backgroundColor={
             book.cBookings.selectedService === "Bond Cleaning" ? "blue.600" : "white"
           }
@@ -63,12 +71,12 @@ const CleaningType = ({ selectedService, setSelectedService }: Props) => {
         >
           <Flex alignItems="center" justify="center">
             {" "}
-            <GiHouseKeys size="50px" />
+            <GiHouseKeys size="30px" />
           </Flex>
-          <Text mt={4} fontSize="16px">
+          <Text mt={3} fontSize="13px" w={20} textAlign="center" >
             Bond Cleaning{" "}
           </Text>
-        </Box>{" "}
+        </Flex>{" "}
       </Flex>
     </Box>
   );

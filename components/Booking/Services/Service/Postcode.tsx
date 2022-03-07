@@ -1,4 +1,4 @@
-import { Box, Heading, Input } from "@chakra-ui/react";
+import { Box, Flex, Heading, Input, Text } from "@chakra-ui/react";
 import React from "react";
 
 interface Props {
@@ -9,13 +9,15 @@ interface Props {
 const Postcode = ({ postcode, setPostCode }) => {
   return (
     <Box textAlign="left" px={4}>
-      <Heading fontSize={18} mt={10} mb={3}>
-        Enter your postcode*
-      </Heading>
+      <Flex fontWeight="bold" fontSize={15} mt={5} mb={3}>
+        Enter your postcode<Text ml={1} color="red.300">*</Text>
+      </Flex>
       <Input
         
         _focus={{ borderColor: "gray.100" }}
         backgroundColor="white"
+        placeholder="e.g. 2000"
+        _placeholder={{fontSize:"13px"}}
         onChange={(e)=>setPostCode(e.target.value)}
         value= {postcode}
 
