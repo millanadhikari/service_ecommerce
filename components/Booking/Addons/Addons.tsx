@@ -8,8 +8,8 @@ import Addon from "./Addon";
 // }
 const Addons = ({ addons, setAddons }) => {
   return (
-    <Flex
-      flexDirection="column"
+    <Box
+      
       rounded="md"
       py={{ base: 8, md: 16 }}
       px={{ base: "1", md: "16" }}
@@ -18,20 +18,22 @@ const Addons = ({ addons, setAddons }) => {
       w="100%"
     >
       <Heading fontSize={16} pl={{ md: 5 }}>
-        Please select from following options:
+        Please select from following options: 
       </Heading>
 
       <Grid
-        templateColumns={{ base: "repeat(1, 1fr)", md: "repeat(3, 1fr)" }}
+        templateColumns={{ base: "repeat(1, 1fr)", md: "repeat(2, 1fr)" }}
         my={5}
+        w="100%"
+        
       >
         {addons.map((item) => (
-          <GridItem mx={4} key={item.id}>
+          <GridItem mx={4} key={item.id} my={{md:4}}>
             <Addon item={item} addons={addons} setAddons={setAddons} />
           </GridItem>
         ))}
       </Grid>
-    </Flex>
+    </Box>
   );
 };
 

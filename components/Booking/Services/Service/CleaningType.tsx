@@ -21,7 +21,7 @@ const CleaningType = ({ selectedService, setSelectedService }: Props) => {
         What kind of clean would you like to schedule?
         
       </Heading>
-      <Flex w={{md:"400px"}} mx="auto">
+      <Flex w={{sm:"80%", md:"300px"}} mx="auto">
         <Flex
           my={5}
           flexDirection="column"

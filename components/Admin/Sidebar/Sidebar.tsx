@@ -25,7 +25,7 @@ import {
 } from "@chakra-ui/icons";
 import SidebarMenu from "./Menu/SidebarMenu";
 import SpaceAccordion from "./Sidebar_Accordion/SpaceAccordion";
-// import withAuth from "../privateRoute/withAuth";
+import withAuth from "../privateRoute/withAuth";
 import { AiOutlineQuestionCircle } from "react-icons/ai";
 import { BiChevronDown } from "react-icons/bi";
 import { useAppDispatch, useAppSelector } from "../../Admin/app/hooks";
@@ -35,23 +35,23 @@ import { useRouter } from "next/router";
 import { getSidebarStatus } from "../user/userSlice";
 
 const Sidebar = () => {
-  // const user = useAppSelector((state) => state.user) || undefined;
+  const user = useAppSelector((state) => state.user) || undefined;
 
-  // const sidebarOpen =
-  //   useAppSelector((state) => state.user.sidebarOpen) || undefined;
-  // const dispatch = useAppDispatch();
+  const sidebarOpen =
+    useAppSelector((state) => state.user.sidebarOpen) || undefined;
+  const dispatch = useAppDispatch();
 
-  // const Router = useRouter();
+  const Router = useRouter();
 
-  // const handleSidebar = () => {
-  //   dispatch(getSidebarStatus(!sidebarOpen));
-  // };
-  // const logmeOut = () => {
-  //   sessionStorage.removeItem("accessJWT");
-  //   localStorage.removeItem("service_ecommerce");
-  //   userLogout();
-  //   Router.replace("/admin/login");
-  // };
+  const handleSidebar = () => {
+    dispatch(getSidebarStatus(!sidebarOpen));
+  };
+  const logmeOut = () => {
+    sessionStorage.removeItem("accessJWT");
+    localStorage.removeItem("service_ecommerce");
+    userLogout();
+    Router.replace("/admin/login");
+  };
 
   // console.log(user);
 
@@ -65,7 +65,7 @@ const Sidebar = () => {
       borderColor="red"
       fontFamily="sans-serif"
     >
-      {/* <Flex p={5} pt={2} alignItems="center">
+      <Flex p={5} pt={2} alignItems="center">
         <Flex alignItems="center">
           <Image
             src="https://app-cdn.clickup.com/assets/images/brand/clickup-symbol_color.svg"
@@ -288,10 +288,10 @@ const Sidebar = () => {
         )}
       </Flex>
 
- */}
+
 
     </Box>
   );
 };
 
-export default Sidebar
+export default withAuth(Sidebar)

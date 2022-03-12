@@ -23,7 +23,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "components/Admin/privateRoute/withAuth.js", "components/Admin/BookingPage/bookingAction.js", "components/Admin/Sidebar/Sidebar.js"  ],
+, "components/Admin/privateRoute/withAuth.js", "components/Admin/BookingPage/bookingAction.js", "components/Admin/Sidebar/Sidebar.js", "components/Booking/Payments/Paymentjs", "components/Booking/Payments/CheckoutElement.js"  ],
   "exclude": [
     "node_modules"
   ]

@@ -46,7 +46,7 @@ const Locationier = ({
             <AiOutlineEdit onClick={() => setMenu(!menu)} cursor="pointer" />
           )}
         </Flex>
-      </Flex>
+      </Flex> 
 
       <Box>
         {location.map((contact: Location) => (
