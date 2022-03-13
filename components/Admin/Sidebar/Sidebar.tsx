@@ -26,12 +26,16 @@ import {
 import SidebarMenu from "./Menu/SidebarMenu";
 import SpaceAccordion from "./Sidebar_Accordion/SpaceAccordion";
 import { AiOutlineQuestionCircle } from "react-icons/ai";
+
+import { AiFillHome, AiOutlineHome as Aioutlinehome } from "react-icons/Ai";
+
 import { BiChevronDown } from "react-icons/bi";
 import { useAppDispatch, useAppSelector } from "../../Admin/app/hooks";
 import { BsToggleOn } from "react-icons/bs";
 import { userLogout } from "../api/userApi";
 import { useRouter } from "next/router";
 import { getSidebarStatus } from "../user/userSlice";
+import withAuth from "../privateRoute/withAuth";
 
 const Sidebar = () => {
   const {isAuth} = useAppSelector((state) => state.login) || undefined;
@@ -57,16 +61,15 @@ const Sidebar = () => {
 
   return (
     <>
-      {isAuth ? (
         <Box
-          position="fixed"
-          top="0"
-          // w={sidebarOpen ? "300px" : "80px"}
-          boxShadow="xs"
-          h="100vh"
-          borderColor="red"
-          fontFamily="sans-serif"
-        >
+        position="fixed"
+        top="0"
+        w={sidebarOpen ? "300px" : "80px"}
+        h="100vh"
+        borderRight="1px solid "
+        borderColor="gray.200"
+        fontFamily="sans-serif"
+      >
           <Flex p={5} pt={2} alignItems="center">
             <Flex alignItems="center">
               <Image
@@ -299,9 +302,8 @@ const Sidebar = () => {
             )}
           </Flex>
         </Box>
-      ): null}
     </>
   );
 };
 
-export default Sidebar;
+export default withAuth(Sidebar);
