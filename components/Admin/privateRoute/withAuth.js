@@ -9,7 +9,7 @@ import { fetchNewAccessJWT } from "../api/userApi";
 const withAuth = (WrappedComponent) => {
  
 
- 
+ /* eslint-enable react/prop-types */
   return (props) => {
     const dispatch = useDispatch();
     const { isAuth } = useSelector(state => state.login);
@@ -54,3 +54,4 @@ const withAuth = (WrappedComponent) => {
 };
 
 export default withAuth;
+/* eslint-enable react/prop-types */
