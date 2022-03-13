@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import {useEffect} from 'react'
+import {React, useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import { getUserProfile } from "../user/userAction";
 import { loginSuccess } from "../auth/loginSlice";
@@ -21,7 +21,7 @@ const withAuth = (WrappedComponent) => {
         result && dispatch(loginSuccess());
       };
   
-      !user._id && dispatch(getUserProfile());
+      // !user._id && dispatch(getUserProfile());
   
       !sessionStorage.getItem("accessJWT") &&
         localStorage.getItem("accounting_crm") &&
