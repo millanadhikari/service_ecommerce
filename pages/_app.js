@@ -9,7 +9,6 @@ import store from '../components/Admin/store'
 
 function MyApp({ Component, pageProps }) {
 
-
   return (
   <Provider store={store} >
       <ChakraProvider theme={theme}>
