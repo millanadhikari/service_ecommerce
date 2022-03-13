@@ -25,7 +25,6 @@ import {
 } from "@chakra-ui/icons";
 import SidebarMenu from "./Menu/SidebarMenu";
 import SpaceAccordion from "./Sidebar_Accordion/SpaceAccordion";
-// import withAuth from "../privateRoute/withAuth";
 import { AiOutlineQuestionCircle } from "react-icons/ai";
 import { BiChevronDown } from "react-icons/bi";
 import { useAppDispatch, useAppSelector } from "../../Admin/app/hooks";
@@ -58,7 +57,7 @@ const Sidebar = () => {
 
   return (
     <>
-      {isAuth && (
+      {isAuth ? (
         <Box
           position="fixed"
           top="0"
@@ -300,7 +299,7 @@ const Sidebar = () => {
             )}
           </Flex>
         </Box>
-      )}
+      ): null}
     </>
   );
 };
