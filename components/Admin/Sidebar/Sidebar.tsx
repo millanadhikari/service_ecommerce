@@ -130,7 +130,7 @@ const Sidebar = () => {
           {sidebarOpen && (
             <Flex px={5}>
               <InputGroup w="80%" size="sm">
-                <InputLeftAddon children={<Search2Icon />} />
+                <InputLeftAddon>{<Search2Icon />} </InputLeftAddon>
                 <Input
                   placeholder="Search"
                   variant="filled"
