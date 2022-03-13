@@ -1,7 +1,9 @@
 import React from 'react'
 
-export const failure = () => {
+ const failure = () => {
   return (
     <div>failure</div>
   )
 }
+
+export default failure
