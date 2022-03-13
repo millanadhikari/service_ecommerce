@@ -3,7 +3,6 @@ import { Box, Flex, Icon, Link, Spacer, Text } from "@chakra-ui/react";
 import { ArrowUpIcon, ArrowDownIcon } from "@chakra-ui/icons";
 import { AiFillHome, AiOutlineHome as Aioutlinehome } from "react-icons/ai";
 import { BiBellMinus } from "react-icons/bi";
-import { GiBowlingPropulsion } from "react-icons/Gi";
 import { GiTargetPrize } from "react-icons/gi";
 import { useAppSelector } from "../../app/hooks";
 import { useRouter } from "next/router";
