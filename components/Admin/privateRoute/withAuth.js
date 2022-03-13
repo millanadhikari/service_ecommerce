@@ -45,7 +45,7 @@ const withAuth = (WrappedComponent) => {
 
       // If this is an accessToken we just render the component that was passed with all its props
 
-      return <WrappedComponent {...props} />;
+      return <WrappedComponent> {props}</WrappedComponent>;
     }
 
     // If we are on server, return null
