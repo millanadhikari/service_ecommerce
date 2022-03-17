@@ -69,16 +69,16 @@ const Booking = () => {
   const [toilets, setToilets] = useState<number>(1);
   const [bedrooms, setBedrooms] = useState<number>(0);
   const [postcode, setPostCode] = useState<string>('');
-  const [date, setDate] = useState<Date>(new Date())
+  const [gate, setDate] = useState<Date>()
   const [time, setTime] = useState<string>('')
-  const [location, setLocation] = useState<Location[]>([])
+  const [location, setLocation] = useState<Location>({ id: Math.random(), fullname: "", phone: "", email: "", buildingNumber:"", streetName:"", postcode:`${postcode}` })
   const [addons, setAddons] = useState<Addon[]>(data)                                                                                                      
 
-  useEffect(() => {
-  const initialLocation ={ id: Math.random(), fullname: "", phone: "", email: "", buildingNumber:"", streetName:"", postcode:`${postcode}`  }
-    console.log(addons)
-  setLocation([initialLocation])
-}, [addons])
+//   useEffect(() => {
+//   const initialLocation ={ id: Math.random(), fullname: "", phone: "", email: "", buildingNumber:"", streetName:"", postcode:`${postcode}` }
+//     console.log(addons)
+//   setLocation([initialLocation])
+// }, [addons])
   const steps = [
     {
       label: "Services",
@@ -97,7 +97,7 @@ const Booking = () => {
       ),
     },
     { label: "Addons", content: <Addons addons={addons} setAddons={setAddons}/> },
-    { label: "Schedule", content: <Schedule time={time} setTime={setTime} date={date} setDate={setDate}/> },
+    { label: "Schedule", content: <Schedule time={time} setTime={setTime} gate={gate} setDate={setDate}/> },
     { label: "Location", content: <Locationier location={location} setLocation={setLocation} postcode={postcode} setPostCode={setPostCode}/> },
     { label: "Payment", content: <CheckoutElement/> },
   ];
@@ -135,7 +135,7 @@ const Booking = () => {
           borderColor="gray.300"
                     h='65px'
           zIndex="999"
-          justify="right"
+          justify="space-between"
         >
           <Button
             mr={4}

@@ -15,6 +15,7 @@ import { useAppSelector } from "../Admin/app/hooks";
 
 const ServiceSummary = () => {
   const price = useAppSelector((state) => state.cBookings.price);
+  const addonPrice = useAppSelector((state) => state.cBookings.cBookings.addonsPrice);
   const isLoading = useAppSelector((state) => state.cBookings.isLoading);
   const cBookings = useAppSelector((state) => state.cBookings.cBookings);
 
@@ -54,7 +55,7 @@ const ServiceSummary = () => {
                 backgroundcolor="red"
               >
                 <Box flex="1" textAlign="left">
-                 {isLoading ? 'Loading' : <div> Total: $ {price}</div>}
+                 {isLoading ? 'Loading' : <div> Total: $ {price + addonPrice}</div>}
                 </Box>
                 <AccordionIcon />
               </AccordionButton>
@@ -126,7 +127,7 @@ const ServiceSummary = () => {
                   <Spacer my="2px" />
                   <Flex fontSize="14px">
                     <Flex alignItems="center" justify="center">
-                      <Box fontWeight="bold" color="gray.600">$39.00</Box>
+                      <Box fontWeight="bold" color="gray.600">$ {price}</Box>
                       <Box color="gray.400" ml={2}>
                         x 01
                       </Box>
@@ -136,9 +137,9 @@ const ServiceSummary = () => {
               </Flex>
               <Box fontSize="13px" color="gray.500" fontWeight="semibold" py={4} px={5} >
                 <Flex>
-                  <Text>Delivery</Text>
+                  <Text>Addons</Text>
                   <Spacer/>
-                  <Text>$20</Text>
+                  <Text>$ {addonPrice}</Text>
                 </Flex>
                 <Spacer my={2}/>
                 <Flex>
@@ -150,7 +151,7 @@ const ServiceSummary = () => {
               <Flex p={5} bottom="0" alignItems="center" justify="center" py={4} backgroundColor="gray.200">
                   <Heading fontSize={20}>Total</Heading>
                   <Spacer/>
-                  <Text fontWeight="semibold">$ {price} .00</Text>
+                  <Text fontWeight="semibold">$ {price + addonPrice} .00</Text>
               </Flex>
             </AccordionPanel>
           </AccordionItem>

@@ -1,7 +1,6 @@
 import { Box, Flex, Spacer, Text } from "@chakra-ui/react";
 import React, { useState } from "react";
 import Calendar from "react-calendar";
-import "react-calendar/dist/Calendar.css";
 
 const times = [
   {
@@ -22,25 +21,26 @@ const times = [
 ];
 
 interface Props {
-  date: Date;
+  gate: Date;
   setDate: React.Dispatch<React.SetStateAction<Date>>;
   time: string;
   setTime: React.Dispatch<React.SetStateAction<string>>;
 }
-const Date = ({ date, setDate, time, setTime }: Props) => {
-  const getDate = () => {};
-
+const Mitee = ({ gate, setDate, time, setTime }: Props) => {
+  const today = new Date();
+  let tomorrow = new Date(today);
+  tomorrow.setDate(tomorrow.getDate() + 1);
   return (
-    <Box textAlign="left" w="100%" >
-      <Text my={5} fontSize="16px" fontWeight="semibold">
+    <Box textAlign="left" w="100%">
+      <Text my={5} fontSize="16" fontWeight="semibold">
         What is your preferred date?
       </Text>
-      <Flex  alignItems="center" justifyContent="center"  >
+      <Flex alignItems="center" justifyContent="center">
         <Calendar
           onChange={setDate}
-          value={date}
-          defaultActiveStartDate={date}
-          minDate={date}
+          activeStartDate={new Date()}
+          minDate={tomorrow}
+          value={gate}
         />
       </Flex>
       <Text my={5} fontSize="16px" fontWeight="semibold">
@@ -75,4 +75,4 @@ const Date = ({ date, setDate, time, setTime }: Props) => {
   );
 };
 
-export default Date;
+export default Mitee;

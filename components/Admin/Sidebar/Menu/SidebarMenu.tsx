@@ -148,6 +148,9 @@ const SidebarMenu = () => {
               cursor="pointer"
               fontSize="13px"
               letterSpacing="0.5px"
+              onClick={() => {
+                router.push("/bookings"), setIsActive("bookings");
+              }}
             >
               <Icon
                 textDecoration="none"

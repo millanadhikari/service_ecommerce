@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { MdInvertColorsOff } from "react-icons/md";
-import {mergeArrayWithObject} from './utils/mergeArrayWithObject'
+import { mergeArrayWithObject } from './utils/mergeArrayWithObject'
 
 const initialState = {
   cBookings: {
@@ -16,13 +16,13 @@ const initialState = {
       price: 150
     },
     addons: [
-      { id: 123, title: "Study Room", quantity: 0, complete:false, price: 50},
-      { id: 223,  title: "Laundry", quantity: 0, complete:false, price: 50},
-      { id: 323, title: "Separate Toilet", quantity: 0, complete:false, price: 50},
-      { id: 423, title: "Balcony", quantity: 0, complete:false, price: 40},
-      { id: 523, title: "Blinds", quantity: 0, complete:false, price: 40},
-      { id: 623, title: "Walls", quantity: 0, complete:false, price: 30},
-    
+      { id: 123, title: "Study Room", quantity: 0, complete: false, price: 50 },
+      { id: 223, title: "Laundry", quantity: 0, complete: false, price: 50 },
+      { id: 323, title: "Separate Toilet", quantity: 0, complete: false, price: 50 },
+      { id: 423, title: "Balcony", quantity: 0, complete: false, price: 40 },
+      { id: 523, title: "Blinds", quantity: 0, complete: false, price: 40 },
+      { id: 623, title: "Walls", quantity: 0, complete: false, price: 30 },
+
     ],
     addonsPrice: 0
   },
@@ -78,10 +78,12 @@ const customerBookingSlice = createSlice({
     setAdons: (state, { payload }) => {
       state.isLoading = true;
       let maya = state.cBookings.addons
-     state.cBookings.addons = mergeArrayWithObject(maya, payload)
-      state.cBookings.addonsPrice += payload.quantity * payload.price
-      state.price += state.cBookings.addonsPrice
+      state.cBookings.addons = mergeArrayWithObject(maya, payload)
+      state.cBookings.addonsPrice = state.cBookings.addons.reduce((sum, currentValue) => {
+        return sum + currentValue.quantity * currentValue.price
+      }, 0)
 
+      
       state.isLoading = false;
     },
     removeAdons: (state, { payload }) => {
