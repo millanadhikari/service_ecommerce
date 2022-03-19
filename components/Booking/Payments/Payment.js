@@ -4,15 +4,28 @@ import {
   useStripe,
   useElements,
 } from "@stripe/react-stripe-js";
-import { Box, Button, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Text } from "@chakra-ui/react";
+import { useAppDispatch, useAppSelector } from "../../Admin/app/hooks";
+import axios from "axios";
+import { addStripe } from "../customerBookingSlice";
 
-const Payment = ({clientSecret}) => {
+const Payment = ({ clientSecret }) => {
+
+  const bedrooms = useAppSelector((state) => state.cBookings.cBookings.bedrooms.num);
+  const toilets = useAppSelector((state) => state.cBookings.cBookings.toilets.num);
+
+
+  const bedroomPrice = useAppSelector((state) => state.cBookings.price);
+
 
   const stripe = useStripe();
   const elements = useElements();
 
   const [message, setMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useAppDispatch();
+
+
   useEffect(() => {
     if (!stripe) {
       return;
@@ -27,6 +40,7 @@ const Payment = ({clientSecret}) => {
     }
 
     stripe.retrievePaymentIntent(clientSecret).then(({ paymentIntent }) => {
+     
       switch (paymentIntent?.status) {
         case 200:
           setMessage("Payment succeeded!");
@@ -42,7 +56,8 @@ const Payment = ({clientSecret}) => {
           break;
       }
     });
-  }, [stripe]);
+
+  }, [stripe, message]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -62,6 +77,8 @@ const Payment = ({clientSecret}) => {
         return_url: "http://localhost:3000/payment/success",
       },
     });
+    dispatch(addStripe(elements))
+
 
     // This point will only be reached if there is an immediate error when
     // confirming the payment. Otherwise, your customer will be redirected to
@@ -79,9 +96,23 @@ const Payment = ({clientSecret}) => {
 
   return (
 
-    <Box fontFamily="apple-system, sans-sarif" fontSize="16px" display="flex" justifyContent="center" alignItems="center" h="100vh" w="100vw">
+    <Box fontFamily="apple-system, sans-sarif" fontSize="16px" >
       <form onSubmit={handleSubmit}>
-        <PaymentElement style={{marginBottom:"24px"}} />
+        <Flex px="3" justifyContent="space-between">
+          <Flex>
+          {bedrooms < 1 ? 0 : bedrooms} x Bedrooms {bedrooms < 1 && <Text ml={2}>(Studio Apartment)</Text>} 
+          </Flex>
+          </Flex>
+          <Flex px="3" justifyContent="space-between">
+          <Flex>
+          {toilets} x Toilets  
+          </Flex>
+          <Text>$ {bedroomPrice}</Text>
+          </Flex>
+
+        dfdfdf
+        <PaymentElement />
+
         <Button disabled={isLoading || !stripe || !elements} onClick={handleSubmit}>
           <span id="button-text">
             {isLoading ? <div className="spinner" id="spinner"></div> : "Pay now"}

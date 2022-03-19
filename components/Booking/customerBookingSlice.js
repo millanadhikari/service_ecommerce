@@ -5,11 +5,13 @@ import { mergeArrayWithObject } from './utils/mergeArrayWithObject'
 const initialState = {
   cBookings: {
     selectedService: 'House Cleaning',
+    customerDetails: {},
     toilets: {
       id: 1,
       num: 1,
       price: 50
     },
+    
     bedrooms: {
       id: 0,
       num: '',
@@ -24,6 +26,8 @@ const initialState = {
       { id: 623, title: "Walls", quantity: 0, complete: false, price: 30 },
 
     ],
+    stripeData:[],
+
     addonsPrice: 0
   },
 
@@ -99,14 +103,27 @@ const customerBookingSlice = createSlice({
 
       state.isLoading = false;
     },
-
+    
+    addContact: (state, { payload }) => {
+      state.isLoading = true;
+      state.cBookings.customerDetails = payload
+      state.isLoading = false;
+    },
+    addStripe: (state, { payload }) => {
+      state.isLoading = true;
+      state.cBookings.stripeData.push(payload)
+      state.isLoading = false;
+    },
+    
+    
 
   },
 })
 
 
+
 const { reducer, actions } = customerBookingSlice;
 
-export const { setAdons, defaultAdons, removeAdons, setBedroom, setToilet, toggleType, createCbookingLoading, createCbookingSuccess, createCbookingFail } = actions
+export const {addStripe, addContact, setAdons, defaultAdons, removeAdons, setBedroom, setToilet, toggleType, createCbookingLoading, createCbookingSuccess, createCbookingFail } = actions
 
 export default reducer

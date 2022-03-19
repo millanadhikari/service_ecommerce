@@ -42,7 +42,7 @@ useEffect(() => {
     <div>
       {clientSecret && (
         <Elements options={options} stripe={stripePromise}>
-          <Payment clientSecret={clientSecret}/>
+          <Payment clientSecret={clientSecret} />
         </Elements>
       )}
     </div>

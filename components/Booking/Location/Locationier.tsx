@@ -11,6 +11,8 @@ import React, { useEffect, useState } from "react";
 import { BsPersonCircle } from "react-icons/bs";
 import { AiOutlineEdit } from "react-icons/ai";
 import { HiLocationMarker } from "react-icons/hi";
+import { addContact } from "../customerBookingSlice";
+import { useAppDispatch } from "../../Admin/app/hooks";
 
 interface Location {
   id: number;
@@ -28,6 +30,7 @@ interface Props {
   setPostCode: React.Dispatch<React.SetStateAction<string>>;
 }
 
+
 const Locationier = ({
   location,
   setLocation,
@@ -36,6 +39,12 @@ const Locationier = ({
 }: Props) => {
   const [menu, setMenu] = useState<boolean>(false);
   const [address, setAddress] = useState<boolean>(false);
+  const dispatch = useAppDispatch();
+
+
+  useEffect(() => {
+    dispatch(addContact({location}))
+  }, [location])
   return (
     <Box
       rounded="md"
@@ -47,7 +56,7 @@ const Locationier = ({
       <Flex alignItems="center" color="gray.600" mb={3}>
         <BsPersonCircle size="20px" color="gray.700" />
         <Flex alignItems="center" fontWeight="bold" ml={3} fontSize={18}>
-          <Text fontSize="16px" mr={3}>
+          <Text fontSize="16px" mr={20}>
             Contact Details
           </Text>
           {menu && (
@@ -60,32 +69,43 @@ const Locationier = ({
         <Box>
           {!menu ? (
             <Box>
-              <Flex w="100%" alignItems=" center" ml={8} pt={5}>
-                <Flex fontWeight="semibold" fontSize="14px" mr={3}>
-                  Full Name <Text ml={1} color="red.300">*</Text>
+              <Flex w="100%" alignItems="center" ml={8} pt={5}>
+                <Flex fontWeight="semibold" fontSize="14px" mr={10}>
+                  Full Name{" "}
+                  <Text ml={1} color="red.300">
+                    *
+                  </Text>
                 </Flex>
                 <Input
                   w="230px"
                   value={location.fullname}
+                  _placeholder={{ color: "gray.300", fontSize: "14px" }}
                   onChange={(e) =>
                     setLocation({ ...location, fullname: e.target.value })
                   }
                   placeholder="e.g. John Doe"
+                  _placeholder={{ color: "gray.300", fontSize: "14px" }}
                   backgroundColor="white"
                   fontSize="16px"
+                  size="sm"
                   _focus={{ border: "none" }}
                 />
               </Flex>
               <Flex w="100%" alignItems="center" px={8} py={3}>
-                <Text fontWeight="semibold" fontSize="14px" mr="46px">
+                <Flex fontWeight="semibold" fontSize="14px" mr={16}>
                   Phone
-                </Text>
+                  <Text ml={1} color="red.300">
+                    *
+                  </Text>
+                </Flex>
                 <Input
                   w="230px"
                   placeholder="Landline or mobile"
+                  _placeholder={{ color: "gray.300", fontSize: "14px" }}
                   backgroundColor="white"
                   fontSize="16px"
                   _focus={{ border: "none" }}
+                  size="sm"
                   value={location.phone}
                   onChange={(e) =>
                     setLocation({ ...location, phone: e.target.value })
@@ -93,15 +113,20 @@ const Locationier = ({
                 />
               </Flex>
               <Flex w="100%" alignItems="center" px={8} py={1}>
-                <Text fontWeight="semibold" fontSize="14px" mr="45px">
+                <Flex fontWeight="semibold" fontSize="14px" mr={16}>
                   Email*
-                </Text>
+                  <Text ml={1} color="red.300">
+                    *
+                  </Text>
+                </Flex>
                 <Input
-                  w="240px"
+                  w="230px"
                   placeholder="johndoe@gmail.com"
+                  _placeholder={{ color: "gray.300", fontSize: "14px" }}
                   backgroundColor="white"
                   fontSize="16px"
                   _focus={{ border: "none" }}
+                  size="sm"
                   value={location.email}
                   onChange={(e) =>
                     setLocation({ ...location, email: e.target.value })
@@ -111,9 +136,10 @@ const Locationier = ({
               <Button
                 onClick={() => setMenu(!menu)}
                 backgroundColor="blue.600"
+                size="sm"
                 color="white"
-                mr={20}
-                mt={3}
+                ml={286}
+                mt={5}
                 _hover={{ backgroundColor: "blue.400" }}
                 isDisabled={
                   location.fullname === "" ||
@@ -128,21 +154,21 @@ const Locationier = ({
             <Box w="100%" px={8} py={3} textAlign="left">
               <Flex fontWeight="semibold" fontSize="16px" mr={3}>
                 Full Name:{" "}
-                <Text color="gray.600" ml={5} fontWeight="semibold">
+                <Text color="gray.600" ml={10} fontWeight="light">
                   {location.fullname}
                 </Text>
               </Flex>
               <Spacer my="3" />
               <Flex fontWeight="semibold" fontSize="16px">
                 Phone:{" "}
-                <Text color="gray.600" ml={12} fontWeight="semibold">
+                <Text color="gray.600" ml={16} fontWeight="light">
                   {location.phone}
                 </Text>
               </Flex>
               <Spacer my="3" />
               <Flex fontWeight="semibold" fontSize="16px" mr={3}>
                 Email:
-                <Text ml={14} color="gray.600" fontWeight="semibold">
+                <Text ml="70px" fontWeight="light">
                   {location.email}
                 </Text>
               </Flex>
@@ -152,7 +178,7 @@ const Locationier = ({
             <Flex>
               <HiLocationMarker size="20px" color="gray.700" />
               <Flex alignItems="center" fontSize={18}>
-                <Heading ml={3} mr={3} fontSize={18} mb={4}>
+                <Heading ml={3} mr={3} fontSize={15} mb={4} textAlign="left">
                   Where should we serve you?
                 </Heading>
                 {!address && (
@@ -175,7 +201,10 @@ const Locationier = ({
                     placeholder="Flat/Unit/Building number"
                     value={location.buildingNumber}
                     onChange={(e) =>
-                      setLocation({ ...location, buildingNumber: e.target.value })
+                      setLocation({
+                        ...location,
+                        buildingNumber: e.target.value,
+                      })
                     }
                   />
                   <Input
@@ -217,16 +246,16 @@ const Locationier = ({
                   </Button>
                 </Flex>
               ) : (
-                <Flex alignItems="center" my={3}>
-                  <Text fontSize="16px" fontWeight="semibold" textAlign="left">
+                <Flex my={3} px="8">
+                  <Text fontSize="15px" fontWeight="semibold" textAlign="left">
                     Address:{" "}
                   </Text>
-                  <Flex ml={12}>
-                    <Text mx={1}>{location.buildingNumber}</Text>
+                  <Box ml={12} textAlign="left" fontSize="15">
+                    <Text>{location.buildingNumber}</Text>
 
-                    {location.streetName}
-                    <Text ml={2}>{postcode}</Text>
-                  </Flex>
+                    <Text>{location.streetName}</Text>
+                    <Text>{postcode}</Text>
+                  </Box>
                 </Flex>
               )}
             </Box>
