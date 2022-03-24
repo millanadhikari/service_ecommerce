@@ -26,38 +26,10 @@ const Success = () => {
   // return result
 
   // }
-const sadhguru = 
-  {
-      name : "Priyanka thakur",
-      email: "asdfdf@gmail.com",
-      bookingDate : "12/09/2021",
-      address:"lkjsdfklj",
-      phone:"'20320203",
-      totalPrice:"223",
-      products : [],
-      stripeData : [],
-      paidStatus :"true",
-      jobStatus:"done"
-  
-     
-  }
-   const addBooking = () => {
-    return new Promise(async (resolve, reject) => {
-      try {
-        const result = await axios.post('http://localhost:3001/v1/booking', sadhguru);
 
-        resolve(result);
-        setOk(true)
-      } catch (error) {
-                reject(error);
-      }
-    });
-  };
   
 
-  useEffect(() => {
-    addBooking()
-  }, [])
+
   return (
     <Box textAlign="center" py={10} px={6}>
     <CheckCircleIcon boxSize={'50px'} color={'green.500'} />

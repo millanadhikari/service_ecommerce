@@ -8,6 +8,23 @@ import { Box, Button, Flex, Text } from "@chakra-ui/react";
 import { useAppDispatch, useAppSelector } from "../../Admin/app/hooks";
 import axios from "axios";
 import { addStripe } from "../customerBookingSlice";
+import {addCustomerBooking} from '../api/customerBookingApi'
+
+const sadhguru = 
+  {
+      name : "Priyanka thakur",
+      email: "asdfdf@gmail.com",
+      bookingDate : "12/09/2021",
+      address:"lkjsdfklj",
+      phone:"'20320203",
+      totalPrice:"223",
+      products : [],
+      stripeData : [],
+      paidStatus :"true",
+      jobStatus:"done"
+  
+     
+  }
 
 const Payment = ({ clientSecret }) => {
 
@@ -42,7 +59,7 @@ const Payment = ({ clientSecret }) => {
     stripe.retrievePaymentIntent(clientSecret).then(({ paymentIntent }) => {
      
       switch (paymentIntent?.status) {
-        case 200:
+        case "succeeded":
           setMessage("Payment succeeded!");
           break;
         case "processing":
@@ -57,6 +74,7 @@ const Payment = ({ clientSecret }) => {
       }
     });
 
+
   }, [stripe, message]);
 
   const handleSubmit = async (e) => {
@@ -70,14 +88,17 @@ const Payment = ({ clientSecret }) => {
 
     setIsLoading(true);
 
-    const { error } = await stripe.confirmPayment({
+    const { error, data } = await stripe.confirmPayment({
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
         return_url: "http://localhost:3000/payment/success",
+        
       },
-    });
-    dispatch(addStripe(elements))
+      
+    })
+    addCustomerBooking(sadhguru)
+
 
 
     // This point will only be reached if there is an immediate error when

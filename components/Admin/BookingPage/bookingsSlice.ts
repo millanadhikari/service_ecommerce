@@ -4,8 +4,12 @@ const initialState = {
   bookings: {
     paginatedResults: [],
     totalPages: 0,
-    previous:{},
-    next:{}
+    previous:{
+      page:0
+    },
+    next:{
+      page:0
+    }
   },
   isLoading: false,
   error: "",
