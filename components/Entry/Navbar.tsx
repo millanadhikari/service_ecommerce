@@ -9,12 +9,17 @@ import {
   Text,
   UnorderedList,
 } from "@chakra-ui/react";
-import React from "react";
+import React,{useState} from "react";
 import { AiFillShopping } from "react-icons/ai";
 import { BsFillBagCheckFill } from "react-icons/bs";
 import { HiShoppingBag, HiShoppingCart } from "react-icons/hi";
+import MobileNavMenu from "./MobileNavMenu";
 
 const Navbar = () => {
+
+  const [openMenu, setOpenMenu] = useState(false)
+
+ 
   return (
     <Flex
       // backgroundColor="#5395f6"
@@ -71,7 +76,7 @@ const Navbar = () => {
       </Stack>
       <Spacer />
       <Button display={{ base: "block", md: "none" }}>
-        <HamburgerIcon />
+        <HamburgerIcon onClick={()=>setOpenMenu(!openMenu)} />
       </Button>
       <Button
         display={{ base: "none", md: "block" }}
@@ -83,6 +88,8 @@ const Navbar = () => {
       >
         Sign Up
       </Button>
+     {openMenu? <MobileNavMenu openMenu={openMenu}
+                                setOpenMenu={setOpenMenu}/>:<></>}
     </Flex>
   );
 };
