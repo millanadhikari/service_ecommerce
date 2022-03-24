@@ -48,7 +48,7 @@ const BookingPagination = ({ setPageNumber, pageNumber }) => {
           {" "}
           <ChevronLeftIcon />{" "}
         </Button>
-        <Flex alignItems="center" justifyContent="center" w="100%" fontSize="12px           ">
+        <Flex alignItems="center" justifyContent="center" w="100%" fontSize="12px">
           {handleArray(totalPages).map((ant) => (
             <Flex
               onClick={() => setPageNumber(ant)}

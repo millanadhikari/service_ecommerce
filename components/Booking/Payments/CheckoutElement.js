@@ -33,9 +33,7 @@ const CheckoutElement = () => {
     clientSecret,
     appearance,
   };
-useEffect(() => {
-  console.log(clientSecret)
-}, [clientSecret])
+
 
 
   return (
