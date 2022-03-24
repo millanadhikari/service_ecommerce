@@ -9,25 +9,13 @@ import {
   Text,
   UnorderedList,
 } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
+
 import { AiFillShopping } from "react-icons/ai";
 import { BsFillBagCheckFill } from "react-icons/bs";
 import { HiShoppingBag, HiShoppingCart } from "react-icons/hi";
+import MobileNavMenu from "./MobileNavMenu";
 
 const Navbar = () => {
-  const [show, handleShow] = useState(false)
-
-  const transitionNavbar = () => {
-      if (window.scrollY > 20) {
-          handleShow(true)
-      } else{
-          handleShow(false)
-      }
-  }
-  useEffect(() => {
-      window.addEventListener("scroll", transitionNavbar)
-      return () => window.removeEventListener("scroll", transitionNavbar)
-  }, [])
 
   return (
     <Flex
@@ -89,7 +77,7 @@ const Navbar = () => {
       </Stack>
       <Spacer />
       <Button display={{ base: "block", md: "none" }}>
-        <HamburgerIcon />
+        <HamburgerIcon onClick={()=>setOpenMenu(!openMenu)} />
       </Button>
       <Button
         display={{ base: "none", md: "block" }}
@@ -101,6 +89,8 @@ const Navbar = () => {
       >
         Sign Up
       </Button>
+     {openMenu? <MobileNavMenu openMenu={openMenu}
+                                setOpenMenu={setOpenMenu}/>:<></>}
     </Flex>
   );
 };
