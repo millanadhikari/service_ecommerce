@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import 'react-calendar/dist/Calendar.css';
-import Sidebar from '../components/Admin/Sidebar/Sidebar'
+
 import Entry from '../components/Entry'
 export default function Home() {
   return (

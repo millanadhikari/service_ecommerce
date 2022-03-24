@@ -9,7 +9,7 @@ import {
   Text,
   UnorderedList,
 } from "@chakra-ui/react";
-import React,{useState} from "react";
+
 import { AiFillShopping } from "react-icons/ai";
 import { BsFillBagCheckFill } from "react-icons/bs";
 import { HiShoppingBag, HiShoppingCart } from "react-icons/hi";
@@ -17,19 +17,20 @@ import MobileNavMenu from "./MobileNavMenu";
 
 const Navbar = () => {
 
-  const [openMenu, setOpenMenu] = useState(false)
-
- 
   return (
     <Flex
       // backgroundColor="#5395f6"
       // backgroundColor="red"
-      py={5}
+      py={2}
       alignItems="center"
       px={{base:"20px", md:"40px"}}
-      w={{base:"100%", md:"100%", lg:"100%", xl:"1200px"}}
+      w={{base:"100%", md:"100%", lg:"100%"}}
       mx="auto"
       zIndex="999"
+      position="sticky"
+      top="0"
+      backgroundColor={show && 'gray.50'}
+      shadow={show ? 'md' :  'none'}
       
     >
       <Flex alignItems="center">
@@ -39,13 +40,13 @@ const Navbar = () => {
           fontWeight="extrabold"
           backgroundColor="#f9bf16"
           rounded="100%"
-          h={16}
-          w={16}
-          fontSize="18px"
+          h={14}
+          w={14}
+          fontSize="16px"
         >
           WeDo
         </Flex>
-        <Text fontWeight="bold" fontSize="20px" color="white">
+        <Text fontWeight="bold" fontSize="18px" color={show ?  '#5395f6' : 'white'}>
           CLEANING
         </Text>
       </Flex>
@@ -54,7 +55,7 @@ const Navbar = () => {
         direction={["column", "row"]}
         spacing="40px"
         display={{ base: "none", md: "inline-flex" }}
-        color="white"
+        color={show ?  '#5395f6' : "white"}
         cursor="pointer"
         letterSpacing="1.5px"
       >
