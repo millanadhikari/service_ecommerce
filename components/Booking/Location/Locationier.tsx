@@ -79,7 +79,6 @@ const Locationier = ({
                 <Input
                   w="230px"
                   value={location.fullname}
-                  _placeholder={{ color: "gray.300", fontSize: "14px" }}
                   onChange={(e) =>
                     setLocation({ ...location, fullname: e.target.value })
                   }
