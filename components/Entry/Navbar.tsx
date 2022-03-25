@@ -3,16 +3,13 @@ import {
   Box,
   Button,
   Flex,
-  ListItem,
   Spacer,
   Stack,
   Text,
   UnorderedList,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-import { AiFillShopping } from "react-icons/ai";
 import { BsFillBagCheckFill } from "react-icons/bs";
-import { HiShoppingBag, HiShoppingCart } from "react-icons/hi";
 
 const Navbar = () => {
   const [show, handleShow] = useState(false)
