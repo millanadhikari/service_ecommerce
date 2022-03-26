@@ -15,7 +15,7 @@ const CheckoutElement = () => {
 
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
-    fetch("http://localhost:3001/v1/payment", {
+    fetch("https://wedo-backend.herokuapp.com/v1/payment", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ items: [{ id: "xl-tshirt" }] }),

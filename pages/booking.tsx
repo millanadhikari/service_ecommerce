@@ -246,7 +246,7 @@ const Booking = () => {
                 Prev
               </Button>
             )}
-            <Button
+           {activeStep !== 4 &&  <Button
               size="md"
               onClick={nextStep}
               colorScheme="blue"
@@ -255,8 +255,8 @@ const Booking = () => {
               p="4"
               isDisabled={postcode === "" || postcode.length <= 3 || bloading}
             >
-              {activeStep === steps.length - 1 ? "Finish" : "Next >"}
-            </Button>
+              {activeStep === steps.length - 1 ? "Complete booking" : "Next >"}
+            </Button>}
           </Flex>
         )}
       </Flex>
