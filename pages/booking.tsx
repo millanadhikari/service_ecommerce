@@ -135,13 +135,7 @@ const Booking = () => {
   //     console.log(addons)
   //   setLocation([initialLocation])
   // }, [addons])
-  useEffect(() => {
-    setBloading(true);
-    const timer = setTimeout(() => {
-      setBloading(false);
-    }, 3000);
-    return () => clearTimeout(timer);
-  }, []);
+
   const steps = [
     {
       label: "Services",
@@ -161,7 +155,7 @@ const Booking = () => {
     },
     {
       label: "Addons",
-      content: <Addons addons={addons} setAddons={setAddons} />,
+      content: <Addons addons={addons} setAddons={setAddons} bloading={bloading}/>,
     },
     {
       label: "Schedule",
@@ -186,9 +180,19 @@ const Booking = () => {
   const { nextStep, prevStep, reset, activeStep, setStep } = useSteps({
     initialStep: 0,
   });
+
+
+  useEffect(() => {
+    setBloading(true);
+    const timer = setTimeout(() => {
+      setBloading(false);
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, [activeStep]);
+
   return (
     <Box maxWidth={{ sm: "100%" }}>
-      <ServiceSummary bloading={bloading}/>
+      <ServiceSummary bloading={bloading} />
       <Flex
         flexDir="column"
         pt={20}
@@ -222,31 +226,34 @@ const Booking = () => {
             bottom="0"
             left="0"
             backgroundColor="white"
-            p={4}
             borderTop="1px solid black"
+            py={6}
+            px={4}
             borderColor="gray.300"
-            h="65px"
+            h="80px"
             zIndex="999"
-            justify="space-between"
+            justify={activeStep === 0 ? "right" : "space-between"}
           >
+            {activeStep !== 0 && (
+              <Button
+                mr={4}
+                size="md"
+                variant="solid"
+                colorScheme="gray"
+                onClick={prevStep}
+                isDisabled={activeStep === 0}
+              >
+                Prev
+              </Button>
+            )}
             <Button
-              mr={4}
-              size="sm"
-              variant="solid"
-              colorScheme="gray"
-              onClick={prevStep}
-              isDisabled={activeStep === 0}
-            >
-              Prev
-            </Button>
-            <Button
-              size="sm"
+              size="md"
               onClick={nextStep}
               colorScheme="blue"
-              fontSize="12px"
+              fontSize="14px"
               letterSpacing="1.5px"
               p="4"
-              isDisabled={postcode === "" || postcode.length <= 3}
+              isDisabled={postcode === "" || postcode.length <= 3 || bloading}
             >
               {activeStep === steps.length - 1 ? "Finish" : "Next >"}
             </Button>

@@ -1,4 +1,4 @@
-import { Box, Flex, Heading, Spacer, Text } from "@chakra-ui/react";
+import { Box, Flex, Heading, Skeleton, Spacer, Text } from "@chakra-ui/react";
 import React from "react";
 import { BiBed } from "react-icons/bi";
 import { FaToilet } from "react-icons/fa";
@@ -12,7 +12,6 @@ const arr2 = [
   {id: 4, num:4, price: 450}, 
   {id: 5, num:5, price: 500}, 
   {id: 6, num:6, price: 580}, 
-  {id: 7, num:7, price: 720}
 ]
 
 const arr3 = [
@@ -32,16 +31,18 @@ interface Props {
   setToilets: React.Dispatch<React.SetStateAction<number>>;
   bedrooms: number;
   setBedrooms: React.Dispatch<React.SetStateAction<number>>;
+  bloading:boolean
 }
-const Toilets = ({ toilets, setToilets, bedrooms, setBedrooms }: Props) => {
+const Toilets = ({ toilets, setToilets, bedrooms, setBedrooms, bloading }: Props) => {
   const dispatch = useAppDispatch();
   const main = useAppSelector((state) => state.cBookings.cBookings.toilets);
   const next = useAppSelector((state) => state.cBookings.cBookings.bedrooms);
   return (
     <Box textAlign="left" px={7} mt={2}>
-      <Heading fontSize={14} mb={6}>
+      <Heading fontSize={14} mb={6} color="gray.600">
         How many bedrooms and bathrooms are in your home ?
       </Heading>
+      <Skeleton  isLoaded={!bloading} >
 
       <Box
         backgroundColor="white"
@@ -50,6 +51,7 @@ const Toilets = ({ toilets, setToilets, bedrooms, setBedrooms }: Props) => {
         px={{ md: 10 }}
         my={4}
         rounded="md"
+        
         display="flex"
         alignItems="center"
       >
@@ -59,7 +61,7 @@ const Toilets = ({ toilets, setToilets, bedrooms, setBedrooms }: Props) => {
         </Box>
 
         {arr2.map((item) => (
-          <Flex
+            <Flex
             backgroundColor={next.id == item.id ? "blue.600" : "gray.100"}
             color={next.id == item.id ? "white" : "black"}
             rounded="md"
@@ -68,6 +70,7 @@ const Toilets = ({ toilets, setToilets, bedrooms, setBedrooms }: Props) => {
             p={2}
             px="9px"
             ml={{ base: 2.5, md: 4 }}
+            
             onClick={() => dispatch(setBedroom(item))}
           >
             <Text key={item.id} fontWeight="light" fontSize="10px">
@@ -76,6 +79,11 @@ const Toilets = ({ toilets, setToilets, bedrooms, setBedrooms }: Props) => {
           </Flex>
         ))}
       </Box>
+      </Skeleton>
+
+
+      <Skeleton  isLoaded={!bloading} >
+
 
       <Box
         backgroundColor="white"
@@ -110,6 +118,7 @@ const Toilets = ({ toilets, setToilets, bedrooms, setBedrooms }: Props) => {
           </Flex>
         ))}
       </Box>
+      </Skeleton>
     </Box>
   );
 };

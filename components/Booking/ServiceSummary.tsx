@@ -198,7 +198,7 @@ const ServiceSummary = ({bloading}) => {
           </AccordionItem>
         </Accordion>
       </Flex>
-        <Progress position="absolute" top="69px" left="0" size='xs' w="100%" isIndeterminate = {bloading} value={!bloading && 100}/>
+        <Progress position="absolute" top="68px" left="0" size='xs' w="100%" isIndeterminate = {bloading} value={!bloading && 100}/>
     </Box>
   );
 };

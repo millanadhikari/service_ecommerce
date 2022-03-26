@@ -36,26 +36,23 @@ const Services = ({
       w="100%"
       
     >
-      {!bloading ? (
+
         <Box>
           <CleaningType
             selectedService={selectedService}
             setSelectedService={setSelectedService}
+            bloading={bloading}
           />
           <Toilets
             toilets={toilets}
             setToilets={setToilets}
             bedrooms={bedrooms}
             setBedrooms={setBedrooms}
+            bloading={bloading}
           />
-          <Postcode postcode={postcode} setPostCode={setPostCode} />{" "}
+          <Postcode postcode={postcode} setPostCode={setPostCode} bloading={bloading} />{" "}
         </Box>
-      ) : (
-        <Box>
-          <Text fontSize="sm" color="gray.700" fontWeight="semibold" my={10}>Loading... Please wait</Text>
-          <CircularProgress isIndeterminate color="blue.300" h="70" />
-        </Box>
-      )}
+
     </Box>
   );
 };

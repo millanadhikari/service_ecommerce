@@ -1,4 +1,4 @@
-import { Box, Flex, Grid, GridItem, Heading } from "@chakra-ui/react";
+import { Box, Flex, Grid, GridItem, Heading, Skeleton, Stack } from "@chakra-ui/react";
 import React from "react";
 import Addon from "./Addon";
 
@@ -6,7 +6,7 @@ import Addon from "./Addon";
 //   addons: [];
 //   setAddons: React.Dispatch<React.SetStateAction<[]>>;
 // }
-const Addons = ({ addons, setAddons }) => {
+const Addons = ({ addons, setAddons, bloading }) => {
   return (
     <Box
       
@@ -17,7 +17,7 @@ const Addons = ({ addons, setAddons }) => {
       backgroundColor="gray.100"
       w="100%"
     >
-      <Heading fontSize={16} pl={{ md: 5 }}>
+      <Heading fontSize={14} pl={{ md: 5 }}>
         Please select from following options: 
       </Heading>
 
@@ -27,14 +27,22 @@ const Addons = ({ addons, setAddons }) => {
         w="100%"
         
       >
+       <>
         {addons.map((item) => (
           <GridItem mx={4} key={item.id} my={{md:4}}>
-            <Addon item={item} addons={addons} setAddons={setAddons} />
+           {!bloading ? 
+           <Addon item={item} addons={addons} setAddons={setAddons} /> :
+           <Skeleton h="50px" w="180px" rounded="md" my={3} /> }
+           
           </GridItem>
-        ))}
+        ))}</> 
+        
+     
+
       </Grid>
     </Box>
   );
 };
 
 export default Addons;
+
