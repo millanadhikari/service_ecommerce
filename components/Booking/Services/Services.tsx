@@ -1,4 +1,4 @@
-import { Box, Heading } from "@chakra-ui/react";
+import { Box, CircularProgress, Heading, Text } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import CleaningType from "./Service/CleaningType";
 import Postcode from "./Service/Postcode";
@@ -13,6 +13,7 @@ interface Props {
   setBedrooms: React.Dispatch<React.SetStateAction<number>>;
   postcode: string;
   setPostCode: React.Dispatch<React.SetStateAction<string>>;
+  bloading: boolean;
 }
 const Services = ({
   selectedService,
@@ -23,20 +24,35 @@ const Services = ({
   setBedrooms,
   postcode,
   setPostCode,
-}:Props) => {
+  bloading,
+}: Props) => {
   return (
-    <Box rounded="md" py={{base:8, md:16}} px={{base:"1", md:"16" }} my={{md:10}} backgroundColor="gray.100">
-      <CleaningType
-        selectedService={selectedService}
-        setSelectedService={setSelectedService}
-      />
-      <Toilets
-        toilets={toilets}
-        setToilets={setToilets}
-        bedrooms={bedrooms}
-        setBedrooms={setBedrooms}
-      />
-      <Postcode postcode={postcode} setPostCode={setPostCode} />
+    <Box
+      rounded="md"
+      py={{ base: 8, md: 16 }}
+      px={{ base: "1", md: "16" }}
+      my={{ md: 15 }}
+      backgroundColor="gray.100"
+      w="100%"
+      
+    >
+
+        <Box>
+          <CleaningType
+            selectedService={selectedService}
+            setSelectedService={setSelectedService}
+            bloading={bloading}
+          />
+          <Toilets
+            toilets={toilets}
+            setToilets={setToilets}
+            bedrooms={bedrooms}
+            setBedrooms={setBedrooms}
+            bloading={bloading}
+          />
+          <Postcode postcode={postcode} setPostCode={setPostCode} bloading={bloading} />{" "}
+        </Box>
+
     </Box>
   );
 };

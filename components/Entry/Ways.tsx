@@ -56,7 +56,7 @@ const Ways = () => {
   return (
     <Box
       position="absolute"
-      top={{ base: "800px", sm: "800", md: "360px" }}
+      top={{ base: "720px", sm: "720", md: "320px" }}
       mx="auto"
       w="100%"
       py={10}
@@ -65,7 +65,7 @@ const Ways = () => {
         w={{ md: "800px", lg: "1000px" }}
         mx={{ base: "4", sm: "3", md: "auto" }}
       >
-        <Box px={{ base: "10px" }} mb={{base:"60px", md:"80px"}} mt={{ base: "0px", sm:"0", md: "120px", lg:"80px" }} w="100%">
+        <Box px={{ base: "10px" }} mb={{base:"60px", md:"80px"}} mt={{ base: "0px", sm:"0px", md: "120px", lg:"80px" }} w="100%">
           <Box
             mx={{ base: "auto" }}
             ml={{md:3, lg:-8}}
@@ -85,6 +85,7 @@ const Ways = () => {
                   placeholder="Service Type"
                   color="gray.400"
                   fontSize="13px"
+                  _focus={{outline:"none"}}
                 >
                   <option value={serviceChoosed} onChange={(e) => setServiceChoosed('End of Lease')}>End of Lease</option>
                   <option  value={serviceChoosed} onChange={(e) => setServiceChoosed('Home Clean')}>Home Clean</option>
@@ -145,7 +146,7 @@ const Ways = () => {
           <Text
             color="gray.400"
             w={{ base: "90%", md: "40%" }}
-            fontSize="13px"
+            fontSize={{base:"13px", md:"15px"}}
           >
             The system carried out by WeDoCleaning can make it easier for those
             of you who are confused about finding workers to clean your home,

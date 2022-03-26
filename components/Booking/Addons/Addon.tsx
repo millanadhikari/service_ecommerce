@@ -46,14 +46,14 @@ const Addon = ({ item, addons, setAddons }) => {
       <Flex
         position="relative"
         alignItems="center"
-        my={4}
+        my={2}
         border="1px solid gray"
         borderColor="blue.500"
         textAlign="left"
         px={5}
         py={4}
         gap={4}
-        w={{base:"80%", sm: "100%", md:"220px"}}
+        w={{base:"60%", sm: "100%", md:"220px"}}
         backgroundColor={item.complete ? "blue.600" : "white"}
         color={!item.complete ? "blue.600" : "white"}
         rounded="md"
