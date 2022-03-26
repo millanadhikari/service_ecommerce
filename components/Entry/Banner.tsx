@@ -42,22 +42,23 @@ const Banner = () => {
       >
         <Box w={{ base: "100%", md: "80%", lg:"90%" }} px={{ base: "20px" }} 
 >
-          <Heading fontSize={{ base: "38px", md: "43px" }} color="white">
+          <Heading fontSize={{ base: "29px", md: "43px" }} color="white">
             Make your home as comfortable
           </Heading>
-          <Text mt={4} fontSize="16px" color="gray.100">
-            WeDoCleaning is a cleaning service provider for homes, aparjtments
+          <Text mt={4} fontSize="15px" color="gray.100">
+            WeDoCleaning is a cleaning service provider for homes, apartments
             and various places that require professional cleaning. Our goal is
             to provide high standard cleaning solutions to make your living
             space clean and comfortable.
           </Text>
           <Stack
             mt={9}
-            fontSize="14px"
+            fontSize="12px"
             w="100%"
             direction={["row", "row"]}
             spacing="10px"
             cursor="pointer"
+            
           >
             <Flex
               alignItems="center"
@@ -120,12 +121,14 @@ const Banner = () => {
             left="5"
             zIndex="1"
             color="white"
+            
+            
           ></Box>
           <Image
             position="absolute"
             src="/girl.png"
             objectFit="cover"
-            h={{ base: "300px", sm:"324px", md: "400px" }}
+            h={{ base: "300px", sm:"324px", md: "418px", lg:"390px" }}
             pt={6}
             left={5}
             mx="auto"
@@ -138,7 +141,7 @@ const Banner = () => {
             backgroundColor="white"
             color="black"
             zIndex="1"
-            pr="60px"
+            pr="33px"
             pl={5}
             alignItems="center"
             py={{ base: "3", md: "4" }}
@@ -156,7 +159,7 @@ const Banner = () => {
             <Box>
               <Stack
                 direction={["row", "row"]}
-                spacing="5px"
+                spacing="4px"
                 color="#f9bf16"
                 fontSize="10px"
               >

@@ -16,7 +16,7 @@ const Why = () => {
     <Box
       position="absolute"
       w={{ md: "100%" }}
-      top={{ base: "2140px", sm: "2100", md: "1250px", lg: "1200px" }}
+      top={{ base: "2060px", sm: "2050", md: "1200px", lg: "1200px" }}
       mx={{ base: "4", sm: "4", md: "auto" }}
       my={{md:10}}
     >

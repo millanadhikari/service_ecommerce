@@ -9,22 +9,25 @@ import {
   UnorderedList,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
+import { BiPhoneCall } from "react-icons/bi";
 import { BsFillBagCheckFill } from "react-icons/bs";
+import MobileNavMenu from "./MobileNavMenu";
 
 const Navbar = () => {
-  const [show, handleShow] = useState(false)
+  const [show, handleShow] = useState(false);
+  const [openMenu, setOpenMenu] = useState(false);
 
   const transitionNavbar = () => {
-      if (window.scrollY > 20) {
-          handleShow(true)
-      } else{
-          handleShow(false)
-      }
-  }
+    if (window.scrollY > 20) {
+      handleShow(true);
+    } else {
+      handleShow(false);
+    }
+  };
   useEffect(() => {
-      window.addEventListener("scroll", transitionNavbar)
-      return () => window.removeEventListener("scroll", transitionNavbar)
-  }, [])
+    window.addEventListener("scroll", transitionNavbar);
+    return () => window.removeEventListener("scroll", transitionNavbar);
+  }, []);
 
   return (
     <Flex
@@ -32,15 +35,14 @@ const Navbar = () => {
       // backgroundColor="red"
       py={2}
       alignItems="center"
-      px={{base:"20px", md:"40px"}}
-      w={{base:"100%", md:"100%", lg:"100%"}}
+      px={{ base: "20px", md: "40px" }}
+      w={{ base: "100%", md: "100%", lg: "100%" }}
       mx="auto"
       zIndex="999"
       position="sticky"
       top="0"
-      backgroundColor={show && 'gray.50'}
-      shadow={show ? 'md' :  'none'}
-      
+      backgroundColor={show && "gray.50"}
+      shadow={show ? "md" : "none"}
     >
       <Flex alignItems="center">
         <Flex
@@ -55,7 +57,11 @@ const Navbar = () => {
         >
           WeDo
         </Flex>
-        <Text fontWeight="bold" fontSize="18px" color={show ?  '#5395f6' : 'white'}>
+        <Text
+          fontWeight="bold"
+          fontSize="18px"
+          color={show ? "#5395f6" : "white"}
+        >
           CLEANING
         </Text>
       </Flex>
@@ -64,7 +70,7 @@ const Navbar = () => {
         direction={["column", "row"]}
         spacing="40px"
         display={{ base: "none", md: "inline-flex" }}
-        color={show ?  '#5395f6' : "white"}
+        color={show ? "#5395f6" : "white"}
         cursor="pointer"
         letterSpacing="1.5px"
       >
@@ -79,25 +85,28 @@ const Navbar = () => {
           <Text mr={1.5}>Shop</Text>
           <Flex alignItems="center" justify="center">
             <BsFillBagCheckFill fontSize="14px" />{" "}
-            
           </Flex>
         </Flex>
         <Box>Blog</Box>
       </Stack>
       <Spacer />
-      <Button display={{ base: "block", md: "none" }}>
-        <HamburgerIcon />
+      <Box fontSize="30px" mr={5} color={!show ? "gray.100" : '#5395f6'} onClick={() => window.open("tel:+61415976451")} cursor="pointer">
+        <BiPhoneCall />
+      </Box>
+      <Button display={{ base: "block", md: "none" }} _focus={{border:"none"}}  onClick={() => setOpenMenu(!openMenu)} >
+        <HamburgerIcon/>
       </Button>
+     
       <Button
         display={{ base: "none", md: "block" }}
         rounded="3xl"
         px={5}
-        colorScheme="gray"
-        fontSize="14px"
-        fontWeight="bold"
+        colorScheme={show ? "blue" : "gray"}
+        fontSize="13px"
       >
         Sign Up
       </Button>
+      {openMenu && <MobileNavMenu openMenu={openMenu} setOpenMenu={setOpenMenu}/> }
     </Flex>
   );
 };

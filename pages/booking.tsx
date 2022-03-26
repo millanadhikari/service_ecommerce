@@ -15,13 +15,17 @@ import Services from "../components/Booking/Services/Services";
 import Schedule from "../components/Booking/Schedule/Schedule";
 import Addons from "../components/Booking/Addons/Addons";
 import ServiceSummary from "../components/Booking/ServiceSummary";
-import Locationier from '../components/Booking/Location/Locationier'
+import Locationier from "../components/Booking/Location/Locationier";
 import Payment from "../components/Booking/Payments/Payment.js";
-import { GiBookshelf, GiBrickWall, GiWashingMachine, GiWindow } from "react-icons/gi";
+import {
+  GiBookshelf,
+  GiBrickWall,
+  GiWashingMachine,
+  GiWindow,
+} from "react-icons/gi";
 import { FaToilet } from "react-icons/fa";
 import { MdBalcony } from "react-icons/md";
 import CheckoutElement from "../components/Booking/Payments/CheckoutElement";
-
 
 const content = (
   <Flex py={4}>
@@ -41,44 +45,103 @@ const contentThree = (
   </Flex>
 );
 
-interface Location { 
-  id: number 
-  fullname: string 
-  phone:string
-  email:string
-  buildingNumber:string
-  streetName:string
-  postcode:string
+interface Location {
+  id: number;
+  fullname: string;
+  phone: string;
+  email: string;
+  buildingNumber: string;
+  streetName: string;
+  postcode: string;
 }
-interface Addon { 
-  id:number
-  icon: any
-  title:string
-  quantity:number
+interface Addon {
+  id: number;
+  icon: any;
+  title: string;
+  quantity: number;
 }
 const data = [
-  { id: 123, icon: <GiBookshelf />, title: "Study Room", quantity: 0, complete:false, price: 50},
-  { id: 223, icon: <GiWashingMachine />, title: "Laundry", quantity: 0, complete:false, price: 50},
-  { id: 323, icon: <FaToilet />, title: "Separate Toilet", quantity: 0, complete:false, price: 50},
-  { id: 423, icon: <MdBalcony />, title: "Balcony", quantity: 0, complete:false, price: 40},
-  { id: 523, icon: <GiWindow />, title: "Blinds", quantity: 0, complete:false, price: 40},
-  { id: 623, icon: <GiBrickWall />, title: "Walls", quantity: 0, complete:false, price: 30},
+  {
+    id: 123,
+    icon: <GiBookshelf />,
+    title: "Study Room",
+    quantity: 0,
+    complete: false,
+    price: 50,
+  },
+  {
+    id: 223,
+    icon: <GiWashingMachine />,
+    title: "Laundry",
+    quantity: 0,
+    complete: false,
+    price: 50,
+  },
+  {
+    id: 323,
+    icon: <FaToilet />,
+    title: "Separate Toilet",
+    quantity: 0,
+    complete: false,
+    price: 50,
+  },
+  {
+    id: 423,
+    icon: <MdBalcony />,
+    title: "Balcony",
+    quantity: 0,
+    complete: false,
+    price: 40,
+  },
+  {
+    id: 523,
+    icon: <GiWindow />,
+    title: "Blinds",
+    quantity: 0,
+    complete: false,
+    price: 40,
+  },
+  {
+    id: 623,
+    icon: <GiBrickWall />,
+    title: "Walls",
+    quantity: 0,
+    complete: false,
+    price: 30,
+  },
 ];
 const Booking = () => {
-  const [selectedService, setSelectedService] = useState<string>("House Cleaning");
+  const [selectedService, setSelectedService] =
+    useState<string>("House Cleaning");
   const [toilets, setToilets] = useState<number>(1);
   const [bedrooms, setBedrooms] = useState<number>(0);
-  const [postcode, setPostCode] = useState<string>('');
-  const [gate, setDate] = useState<Date>()
-  const [time, setTime] = useState<string>('')
-  const [location, setLocation] = useState<Location>({ id: Math.random(), fullname: "", phone: "", email: "", buildingNumber:"", streetName:"", postcode:`${postcode}` })
-  const [addons, setAddons] = useState<Addon[]>(data)                                                                                                      
+  const [postcode, setPostCode] = useState<string>("");
+  const [gate, setDate] = useState<Date>();
+  const [time, setTime] = useState<string>("");
+  const [bloading, setBloading] = useState<boolean>(false);
+  const [location, setLocation] = useState<Location>({
+    id: Math.random(),
+    fullname: "",
+    phone: "",
+    email: "",
+    buildingNumber: "",
+    streetName: "",
+    postcode: `${postcode}`,
+  });
+  const [addons, setAddons] = useState<Addon[]>(data);
 
-//   useEffect(() => {
-//   const initialLocation ={ id: Math.random(), fullname: "", phone: "", email: "", buildingNumber:"", streetName:"", postcode:`${postcode}` }
-//     console.log(addons)
-//   setLocation([initialLocation])
-// }, [addons])
+  //   useEffect(() => {
+  //   const initialLocation ={ id: Math.random(), fullname: "", phone: "", email: "", buildingNumber:"", streetName:"", postcode:`${postcode}` }
+  //     console.log(addons)
+  //   setLocation([initialLocation])
+  // }, [addons])
+  useEffect(() => {
+    setBloading(true);
+    const timer = setTimeout(() => {
+      setBloading(false);
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, []);
   const steps = [
     {
       label: "Services",
@@ -92,78 +155,104 @@ const Booking = () => {
           setBedrooms={setBedrooms}
           postcode={postcode}
           setPostCode={setPostCode}
-        
+          bloading={bloading}
         />
       ),
     },
-    { label: "Addons", content: <Addons addons={addons} setAddons={setAddons}/> },
-    { label: "Schedule", content: <Schedule time={time} setTime={setTime} gate={gate} setDate={setDate}/> },
-    { label: "Location", content: <Locationier location={location} setLocation={setLocation} postcode={postcode} setPostCode={setPostCode}/> },
-    { label: "Payment", content: <CheckoutElement/> },
+    {
+      label: "Addons",
+      content: <Addons addons={addons} setAddons={setAddons} />,
+    },
+    {
+      label: "Schedule",
+      content: (
+        <Schedule time={time} setTime={setTime} gate={gate} setDate={setDate} />
+      ),
+    },
+    {
+      label: "Location",
+      content: (
+        <Locationier
+          location={location}
+          setLocation={setLocation}
+          postcode={postcode}
+          setPostCode={setPostCode}
+        />
+      ),
+    },
+    { label: "Payment", content: <CheckoutElement /> },
   ];
 
   const { nextStep, prevStep, reset, activeStep, setStep } = useSteps({
     initialStep: 0,
   });
   return (
-    <Box maxWidth={{sm:"100%"}}  >
-      <ServiceSummary/>
-    <Flex flexDir="column" pt={20}  px={{base:2, sm:4}} w={{md:'700px'}} mx="auto"  >
-      <Steps orientation='vertical' activeStep={activeStep} colorScheme="blue" pb={4}>
-        {steps.map(({ label, content }) => (
-          <Step label={label} key={label}  >
-            <Flex mx="auto" >{content}</Flex>
-          </Step>
-        ))}
-      </Steps>
-      {activeStep === 5 ? (
-        <Center p={4} >
-          <Heading fontSize="xl">Woohoo! All steps completed!</Heading>
-          <Button mt={6} size="sm" onClick={reset}>
-            Reset
-          </Button>
-        </Center>
-      ) : (
-        <Flex
-          width="100%"
-          position="fixed"
-          bottom="0"
-          left="0"
-          backgroundColor="white"
-          p={4}
-          borderTop="1px solid black"
-          borderColor="gray.300"
-                    h='65px'
-          zIndex="999"
-          justify="space-between"
+    <Box maxWidth={{ sm: "100%" }}>
+      <ServiceSummary bloading={bloading}/>
+      <Flex
+        flexDir="column"
+        pt={20}
+        px={{ base: 2, sm: 4 }}
+        w={{ md: "700px" }}
+        mx="auto"
+      >
+        <Steps
+          orientation="vertical"
+          activeStep={activeStep}
+          colorScheme="blue"
+          pb={4}
         >
-          <Button
-            mr={4}
-            size="sm"
-            variant="solid"
-            colorScheme="gray"
-            onClick={prevStep}
-            isDisabled={activeStep === 0}
+          {steps.map(({ label, content }) => (
+            <Step label={label} key={label}>
+              <Flex mx="auto">{content}</Flex>
+            </Step>
+          ))}
+        </Steps>
+        {activeStep === 5 ? (
+          <Center p={4}>
+            <Heading fontSize="xl">Woohoo! All steps completed!</Heading>
+            <Button mt={6} size="sm" onClick={reset}>
+              Reset
+            </Button>
+          </Center>
+        ) : (
+          <Flex
+            width="100%"
+            position="fixed"
+            bottom="0"
+            left="0"
+            backgroundColor="white"
+            p={4}
+            borderTop="1px solid black"
+            borderColor="gray.300"
+            h="65px"
+            zIndex="999"
+            justify="space-between"
           >
-            Prev
-          </Button>
-          <Button
-            size="sm"
-            
-            onClick={nextStep}
-            colorScheme="blue"
-            fontSize="12px"
-            letterSpacing="1.5px"
-            p="4"
-            isDisabled={postcode === '' || postcode.length <=3}
-            
-           
-          >
-            {activeStep === steps.length - 1 ? "Finish" : "Next >"}
-          </Button>
-        </Flex>
-      )}
-    </Flex>
+            <Button
+              mr={4}
+              size="sm"
+              variant="solid"
+              colorScheme="gray"
+              onClick={prevStep}
+              isDisabled={activeStep === 0}
+            >
+              Prev
+            </Button>
+            <Button
+              size="sm"
+              onClick={nextStep}
+              colorScheme="blue"
+              fontSize="12px"
+              letterSpacing="1.5px"
+              p="4"
+              isDisabled={postcode === "" || postcode.length <= 3}
+            >
+              {activeStep === steps.length - 1 ? "Finish" : "Next >"}
+            </Button>
+          </Flex>
+        )}
+      </Flex>
     </Box>
   );
 };

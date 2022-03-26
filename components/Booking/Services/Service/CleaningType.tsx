@@ -17,7 +17,7 @@ const CleaningType = ({ selectedService, setSelectedService }: Props) => {
 
   return (
     <Box  textAlign="left" px={{base:7}} >
-      <Heading fontSize={15}>
+      <Heading fontSize={14}>
         What kind of clean would you like to schedule?
         
       </Heading>

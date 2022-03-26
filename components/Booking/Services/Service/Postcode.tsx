@@ -9,7 +9,7 @@ interface Props {
 const Postcode = ({ postcode, setPostCode }) => {
   return (
     <Box textAlign="left" px={7}>
-      <Flex fontWeight="bold" fontSize={15} mt={5} mb={3}>
+      <Flex fontWeight="bold" fontSize={14} mt={5} mb={3}>
         Enter your postcode<Text ml={1} color="red.300">*</Text>
       </Flex>
       <Input

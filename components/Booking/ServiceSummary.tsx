@@ -1,4 +1,4 @@
-import { Flex, Heading, Spacer, Text } from "@chakra-ui/react";
+import { Flex, Heading, Progress, Skeleton, Spacer, Text } from "@chakra-ui/react";
 import React from "react";
 import { ChevronRightIcon } from "@chakra-ui/icons";
 import {
@@ -13,12 +13,13 @@ import { GiHomeGarage } from "react-icons/gi";
 import { FaToilet } from "react-icons/fa";
 import { useAppSelector } from "../Admin/app/hooks";
 
-const ServiceSummary = () => {
+const ServiceSummary = ({bloading}) => {
   const price = useAppSelector((state) => state.cBookings.price);
-  const addonPrice = useAppSelector((state) => state.cBookings.cBookings.addonsPrice);
+  const addonPrice = useAppSelector(
+    (state) => state.cBookings.cBookings.addonsPrice
+  );
   const isLoading = useAppSelector((state) => state.cBookings.isLoading);
   const cBookings = useAppSelector((state) => state.cBookings.cBookings);
-
 
   return (
     <Box
@@ -28,14 +29,15 @@ const ServiceSummary = () => {
       h="68px"
       p={4}
       zIndex="999"
+      shadow="xl"
     >
       <Flex alignItems="center">
         <Text position="absolute" top="6" fontSize="16px" fontWeight="semibold">
           Online Booking
         </Text>
         <Spacer />
-        <Accordion  allowMultiple w={60} >
-          <AccordionItem >
+        <Accordion allowMultiple w={60}>
+          <AccordionItem>
             <h2
               style={{
                 display: "flex",
@@ -49,13 +51,34 @@ const ServiceSummary = () => {
                 display="flex"
                 justify="center"
                 maxWidth="160px"
-                
-                _expanded={{base:"false"}}
+                _expanded={{ base: "false" }}
                 // _expanded={{ w: "80px", backgroundColor: "gray.300" }}
                 backgroundcolor="red"
               >
                 <Box flex="1" textAlign="left">
-                 {isLoading ? 'Loading' : <div> Total: $ {price + addonPrice}</div>}
+                  {isLoading ? (
+                    "Loading"
+                  ) : (
+                    <Flex
+                      alignItems="center"
+                      fontSize="14px"
+                      fontWeight="semibold"
+                    >
+                      {" "}
+                      Total: $ {" "}
+                      <Text
+                        fontSize="15px"
+                        ml="2"
+                        fontWeight="bold"
+                        color="blue.700"
+                      >
+                        {" "}
+                        {isLoading ? <Skeleton startColor='pink.500' endColor='orange.500' weight="4px" height='6px'/> : price + addonPrice}
+
+                      </Text>
+                    
+                    </Flex>
+                  )}
                 </Box>
                 <AccordionIcon />
               </AccordionButton>
@@ -69,25 +92,26 @@ const ServiceSummary = () => {
               p={1}
               rounded="md"
             >
-              <Heading fontSize={16} py={3} px={5}>Your Order</Heading>
+              <Heading fontSize={16} py={3} px={5}>
+                Your Order
+              </Heading>
               <Flex
-                
                 borderTop="1px solid gray"
                 borderBottom="1px solid gray"
-
                 borderColor="gray.200"
                 py={4}
-                px={5}
+                px="4"
               >
                 <Flex
                   alignItems="center"
                   justify="center"
-                  backgroundColor="blue.600"
+                  backgroundColor="gray.50"
                   w="120px"
                   h="55px"
                   rounded="md"
+                  color="blue.500"
                 >
-                  <GiHomeGarage color="white" fontSize="26" />
+                  <GiHomeGarage fontSize="26" />
                 </Flex>
                 <Spacer mr={5} />
                 <Box minWidth="120px">
@@ -127,7 +151,9 @@ const ServiceSummary = () => {
                   <Spacer my="2px" />
                   <Flex fontSize="14px">
                     <Flex alignItems="center" justify="center">
-                      <Box fontWeight="bold" color="gray.600">$ {price}</Box>
+                      <Box fontWeight="bold" color="gray.600">
+                        $ {price}
+                      </Box>
                       <Box color="gray.400" ml={2}>
                         x 01
                       </Box>
@@ -135,28 +161,44 @@ const ServiceSummary = () => {
                   </Flex>
                 </Box>
               </Flex>
-              <Box fontSize="13px" color="gray.500" fontWeight="semibold" py={4} px={5} >
+              <Box
+                fontSize="13px"
+                color="gray.500"
+                fontWeight="semibold"
+                py={4}
+                px={5}
+              >
                 <Flex>
                   <Text>Addons</Text>
-                  <Spacer/>
+                  <Spacer />
                   <Text>$ {addonPrice}</Text>
                 </Flex>
-                <Spacer my={2}/>
+                <Spacer my={2} />
                 <Flex>
-                    <Text>Discount</Text>
-                    <Spacer/>
-                    <Text>-$40</Text>
+                  <Text>Discount</Text>
+                  <Spacer />
+                  <Text>-$40</Text>
                 </Flex>
               </Box>
-              <Flex p={5} bottom="0" alignItems="center" justify="center" py={4} backgroundColor="gray.200">
-                  <Heading fontSize={20}>Total</Heading>
-                  <Spacer/>
-                  <Text fontWeight="semibold">$ {price + addonPrice} .00</Text>
+              <Flex
+                p={5}
+                bottom="0"
+                alignItems="center"
+                justify="center"
+                py={4}
+                backgroundColor="gray.200"
+              >
+                <Heading fontWeight="semibold" fontSize={20}>
+                  Total
+                </Heading>
+                <Spacer />
+                <Text fontWeight="semibold">$ {price + addonPrice} .00</Text>
               </Flex>
             </AccordionPanel>
           </AccordionItem>
         </Accordion>
       </Flex>
+        <Progress position="absolute" top="69px" left="0" size='xs' w="100%" isIndeterminate = {bloading} value={!bloading && 100}/>
     </Box>
   );
 };
