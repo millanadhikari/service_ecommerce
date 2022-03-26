@@ -4,11 +4,12 @@ import {
   useStripe,
   useElements,
 } from "@stripe/react-stripe-js";
-import { Box, Button, Flex, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Heading, Text } from "@chakra-ui/react";
 import { useAppDispatch, useAppSelector } from "../../Admin/app/hooks";
 import axios from "axios";
 import { addStripe } from "../customerBookingSlice";
 import {addCustomerBooking} from '../api/customerBookingApi'
+import { AiFillInfoCircle } from "react-icons/ai";
 
 const sadhguru = 
   {
@@ -117,9 +118,13 @@ const Payment = ({ clientSecret }) => {
 
   return (
 
-    <Box fontFamily="apple-system, sans-sarif" fontSize="16px" >
+    <Box fontFamily="apple-system, sans-sarif" fontSize="16px" mb={20} >
       <form onSubmit={handleSubmit}>
-        <Flex px="3" justifyContent="space-between">
+        <Flex my={4} mb={6} backgroundColor="blue.50" textAlign="left" px={6} py={5} align="center" color="blue.700" gap="4" justifyContent="center">
+          <AiFillInfoCircle fontSize="20px"/>
+          <Text fontSize="16px">Your card will be charged upon booking confirmation.</Text>
+        </Flex>
+        {/* <Flex px="3" justifyContent="space-between">
           <Flex>
           {bedrooms < 1 ? 0 : bedrooms} x Bedrooms {bedrooms < 1 && <Text ml={2}>(Studio Apartment)</Text>} 
           </Flex>
@@ -131,16 +136,27 @@ const Payment = ({ clientSecret }) => {
           <Text>$ {bedroomPrice}</Text>
           </Flex>
 
-        dfdfdf
+        dfdfdf */}
         <PaymentElement />
+        {/* {message && <Text color="rgb(105, 115, 134)" fontSize="16px" lineHeight="20px" pt="12px" textAlign="center">{message}</Text>} */}
 
-        <Button disabled={isLoading || !stripe || !elements} onClick={handleSubmit}>
+        <Flex justifyContent="space-between" my={4}>
+          <Heading>Total</Heading>
+          <Box align="right">
+            <Heading>$529.19</Heading>
+            <Text fontSize="12px" color="gray.500"> Parking fee is not included in the price. </Text>
+          </Box>
+
+        </Flex>
+
+        <Flex justifyContent="right">
+        <Button  size="md" fontSize="17px" colorScheme="red" disabled={isLoading || !stripe || !elements} onClick={handleSubmit}>
           <span id="button-text">
-            {isLoading ? <div className="spinner" id="spinner"></div> : "Pay now"}
+            {isLoading ? <div className="spinner" id="spinner"></div> : "Complete booking"}
           </span>
         </Button>
+        </Flex>
         {/* Show any error or success messages */}
-        {message && <Text color="rgb(105, 115, 134)" fontSize="16px" lineHeight="20px" pt="12px" textAlign="center">{message}</Text>}
       </form>
     </Box>
   );
