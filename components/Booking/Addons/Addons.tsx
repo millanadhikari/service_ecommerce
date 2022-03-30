@@ -17,10 +17,12 @@ const Addons = ({ addons, setAddons, bloading }) => {
       backgroundColor="gray.100"
       w="100%"
     >
+      <Skeleton isLoaded={!bloading}>
       <Heading fontSize={14} pl={{ md: 5 }}>
         Please select from following options: 
       </Heading>
 
+      </Skeleton>
       <Grid
         templateColumns={{ base: "repeat(1, 1fr)", md: "repeat(2, 1fr)" }}
         my={5}

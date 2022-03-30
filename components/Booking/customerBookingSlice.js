@@ -14,7 +14,7 @@ const initialState = {
     
     bedrooms: {
       id: 0,
-      num: '',
+      num: 0,
       price: 150
     },
     addons: [

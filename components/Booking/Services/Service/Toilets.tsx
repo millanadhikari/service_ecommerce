@@ -39,10 +39,13 @@ const Toilets = ({ toilets, setToilets, bedrooms, setBedrooms, bloading }: Props
   const next = useAppSelector((state) => state.cBookings.cBookings.bedrooms);
   return (
     <Box textAlign="left" px={7} mt={2}>
+            <Skeleton isLoaded={!bloading} rounded="md">
+
       <Heading fontSize={14} mb={6} color="gray.600">
         How many bedrooms and bathrooms are in your home ?
       </Heading>
-      <Skeleton  isLoaded={!bloading} >
+      </Skeleton>
+      <Skeleton  isLoaded={!bloading} rounded="md" >
 
       <Box
         backgroundColor="white"
@@ -82,7 +85,7 @@ const Toilets = ({ toilets, setToilets, bedrooms, setBedrooms, bloading }: Props
       </Skeleton>
 
 
-      <Skeleton  isLoaded={!bloading} >
+      <Skeleton  isLoaded={!bloading} rounded="md">
 
 
       <Box

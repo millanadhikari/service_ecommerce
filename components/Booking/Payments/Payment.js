@@ -11,29 +11,27 @@ import { addStripe } from "../customerBookingSlice";
 import {addCustomerBooking} from '../api/customerBookingApi'
 import { AiFillInfoCircle } from "react-icons/ai";
 
-const sadhguru = 
-  {
-      name : "Priyanka thakur",
-      email: "asdfdf@gmail.com",
-      bookingDate : "12/09/2021",
-      address:"lkjsdfklj",
-      phone:"'20320203",
-      totalPrice:"223",
-      products : [],
-      stripeData : [],
-      paidStatus :"true",
-      jobStatus:"done"
-  
-     
-  }
+
 
 const Payment = ({ clientSecret }) => {
 
   const bedrooms = useAppSelector((state) => state.cBookings.cBookings.bedrooms.num);
   const toilets = useAppSelector((state) => state.cBookings.cBookings.toilets.num);
+  const selectedService = useAppSelector((state) => state.cBookings.cBookings.selectedService)
+  const addonPrice = useAppSelector((state) => (state.cBookings.cBookings.addonsPrice));
+  const addons = useAppSelector((state) => state.cBookings.cBookings.addons);
 
+  const fullName = useAppSelector((state) => state.cBookings.cBookings.customerDetails.fullname);
+  const email = useAppSelector((state) => state.cBookings.cBookings.customerDetails.email);
+  const phone = useAppSelector((state) => state.cBookings.cBookings.customerDetails.phone);
+  const postcode = useAppSelector((state) => state.cBookings.cBookings.customerDetails.postcode)
+  const realBedrooms = bedrooms < 1 ? 0 : bedrooms
+  const realAddons = addons.length && addons.filter((item) => item.complete )
+  
 
-  const bedroomPrice = useAppSelector((state) => state.cBookings.price);
+  const price = useAppSelector((state) => state.cBookings.price);
+
+  // const totalPrice = parseInt(addonPrice) + parseInt(price);
 
 
   const stripe = useStripe();
@@ -43,7 +41,26 @@ const Payment = ({ clientSecret }) => {
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useAppDispatch();
 
-
+  const sadhguru = 
+  {
+      name : fullName,
+      email: email,
+      bookingDate : "12/09/2021",
+      selectedService: selectedService,
+      address:"lkjsdfklj",
+      postcode:postcode,
+      phone:phone,
+      toilets:toilets,
+      bedrooms:realBedrooms,
+      addonPrice: addonPrice,
+      totalPrice: price,
+      products : realAddons,
+      stripeData : [],
+      paidStatus :"true",
+      jobStatus:"done"
+  
+     
+  }
   useEffect(() => {
     if (!stripe) {
       return;
@@ -89,18 +106,19 @@ const Payment = ({ clientSecret }) => {
 
     setIsLoading(true);
 
-    const { error, data } = await stripe.confirmPayment({
+    const {error} = await stripe.confirmPayment({
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: "http://localhost:3000/payment/success",
+        return_url: "https://www.wedocleaning.com.au/payment/success",
+        // return_url:"none"
         
       },
       
-    })
-    addCustomerBooking(sadhguru)
-
-
+    }, await addCustomerBooking(sadhguru))
+     
+      
+    
 
     // This point will only be reached if there is an immediate error when
     // confirming the payment. Otherwise, your customer will be redirected to
