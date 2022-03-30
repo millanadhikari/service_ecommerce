@@ -53,10 +53,10 @@ const Payment = ({ clientSecret }) => {
       toilets:toilets,
       bedrooms:realBedrooms,
       addonPrice: addonPrice,
-      totalPrice: price,
+      totalPrice: price + addonPrice,
       products : realAddons,
       stripeData : [],
-      paidStatus :"true",
+      paidStatus :true,
       jobStatus:"done"
   
      
@@ -161,7 +161,7 @@ const Payment = ({ clientSecret }) => {
         <Flex justifyContent="space-between" my={4}>
           <Heading>Total</Heading>
           <Box align="right">
-            <Heading>$529.19</Heading>
+            <Heading>${price + addonPrice}.00</Heading>
             <Text fontSize="12px" color="gray.500"> Parking fee is not included in the price. </Text>
           </Box>
 

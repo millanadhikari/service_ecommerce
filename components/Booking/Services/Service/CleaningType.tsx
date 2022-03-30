@@ -28,12 +28,10 @@ const CleaningType = ({
 
   return (
     <Box textAlign="left" px={{ base: 7 }}>
-      <Skeleton isLoaded={!bloading} rounded="md">
-        <Heading fontSize={14} color="gray.600">
+        {!bloading && <Heading fontSize={14} color="gray.600">
           What kind of clean would you like to schedule?
         </Heading>
-      </Skeleton>
-
+}
       <Flex w={{ sm: "80%", md: "300px" }} mx="auto">
         {bloading ? (
           <Skeleton isLoaded={!bloading} h="120px" w="120px" my={5} rounded="md"></Skeleton>

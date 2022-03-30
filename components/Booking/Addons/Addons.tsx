@@ -17,12 +17,10 @@ const Addons = ({ addons, setAddons, bloading }) => {
       backgroundColor="gray.100"
       w="100%"
     >
-      <Skeleton isLoaded={!bloading}>
-      <Heading fontSize={14} pl={{ md: 5 }}>
+      {!bloading && <Heading fontSize={14} pl={{ md: 5 }}>
         Please select from following options: 
-      </Heading>
+      </Heading>}
 
-      </Skeleton>
       <Grid
         templateColumns={{ base: "repeat(1, 1fr)", md: "repeat(2, 1fr)" }}
         my={5}
@@ -34,7 +32,7 @@ const Addons = ({ addons, setAddons, bloading }) => {
           <GridItem mx={4} key={item.id} my={{md:4}}>
            {!bloading ? 
            <Addon item={item} addons={addons} setAddons={setAddons} /> :
-           <Skeleton h="50px" w="180px" rounded="md" my={3} /> }
+           <Skeleton h="50px" w="180px" rounded="md" my={3} mx="auto" /> }
            
           </GridItem>
         ))}</> 
