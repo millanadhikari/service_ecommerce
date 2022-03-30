@@ -3,18 +3,21 @@ import React from "react";
 
 interface Props {
   postcode: string;
-  setPostCode: React.Dispatch<React.SetStateAction<number>>;
+  setPostCode: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const Postcode = ({ postcode, setPostCode, bloading }) => {
   return (
     <Box textAlign="left" px={7}>
+            <Skeleton isLoaded={!bloading} rounded="md">
+
       <Flex fontWeight="bold" fontSize={14} mt={5} mb={3} color="gray.600">
         Enter your postcode
         <Text ml={1} color="red.300">
           *
         </Text>
       </Flex>
+      </Skeleton>
       <Skeleton isLoaded={!bloading}>
         <Input
           _focus={{ borderColor: "gray.100" }}
