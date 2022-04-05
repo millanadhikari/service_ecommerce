@@ -104,7 +104,7 @@ const Navbar = () => {
         colorScheme={show ? "blue" : "gray"}
         fontSize="13px"
       >
-        Sign Up
+        Book Online
       </Button>
       {openMenu && <MobileNavMenu openMenu={openMenu} setOpenMenu={setOpenMenu}/> }
     </Flex>
