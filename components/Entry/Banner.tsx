@@ -42,10 +42,10 @@ const Banner = () => {
       >
         <Box w={{ base: "100%", md: "80%", lg:"90%" }} px={{ base: "20px" }} 
 >
-          <Heading fontSize={{ base: "29px", md: "43px" }} color="white">
+          <Heading fontSize={{ base: "29px",  md: "42px" }} textAlign={{base:"center", sm:"left"}} letterSpacing="0.9px" color="white" fontWeight="bold">
             Make your home as comfortable
           </Heading>
-          <Text mt={4} fontSize="15px" color="gray.100">
+          <Text mt={4} fontSize="15px" lineHeight={1.5} letterSpacing="0.9px" color="gray.200"  textAlign={{base:"center", sm:"left"}}>
             WeDoCleaning is a cleaning service provider for homes, apartments
             and various places that require professional cleaning. Our goal is
             to provide high standard cleaning solutions to make your living
@@ -57,7 +57,10 @@ const Banner = () => {
             w="100%"
             direction={["row", "row"]}
             spacing="10px"
-            cursor="pointer"
+            textAlign="center"
+            px={{base:3, sm:0}}
+            
+            
             
           >
             <Flex
