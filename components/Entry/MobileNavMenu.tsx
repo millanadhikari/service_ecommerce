@@ -46,37 +46,45 @@ const MobileNavMenu = ({ openMenu, setOpenMenu }) => {
         <DrawerHeader display="flex" mt="10" ml="-2">
 
           <Flex justifyContent="space-between" alignItems="center" width="100%" >
-            <Flex alignItems="center" >
-              <Flex
-                alignItems="center"
-                justifyContent="right"
-                fontWeight="extrabold"
-                backgroundColor="#f9bf16"
-                rounded="100%"
-                h={10}
-                w={10}
-                fontSize="12px"
-                color="white"
-              >
-                WeDo
-              </Flex>
-              <Text fontWeight="bold" fontSize="18px" color="Black">
-                CLEANING
-              </Text>
-            </Flex>
-            <Flex  onClick={() => window.open("tel:+61415976451")} rounded="md" gap={2} p={2} px="3" alignItems="center" backgroundColor="#5395f6" color="white" fontSize={13} >
+          <Flex alignItems="center"  >
+        <Flex
+          alignItems="center"
+          justifyContent="right"
+          fontWeight="extrabold"
+          fontFamily="Arial, sans-serif"
+          backgroundColor="#f9bf16"
+          rounded="100%"
+          color="gray.700"
+          h={'54px'}
+          w={'54px'}
+          
+          fontSize="15px"
+        >
+          WeDo
+        </Flex>
+        <Text
+          fontWeight="bold"
+          fontSize="14px"
+          letterSpacing="1px"
+          ml={0.5}
+          mt={0.5}
+        >
+          CLEANING
+        </Text>
+      </Flex>
+            <Flex cursor="pointer"  onClick={() => window.open("tel:+61415976451")} rounded="md" gap={2} p={2} px="3" alignItems="center" backgroundColor="#5395f6" color="white" fontSize={13} >
               <Box fontSize="22"> <MdCall /> </Box>
               Call
             </Flex>
           </Flex>
         </DrawerHeader>
 
-        <Flex alignItems="center" justifyContent="center" gap={10} letterSpacing="0.9px" fontSize="14px" backgroundColor="blue.600" py={3} color="gray.200" fontWeight="semibold" >
-          <Box borderRight="1px solid gray" borderColor="gray.100" pr={10} cursor="pointer">
+        <Flex alignItems="center" justifyContent="center" gap={10} letterSpacing="1px" fontSize="14px" backgroundColor="blue.600" py={3} color="gray.300"  >
+          <Box borderRight="1px solid gray" borderColor="gray.100" pr={10} cursor="pointer"  _hover={{color:"gray.100"}}>
             Log in
           </Box>
 
-          <Box cursor="pointer">
+          <Box cursor="pointer"  _hover={{color:"gray.100"}}>
             Register
           </Box>
 
