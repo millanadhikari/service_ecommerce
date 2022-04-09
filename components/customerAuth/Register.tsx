@@ -23,7 +23,7 @@ const Register = ({ setMethod }) => {
                 </Box>
                 <Flex justifyContent="center" gap={3}>
                     <Checkbox />
-                    <Text textAlign="left" fontSize="14px">I've read and agree with Wedo Cleaning Service's Privacy Policy and Terms and Conditions.</Text>
+                    <Text textAlign="left" fontSize="14px">I &apos; ve read and agree with Wedo Cleaning Service&apos;s Privacy Policy and Terms and Conditions.</Text>
                 </Flex>
                 <Button w="100%" colorScheme="blue" mt={10} py={6} fontSize="15px" letterSpacing="2px">
                     Sign Up
