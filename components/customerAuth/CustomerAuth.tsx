@@ -9,22 +9,22 @@ const CustomerAuth = ({ isopen, setIsOpen }) => {
   const [method, setMethod] = useState('sign-in')
   const [forgotPassword, setForgotPassword] = useState(false)
   return (
-    <Modal isOpen={isopen} onClose={() => setIsOpen(!isopen)}>
+    <Modal isOpen={isopen} onClose={() => setIsOpen(!isopen)} size="md">
       <ModalOverlay />
-      <ModalContent>
+      <ModalContent mx={3} size="xl" >
         <ModalCloseButton _focus={{ outline: "none" }} />
         <ModalBody>
         {!forgotPassword ?  <Box>
          <Flex alignItems="center" my={10} justifyContent="space-between" mx={2}>
             <Box w="50%" cursor="pointer" onClick={()=> setMethod('sign-in')}>
-              <Box pb={3} px={16} fontWeight={method === 'sign-in' && 'semibold'}>
+              <Box pb={3} px={{base:10, md:16}} fontWeight={method === 'sign-in' && 'semibold'}>
                 Sign In
 
               </Box>
               <Progress size="md" colorScheme="gray" value={method === 'sign-in' ? 100 : 0} height="3px" />
             </Box>
             <Box w="50%" onClick={()=> setMethod('register')} cursor="pointer">
-              <Box pb={3} px={16} fontWeight={method === 'register' && 'semibold'}>
+              <Box pb={3} px={{base:10, md:16}} fontWeight={method === 'register' && 'semibold'}>
                 Register
 
               </Box>
