@@ -8,7 +8,7 @@ const SignIn = ({forgotPassword, setForgotPassword}) => {
         <Box>
             <SocialProvider />
             <Box position="relative" borderTop="1px solid black" borderColor="gray.500" mt={12}>
-                <Text textAlign="center" backgroundColor="white" w="50px" position="absolute" top="-3" left="44" fontSize="15px">or</Text>
+                <Text textAlign="center" backgroundColor="white" w="50px" position="absolute" top="-3" left="130" fontSize="15px">or</Text>
             </Box>
         {withEmail &&  <Box>
          <Box my={6}>
