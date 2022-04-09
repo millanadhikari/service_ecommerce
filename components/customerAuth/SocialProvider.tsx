@@ -25,7 +25,7 @@ const SocialProvider = () => {
                     <FcGoogle />
                 </Box>
             </Box>
-            <Box  fontSize={{base:"13px", md:"15px"}} mt={8} border="1px solid black" shadow="md" position="relative" rounded="lg" fontSize="15px" cursor="pointer" py={3} textAlign="center" color="black">
+            <Box  fontSize={{base:"13px", md:"15px"}} mt={8} border="1px solid black" shadow="md" position="relative" rounded="lg" cursor="pointer" py={3} textAlign="center" color="black">
                 <Flex justifyContent="center" letterSpacing="1.5px">
                     Continue with
                     <Text fontWeight="extrabold" ml={2}>Apple</Text>
