@@ -19,14 +19,16 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useState } from "react";
 import { AiFillContacts, AiFillInstagram, AiFillLinkedin, AiFillYoutube, AiTwotoneShopping } from "react-icons/ai";
 import { BsChevronDown, BsFacebook, BsInfoCircleFill } from "react-icons/bs";
 import { FaBlogger, FaHome, FaSignInAlt, FaSprayCan } from "react-icons/fa";
 import { GiVacuumCleaner } from "react-icons/gi";
 import { MdCall } from "react-icons/md";
+import CustomerAuth from "../customerAuth/CustomerAuth";
 
 const MobileNavMenu = ({ openMenu, setOpenMenu }) => {
+  const [isopen, setIsOpen] = useState(true)
 
   const router = useRouter()
 
@@ -180,10 +182,10 @@ const MobileNavMenu = ({ openMenu, setOpenMenu }) => {
                 color="#5395f6"
                 variant="outline"
                 _focus={{ outline: "none" }}
-
+                onClick={()=> setIsOpen(!isopen)}
                 fontSize="14px"
               >
-                Log-In
+                Log-In  
               </Button>
             </Stack>
           </Flex>
@@ -194,6 +196,7 @@ const MobileNavMenu = ({ openMenu, setOpenMenu }) => {
          <AiFillLinkedin cursor="pointer"/>
          <AiFillYoutube cursor="pointer"/>
         </Flex>
+        <CustomerAuth isopen={isopen} setIsOpen={setIsOpen}/>
       </DrawerContent>
     </Drawer>
 
