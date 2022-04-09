@@ -16,7 +16,7 @@ const SocialProvider = () => {
                     <BsFacebook />
                 </Box>
             </Box>
-            <Box  fontSize={{base:"13px", md:"15px"}} mt={8} shadow="md" position="relative" rounded="lg" fontSize="15px" cursor="pointer" py={3} textAlign="center" color="gray.700">
+            <Box  fontSize={{base:"13px", md:"15px"}} mt={8} shadow="md" position="relative" rounded="lg" cursor="pointer" py={3} textAlign="center" color="gray.700">
                 <Flex justifyContent="center" letterSpacing="1.5px">
                     Sign in with
                     <Text fontWeight="semibold" ml={2}>Google</Text>
