@@ -32,7 +32,7 @@ const CustomerAuth = ({ isopen, setIsOpen }) => {
             </Box>
           </Flex>
           <Box>
-            {method === 'sign-in' ? <SignIn forgotPassword={forgotPassword} setForgotPassword={setForgotPassword} /> : <Register setMethod={setMethod} />}
+            {method === 'sign-in' ? <SignIn  isopen={isopen} setIsOpen={setIsOpen}  forgotPassword={forgotPassword} setForgotPassword={setForgotPassword} /> : <Register isOpen={isopen} setIsOpen={setIsOpen} setMethod={setMethod} />}
           </Box>
          </Box> : <ForgotPassword forgotPassword={forgotPassword} setForgotPassword={setForgotPassword}/>}
         </ModalBody>
