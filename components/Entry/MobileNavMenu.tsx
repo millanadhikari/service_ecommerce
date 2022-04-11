@@ -19,19 +19,36 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AiFillContacts, AiFillInstagram, AiFillLinkedin, AiFillYoutube, AiTwotoneShopping } from "react-icons/ai";
 import { BsChevronDown, BsFacebook, BsInfoCircleFill } from "react-icons/bs";
 import { FaBlogger, FaHome, FaSignInAlt, FaSprayCan } from "react-icons/fa";
 import { GiVacuumCleaner } from "react-icons/gi";
 import { MdCall } from "react-icons/md";
+import { userLogout } from "../Admin/api/userApi";
+import { useAppDispatch, useAppSelector } from "../Admin/app/hooks";
+import { logoutSuccess } from "../Admin/user/userSlice";
 import CustomerAuth from "../customerAuth/CustomerAuth";
 
 const MobileNavMenu = ({ openMenu, setOpenMenu }) => {
-  const [isopen, setIsOpen] = useState(true)
-
+  const [isopen, setIsOpen] = useState(false)
+  const customer = useAppSelector((state) => state.user.user)
+  const isCustomer = useAppSelector((state) => state.user.user?.isCustomer)
+  const [loggedIn, setLoggedIn] = useState(false)
   const router = useRouter()
+  const dispatch = useAppDispatch()
 
+
+  const logMeOut = () => {
+    sessionStorage.removeItem("accessJWT");
+    localStorage.removeItem("service_ecommerce");
+    userLogout();
+    dispatch(logoutSuccess())
+  };
+
+  useEffect(() => {
+    isCustomer ? setLoggedIn(true) : setLoggedIn(false)
+  }, [isCustomer])
   return (
 
     <Drawer
@@ -48,49 +65,56 @@ const MobileNavMenu = ({ openMenu, setOpenMenu }) => {
         <DrawerHeader display="flex" mt="10" ml="-2">
 
           <Flex justifyContent="space-between" alignItems="center" width="100%" >
-          <Flex alignItems="center"  >
-        <Flex
-          alignItems="center"
-          justifyContent="right"
-          fontWeight="extrabold"
-          fontFamily="Arial, sans-serif"
-          backgroundColor="#f9bf16"
-          rounded="100%"
-          color="gray.700"
-          h={'54px'}
-          w={'54px'}
-          
-          fontSize="15px"
-        >
-          WeDo
-        </Flex>
-        <Text
-          fontWeight="bold"
-          fontSize="14px"
-          letterSpacing="1px"
-          ml={0.5}
-          mt={0.5}
-        >
-          CLEANING
-        </Text>
-      </Flex>
-            <Flex cursor="pointer"  onClick={() => window.open("tel:+61415976451")} rounded="md" gap={2} p={2} px="3" alignItems="center" backgroundColor="#5395f6" color="white" fontSize={13} >
+            <Flex alignItems="center"  >
+              <Flex
+                alignItems="center"
+                justifyContent="right"
+                fontWeight="extrabold"
+                fontFamily="Arial, sans-serif"
+                backgroundColor="#f9bf16"
+                rounded="100%"
+                color="gray.700"
+                h={'54px'}
+                w={'54px'}
+
+                fontSize="15px"
+              >
+                WeDo
+              </Flex>
+              <Text
+                fontWeight="bold"
+                fontSize="14px"
+                letterSpacing="1px"
+                ml={0.5}
+                mt={0.5}
+              >
+                CLEANING
+              </Text>
+            </Flex>
+            <Flex cursor="pointer" onClick={() => window.open("tel:+61415976451")} rounded="md" gap={2} p={2} px="3" alignItems="center" backgroundColor="#5395f6" color="white" fontSize={13} >
               <Box fontSize="22"> <MdCall /> </Box>
               Call
             </Flex>
           </Flex>
         </DrawerHeader>
+        <Box letterSpacing="1px" fontSize="14px" backgroundColor="blue.600" py={3} color="gray.300"  >
+         {!loggedIn ?  <Flex alignItems="center" justifyContent="center" gap={10} >
+            <Box onClick={() => setIsOpen(!isopen)} borderRight="1px solid gray" borderColor="gray.100" pr={10} cursor="pointer" _hover={{ color: "gray.100" }}>
+              Log in
+            </Box>
+            <Box cursor="pointer" onClick={() => setIsOpen(!isopen)} _hover={{ color: "gray.100" }}>
+              Register
+            </Box>
 
-        <Flex alignItems="center" justifyContent="center" gap={10} letterSpacing="1px" fontSize="14px" backgroundColor="blue.600" py={3} color="gray.300"  >
-          <Box borderRight="1px solid gray" borderColor="gray.100" pr={10} cursor="pointer"  _hover={{color:"gray.100"}}>
-            Log in
-          </Box>
+          </Flex> 
+          : 
+          <Flex px={8}>
+            Hi, 
+            <Text ml={3}>{customer.name}</Text>
+            </Flex>
+          }
+        </Box>
 
-          <Box cursor="pointer"  _hover={{color:"gray.100"}}>
-            Register
-          </Box>
-
-        </Flex>
 
         <Box mx="2" my={4}>
 
@@ -175,28 +199,41 @@ const MobileNavMenu = ({ openMenu, setOpenMenu }) => {
               >
                 Book Online
               </Button>
-              <Button
-                rightIcon={<FaSignInAlt />}
-                colorScheme="skyblue"
-                borderColor="#5395f6"
-                color="#5395f6"
-                variant="outline"
-                _focus={{ outline: "none" }}
-                onClick={()=> setIsOpen(!isopen)}
-                fontSize="14px"
-              >
-                Log-In  
-              </Button>
+              {loggedIn ?
+                <Button
+                  rightIcon={<FaSignInAlt />}
+                  colorScheme="skyblue"
+                  borderColor="#5395f6"
+                  color="#5395f6"
+                  variant="outline"
+                  _focus={{ outline: "none" }}
+                  onClick={() => logMeOut()}
+                  fontSize="14px"
+                >
+                  Log-out
+                </Button> :
+                <Button
+                  rightIcon={<FaSignInAlt />}
+                  colorScheme="skyblue"
+                  borderColor="#5395f6"
+                  color="#5395f6"
+                  variant="outline"
+                  _focus={{ outline: "none" }}
+                  onClick={() => setIsOpen(!isopen)}
+                  fontSize="14px"
+                >
+                  Log-in
+                </Button>}
             </Stack>
           </Flex>
         </Box>
         <Flex justifyContent="center" gap={3} fontSize={24} m={5} color="gray.500">
-         <BsFacebook cursor="pointer"/>
-         <AiFillInstagram cursor="pointer"/>
-         <AiFillLinkedin cursor="pointer"/>
-         <AiFillYoutube cursor="pointer"/>
+          <BsFacebook cursor="pointer" />
+          <AiFillInstagram cursor="pointer" />
+          <AiFillLinkedin cursor="pointer" />
+          <AiFillYoutube cursor="pointer" />
         </Flex>
-        <CustomerAuth isopen={isopen} setIsOpen={setIsOpen}/>
+        <CustomerAuth isopen={isopen} setIsOpen={setIsOpen} />
       </DrawerContent>
     </Drawer>
 

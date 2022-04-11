@@ -26,7 +26,10 @@ const userSlice = createSlice({
     getSidebarStatus:(state, {payload}) => {
       state.isLoading=true;
       state.sidebarOpen= payload
-    }
+    },
+    logoutSuccess: (state) => {
+      state.user = {};
+    },
   },
 });
 
@@ -34,7 +37,8 @@ export const {
   getUserPending,
   getUserSuccess,
   getUserFail,
-  getSidebarStatus
+  getSidebarStatus,
+  logoutSuccess
 } = userSlice.actions;
 
 export default userSlice.reducer;

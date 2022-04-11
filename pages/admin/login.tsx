@@ -26,7 +26,7 @@ interface isAuth {
 }
 
 const Login = () => {
-  const [email, setEmail] = useState("timro@gmail.com");
+  const [email, setEmail] = useState("asraf@gmail.com");
   const [password, setPassword] = useState("Manakamana123");
   const [errorEmail, setErroremail] = useState(false);
   const [errorPassword, setErrorpassword] = useState();

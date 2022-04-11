@@ -6,6 +6,22 @@ const newAccessJWT = rootUrl + "customer/tokens";
 const userProfileUrl = rootUrl + "customer"
 const logoutUrl = rootUrl + "customer/logout";
 
+export const userRegistration = (frmData) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const res = await axios.post(userProfileUrl, frmData);
+
+      resolve(res.data);
+
+      if (res.data.status === "success") {
+        resolve(res.data);
+      }
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
 export const userLogin = (frmData) => {
   return new Promise(async (resolve, reject) => {
     try {
