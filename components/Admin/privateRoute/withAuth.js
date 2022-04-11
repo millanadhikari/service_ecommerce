@@ -11,8 +11,8 @@ const withAuth = (WrappedComponent) => {
   return (props) => {
     const dispatch = useDispatch();
     const { isAuth } = useSelector(state => state.login);
-    const { user } = useSelector(state => state.user);
-
+    const isAdmin = useSelector(state => state.user.user.isAdmin);
+    const {user} = useSelector(state => state.user)
     useEffect(() => {
       const updateAccessJWT = async () => {
         const result = await fetchNewAccessJWT();
@@ -30,7 +30,7 @@ const withAuth = (WrappedComponent) => {
 
 
       return (
-        isAuth ? <WrappedComponent> {props}</WrappedComponent> : null
+        isAdmin ? <WrappedComponent> {props}</WrappedComponent> : null
       );
     }
 
