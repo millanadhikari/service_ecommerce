@@ -31,10 +31,34 @@ const ServiceSummary = ({bloading}) => {
       zIndex="999"
       shadow="xl"
     >
-      <Flex alignItems="center">
-        <Text position="absolute" top="6" fontSize="16px" fontWeight="semibold">
-          Online Booking
+      <Flex  alignItems="center">
+      <Flex alignItems="center" position="absolute" top="2" >
+        <Flex
+          alignItems="center"
+          justifyContent="right"
+          fontWeight="extrabold"
+          fontFamily="Arial, sans-serif"
+          backgroundColor="#f9bf16"
+          rounded="100%"
+          color="gray.700"
+          h={'54px'}
+          w={'54px'}
+          
+          fontSize="15px"
+        >
+          WeDo
+        </Flex>
+        <Text
+          fontWeight="bold"
+          fontSize="16px"
+          letterSpacing="1px"
+          ml={0.5}
+          mt={0.5}
+          color={"#3182ce"}
+        >
+          CLEANING
         </Text>
+      </Flex>
         <Spacer />
         <Accordion allowMultiple w={60}>
           <AccordionItem>
@@ -198,7 +222,7 @@ const ServiceSummary = ({bloading}) => {
           </AccordionItem>
         </Accordion>
       </Flex>
-        <Progress position="absolute" top="68px" left="0" size='xs' w="100%" isIndeterminate = {bloading} value={!bloading && 100}/>
+        <Progress position="absolute" zIndex="-1" top="68px" left="0" size='xs' w="100%" isIndeterminate = {bloading} value={!bloading && 100}/>
     </Box>
   );
 };

@@ -2,6 +2,8 @@ import Head from 'next/head'
 import 'react-calendar/dist/Calendar.css';
 
 import Entry from '../components/Entry'
+import Elite from '../components/Elite/Elite'
+import Comment from '../components/Elite/Comment'
 export default function Home() {
   return (
     <div>
@@ -11,6 +13,7 @@ export default function Home() {
    
             </Head>
           <Entry/>
+         
             {/* <Booking /> */}
             {/* <Sidebar/> */}
           </div>

@@ -195,7 +195,7 @@ const Booking = () => {
       <ServiceSummary bloading={bloading} />
       <Flex
         flexDir="column"
-        pt={20}
+        pt="100px"
         px={{ base: 2, sm: 4 }}
         w={{ md: "700px" }}
         mx="auto"
