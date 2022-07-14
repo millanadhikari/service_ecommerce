@@ -12,12 +12,17 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { BiPhoneCall } from "react-icons/bi";
 import { BsFillBagCheckFill, BsFillTelephoneFill } from "react-icons/bs";
+import { MdOutlineAccountCircle } from "react-icons/md";
+import { useAppSelector } from "../Admin/app/hooks";
 import MobileNavMenu from "./MobileNavMenu";
 
 const Navbar = () => {
   const [show, handleShow] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
   const router = useRouter()
+  
+  const isCustomer = useAppSelector((state) => state.user.user?.isCustomer)
+
 
   const transitionNavbar = () => {
     if (window.scrollY > 20) {
@@ -26,6 +31,8 @@ const Navbar = () => {
       handleShow(false);
     }
   };
+
+ 
   useEffect(() => {
     window.addEventListener("scroll", transitionNavbar);
     return () => window.removeEventListener("scroll", transitionNavbar);
@@ -46,7 +53,7 @@ const Navbar = () => {
       backgroundColor={show && "white"}
       shadow={show ? "md" : "none"}
     >
-      <Flex alignItems="center"  >
+      <Flex alignItems="center" onClick={() => router.push('/')} >
         <Flex
           alignItems="center"
           justifyContent="right"
@@ -99,13 +106,17 @@ const Navbar = () => {
         <Box onClick={() => router.push('/')}>Blog</Box>
       </Stack>
       <Spacer />
+     {isCustomer &&  <Box onClick={() => router.push('/customerPortal')} cursor="pointer" fontSize="40px" mr={3} color={!show ? "gray.100" : '#5395f6'}>
+        <MdOutlineAccountCircle/>
+      </Box>}
       <Box fontSize="18px" mr={5} backgroundColor="gray.100" p={3} shadow="md" color={!show ? "gray" : '#5395f6'} rounded="full" onClick={() => window.open("tel:+61415976451")} cursor="pointer">
         <BsFillTelephoneFill color="#5395f6" />
       </Box>
+    
       <Button display={{ base: "block", md: "none" }} _focus={{border:"none"}}  onClick={() => setOpenMenu(!openMenu)} >
         <HamburgerIcon/>
       </Button>
-     
+    
       <Button
         display={{ base: "none", md: "block" }}
         rounded="3xl"
