@@ -1,12 +1,23 @@
-import { CheckIcon, ChevronDownIcon, HamburgerIcon } from "@chakra-ui/icons";
+import {
+  CheckIcon,
+  ChevronDownIcon,
+  ChevronUpIcon,
+  HamburgerIcon,
+} from "@chakra-ui/icons";
 import {
   Box,
   Button,
   Flex,
+  Menu,
+  MenuButton,
+  MenuDivider,
+  MenuItem,
+  MenuList,
   Spacer,
   Stack,
   Text,
   UnorderedList,
+  useDisclosure,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
@@ -19,10 +30,11 @@ import MobileNavMenu from "./MobileNavMenu";
 const Navbar = () => {
   const [show, handleShow] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
-  const router = useRouter()
-  
-  const isCustomer = useAppSelector((state) => state.user.user?.isCustomer)
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
+  const router = useRouter();
+
+  const isCustomer = useAppSelector((state) => state.user.user?.isCustomer);
 
   const transitionNavbar = () => {
     if (window.scrollY > 20) {
@@ -32,7 +44,6 @@ const Navbar = () => {
     }
   };
 
- 
   useEffect(() => {
     window.addEventListener("scroll", transitionNavbar);
     return () => window.removeEventListener("scroll", transitionNavbar);
@@ -53,7 +64,7 @@ const Navbar = () => {
       backgroundColor={show && "white"}
       shadow={show ? "md" : "none"}
     >
-      <Flex alignItems="center" onClick={() => router.push('/')} >
+      <Flex alignItems="center" onClick={() => router.push("/")}>
         <Flex
           alignItems="center"
           justifyContent="right"
@@ -62,9 +73,8 @@ const Navbar = () => {
           backgroundColor="#f9bf16"
           rounded="100%"
           color="gray.700"
-          h={'54px'}
-          w={'54px'}
-          
+          h={"54px"}
+          w={"54px"}
           fontSize="15px"
         >
           WeDo
@@ -87,47 +97,107 @@ const Navbar = () => {
         display={{ base: "none", md: "inline-flex" }}
         color={show ? "#3182ce" : "white"}
         letterSpacing="1.5px"
-        
         fontSize="15px"
       >
-        <Box cursor="pointer" onClick={() => router.push('/')}>Home</Box>
-        <Flex alignItems="center">
+        <Box cursor="pointer" onClick={() => router.push("/")}>
+          Home
+        </Box>
+        {/* <Flex
+          alignItems="center"
+          onMouseEnter={onOpen}
+          onMouseLeave={onClose}
+          isOpen={isOpen}
+          cursor="pointer"
+        >
           <Text>Service</Text>
           <Box>
-            <ChevronDownIcon fontSize="18px" />
+            {!isOpen ? (
+              <ChevronDownIcon fontSize="18px" />
+            ) : (
+              <ChevronUpIcon fontSize="18px" />
+            )}
           </Box>
-        </Flex>
+          </Flex> */}
+        <Menu>
+          <MenuButton
+         
+            transition="all 0.2s"
+          >
+            Services <ChevronDownIcon fontSize="18px"/>
+          </MenuButton>
+          <MenuList color="blue.600">
+            <MenuItem>End of Lease Clean</MenuItem>
+            <MenuItem>General Clean</MenuItem>
+            <MenuDivider />
+            <MenuItem>Carpet Steam Clean</MenuItem>
+            <MenuItem>Mould Clean</MenuItem>
+          </MenuList>
+        </Menu>
+        {/* {isOpen && 'milan'} */}
+        {/* <Box>
+            {isOpen ? (
+            
+                <MenuList>
+                  <MenuItem>New asdfasddf </MenuItem>{" "}
+                </MenuList>
+              
+            ): null}
+          </Box> */}
         <Flex alignItems="center" justify="center">
           <Text mr={1.5}>Shop</Text>
           <Flex alignItems="center" justify="center">
             <BsFillBagCheckFill fontSize="14px" />{" "}
           </Flex>
         </Flex>
-        <Box onClick={() => router.push('/')}>Blog</Box>
+        <Box cursor="pointer" onClick={() => router.push("/blogs")}>Blogs</Box>
       </Stack>
       <Spacer />
-     {isCustomer &&  <Box onClick={() => router.push('/customerPortal')} cursor="pointer" fontSize="40px" mr={3} color={!show ? "gray.100" : '#5395f6'}>
-        <MdOutlineAccountCircle/>
-      </Box>}
-      <Box fontSize="18px" mr={5} backgroundColor="gray.100" p={3} shadow="md" color={!show ? "gray" : '#5395f6'} rounded="full" onClick={() => window.open("tel:+61415976451")} cursor="pointer">
+      {isCustomer && (
+        <Box
+          onClick={() => router.push("/customerPortal")}
+          cursor="pointer"
+          fontSize="40px"
+          mr={3}
+          color={!show ? "gray.100" : "#5395f6"}
+        >
+          <MdOutlineAccountCircle />
+        </Box>
+      )}
+      <Box
+        fontSize="18px"
+        mr={5}
+        backgroundColor="gray.100"
+        p={3}
+        shadow="md"
+        color={!show ? "gray" : "#5395f6"}
+        rounded="full"
+        onClick={() => window.open("tel:+61415976451")}
+        cursor="pointer"
+      >
         <BsFillTelephoneFill color="#5395f6" />
       </Box>
-    
-      <Button display={{ base: "block", md: "none" }} _focus={{border:"none"}}  onClick={() => setOpenMenu(!openMenu)} >
-        <HamburgerIcon/>
+
+      <Button
+        display={{ base: "block", md: "none" }}
+        _focus={{ border: "none" }}
+        onClick={() => setOpenMenu(!openMenu)}
+      >
+        <HamburgerIcon />
       </Button>
-    
+
       <Button
         display={{ base: "none", md: "block" }}
         rounded="3xl"
         px={4}
         colorScheme={show ? "blue" : "gray"}
         fontSize="12px"
-        onClick={() => router.push('/booking')}
+        onClick={() => router.push("/booking")}
       >
         Book Online
       </Button>
-      {openMenu && <MobileNavMenu openMenu={openMenu} setOpenMenu={setOpenMenu}/> }
+      {openMenu && (
+        <MobileNavMenu openMenu={openMenu} setOpenMenu={setOpenMenu} />
+      )}
     </Flex>
   );
 };

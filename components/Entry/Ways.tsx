@@ -24,6 +24,7 @@ import {
 } from "@chakra-ui/react";
 import { BiCurrentLocation } from "react-icons/bi";
 import { useRouter } from 'next/router'
+import RequestQuote from "../Quote/RequestQuote";
 
 
 const data = [
@@ -51,6 +52,7 @@ const Ways = () => {
   const [serviceChoosed, setServiceChoosed] = useState('')
   const [postcode, setPostcode] = useState('')
   const [loading, setLoading] = useState(false)
+  const [quote, setQuote] = useState<boolean>(false)
 
   const router = useRouter()
   return (
@@ -104,7 +106,7 @@ const Ways = () => {
               backgroundColor="green.400"
               textAlign="center"
               isLoading={loading}
-              onClick={() => (setLoading(!loading), router.push('/booking'))}
+              onClick={() => setQuote(!quote)}
               loadingText="Loading"
               spinnerPlacement='start'
               py={4}
@@ -119,6 +121,7 @@ const Ways = () => {
             >
               Get a Quote
             </Button>
+            <RequestQuote quote={quote} setQuote={setQuote}/>
           </Box>
         </Box>
         <Flex

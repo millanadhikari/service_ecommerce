@@ -3,7 +3,7 @@ import React from 'react'
 
 const OrderTabs = () => {
     return (
-        <Tabs>
+        <Tabs h="50vh">
             <TabList>
                <Flex alignItems="center" justifyContent="center" w="100%">
                <Tab _focus={{outline:"none"}} >Upcoming Orders</Tab>
@@ -11,12 +11,12 @@ const OrderTabs = () => {
                </Flex>
             </TabList>
 
-            <TabPanels my={4}>
+            <TabPanels my={4} textAlign="center" >
                 <TabPanel >
-                    <Text >You have no upcoming order.</Text>
+                    <Text >You have no upcoming booking.</Text>
                 </TabPanel>
                 <TabPanel>
-                <Text >You haven't booked anything yet.</Text>
+                <Text >You havent booked anything yet.</Text>
                 </TabPanel>
               
             </TabPanels>

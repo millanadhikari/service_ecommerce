@@ -27,6 +27,18 @@ const userSlice = createSlice({
       state.isLoading=true;
       state.sidebarOpen= payload
     },
+    passwordChangePending:(state) => {
+      state.isLoading = true;
+
+    },
+    passwordChangeSuccess: (state ) => {
+      state.isLoading = false;
+     
+    },
+    passwordChangeFail: (state, { payload }) => {
+      state.isLoading = false;
+      state.error = payload;
+    },
     logoutSuccess: (state) => {
       state.user = {};
     },
@@ -38,6 +50,9 @@ export const {
   getUserSuccess,
   getUserFail,
   getSidebarStatus,
+  passwordChangePending,
+  passwordChangeSuccess,
+  passwordChangeFail,
   logoutSuccess
 } = userSlice.actions;
 

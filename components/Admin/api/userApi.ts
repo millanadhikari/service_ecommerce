@@ -1,10 +1,11 @@
 import axios from "axios";
 
-const rootUrl = "https://wedo-backend.herokuapp.com/v1/";
+const rootUrl = "http://localhost:3001/v1/";
 const loginUrl = rootUrl + "customer/login";
 const newAccessJWT = rootUrl + "customer/tokens";
 const userProfileUrl = rootUrl + "customer"
 const logoutUrl = rootUrl + "customer/logout";
+const passwordUrl = rootUrl + "customer/passwordChange"
 
 export const userRegistration = (frmData) => {
   return new Promise(async (resolve, reject) => {
@@ -91,6 +92,29 @@ export const fetchNewAccessJWT = () => {
       }
 
       reject(false);
+    }
+  });
+};
+
+export const changePassword = async (passObj) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const accessJWT = sessionStorage.getItem("accessJWT");
+
+      if (!accessJWT) {
+        reject("Token not found!");
+      }
+
+      const res = await axios.put(passwordUrl, passObj, {
+        headers: {
+          Authorization: accessJWT,
+        },
+      });
+
+      resolve(res.data);
+    } catch (error) {
+      console.log(error);
+      reject(error.message);
     }
   });
 };

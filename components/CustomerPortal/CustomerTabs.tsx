@@ -4,11 +4,14 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { userLogout } from '../Admin/api/userApi'
 import { logoutSuccess } from '../Admin/user/userSlice'
+import ChangePassword from './ChangePassword'
 import MembershipDetail from './CustomerDashboard/MembershipDetail'
 import PartnerOffer from './CustomerDashboard/PartnerOffer'
 import Rewards from './CustomerDashboard/Rewards'
 import RewardsPoints from './CustomerDashboard/RewardsPoints'
+import EditDetails from './CustomerDetails/EditDetails'
 import OrderTabs from './CustomerOrders/OrderTabs'
+import SupportPreference from './SupportPreference'
 
 const CustomerTabs = () => {
     const dispatch = useDispatch()
@@ -23,7 +26,7 @@ const CustomerTabs = () => {
         router.push('/')
       };
     return (
-        <Tabs variant='soft-rounded' colorScheme='red' my={2} mx="auto">
+        <Tabs variant='soft-rounded' colorScheme='red' my={2} mx="auto" >
             <TabList textAlign="center" overflow="auto" pb={{ md: "3" }} borderBottom="1px solid gray" borderColor="gray.300" sx={{
                 '&::-webkit-scrollbar': {
                     backgroundColor: "white"
@@ -32,7 +35,7 @@ const CustomerTabs = () => {
                     backgroundColor: `white`,
                 },
             }}>
-                <Flex mx="auto" px={5} fontSize="13px">
+                <Flex mx="auto" px={5} fontSize="13px" >
                     <Tab minWidth="100px" _focus={{ outline: "none" }}>Dashboard</Tab>
                     <Tab minWidth="120px" _focus={{ outline: "none" }}>My Orders</Tab>
                     <Tab minWidth="115px" _focus={{ outline: "none" }}>Edit Details</Tab>
@@ -64,6 +67,21 @@ const CustomerTabs = () => {
                 </TabPanel>
                 <TabPanel>
                    <OrderTabs/>
+                </TabPanel>
+                <TabPanel>
+                   <EditDetails/>
+                </TabPanel>
+                <TabPanel>
+                   <ChangePassword/>
+                </TabPanel>
+                <TabPanel>
+                   <ChangePassword/>
+                </TabPanel>
+                <TabPanel>
+                   <ChangePassword/>
+                </TabPanel>
+                <TabPanel>
+                   <SupportPreference/>
                 </TabPanel>
             </TabPanels>
         </Tabs>
