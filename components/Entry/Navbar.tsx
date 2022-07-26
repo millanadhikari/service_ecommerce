@@ -27,7 +27,7 @@ import { MdOutlineAccountCircle } from "react-icons/md";
 import { useAppSelector } from "../Admin/app/hooks";
 import MobileNavMenu from "./MobileNavMenu";
 
-const Navbar = () => {
+const Navbar = ({quote, setQuote}) => {
   const [show, handleShow] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -191,9 +191,9 @@ const Navbar = () => {
         px={4}
         colorScheme={show ? "blue" : "gray"}
         fontSize="12px"
-        onClick={() => router.push("/booking")}
+        onClick={() => setQuote(!quote)}
       >
-        Book Online
+       Get Quote
       </Button>
       {openMenu && (
         <MobileNavMenu openMenu={openMenu} setOpenMenu={setOpenMenu} />

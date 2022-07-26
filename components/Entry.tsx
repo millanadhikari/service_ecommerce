@@ -12,12 +12,14 @@ import Footer from "./Entry/Footer";
 
 function Entry() {
   const [maintenance, setMaintenance] = useState(true)
+  const [quote, setQuote] = useState<boolean>(false)
+
   return (
     <Box >
-        <Navbar />
+        <Navbar quote={quote} setQuote={setQuote}/>
         <Banner />
 
-      <Ways />
+      <Ways quote={quote} setQuote={setQuote}/>
       <Why/>
       <Service />
       <EntryTabs/>

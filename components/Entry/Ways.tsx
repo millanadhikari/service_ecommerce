@@ -48,11 +48,10 @@ const data = [
   },
 ];
 
-const Ways = () => {
+const Ways = ({quote, setQuote}) => {
   const [serviceChoosed, setServiceChoosed] = useState('')
   const [postcode, setPostcode] = useState('')
   const [loading, setLoading] = useState(false)
-  const [quote, setQuote] = useState<boolean>(false)
 
   const router = useRouter()
   return (
