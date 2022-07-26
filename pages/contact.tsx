@@ -136,7 +136,7 @@ const Contact = () => {
             </Text>
             <CheckboxGroup colorScheme="blue" defaultValue={["naruto"]}>
               <Stack spacing={[1, 5]} direction={["column", "row"]} my={5} >
-                <Checkbox  fontSize  value="naruto"><Text fontSize="14px" >Cleaning Services</Text></Checkbox>
+                <Checkbox  value="naruto"><Text fontSize="14px" >Cleaning Services</Text></Checkbox>
                 <Checkbox  value="sasuke"><Text fontSize="14px" >Booking Query</Text></Checkbox>
                 <Checkbox  value="kakashi"><Text fontSize="14px" >Others</Text></Checkbox>
               </Stack>
