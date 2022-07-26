@@ -47,7 +47,7 @@ const EditDetails = () => {
       </Heading>
       <Stack spacing={4} my={6} mx={{ md: "auto" }}>
         <InputGroup w={{ md: "50%" }}>
-          <InputLeftAddon children="Full Name" />
+          {/* <InputLeftAddon children="Full Name" /> */}
           <Input
             type="name"
             placeholder="Full Name"
@@ -63,7 +63,7 @@ const EditDetails = () => {
 
         {/* If you add the size prop to `InputGroup`, it'll pass it to all its children. */}
         <InputGroup w={{ md: "50%" }} size="sm">
-          <InputLeftAddon fontSize="16px" w="110px" children="Email" />
+          {/* <InputLeftAddon fontSize="16px" w="110px" children="Email" /> */}
           <Input placeholder={contact?.email}  value={contact.email}
             onChange={(e) =>
               setContact({
@@ -73,7 +73,7 @@ const EditDetails = () => {
             } />
         </InputGroup>
         <InputGroup w={{ md: "50%" }} size="sm">
-          <InputLeftAddon fontSize="16px" w="110px" children="Address" />
+          {/* <InputLeftAddon fontSize="16px" w="110px" children="Address" /> */}
           <Input placeholder="e.g. 1/2 John Street"  value={contact.address}
             onChange={(e) =>
               setContact({
@@ -83,7 +83,7 @@ const EditDetails = () => {
             } />
         </InputGroup>
         <InputGroup w={{ md: "50%" }} size="sm">
-          <InputLeftAddon fontSize="16px" w="110px" children="Suburb" />
+          {/* <InputLeftAddon fontSize="16px" w="110px" children="Suburb" /> */}
           <Input placeholder="Suburb"  value={contact.suburb}
             onChange={(e) =>
               setContact({
@@ -93,7 +93,7 @@ const EditDetails = () => {
             } />
         </InputGroup>
         <InputGroup w={{ md: "50%" }} size="sm">
-          <InputLeftAddon fontSize="16px" w="110px" children="Postcode*" />
+          {/* <InputLeftAddon fontSize="16px" w="110px" children="Postcode*" /> */}
           <Input placeholder="e.g. 2000"  value={contact.postcode}
             onChange={(e) =>
               setContact({
@@ -111,7 +111,7 @@ const EditDetails = () => {
           </Select>
         </Stack>
         <InputGroup w={{ md: "50%" }} size="sm">
-          <InputLeftAddon fontSize="16px" w="110px" children="Mobile" />
+          {/* <InputLeftAddon fontSize="16px" w="110px" children="Mobile" /> */}
           <Input placeholder="+61 434343433"  value={contact.mobile}
             onChange={(e) =>
               setContact({
