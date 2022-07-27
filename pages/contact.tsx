@@ -34,7 +34,7 @@ const Contact = () => {
     <Box textAlign="center" w="100%">
       <Box bg="blue.400">
         {" "}
-        <Navbar />
+        {/* <Navbar /> */}
       </Box>
       <Heading my={3}>Contact Us</Heading>
       <Text my={3}>Any question or remarks? Just write us a message!</Text>

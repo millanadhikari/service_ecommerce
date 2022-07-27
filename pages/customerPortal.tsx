@@ -9,7 +9,7 @@ function customerPortal() {
   return (
     <Box h="100%" position="relative" >
       <Box backgroundColor="blue.500">
-        <Navbar />
+        {/* <Navbar /> */}
       </Box>
      <Box h="100%">
      <CustomerTabs />
