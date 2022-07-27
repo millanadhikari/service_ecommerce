@@ -29,12 +29,36 @@ import { AiOutlineQuestionCircle } from "react-icons/ai";
 
 import { BiChevronDown } from "react-icons/bi";
 import { useAppDispatch, useAppSelector } from "../../Admin/app/hooks";
-import { BsToggleOn } from "react-icons/bs";
+import { BsFillPeopleFill, BsPeople, BsPeopleFill, BsToggleOn } from "react-icons/bs";
 import { userLogout } from "../api/userApi";
 import { useRouter } from "next/router";
 import { getSidebarStatus } from "../user/userSlice";
 import withAuth from "../privateRoute/withAuth";
+import SidebarLink from "./Menu/SidebarLink";
+import { AiFillHome, AiOutlineHome } from "react-icons/ai";
+import { RiFilePaper2Line, RiFilePaperFill } from "react-icons/ri";
 
+
+const menuItems = [
+  {
+    href: '/admin/home',
+    title: 'Home',
+    icon1:AiFillHome,
+    icon2:AiOutlineHome
+  },
+  {
+    href: '/admin/bookings',
+    title: 'Bookings',
+    icon1:BsFillPeopleFill,
+    icon2:BsPeople
+  },
+  {
+    href: '/admin/quotes',
+    title: 'Quotes',
+    icon2:RiFilePaper2Line,
+    icon1:RiFilePaperFill
+  },
+];
 const Sidebar = () => {
   const {isAuth} = useAppSelector((state) => state.login) || undefined;
   const user = useAppSelector((state) => state.user) || undefined;
@@ -55,12 +79,14 @@ const Sidebar = () => {
     Router.replace("/admin/login");
   };
 
+  
   // console.log(user);
 
   return (
     <>
         <Box
         position="fixed"
+        // display={{base:"hidden", md:"inline"}}
         top="0"
         w={sidebarOpen ? "300px" : "80px"}
         h="100vh"
@@ -157,7 +183,10 @@ const Sidebar = () => {
               />
             </Flex>
           )}
-          <SidebarMenu />
+          {menuItems.map((item) => (
+            <SidebarLink key={item.href} item={item}/>
+          ))}
+          
           {sidebarOpen && (
             <Box mt="20rem">
               <SpaceAccordion />

@@ -6,7 +6,7 @@ import bookingsReducer from '../Admin/BookingPage/bookingsSlice'
 import spacesReducer from '../Admin/space/spaceSlice'
 import cBookingReducer from '../Booking/customerBookingSlice'
 import customerRegistrationReducer from '../customerAuth/customerRegistrationSlice'
-
+import quotesReducer from '../Admin/QuotePage/quoteSlice'
 
 const store = configureStore({
     reducer: {
@@ -16,6 +16,7 @@ const store = configureStore({
         spaces:spacesReducer,
         cBookings:cBookingReducer,
         customerRegistration:customerRegistrationReducer,
+        quotes:quotesReducer
     }
 })
 export type RootState = ReturnType<typeof store.getState>

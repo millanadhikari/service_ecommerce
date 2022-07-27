@@ -7,6 +7,8 @@ import { GiTargetPrize } from "react-icons/gi";
 import { useAppSelector } from "../../app/hooks";
 import { useRouter } from "next/router";
 import { BsBellFill, BsFillPeopleFill, BsPeople } from "react-icons/bs";
+import { RiNewspaperFill, RiNewspaperLine } from "react-icons/ri";
+
 
 const SidebarMenu = () => {
   const [showLess, setShowLess] = useState<boolean>(false);
@@ -15,6 +17,7 @@ const SidebarMenu = () => {
   const isSuperAdmin = useAppSelector((state) => state.user.isSuperAdmin)
   
   const router = useRouter();
+  const url = window.location.href
 
   return (
     <Box
@@ -29,32 +32,34 @@ const SidebarMenu = () => {
         px="8"
         py="2"
         _hover={{
-          backgroundColor: isActive === "home" ? "#e1ddf8" : "gray.100",
+          backgroundColor: router.asPath === "/admin/home" ? "#e1ddf8" : "gray.100",
         }}
-        backgroundColor={isActive === "home" ? "#e1ddf8" : undefined}
+        backgroundColor={router.asPath === "/admin/home" ? "#e1ddf8" : undefined}
         w="100%"
         alignItems="center"
-        borderLeft={isActive === "home" ? "4px solid black" : undefined}
+        borderLeft={router.asPath === "/admin/home" ? "4px solid black" : undefined}
         borderColor="#7c68ee"
         cursor="pointer"
         fontSize="13px"
         letterSpacing="0.5px"
-        onClick={() => {
-          router.push("/home"), setIsActive("home");
+        onClick={(e) => {
+          e.preventDefault() 
+          router.push("/admin/home") 
+          setIsActive("home");
         }}
       >
         <Icon
           fontSize="20px"
           aria-label="Search database"
           textAlign="center"
-          color={isActive === "home" ? "#7c68ee" : "none"}
+          color={router.asPath === "/admin/home" ? "#7c68ee" : "none"}
           mr="3"
-          as={isActive === "home" ? AiFillHome : Aioutlinehome}
+          as={router.asPath === "/admin/home" ? AiFillHome : Aioutlinehome}
         />
 
         <Text
-          fontWeight={isActive === "home" ? "semibold" : "none"}
-          color={isActive === "home" ? "#7c68ee" : "none"}
+          fontWeight={router.asPath === "/admin/home" ? "semibold" : "none"}
+          color={router.asPath === "/admin/home" ? "#7c68ee" : "none"}
         >
           {sidebarOpen && "Home"}
         </Text>
@@ -139,6 +144,41 @@ const SidebarMenu = () => {
           )}
           <Link href="/admin/bookings">
             <Flex
+             role="group"
+             px="8"
+             py="2"
+             _hover={{
+               backgroundColor: router.asPath === "/admin/bookings" ? "#e1ddf8" : "gray.100",
+             }}
+             backgroundColor={router.asPath === "/admin/bookings" ? "#e1ddf8" : undefined}
+             w="100%"
+             alignItems="center"
+             borderLeft={router.asPath === "/admin/bookings" ? "4px solid black" : undefined}
+             borderColor="#7c68ee"
+             cursor="pointer"
+             fontSize="13px"
+             letterSpacing="0.5px"
+              onClick={() => {
+                setIsActive("bookings");
+              }}
+            >
+              <Icon
+                textDecoration="none"
+                fontSize="20px"
+              
+                backgroundColor={router.asPath === "/admin/bookings" ? 'none' : "white"}
+                color={router.asPath === "/admin/bookings" ? "#7c68ee" : "none"}
+
+                aria-label="Search database"
+                textAlign="center"
+                mr="3"
+                as={GiTargetPrize}
+              />
+              {sidebarOpen && "Bookings"}
+            </Flex>
+          </Link>
+          <Link href="/admin/quotes">
+            <Flex
               role="group"
               px="8"
               py="2"
@@ -149,7 +189,7 @@ const SidebarMenu = () => {
               fontSize="13px"
               letterSpacing="0.5px"
               onClick={() => {
-                router.push("/bookings"), setIsActive("bookings");
+                setIsActive("quotes");
               }}
             >
               <Icon
@@ -161,9 +201,9 @@ const SidebarMenu = () => {
                 aria-label="Search database"
                 textAlign="center"
                 mr="3"
-                as={GiTargetPrize}
+                as={isActive === 'quote' ? RiNewspaperLine : RiNewspaperFill }
               />
-              {sidebarOpen && "Bookings"}
+              {sidebarOpen && "Quotes"}
             </Flex>
           </Link>
         </Box>
