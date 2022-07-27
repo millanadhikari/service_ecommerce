@@ -96,8 +96,10 @@ const QuoteList = () => {
         <InputGroup>
           <InputLeftElement
             pointerEvents="none"
-            children={<Search2Icon color="purple.500" />}
-          />
+            
+          >
+            <Search2Icon color="purple.500" />
+            </InputLeftElement>
           <Input value={search} onChange={(e) => setSearch(e.target.value)}  _placeholder={{ color: "gray.300", fontSize: "14px", letterSpacing: "0.9px" }} placeholder="Search by any quote parameter..." />
         </InputGroup>
       </Box>
