@@ -24,7 +24,7 @@ const Quotes = () => {
         border="1px solid gray" borderTop="none" borderLeft="none"
         borderColor="gray.200" alignItems="center"
         justifyContent="space-between"
-        
+        zIndex="999"
         fontSize="15px" pl="5"
         position="fixed" w="100%"
         pr={sidebarOpen ? 300 : 100}
