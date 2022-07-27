@@ -24,7 +24,7 @@ const blogs = () => {
   return (
     <Box w="100%">
       <Box backgroundColor="#5395f6">
-        <Navbar />
+        {/* <Navbar /> */}
       </Box>
       <Box mx="auto" w={{md:"1160px"}}>
              <BlogHeader />
