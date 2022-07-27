@@ -44,7 +44,7 @@ const QuotePagination = ({ setPageNumber, pageNumber }) => {
       </Text>
               {/* {prevPages} */}
       <Flex alignItems="center">
-        <Button disabled={isLoading || prevPages == 0} onClick={setPrevious}>
+        <Button size="sm" disabled={isLoading || prevPages == 0} onClick={setPrevious}>
           {" "}
           <ChevronLeftIcon />{" "}
         </Button>
@@ -55,11 +55,11 @@ const QuotePagination = ({ setPageNumber, pageNumber }) => {
                alignItems="center"
                justifyContent="center"
                rounded="full"
-               fontSize="12px"
+               fontSize="11px"
                backgroundColor={pageNumber == nextPages-1 ? 'purple.500' : 'white'}
                color={pageNumber == nextPages-1 ? 'white' : 'gray.600'}
-               h={10}
-               w={10}
+               h={6}
+               w={6}
                m={3}
           >{nextPages-1}</Flex>
               
@@ -67,6 +67,7 @@ const QuotePagination = ({ setPageNumber, pageNumber }) => {
         <Button
           disabled={isLoading || nextPages > totalPages}
           onClick={(e)=> handleNext(e)}
+          size="sm"
         >
           <ChevronRightIcon />
         </Button>
