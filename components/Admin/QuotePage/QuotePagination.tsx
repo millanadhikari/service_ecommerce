@@ -42,31 +42,28 @@ const QuotePagination = ({ setPageNumber, pageNumber }) => {
         PAGE 
          {pageNumber}{"  "}  OF {totalPages}
       </Text>
-      
+              {/* {prevPages} */}
       <Flex alignItems="center">
         <Button disabled={isLoading || prevPages == 0} onClick={setPrevious}>
           {" "}
           <ChevronLeftIcon />{" "}
         </Button>
-        <Flex alignItems="center" justifyContent="center" w="100%" fontSize="12px">
-          {handleArray(totalPages).map((ant) => (
-            <Flex
-              onClick={() => setPageNumber(ant)}
-              cursor="pointer"
-              alignItems="center"
-              justifyContent="center"
-              rounded="full"
-              backgroundColor={pageNumber == ant ? 'purple.500' : 'white'}
-              color={pageNumber == ant ? 'white' : 'gray.600'}
-              h={10}
-              w={10}
-              m={3}
-              key={ant}
-            >
-              <Text>{ant}</Text>
-            </Flex>
-          ))}
-        </Flex>
+      
+          <Flex 
+          //  onClick={() => setPageNumber(ant)}
+               cursor="pointer"
+               alignItems="center"
+               justifyContent="center"
+               rounded="full"
+               fontSize="12px"
+               backgroundColor={pageNumber == nextPages-1 ? 'purple.500' : 'white'}
+               color={pageNumber == nextPages-1 ? 'white' : 'gray.600'}
+               h={10}
+               w={10}
+               m={3}
+          >{nextPages-1}</Flex>
+              
+              
         <Button
           disabled={isLoading || nextPages > totalPages}
           onClick={(e)=> handleNext(e)}
@@ -79,3 +76,26 @@ const QuotePagination = ({ setPageNumber, pageNumber }) => {
 };
 
 export default QuotePagination;
+
+
+// <Flex alignItems="center" justifyContent="center" w="100%" fontSize="12px">
+// {handleArray(totalPages).map((ant) => (
+//   <Flex
+//     onClick={() => setPageNumber(ant)}
+//     cursor="pointer"
+//     alignItems="center"
+//     justifyContent="center"
+//     rounded="full"
+//     backgroundColor={pageNumber == ant ? 'purple.500' : 'white'}
+//     color={pageNumber == ant ? 'white' : 'gray.600'}
+//     h={10}
+//     w={10}
+//     m={3}
+//     key={ant}
+//   >
+//     {/* <Text>{ant}</Text> */}
+   
+//   </Flex>
+// ))}
+
+// </Flex>

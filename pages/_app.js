@@ -19,7 +19,9 @@ function MyApp({ Component, pageProps }) {
        <Sidebar/>
       
         </Box>
+        <Box  backgroundColor="white" position="sticky" bottom="0">
         <MobileSidebar/>
+        </Box>
     </ChakraProvider>
   </Provider>
   )

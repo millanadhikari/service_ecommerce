@@ -44,7 +44,7 @@ const menuItems = [
 
 const MobileSidebar = () => {
     return (
-        <Flex gap={10} alignItems="center" justifyContent="center" py={7} >
+        <Flex w="100%" gap={8} alignItems="center" justifyContent="center" py={4}>
            {menuItems.map((item) => (
              <MobileMenu key={item.href} item={item}/>
            ))}

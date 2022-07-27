@@ -42,7 +42,7 @@ const Bookings = () => {
         </Flex>
 
 
-        <Box backgroundColor="gray.100" py={16}>
+        <Box backgroundColor="gray.100" >
             <BookingList />
         </Box>
     </Box>;
