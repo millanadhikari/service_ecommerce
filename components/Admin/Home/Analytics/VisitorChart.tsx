@@ -68,7 +68,7 @@ const data = {
 }
 function VisitorChart() {
   return (
-    <Box w={40} h={40}>
+    <Box w={40} h={16}>
       <Bar
         data={data}
         options={options}
