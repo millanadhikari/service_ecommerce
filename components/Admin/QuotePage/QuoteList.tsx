@@ -29,7 +29,7 @@ const generalClean = (item) => {
   return (
     <Box
       textAlign="center"
-      w={item === 'generalclean' ? "14" : "22"}
+      w={item === "generalclean" ? "14" : "22"}
       fontSize="11px"
       fontWeight="semibold"
       color={item === "generalclean" ? "red.500" : "blue.500"}
@@ -46,7 +46,7 @@ const QuoteList = () => {
   const [modal, setModal] = useState(false);
   const [single, setSingle] = useState({});
   const [pageNumber, setPageNumber] = useState<Number>(1);
-  const [search,setSearch] = useState('')
+  const [search, setSearch] = useState("");
 
   const dispatch = useAppDispatch();
   const bookings = useAppSelector((state) => state.quotes);
@@ -60,9 +60,8 @@ const QuoteList = () => {
   }
 
   useEffect(() => {
-     dispatch(fetchAllQuotes(pageNumber, search));
+    dispatch(fetchAllQuotes(pageNumber, search));
   }, [dispatch, pageNumber, search]);
-
 
   return (
     <Box
@@ -94,13 +93,19 @@ const QuoteList = () => {
       </Flex>
       <Box m={4}>
         <InputGroup>
-          <InputLeftElement
-            pointerEvents="none"
-            
-          >
+          <InputLeftElement pointerEvents="none">
             <Search2Icon color="purple.500" />
-            </InputLeftElement>
-          <Input value={search} onChange={(e) => setSearch(e.target.value)}  _placeholder={{ color: "gray.300", fontSize: "14px", letterSpacing: "0.9px" }} placeholder="Search by any quote parameter..." />
+          </InputLeftElement>
+          <Input
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            _placeholder={{
+              color: "gray.300",
+              fontSize: "14px",
+              letterSpacing: "0.9px",
+            }}
+            placeholder="Search by any quote parameter..."
+          />
         </InputGroup>
       </Box>
       <Box mt={10}>
