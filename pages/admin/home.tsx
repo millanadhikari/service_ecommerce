@@ -18,6 +18,7 @@ import {
   useAppSelector,
 } from "../../components/Admin/app/hooks";
 import BookingList from "../../components/Admin/BookingPage/BookingList";
+import { Analytics } from "../../components/Admin/Home/Analytics/Analytics";
 import { DashbboardTabs } from "../../components/Admin/Home/DashbboardTabs";
 
 const Home = () => {
@@ -85,9 +86,12 @@ const Home = () => {
           />
         </Flex>
       </Flex>
-      <Box w="100%" backgroundColor="gray.200"  zIndex="999" pt="110px" pb="40px" >
+      <Box w="100%" backgroundColor="gray.200"  zIndex="999" h="100vh" pt="110px" >
         <DashbboardTabs />
+        <Analytics/>
       </Box>
+      
+  
 
     </Box>
   );
