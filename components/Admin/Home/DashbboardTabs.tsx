@@ -2,15 +2,19 @@ import { Icon, Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react'
 import React from 'react'
 import { BsBarChartFill } from 'react-icons/bs'
 import { FiMoreHorizontal } from 'react-icons/fi'
+import { Accounts } from './Accounts'
+import BookingsMini from './BookingsMini'
+import { BookingsTab } from './BookingsTab'
+import { QuotesTab } from './QuotesTab'
 
 export const DashbboardTabs = () => {
   return (
-    <Tabs variant='soft-rounded' colorScheme='gray'>
-    <TabList >
-      <Tab _selected ={{bg:'white', color:'gray.600', fontWeight:'semibold'}} letterSpacing="0.8px" fontWeight="light" color="gray.400" _focus={{outline:"none"}}fontSize="15px">Accounts</Tab>
-      <Tab _selected ={{bg:'white', color:'gray.600', fontWeight:'semibold'}} letterSpacing="0.8px" fontWeight="light" color="gray.400" _focus={{outline:"none"}}fontSize="15px">Quotes</Tab>
-      <Tab _selected ={{bg:'white', color:'gray.600', fontWeight:'semibold'}} letterSpacing="0.8px" fontWeight="light" color="gray.400" _focus={{outline:"none"}}fontSize="15px">Bookings</Tab>
-      <Tab _selected ={{bg:'white', color:'gray.600', fontWeight:'semibold'}} letterSpacing="0.8px" fontWeight="light" color="gray.400" _focus={{outline:"none"}}fontSize="15px">Links</Tab>
+    <Tabs variant='soft-rounded' colorScheme='gray'  >
+    <TabList px={4} >
+      <Tab _selected ={{bg:'white', color:'purple.600', fontWeight:'semibold'}} letterSpacing="0.8px" fontWeight="light" color="gray.400" _focus={{outline:"none"}}fontSize="14px">Accounts</Tab>
+      <Tab _selected ={{bg:'white', color:'purple.600', fontWeight:'semibold'}} letterSpacing="0.8px" fontWeight="light" color="gray.400" _focus={{outline:"none"}}fontSize="14px">Quotes</Tab>
+      <Tab _selected ={{bg:'white', color:'purple.600', fontWeight:'semibold'}} letterSpacing="0.8px" fontWeight="light" color="gray.400" _focus={{outline:"none"}}fontSize="14px">Bookings</Tab>
+      {/* <Tab _selected ={{bg:'white', color:'gray.600', fontWeight:'semibold'}} letterSpacing="0.8px" fontWeight="light" color="gray.400" _focus={{outline:"none"}}fontSize="14px">Links</Tab> */}
       <Icon
             fontSize="44px"
             aria-label="Search database"
@@ -24,10 +28,13 @@ export const DashbboardTabs = () => {
     </TabList>
     <TabPanels>
       <TabPanel>
-        <p>one!</p>
+        <Accounts/>
       </TabPanel>
       <TabPanel>
-        <p>two!</p>
+        <QuotesTab/>
+      </TabPanel>
+      <TabPanel>
+        <BookingsTab/>
       </TabPanel>
     </TabPanels>
   </Tabs>

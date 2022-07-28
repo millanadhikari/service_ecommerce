@@ -40,7 +40,7 @@ const Home = () => {
         zIndex="999"
         fontSize="15px"
         py={4}
-        px={4}
+        px={2}
         position="fixed"
         w="100%"
         pr={sidebarOpen ? 300 : 0}
@@ -85,7 +85,7 @@ const Home = () => {
           />
         </Flex>
       </Flex>
-      <Box backgroundColor="gray.200" h="100vh" zIndex="999" pt="120px" px={6}>
+      <Box backgroundColor="gray.200" h="100vh" zIndex="999" pt="110px" >
         <DashbboardTabs />
       </Box>
 
