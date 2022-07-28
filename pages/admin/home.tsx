@@ -85,7 +85,7 @@ const Home = () => {
           />
         </Flex>
       </Flex>
-      <Box backgroundColor="gray.200" h="100vh" zIndex="999" pt="110px" >
+      <Box w="100%" backgroundColor="gray.200"  zIndex="999" pt="110px" pb="40px" >
         <DashbboardTabs />
       </Box>
 
