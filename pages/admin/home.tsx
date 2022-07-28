@@ -40,7 +40,7 @@ const Home = () => {
         zIndex="999"
         fontSize="15px"
         py={4}
-        px={2}
+        px={4}
         position="fixed"
         w="100%"
         pr={sidebarOpen ? 300 : 0}

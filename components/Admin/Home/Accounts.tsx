@@ -1,5 +1,5 @@
 import { AddIcon, ArrowForwardIcon, EmailIcon } from "@chakra-ui/icons";
-import { Box, Button, Flex, Heading, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Heading, Image, Text } from "@chakra-ui/react";
 import React from "react";
 import { FiMoreHorizontal } from "react-icons/fi";
 import { MdOutlineExpandMore } from "react-icons/md";
@@ -8,7 +8,7 @@ import Transactions from "./Transactions";
 export const Accounts = () => {
   return (
     <Box bg="white" py={4} px={4} rounded="md">
-      <Flex>
+      <Flex justifyContent="space-between">
         <Box>
           <Heading color="gray.600">$5,550</Heading>
           <Flex alignItems="center" gap={1} fontSize="sm" mt={1} color="gray.500">
@@ -16,8 +16,9 @@ export const Accounts = () => {
             <MdOutlineExpandMore/>
           </Flex>
         </Box>
+        <Image src="/accounts.png" h="20" w="30"/>
       </Flex>
-      <Flex gap={4} my={4}>
+      <Flex gap={4} my={8}>
         <Button
           leftIcon={<AddIcon />}
           color="purple.600"
