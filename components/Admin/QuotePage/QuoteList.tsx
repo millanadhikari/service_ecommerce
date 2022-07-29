@@ -15,11 +15,13 @@ import {
   Th,
   Thead,
   Tr,
+  useDisclosure,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { BsPersonFill } from "react-icons/bs";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import BookingPagination from "../BookingPage/BookingPagination";
+import MainQuote from "./MainQuote";
 //   import BookingPagination from "./BookingPagination";
 import { fetchAllQuotes } from "./quoteAction";
 import QuotePagination from "./QuotePagination";
@@ -44,10 +46,10 @@ const generalClean = (item) => {
 
 const QuoteList = () => {
   const [modal, setModal] = useState(false);
-  const [single, setSingle] = useState({});
+  const [single, setSingle] = useState('');
   const [pageNumber, setPageNumber] = useState<Number>(1);
   const [search, setSearch] = useState("");
-
+  const { isOpen, onOpen, onClose } = useDisclosure()
   const dispatch = useAppDispatch();
   const bookings = useAppSelector((state) => state.quotes);
 
@@ -59,9 +61,16 @@ const QuoteList = () => {
     }
   }
 
+  const handleShy = (e, id) => {
+    e.preventDefault()
+    onOpen()
+    setSingle(id)
+  }
+
   useEffect(() => {
     dispatch(fetchAllQuotes(pageNumber, search));
-  }, [dispatch, pageNumber, search]);
+    console.log(single)
+  }, [dispatch, pageNumber, search, single]);
 
   return (
     <Box
@@ -132,12 +141,13 @@ const QuoteList = () => {
               <Tbody>
                 {bookings.quotes.paginatedResults?.map((booking) => (
                   <Tr
-                    key={booking.id}
-                    onClick={() => (setModal(!modal), setSingle(booking))}
+                    key={booking._id}
+                    onClick={(e)=>handleShy(e, booking._id)}
                     _hover={{ backgroundColor: "gray.200" }}
                     cursor="pointer"
                   >
-                    <Td>
+                    
+                                        <Td>
                       <Flex>
                         {/* <Flex
                             alignItems="center"
@@ -181,6 +191,7 @@ const QuoteList = () => {
                       </Flex>
                     </Td>
                     <Td textAlign="center">{generalClean(booking.service)}</Td>
+
                   </Tr>
                 ))}
               </Tbody>
@@ -201,6 +212,8 @@ const QuoteList = () => {
           setPageNumber={setPageNumber}
         />
       </Flex>
+      <MainQuote isOpen={isOpen} onClose={onClose} id={single}/>
+
     </Box>
   );
 };
