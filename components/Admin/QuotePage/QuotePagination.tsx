@@ -38,10 +38,10 @@ const QuotePagination = ({ setPageNumber, pageNumber }) => {
 
   return (
     <Flex alignItems="center" justifyContent="space-between" w="100%" px={4}>
-      <Text fontSize="14px" color="gray.500" >
-        PAGE 
+      <Flex fontSize="14px" color="gray.500" >
+        <Text mr={1}>PAGE </Text>
          {pageNumber}{"  "}  OF {totalPages}
-      </Text>
+      </Flex>
               {/* {prevPages} */}
       <Flex alignItems="center">
         <Button size="sm" disabled={isLoading || prevPages == 0} onClick={setPrevious}>

@@ -109,7 +109,7 @@ const QuoteList = () => {
         </InputGroup>
       </Box>
       <Box mt={10}>
-        <Box w="100%">
+        <Box w="100%" position="relative">
           <Table variant="simple">
             <Thead backgroundColor="white">
               <Tr>
@@ -118,7 +118,16 @@ const QuoteList = () => {
               </Tr>
             </Thead>
             {bookings.isLoading ? (
-              <Spinner />
+             <Flex textAlign="center" w="200%" alignItems="center" justifyContent="center"  my={10}  > 
+              <Spinner  thickness='4px'
+             speed='0.65s'
+             emptyColor='gray.200'
+             mr={4}
+             color='purple.500'
+             
+             size='xl'/>
+             <Text> Loading</Text>
+             </Flex>
             ) : (
               <Tbody>
                 {bookings.quotes.paginatedResults?.map((booking) => (

@@ -42,7 +42,7 @@ const Quotes = () => {
         </Flex>
 
 
-        <Box backgroundColor="gray.100" py={16}>
+        <Box backgroundColor="gray.100" h="100vh" py={16}>
             <QuoteList />
         </Box>
     </Box>;
