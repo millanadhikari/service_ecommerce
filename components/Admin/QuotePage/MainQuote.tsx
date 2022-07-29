@@ -79,7 +79,6 @@ function MainQuote({ isOpen, onClose, id }) {
         isOpen={isOpen}
         onClose={onClose}
         size="lg"
-        mx={20}
         motionPreset="slideInBottom"
       >
         <ModalOverlay />
@@ -87,7 +86,8 @@ function MainQuote({ isOpen, onClose, id }) {
           <ModalHeader fontSize="16px">Quote Details</ModalHeader>
           <ModalCloseButton _focus={{ outline: "hidden", border: "none" }} />
           <ModalBody>
-            <Box borderBottom="1px solid gray" borderColor="gray.200" pb={4}>
+          <Flex alignItems="bottom" justifyContent="space-between">
+          <Box borderBottom="1px solid gray" borderColor="gray.200" pb={4}>
               <Flex
                 fontSize="12px"
                 color="gray.500"
@@ -104,6 +104,9 @@ function MainQuote({ isOpen, onClose, id }) {
                 End of Lease Clean
               </Heading>
             </Box>
+            <Flex fontSize="14px" fontWeight="light" color="gray.500" fontFamily="sans-serif">
+                <Text mr={2} >Quote Ref: </Text>WD1202</Flex>
+          </Flex>
             <Box borderBottom="1px solid gray" borderColor="gray.200" py={4}>
               <Flex
                 fontSize="12px"
