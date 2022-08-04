@@ -27,6 +27,7 @@ import { fetchAllQuotes } from "./quoteAction";
 import QuotePagination from "./QuotePagination";
 //   import SingleBookings from "./SingleBooking/SingleBookings";
 
+
 const generalClean = (item) => {
   return (
     <Box
@@ -69,8 +70,7 @@ const QuoteList = () => {
 
   useEffect(() => {
     dispatch(fetchAllQuotes(pageNumber, search));
-    console.log(single)
-  }, [dispatch, pageNumber, search, single]);
+  }, [dispatch, pageNumber, search]);
 
   return (
     <Box
@@ -212,7 +212,7 @@ const QuoteList = () => {
           setPageNumber={setPageNumber}
         />
       </Flex>
-      <MainQuote isOpen={isOpen} onClose={onClose} id={single}/>
+      <MainQuote isOk={isOpen} onStop={onClose} id={single} pageNumber={pageNumber} search={search} />
 
     </Box>
   );

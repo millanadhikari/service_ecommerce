@@ -18,7 +18,7 @@ const Service = () => {
       <Box
         fontSize="22px"
         fontWeight="semibold"
-        texttAlign="center"
+        textAlign="center"
         display={{ md: "flex" }}
         justifyContent="center"
         w="100%"
