@@ -63,7 +63,7 @@ function AlertCialog({ isOpen, onClose, cancelRef, id, onStop, search, pageNumbe
             </AlertDialogHeader>
 
             <AlertDialogBody>
-              Are you sure ? You can't undo this action afterwards.
+              Are you sure ? You cant undo this action afterwards.
             </AlertDialogBody>
 
             <AlertDialogFooter>
