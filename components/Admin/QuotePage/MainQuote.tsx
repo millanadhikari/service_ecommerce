@@ -90,7 +90,7 @@ function MainQuote({ isOk, onStop, id, pageNumber, search }) {
   useEffect(() => {
     const fetchData = async () => {
       await axios
-        .get(`http://localhost:3001/v1/quote/${id}`)
+        .get(`https://wedo-backend.herokuapp.com/v1/quote/${id}`)
         .then((data: any) => setResult(data.data.result));
     };
     id && fetchData();

@@ -25,7 +25,7 @@ function AlertCialog({ isOpen, onClose, cancelRef, id, onStop, search, pageNumbe
   const handleDelete = async (e: any) => {
     e.preventDefault();
     setWaiting(true)
-    const result = await axios.delete(`http://localhost:3001/v1/quote/${id}`, {
+    const result = await axios.delete(`https://wedo-backend.herokuapp.com/v1/quote/${id}`, {
       headers: {
         Authorization: sessionStorage.getItem("accessJWT"),
       },
