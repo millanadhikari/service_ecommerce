@@ -31,13 +31,13 @@ const Contact = () => {
 
   const [contact, setContact] = useState(data);
   return (
-    <Box textAlign="center" w="100%">
+    <Box textAlign="center" w="100%" >
       <Box bg="blue.400">
         {" "}
-        {/* <Navbar /> */}
+        <Navbar />
       </Box>
-      <Heading my={3}>Contact Us</Heading>
-      <Text my={3}>Any question or remarks? Just write us a message!</Text>
+      <Heading my={3} fontSize="2rem" color="blue.500" mt={10}>Contact Us</Heading>
+      <Text fontSize="0.9rem" letterSpacing="0.1rem" my={3}>Any question or remarks? Just write us a message!</Text>
       <Flex
         w={{ md: "50rem" }}
         mx={{ md: "auto" }}
@@ -57,11 +57,11 @@ const Contact = () => {
           position="relative"
           overflow="hidden"
         >
-          <Heading fontSize="22px">Contact Information</Heading>
-          <Text fontSize="13px" my={4} color="gray.200" w="90%">
+          <Heading fontSize="22px" letterSpacing="0.1em">Contact Information</Heading>
+          <Text letterSpacing="1px" fontSize="13px" my={4} color="gray.200" w="90%">
             Fill up the form and our Team will get back to you within 24 hours.
           </Text>
-          <Flex fontSize="13px" flexDirection="column" gap={6} my={10}>
+          <Flex fontSize="13px" letterSpacing="1px" flexDirection="column" gap={6} my={10}>
             <Flex gap={4}>
               <LocalPhoneIcon fontSize="small" /> +61435764571
             </Flex>
@@ -69,7 +69,7 @@ const Contact = () => {
               <EmailIcon fontSize="small" /> wedocleaning99@gmail.com
             </Flex>
             <Flex gap={4}>
-              <LocationOnIcon fontSize="small" /> 90 Bolevard Street,
+              <LocationOnIcon fontSize="small" /> 90 The Boulevarde,
               Strathfield{" "}
             </Flex>
           </Flex>
@@ -104,13 +104,13 @@ const Contact = () => {
         <Box>
           <Flex gap={{base:5, md:20}} mx={{base:8, md:0}} justifyContent="space-between" my={{ base: "10", md: "8" }}>
             <Box textAlign="left">
-              <Text fontSize="12px" fontWeight="semibold" color="gray.500">
+              <Text fontSize="0.8rem" fontWeight="light" color="gray.500">
                 First Name
               </Text>
               <Input variant="flushed" />
             </Box>
             <Box textAlign="left">
-              <Text fontSize="12px" fontWeight="semibold" color="gray.500">
+              <Text fontSize="0.8rem" fontWeight="light" color="gray.500">
                 Last Name
               </Text>
               <Input variant="flushed" />
@@ -118,32 +118,32 @@ const Contact = () => {
           </Flex>
           <Flex gap={20}my={{ base: "10", md: "8" }}  mx={{base:8, md:0}}>
             <Box textAlign="left">
-              <Text fontSize="12px" fontWeight="semibold" color="gray.500">
+              <Text fontSize="0.8rem" fontWeight="light" color="gray.500">
                 Mail
               </Text>
               <Input variant="flushed" />
             </Box>
             <Box textAlign="left">
-              <Text fontSize="12px" fontWeight="semibold" color="gray.500">
+              <Text fontSize="0.8rem" fontWeight="light" color="gray.500">
                 Phone
               </Text>
               <Input variant="flushed" />
             </Box>
           </Flex>
           <Box textAlign="left"  mx={{base:8, md:0}}>
-            <Text fontWeight="semibold" fontSize="14px">
+            <Text color="gray.700" fontSize="14px">
               What kind of service do you need?{" "}
             </Text>
             <CheckboxGroup colorScheme="blue" defaultValue={["naruto"]}>
               <Stack spacing={[1, 5]} direction={["column", "row"]} my={5} >
-                <Checkbox  value="naruto"><Text fontSize="14px" >Cleaning Services</Text></Checkbox>
-                <Checkbox  value="sasuke"><Text fontSize="14px" >Booking Query</Text></Checkbox>
-                <Checkbox  value="kakashi"><Text fontSize="14px" >Others</Text></Checkbox>
+                <Checkbox  value="naruto"><Text fontSize="0.8rem" >Cleaning Services</Text></Checkbox>
+                <Checkbox  value="sasuke"><Text fontSize="0.8rem" >Booking Query</Text></Checkbox>
+                <Checkbox  value="kakashi"><Text fontSize="0.8rem" >Others</Text></Checkbox>
               </Stack>
             </CheckboxGroup>
           </Box>
           <Box textAlign="left" mt={10}  mx={{base:8, md:0}}>
-            <Text fontSize="12px" fontWeight="bold" color="gray.700">
+            <Text fontSize="0.8rem" fontWeight="bold" color="gray.500">
               Message
             </Text>
             <Input variant="flushed" />

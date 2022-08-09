@@ -25,12 +25,14 @@ import { BiPhoneCall } from "react-icons/bi";
 import { BsFillBagCheckFill, BsFillTelephoneFill } from "react-icons/bs";
 import { MdOutlineAccountCircle } from "react-icons/md";
 import { useAppSelector } from "../Admin/app/hooks";
+import RequestQuote from "../Quote/RequestQuote";
 import MobileNavMenu from "./MobileNavMenu";
 
-const Navbar = ({quote, setQuote}) => {
+const Navbar = () => {
   const [show, handleShow] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [quote, setQuote] = useState<boolean>(false);
 
   const router = useRouter();
 
@@ -64,6 +66,8 @@ const Navbar = ({quote, setQuote}) => {
       backgroundColor={show && "white"}
       shadow={show ? "md" : "none"}
     >
+      <RequestQuote quote={quote} setQuote={setQuote} />
+
       <Flex alignItems="center" onClick={() => router.push("/")}>
         <Flex
           alignItems="center"
@@ -119,11 +123,8 @@ const Navbar = ({quote, setQuote}) => {
           </Box>
           </Flex> */}
         <Menu>
-          <MenuButton
-         
-            transition="all 0.2s"
-          >
-            Services <ChevronDownIcon fontSize="18px"/>
+          <MenuButton transition="all 0.2s">
+            Services <ChevronDownIcon fontSize="18px" />
           </MenuButton>
           <MenuList color="blue.600">
             <MenuItem>End of Lease Clean</MenuItem>
@@ -149,7 +150,9 @@ const Navbar = ({quote, setQuote}) => {
             <BsFillBagCheckFill fontSize="14px" />{" "}
           </Flex>
         </Flex>
-        <Box cursor="pointer" onClick={() => router.push("/blogs")}>Blogs</Box>
+        <Box cursor="pointer" onClick={() => router.push("/blogs")}>
+          Blogs
+        </Box>
       </Stack>
       <Spacer />
       {isCustomer && (
@@ -193,7 +196,7 @@ const Navbar = ({quote, setQuote}) => {
         fontSize="12px"
         onClick={() => setQuote(!quote)}
       >
-       Get Quote
+        Get Quote
       </Button>
       {openMenu && (
         <MobileNavMenu openMenu={openMenu} setOpenMenu={setOpenMenu} />

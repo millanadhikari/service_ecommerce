@@ -178,7 +178,7 @@ const MobileNavMenu = ({ openMenu, setOpenMenu }) => {
               <Box fontSize="18px"><BsInfoCircleFill /> </Box>
               <Text>About</Text>
             </Flex>
-            <Flex gap={3} alignItems="center" px="4" letterSpacing="0.8px" cursor="pointer" _hover={{ color: "blue.400" }}>
+            <Flex onClick={() => router.push('/contact')} gap={3} alignItems="center" px="4" letterSpacing="0.8px" cursor="pointer" _hover={{ color: "blue.400" }}>
               <Box fontSize="18px"><AiFillContacts /> </Box>
               <Text>Contact</Text>
             </Flex>

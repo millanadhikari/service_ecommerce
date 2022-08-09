@@ -37,7 +37,7 @@ import { RiFridgeLine } from "react-icons/ri";
 import axios from "axios";
 import AlertCialog from "./AlertCialog";
 import { ChevronDownIcon, WarningIcon, AddIcon } from "@chakra-ui/icons";
-
+import { saveAs } from "file-saver";
 const dataItems = [
   {
     id: 1,
@@ -87,6 +87,22 @@ function MainQuote({ isOk, onStop, id, pageNumber, search }) {
   const [stan, setStan] = useState(dataItems);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const cancelRef = React.useRef();
+
+  // const handlePdf = async (e: any) => {
+  //   e.preventDefault();
+
+  //   const data = await axios.get(`http://localhost:3001/v1/quote/aldi`, {
+  //       method: "GET",
+  //       responseType: "blob", // important
+  //     })
+  // };
+
+  const saveFile = () => {
+    saveAs(
+      `http://localhost:3001/v1/quote/aldi/${id}`,
+      "quote.pdf"
+    );
+  };
   useEffect(() => {
     const fetchData = async () => {
       await axios
@@ -212,7 +228,9 @@ function MainQuote({ isOk, onStop, id, pageNumber, search }) {
                             Actions
                           </MenuButton>
                           <MenuList fontSize="12px">
-                            <MenuItem>Download PDF</MenuItem>
+                            <MenuItem onClick={saveFile}>
+                              Download PDF
+                            </MenuItem>
                             <MenuItem>Send Email</MenuItem>
                             <MenuItem>Mark as Draft</MenuItem>
                             <MenuItem onClick={onOpen}>Delete</MenuItem>
