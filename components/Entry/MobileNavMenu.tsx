@@ -156,7 +156,7 @@ const MobileNavMenu = ({ openMenu, setOpenMenu }) => {
                   </h2>
                   <AccordionPanel pb={4}>
                     <Flex flexDirection="column" gap={3} mx="30px" fontSize="15px" fontWeight="light" color="gray.500">
-                      <Text>End of Lease Clean</Text>
+                      <Text onClick={() => router.push('/endoflease')}>End of Lease Clean</Text>
                       <Text>General Cleaning</Text>
                       <Text>Carpet Cleaning</Text>
                     </Flex>
