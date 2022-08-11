@@ -10,14 +10,16 @@ import {
   } from "@chakra-ui/react";
   import React from "react";
   import { AiFillCheckCircle } from "react-icons/ai";
+import Footer from "../Entry/Footer";
 import Question from "../Entry/Question";
+import Review from "../Entry/Review";
 import PriceTabs from "./PriceTabs";
   
   const WhyOrder = () => {
     return (
       <Box
         position="absolute"
-        w={{ md: "100%" }}
+        w={{base:"100%", md: "100%" }}
         top={{ base: "2060px", sm: "2050", md: "1200px", lg: "1200px" }}
         mx={{sm: "4", md: "auto" }}
         my={{md:10}}
@@ -151,6 +153,8 @@ import PriceTabs from "./PriceTabs";
         </Flex>
         <Question/>
         <PriceTabs/>
+        <Review/>
+        <Footer/>
       </Box>
     );
   };

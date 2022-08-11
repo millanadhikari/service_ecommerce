@@ -30,7 +30,7 @@ const Review = () => {
       </Box>
       <Text color="gray.400" my={3} fontSize="13px" fonWeight="light" mx={8}>
         There are serveral choices of services that WeDo Clean provides, there
-        are three tyopes of options to suit your needs.
+        are three types of options to suit your needs.
       </Text>
 
       <Box display={{ md: "flex" }} w={{ md: "1000px" }} mx="auto" zIndex="-1" my={10}>

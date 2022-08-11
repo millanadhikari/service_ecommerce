@@ -62,17 +62,12 @@ const PriceTabs = () => {
           <TabPanels backgroundColor="white" maxW="1000" mx="auto">
             <TabPanel>
               <NewAccordion
-                section1="Are house cleaning servics worth it ?"
-                section2="How long should a house cleaning take?"
-                section3="My house still has furniture, is that okay?"
-                desc1=" Yes, it certainly is assuming you're the type of person
-                        who likes to come home to a beautiful and prisint ehome
-                        without having lifted a finger. If you're a time-strapped
-                        professional working a 16-hour day, a busy mom or dad
-                        shuffling children between daycare."
-                desc2="It depends entirely on the size of your house! The minimum booking length is 3 hours, but you can always a request a longer booking if you need one. Depending on the number of bedrooms and bathrooms you have, our checkout."
-                desc3="At WeDo, we aim to provide the best end of lease cleaning possible. To work our magic, we require the property to be empty. We also need to make sure that there is power and running water.
-                  If for any reason you think the above conditions may not be possible, let us know in advance (via phone or email) and we will be more than happy to make alternative arrangements."
+                section1=" How much does a move out cleaning cost? ?"
+                section2="So what happens if my landlord is still unhappy with the condition of the property after it has been cleaned?"
+                section3=" How long does end of lease cleaning take?"
+                desc1=" The average cost of your end of lease cleaning depends on: The size of the property - how many rooms there are, what is the size of these rooms. The condition of the property - If the property is neglected and requires more deep cleaning. The additional services you’ll need such as carpet steam cleaning, upholstery cleaning, exterior window cleaning, mattress cleaning etc."
+                desc2="We provide our clients with a 72-hour period to inspect the property and notify us if there is an issue with our service. We will be happy to rectify any problems with the service for free within this time period."
+                desc3="The bond service in Sydney is not hourly based, hence, it is not restricted by time. The cleaners will leave after ensuring that all areas on the cleaning checklist are thoroughly sanitised.The bond service in Sydney is not hourly based, hence, it is not restricted by time. The cleaners will leave after ensuring that all areas on the cleaning checklist are thoroughly sanitised."
               />
             </TabPanel>
             <TabPanel>
@@ -98,17 +93,12 @@ const PriceTabs = () => {
             </TabPanel>
             <TabPanel>
               <NewAccordion
-                section1="What is not included in your cleaning?"
-                section2="What is not includedin Bond Back Guarantee?"
-                desc1="Although we cover everything inside the property, there are a few things that do not fall into our checklist. Here is the list of the excluded items. We do not provide mould and mildew removal from hidden areas, such as the grout or the silicon. Our cleaners will do their best to eliminate the superficial mould, but you need specialists to eliminate them from the cracks and crevices.
-                  We provide spot cleaning of walls for marks and stains. However, we do not wash them from top to bottom as it can take a lot of time.
-                  Some of the walls may have developed a damp spot. We can try to dry them with paper towels, but they can quickly come back by the time of the inspection due to internal leakage and other construction problems.
-                  If the property is old and has been subjected to wear and tear without any restorative work done in years, then it can be difficult to make it shine again. The discoloration due to wear and tear may not go away with cleaning.
-                  While we make sure that we clean the stains on the tiles and bench tops, the composition of these materials may require the intervention of a specialist for desired
-                   results."
-                desc2="Although, we clean the windows and outside areas, such as balconies and the patio, we do not provide any guarantee for them. Since these areas are in the open and can get dirty again due to the external environment, it is not possible for us to guarantee their cleanliness at the time of the inspection. Wind, rain, and dust can accumulate on the windows and glass doors from outside, so we are not responsible for it. Also, we do not clean the garage and any areas that become dirty post the cleaning due to pest control or the presence of any other service provider in the house."
-                section3="What do you need from us for cleaning?"
-                desc3="We are fully equipped to complete the task without any help from the tenant. The only things we need are electricity and water to clean the premises perfectly. Here is what we bring along."
+                section1=" Can I book an end of lease cleaning if I’m moving in?"
+                section2="Can I have the sofa and armchairs steam cleaned, as they are rather stained?"
+                desc1="Yes! We’ll be happy to help you clean your new home before you move in. However, the property should be unfurnished and free of personal belongings. You also need to make sure that the property has running water and electricity."
+                desc2="Of course. However, specialised deep cleaning services are not included in the standard bond back cleaning service. Please, note that discounts would apply if you book upholstery cleaning, carpet cleaning or mattress cleaning at the same time as your end of lease cleaning."
+                section3="Can I ask for a few walls to be cleaned?"
+                desc3="Yes. The cleaners may be able to wash and spot clean your walls, depending on their condition. Additional costs may apply."
               />
             </TabPanel>
           </TabPanels>
