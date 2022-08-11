@@ -8,6 +8,7 @@ import Question from "../components/Entry/Question";
 import PriceTabs from "../components/endoflease/PriceTabs";
 import Footer from "../components/Entry/Footer";
 import Review from "../components/Entry/Review";
+import Checklist from "../components/endoflease/Checklist";
 const EndofLease = () => {
   const [quote, setQuote] = useState<boolean>(false);
 
@@ -21,6 +22,8 @@ const EndofLease = () => {
 
       <Ways quote={quote} setQuote={setQuote} />
       <Box>
+        
+        
         <WhyOrder />
       </Box>
       {/* <PriceTabs/> */}
