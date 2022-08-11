@@ -44,7 +44,7 @@ function Entry() {
       <Review />
       <Footer />
       <Box>
-        <Modal
+        {/* <Modal
           isOpen={maintenance}
           onClose={() => setMaintenance(!maintenance)}
         >
@@ -69,7 +69,7 @@ function Entry() {
               </Button>
             </ModalFooter>
           </ModalContent>
-        </Modal>
+        </Modal> */}
       </Box>
     </Box>
   );

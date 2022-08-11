@@ -3,6 +3,9 @@ import Navbar from "../components/Entry/Navbar";
 import Banner from "../components/Entry/Banner";
 import Ways from "../components/Entry/Ways";
 import { useState } from "react";
+import WhyOrder from "../components/endoflease/WhyOrder";
+import Question from "../components/Entry/Question";
+import PriceTabs from "../components/endoflease/PriceTabs";
 const EndofLease = () => {
   const [quote, setQuote] = useState<boolean>(false);
 
@@ -15,7 +18,10 @@ const EndofLease = () => {
       />
       
       <Ways quote={quote} setQuote={setQuote} />
-      
+      <WhyOrder/>
+      {/* <PriceTabs/> */}
+
+
     </Box>
   );
 };

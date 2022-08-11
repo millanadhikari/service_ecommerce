@@ -1,7 +1,9 @@
 import { Box, Flex, Text } from '@chakra-ui/react'
+import { useRouter } from 'next/router'
 import React from 'react'
 
 const Footer = () => {
+  const router = useRouter()
   return (
     <Box
     backgroundColor="#080927"
@@ -39,7 +41,7 @@ const Footer = () => {
         <Flex flexDirection="column" gap={2} mt={4} cursor="pointer">
             <Text fontWeight="semibold" fontSize="14px" color="gray.300">Services</Text>
             <Text fontSize="13px" color="gray.500" mt={1.5}  >General Clean</Text>
-            <Text fontSize="13px" color="gray.500" >End of Lease Clean</Text>
+            <Text onClick={() => router.push('/endoflease')} fontSize="13px" color="gray.500" >End of Lease Clean</Text>
             <Text fontSize="13px" color="gray.500" >Carpet Clean</Text>
             <Text fontSize="13px" color="gray.500" >Mould Removals</Text>
 

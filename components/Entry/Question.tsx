@@ -7,10 +7,12 @@ const Question = () => {
     <Box mx="auto" w="100%">
       <Flex
         mt={5}
+        py={4}
         direction={{ base: "column" }}
         w={{ base: "100%", md: "1000" }}
         px={{ base: "5" }}
         textAlign="left"
+        bg="#e4f0ff"
       >
         <Flex alignItems="center" mx="auto">
           <Image

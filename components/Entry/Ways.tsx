@@ -57,7 +57,7 @@ const Ways = ({quote, setQuote}) => {
   return (
     <Box
       position="absolute"
-      top={{ base: "720px", sm: "720", md: "320px" }}
+      top={{ base: "720px", sm: "750px", md: "320px" }}
       mx="auto"
       w="100%"
       py={10}
@@ -120,7 +120,7 @@ const Ways = ({quote, setQuote}) => {
             >
               Get a Quote
             </Button>
-            <RequestQuote quote={quote} setQuote={setQuote}/>
+            {/* <RequestQuote quote={quote} setQuote={setQuote}/> */}
           </Box>
         </Box>
         <Flex

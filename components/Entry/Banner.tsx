@@ -121,19 +121,21 @@ const Banner = ({heading, desc}) => {
             left="5"
             zIndex="1"
             color="white"
+            overflow="hidden"
             
             
-          ></Box>
+          >
           <Image
             position="absolute"
             src="/girl.png"
             objectFit="cover"
-            h={{ base: "300px", sm:"324px", md: "418px", lg:"390px" }}
+            h={{ base: "300px", sm:"324px", md: "418px", lg:"400px" }}
             pt={6}
             left={5}
             mx="auto"
             zIndex="1"
           />
+          </Box>
           <Flex
             position="absolute"
             top={{base:"200px", md:"260px"}}
@@ -142,18 +144,18 @@ const Banner = ({heading, desc}) => {
             color="black"
             zIndex="1"
             pr="33px"
-            pl={5}
+            pl={2}
             alignItems="center"
             py={{ base: "3", md: "4" }}
             rounded="xl"
             boxShadow="md"
           >
             <Image
-              rounded="100%"
-              h={{ base: "34px", md: "70px" }}
-              w={{ base: "34px", md: "70px" }}
+
+              borderRadius='full'
+              boxSize='40px'
               mr={3}
-              objectFit="cover"
+              objectFit="fill"
               src="/Saroj.jpg"
             />
             <Box>

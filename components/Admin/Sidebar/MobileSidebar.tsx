@@ -5,6 +5,7 @@ import { AiFillCreditCard, AiFillHome, AiOutlineHome } from "react-icons/ai";
 import { RiFilePaper2Line, RiFilePaperFill } from "react-icons/ri";
 import { BsFillPeopleFill, BsPeople, BsPeopleFill, BsToggleOn } from "react-icons/bs";
 import { MdAddAlert } from "react-icons/md";
+import withAuth from "../privateRoute/withAuth";
 
 const menuItems = [
    
@@ -53,4 +54,4 @@ const MobileSidebar = () => {
 }
 
 
-export default MobileSidebar
+export default withAuth(MobileSidebar)
