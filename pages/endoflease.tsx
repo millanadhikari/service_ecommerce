@@ -14,7 +14,7 @@ const EndofLease = () => {
 
   return (
     <Box>
-      <Navbar/>
+      <Navbar />
       <Banner
         heading="Professional End of Lease Cleaning Sydney"
         desc="Are you moving out of your rental property and need professional End Of Lease Cleaners Sydney? WeDo Cleaning provides End Of Lease cleaning service in Sydney across all suburbs. Our Bond cleaners are reliable, trustworthy and skilled in all aspects of Bond Cleaning. "

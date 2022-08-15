@@ -23,9 +23,8 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { BiCurrentLocation } from "react-icons/bi";
-import { useRouter } from 'next/router'
+import { useRouter } from "next/router";
 import RequestQuote from "../Quote/RequestQuote";
-
 
 const data = [
   {
@@ -48,16 +47,16 @@ const data = [
   },
 ];
 
-const Ways = ({quote, setQuote}) => {
-  const [serviceChoosed, setServiceChoosed] = useState('')
-  const [postcode, setPostcode] = useState('')
-  const [loading, setLoading] = useState(false)
+const Ways = ({ quote, setQuote }) => {
+  const [serviceChoosed, setServiceChoosed] = useState("");
+  const [postcode, setPostcode] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const router = useRouter()
+  const router = useRouter();
   return (
     <Box
       position="absolute"
-      top={{ base: "720px", sm: "750px", md: "320px" }}
+      top={{ base: "820px", sm: "850px", md: "410px" }}
       mx="auto"
       w="100%"
       py={10}
@@ -66,10 +65,15 @@ const Ways = ({quote, setQuote}) => {
         w={{ md: "800px", lg: "1000px" }}
         mx={{ base: "4", sm: "3", md: "auto" }}
       >
-        <Box px={{ base: "10px" }} mb={{base:"60px", md:"80px"}} mt={{ base: "0px", sm:"0px", md: "120px", lg:"80px" }} w="100%">
+        <Box
+          px={{ base: "10px" }}
+          mb={{ base: "60px", md: "80px" }}
+          mt={{ base: "0px", sm: "0px", md: "120px", lg: "80px" }}
+          w="100%"
+        >
           <Box
             mx={{ base: "auto" }}
-            ml={{md:3, lg:-8}}
+            ml={{ md: 3, lg: -8 }}
             backgroundColor="white"
             w={{ base: "100%", sm: "400px", md: "400px" }}
             color="black"
@@ -86,19 +90,33 @@ const Ways = ({quote, setQuote}) => {
                   placeholder="Service Type"
                   color="gray.400"
                   fontSize="13px"
-                  _focus={{outline:"none"}}
+                  _focus={{ outline: "none" }}
                 >
-                  <option value={serviceChoosed} onChange={(e) => setServiceChoosed('End of Lease')}>End of Lease</option>
-                  <option  value={serviceChoosed} onChange={(e) => setServiceChoosed('Home Clean')}>Home Clean</option>
+                  <option
+                    value={serviceChoosed}
+                    onChange={(e) => setServiceChoosed("End of Lease")}
+                  >
+                    End of Lease
+                  </option>
+                  <option
+                    value={serviceChoosed}
+                    onChange={(e) => setServiceChoosed("Home Clean")}
+                  >
+                    Home Clean
+                  </option>
                 </Select>
               </FormControl>
               <Spacer mx={2} />
               <InputGroup w="160px">
-                <Input fontSize="13px" value={postcode} onChange={(e) => setPostcode(e.target.value)} placeholder="Postcode" />
+                <Input
+                  fontSize="13px"
+                  value={postcode}
+                  onChange={(e) => setPostcode(e.target.value)}
+                  placeholder="Postcode"
+                />
                 <InputRightElement color="gray.400">
-                  <BiCurrentLocation  />
-                  </InputRightElement>
-                
+                  <BiCurrentLocation />
+                </InputRightElement>
               </InputGroup>
             </Flex>
             <Button
@@ -107,7 +125,7 @@ const Ways = ({quote, setQuote}) => {
               isLoading={loading}
               onClick={() => setQuote(!quote)}
               loadingText="Loading"
-              spinnerPlacement='start'
+              spinnerPlacement="start"
               py={4}
               w="100%"
               mt={8}
@@ -115,7 +133,7 @@ const Ways = ({quote, setQuote}) => {
               colorScheme="green"
               fontSize="15px"
               color="white"
-                            isDisabled={!postcode}
+              isDisabled={!postcode}
               cursor="pointer"
             >
               Get a Quote
@@ -148,7 +166,7 @@ const Ways = ({quote, setQuote}) => {
           <Text
             color="gray.400"
             w={{ base: "90%", md: "40%" }}
-            fontSize={{base:"13px", md:"15px"}}
+            fontSize={{ base: "13px", md: "15px" }}
           >
             The system carried out by WeDoCleaning can make it easier for those
             of you who are confused about finding workers to clean your home,
@@ -205,6 +223,7 @@ const Ways = ({quote, setQuote}) => {
           ))}
         </Grid>
       </Box>
+      <RequestQuote quote={quote} setQuote={setQuote}/>
     </Box>
   );
 };

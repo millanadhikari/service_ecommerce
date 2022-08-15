@@ -10,6 +10,7 @@ function Checklist() {
         mx={{ md: "auto" }}
         px={4}
         py={8}
+        my={24}
         color="gray.600"
       >
         <Heading textAlign="center" fontSize="1.2rem">
@@ -22,7 +23,7 @@ function Checklist() {
           extra cleaning to make sure everything is left spotless.
         </Text>
         <Flex justifyContent="top" mb={4}>
-          <BsDot size="2em" />
+          <BsDot size={20} />
           <Text fontSize="0.9rem" letterSpacing="0.03rem">
             <span style={{ fontWeight: "bold" }}>Kitchen:</span> Floors will be
             vacuumed and mopped, benchtops and surfaces - polished; the oven
@@ -44,7 +45,7 @@ function Checklist() {
         </Text>
 
         <Flex justifyContent="top" mt="4">
-          <BsDot size="2em" />
+          <BsDot size={20} />
           <Text fontSize="0.9rem" letterSpacing="0.03rem">
             <span style={{ fontWeight: "bold" }}>
               Living room/ dining room/ common areas:
@@ -58,7 +59,7 @@ function Checklist() {
           </Text>
         </Flex>
         <Flex alignItems="top" textAlign="left" my={4}>
-          <BsDot size="2em" />
+          <BsDot size={20} />
           <Text fontSize="0.9rem" letterSpacing="0.03rem">
             <span style={{ fontWeight: "bold" }}>Bedrooms:</span> The floors and
             surfaces will be thoroughly cleaned; any mirrors and pictures -
@@ -68,7 +69,7 @@ function Checklist() {
           </Text>
         </Flex>
         <Flex alignItems="top" textAlign="left" my={4}>
-          <BsDot size="2em" />
+          <BsDot size={20} />
           <Text fontSize="0.9rem" letterSpacing="0.03rem">
             <span style={{ fontWeight: "bold" }}>Bathroom:</span> The floor will
             be vacuumed and mopped; the sink and sink cabinet - polished; the
@@ -77,7 +78,7 @@ function Checklist() {
           </Text>
         </Flex>
         <Flex alignItems="top" textAlign="left" my={4}>
-          <BsDot size="2em" />
+          <BsDot size={20} />
           <Text fontSize="0.9rem" letterSpacing="0.03rem">
             <span style={{ fontWeight: "bold" }}>Additional rooms:</span> Upon
             request balconies, garages, study rooms and any other extra rooms
