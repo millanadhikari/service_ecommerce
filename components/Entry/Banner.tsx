@@ -34,7 +34,7 @@ const Banner = ({heading, desc}) => {
       color="white"
     >
       <Box
-        pt={32}
+        pt={48}
         display={{ base: "block", md: "flex" }}
         w={{ base: "100%", md: "800px", lg: "1100px" }}
         mx="auto"

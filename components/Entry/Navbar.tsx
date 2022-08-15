@@ -61,7 +61,7 @@ const Navbar = () => {
       w={{ base: "100%", md: "100%", lg: "100%" }}
       mx="auto"
       zIndex="999"
-      position="sticky"
+      position="fixed"
       top="0"
       backgroundColor={show && "white"}
       shadow={show ? "md" : "none"}
