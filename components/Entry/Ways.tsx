@@ -223,7 +223,7 @@ const Ways = ({ quote, setQuote }) => {
           ))}
         </Grid>
       </Box>
-      <RequestQuote quote={quote} setQuote={setQuote}/>
+      <RequestQuote quote={quote} setQuote={setQuote} />
     </Box>
   );
 };
