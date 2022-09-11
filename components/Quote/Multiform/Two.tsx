@@ -120,7 +120,7 @@ const Two = ({
                   <BsInfoCircleFill />
                 </Box>
               </Flex>
-              <Text>$99</Text>
+              {/* <Text>$99</Text> */}
             </Box>
           </Flex>
           <Flex alignItems="center" gap={3}>
@@ -167,7 +167,7 @@ const Two = ({
                   <BsInfoCircleFill />
                 </Box>
               </Flex>
-              <Text>$99</Text>
+              {/* <Text>$99</Text> */}
             </Box>
           </Flex>
           <Flex alignItems="center" gap={3}>
@@ -215,7 +215,7 @@ const Two = ({
                   <BsInfoCircleFill />
                 </Box>
               </Flex>
-              <Text>$99</Text>
+              {/* <Text>$99</Text> */}
             </Box>
           </Flex>
           <Flex alignItems="center" gap={3}>
@@ -263,7 +263,7 @@ const Two = ({
                   <BsInfoCircleFill />
                 </Box>
               </Flex>
-              <Text>$99</Text>
+              {/* <Text>$99</Text> */}
             </Box>
           </Flex>
           <Flex alignItems="center" gap={3}>
@@ -311,7 +311,7 @@ const Two = ({
                   <BsInfoCircleFill />
                 </Box>
               </Flex>
-              <Text>$99</Text>
+              {/* <Text>$99</Text> */}
             </Box>
           </Flex>
           <Flex alignItems="center" gap={3}>
@@ -359,7 +359,7 @@ const Two = ({
                   <BsInfoCircleFill />
                 </Box>
               </Flex>
-              <Text>$99</Text>
+              {/* <Text>$99</Text> */}
             </Box>
           </Flex>
           <Flex alignItems="center" gap={3}>
@@ -406,7 +406,7 @@ const Two = ({
                   <BsInfoCircleFill />
                 </Box>
               </Flex>
-              <Text>$99</Text>
+              {/* <Text>$99</Text> */}
             </Box>
           </Flex>
           <Flex alignItems="center" gap={3}>
@@ -453,7 +453,7 @@ const Two = ({
                   <BsInfoCircleFill />
                 </Box>
               </Flex>
-              <Text>$99</Text>
+              {/* <Text>$99</Text> */}
             </Box>
           </Flex>
           <Flex alignItems="center" gap={3}>
@@ -500,7 +500,7 @@ const Two = ({
                   <BsInfoCircleFill />
                 </Box>
               </Flex>
-              <Text>$99</Text>
+              {/* <Text>$99</Text> */}
             </Box>
           </Flex>
           <Flex alignItems="center" gap={3}>
@@ -547,7 +547,7 @@ const Two = ({
                   <BsInfoCircleFill />
                 </Box>
               </Flex>
-              <Text>$99</Text>
+              {/* <Text>$99</Text> */}
             </Box>
           </Flex>
           <Flex alignItems="center" gap={3}>
@@ -594,7 +594,7 @@ const Two = ({
                   <BsInfoCircleFill />
                 </Box>
               </Flex>
-              <Text>$99</Text>
+              {/* <Text>$99</Text> */}
             </Box>
           </Flex>
           <Flex alignItems="center" gap={3}>

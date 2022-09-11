@@ -38,6 +38,9 @@ import axios from "axios";
 import AlertCialog from "./AlertCialog";
 import { ChevronDownIcon, WarningIcon, AddIcon } from "@chakra-ui/icons";
 import { saveAs } from "file-saver";
+import QuoteAccordion from "./QuoteAccordion";
+import uuid from "react-uuid";
+import { useAppSelector } from "../app/hooks";
 const dataItems = [
   {
     id: 1,
@@ -82,11 +85,36 @@ const dataItems = [
     icon: MdOutlineGarage,
   },
 ];
+
+interface Result {
+  bathrooms: Number;
+  bedrooms: Number;
+  createdAt: Date;
+  email: String;
+  invoice_inr: number;
+  notes: [];
+  paid: Number;
+  phone: String | Number;
+  products: [];
+  quoteReference: String;
+  service: String;
+  subtotal: Number;
+  timelines: [];
+  updatedAt: Date;
+  __v: Number;
+  _id: String;
+}
+[];
+
 function MainQuote({ isOk, onStop, id, pageNumber, search }) {
-  const [result, setResult] = useState([{}]);
+  const [result, setResult] = useState<Result[]>();
   const [stan, setStan] = useState(dataItems);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const cancelRef = React.useRef();
+  const [noteInput, setNoteInput] = useState("");
+  const [post, setPost] = useState(false);
+
+  const user = useAppSelector((state) => state.user) || undefined;
 
   // const handlePdf = async (e: any) => {
   //   e.preventDefault();
@@ -98,17 +126,51 @@ function MainQuote({ isOk, onStop, id, pageNumber, search }) {
   // };
 
   const saveFile = () => {
-    saveAs(
-      `http://localhost:3001/v1/quote/aldi/${id}`,
-      "quote.pdf"
-    );
+    saveAs(`http://localhost:3001/v1/quote/aldi/${id}`, "quote.pdf");
+  };
+  const addNote = async () => {
+    let notes = {};
+    noteInput === ""
+      ? alert("Please fill in the post")
+      : (notes = {
+          notes: [
+            ...result[0].notes,
+            {
+              id: uuid(),
+              title: noteInput,
+              clientId: user.user._id,
+              name:user.user.name,
+              email:user.user.email,
+              createdAt: Date(),
+            },
+          ],
+        });
+
+    setPost(true);
+    await axios
+      .put(`http://localhost:3001/v1/quote/${id}`, notes)
+      .then((data) => {
+        data.data.status === "success" && setNoteInput("");
+        fetchData();
+        setPost(false);
+      });
+    // setPost(true)
+
+    // let destinationArray = [];
+    // destinationArray.push(
+    //   result[0].notes && result[0].notes.map((item: any) => console.log(item))
+    // );
+    console.log(result[0].notes);
+
+    // console.log(ash)
+    // ash?.status === "success" && setPost(false)
+  };
+  const fetchData = async () => {
+    await axios
+      .get(`http://localhost:3001/v1/quote/${id}`)
+      .then((data: any) => setResult(data.data.result));
   };
   useEffect(() => {
-    const fetchData = async () => {
-      await axios
-        .get(`https://wedo-backend.herokuapp.com/v1/quote/${id}`)
-        .then((data: any) => setResult(data.data.result));
-    };
     id && fetchData();
   }, [id]);
   return (
@@ -228,9 +290,7 @@ function MainQuote({ isOk, onStop, id, pageNumber, search }) {
                             Actions
                           </MenuButton>
                           <MenuList fontSize="12px">
-                            <MenuItem onClick={saveFile}>
-                              Download PDF
-                            </MenuItem>
+                            <MenuItem onClick={saveFile}>Download PDF</MenuItem>
                             <MenuItem>Send Email</MenuItem>
                             <MenuItem>Mark as Draft</MenuItem>
                             <MenuItem onClick={onOpen}>Delete</MenuItem>
@@ -343,42 +403,6 @@ function MainQuote({ isOk, onStop, id, pageNumber, search }) {
                         </Flex>
                       </GridItem>
                     </Grid>
-
-                    {/* <Flex my={4}>
-                      <Box>
-                        <Grid templateColumns="repeat(2, 2fr)" gap={4}>
-                          {dataItems.map((ditem) => (
-                            <GridItem colspan={2} key={ditem.id}>
-                              <Flex
-                                alignitems="center"
-                                gap={3}
-                                fontSize="14px"
-                                color="purple.400"
-                                my={2}
-                              >
-                                <Icon as={ditem.icon} fontSize="large" />
-                                <Text
-                                  fontWeight="semibold"
-                                  fontSize="13px"
-                                  fontFamily="sans-serif"
-                                >
-                                 {item.bedrooms > 0 && item.bedrooms}
-                                  {item.bedrooms && item.bedrooms}
-                                </Text>
-                                <Text
-                                  fontWeight="semibold"
-                                  fontSize="13px"
-                                  fontFamily="sans-serif"
-                                  color="gray.500"
-                                >
-                                  {ditem.title}
-                                </Text>
-                              </Flex>
-                            </GridItem>
-                          ))}
-                        </Grid>
-                      </Box>
-                    </Flex>  */}
                   </Box>
                   <Box
                     borderBottom="1px solid gray"
@@ -405,7 +429,7 @@ function MainQuote({ isOk, onStop, id, pageNumber, search }) {
                       <MdAttachMoney />
                       <Box>
                         <Text fontWeight="semibold" fontSize="14px">
-                          240
+                          {item.subtotal}
                         </Text>
                       </Box>
                       <Text fontSize="10px" color="gray.400">
@@ -413,6 +437,16 @@ function MainQuote({ isOk, onStop, id, pageNumber, search }) {
                       </Text>
                     </Flex>
                   </Box>
+                  <QuoteAccordion
+                    noteInput={noteInput}
+                    setNoteInput={setNoteInput}
+                    timelines={item.timelines}
+                    notes={item.notes}
+                    addNote={addNote}
+                    post={post}
+                    user={user}
+                    setPost={setPost}
+                  />
                 </Box>
               ))}
           </ModalBody>

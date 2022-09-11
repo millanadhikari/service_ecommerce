@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const rootUrl = "https://wedo-backend.herokuapp.com/v1/";
+// const rootUrl = "https://wedo-backend.herokuapp.com/v1/";
+const rootUrl = "http://localhost:3001/v1/";
 
 const closeTicketUrl = rootUrl + "ticket/close-ticket/";
 
