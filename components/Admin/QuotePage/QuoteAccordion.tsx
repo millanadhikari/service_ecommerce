@@ -103,7 +103,7 @@ const QuoteAccordion = ({
                   h="10"
                   textAlign="center"
                 >
-                  {user.user.name.charAt(0)}
+                  {user?.user?.name?.charAt(0)}
                 </Flex>
                 <Input
                   value={noteInput}

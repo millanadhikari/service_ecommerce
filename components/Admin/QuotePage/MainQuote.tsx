@@ -20,6 +20,7 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
+  toast,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { BiBed } from "react-icons/bi";
@@ -41,6 +42,8 @@ import { saveAs } from "file-saver";
 import QuoteAccordion from "./QuoteAccordion";
 import uuid from "react-uuid";
 import { useAppSelector } from "../app/hooks";
+import DatePicker from './SubComp/DatePicker'
+import { AiOutlineCalendar } from "react-icons/ai";
 const dataItems = [
   {
     id: 1,
@@ -107,12 +110,14 @@ interface Result {
 [];
 
 function MainQuote({ isOk, onStop, id, pageNumber, search }) {
-  const [result, setResult] = useState<Result[]>();
+  const [result, setResult] = useState<Result[]>([]);
   const [stan, setStan] = useState(dataItems);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const cancelRef = React.useRef();
   const [noteInput, setNoteInput] = useState("");
   const [post, setPost] = useState(false);
+  const [date, setDate] = useState(new Date());
+
 
   const user = useAppSelector((state) => state.user) || undefined;
 
@@ -125,6 +130,56 @@ function MainQuote({ isOk, onStop, id, pageNumber, search }) {
   //     })
   // };
 
+  const handleBooking = async () => {
+    try {
+      const result = await axios.post(`http://localhost:3001/v1/booking/${id}`);
+      console.log(result.data.status);
+      if (result.data.status === "success") {
+        addBookingTimeline();
+        await axios
+          .put(`http://localhost:3001/v1/quote/${id}`, {
+            bookingReference: result.data.bookingReference,
+          })
+          .then((data) => {
+            data.data.status === "success";
+            fetchData();
+          });
+      }
+
+      // toast({
+      //   title: "Booking Created",
+      //   description: "Booking has been succesfully created",
+      //   status: "success",
+      //   duration: 2000,
+      //   isClosable: true,
+      // });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const addBookingTimeline = async () => {
+    let timelines = {};
+    timelines = {
+      timelines: [
+        ...result[0].timelines,
+        {
+          id: uuid(),
+          title: "Booking Created.",
+          date: new Date(),
+          createdBy: user?.user?.name,
+          icon: "GiConfirmed",
+        },
+      ],
+    };
+    console.log(timelines);
+    await axios
+      .put(`http://localhost:3001/v1/quote/${id}`, timelines)
+      .then((data) => {
+        data.data.status === "success";
+        fetchData();
+      });
+  };
   const saveFile = () => {
     saveAs(`http://localhost:3001/v1/quote/aldi/${id}`, "quote.pdf");
   };
@@ -139,8 +194,8 @@ function MainQuote({ isOk, onStop, id, pageNumber, search }) {
               id: uuid(),
               title: noteInput,
               clientId: user.user._id,
-              name:user.user.name,
-              email:user.user.email,
+              name: user.user.name,
+              email: user.user.email,
               createdAt: Date(),
             },
           ],
@@ -154,21 +209,11 @@ function MainQuote({ isOk, onStop, id, pageNumber, search }) {
         fetchData();
         setPost(false);
       });
-    // setPost(true)
-
-    // let destinationArray = [];
-    // destinationArray.push(
-    //   result[0].notes && result[0].notes.map((item: any) => console.log(item))
-    // );
-    console.log(result[0].notes);
-
-    // console.log(ash)
-    // ash?.status === "success" && setPost(false)
   };
   const fetchData = async () => {
     await axios
       .get(`http://localhost:3001/v1/quote/${id}`)
-      .then((data: any) => setResult(data.data.result));
+      .then((data) => setResult(data.data.result));
   };
   useEffect(() => {
     id && fetchData();
@@ -197,7 +242,7 @@ function MainQuote({ isOk, onStop, id, pageNumber, search }) {
             />
 
             {result &&
-              result.map((item: any) => (
+              result.map((item) => (
                 <Box key={item}>
                   <Flex alignItems="bottom" justifyContent="space-between">
                     <Box
@@ -226,6 +271,23 @@ function MainQuote({ isOk, onStop, id, pageNumber, search }) {
                           ? "End of Lease Clean"
                           : "General Clean"}
                       </Heading>
+                      {item.bookingReference ? (
+                        <Flex my={2.5}>
+                          <Box
+                            fontSize="9px"
+                            bg="green.500"
+                            color="white"
+                            py={1}
+                            rounded="full"
+                            letterSpacing={1}
+                            px={2}
+                          >
+                            Booking Confirmed
+                          </Box>
+                        </Flex>
+                      ) : (
+                        "l"
+                      )}
                     </Box>
                     <Flex
                       fontSize="13px"
@@ -294,7 +356,9 @@ function MainQuote({ isOk, onStop, id, pageNumber, search }) {
                             <MenuItem>Send Email</MenuItem>
                             <MenuItem>Mark as Draft</MenuItem>
                             <MenuItem onClick={onOpen}>Delete</MenuItem>
-                            <MenuItem>Create a Booking</MenuItem>
+                            <MenuItem onClick={handleBooking}>
+                              Create a Booking{" "}
+                            </MenuItem>
                           </MenuList>
                         </Menu>
                       </Box>
@@ -324,61 +388,27 @@ function MainQuote({ isOk, onStop, id, pageNumber, search }) {
                           color="purple.500"
                           my={2}
                         >
-                          <Flex
-                            fontWeight="semibold"
-                            flexDirection="column"
-                            gap={2}
-                            fontSize="13px"
-                            fontFamily="sans-serif"
-                          >
-                            {item.bedrooms > 0 && (
-                              <Text>Bedrooms: {item.bedrooms}</Text>
-                            )}
-                            {item.bathrooms > 0 && (
-                              <Text>Bathrooms: {item.bathrooms}</Text>
-                            )}
-                            {item.garage > 0 && (
-                              <Text>Garage: {item.garage}</Text>
-                            )}
-                            {item.fridge > 0 && (
-                              <Text>Fridge: {item.fridge}</Text>
-                            )}
-                            {item.wallwash > 0 && (
-                              <Text>Wallwash: {item.wallwash}</Text>
-                            )}
-                            {item.blinds > 0 && (
-                              <Text>Blinds: {item.blinds}</Text>
-                            )}
-                            {item.balcony > 0 && (
-                              <Text>Balcony: {item.balcony}</Text>
-                            )}
-                            {item.steamBedroom > 0 && (
-                              <Text>SteamBedroom: {item.steamBedroom}</Text>
-                            )}
-                            {item.steamHallway > 0 && (
-                              <Text>SteamHallway: {item.steamHallway}</Text>
-                            )}
-                            {item.steamLivingRoom > 0 && (
-                              <Text>
-                                SteamLivingRoom: {item.steamLivingRoom}
-                              </Text>
-                            )}
-                            {item.separateToilet > 0 && (
-                              <Text>SeparateToilet: {item.separateToilet}</Text>
-                            )}
-                            {item.studyRoom > 0 && (
-                              <Text>StudyRoom: {item.studyRoom}</Text>
-                            )}
-                            {item.steamStairs > 0 && (
-                              <Text>SteamStairs: {item.steamStairs}</Text>
-                            )}
-                          </Flex>
                           <Text
                             fontWeight="semibold"
                             fontSize="13px"
                             fontFamily="sans-serif"
                             color="gray.500"
-                          ></Text>
+                          >
+                            {item.products.map((lap) => (
+                              <Flex
+                                gap={8}
+                                key={lap.id}
+                                justifyContent="space-between"
+                              >
+                                <Text style={{ marginRight: "10px" }}>
+                                  {lap.quantity > 0 && lap.description}
+                                </Text>
+                                <Text fontWeight="light">
+                                  {lap.quantity > 0 && lap.quantity}
+                                </Text>
+                              </Flex>
+                            ))}
+                          </Text>
                         </Flex>
                         <Flex
                           alignitems="center"
@@ -427,9 +457,10 @@ function MainQuote({ isOk, onStop, id, pageNumber, search }) {
                       gap={2}
                     >
                       <MdAttachMoney />
+                      
                       <Box>
                         <Text fontWeight="semibold" fontSize="14px">
-                          {item.subtotal}
+                          {item?.subtotal?.toString().split("", 3)}
                         </Text>
                       </Box>
                       <Text fontSize="10px" color="gray.400">
@@ -437,6 +468,41 @@ function MainQuote({ isOk, onStop, id, pageNumber, search }) {
                       </Text>
                     </Flex>
                   </Box>
+                  
+                    <Box
+                      borderBottom="1px solid gray"
+                      borderColor="gray.200"
+                      py={4}
+                    >
+                      <Flex
+                        fontSize="12px"
+                        color="gray.500"
+                        fontWeight="semibold"
+                        gap="2"
+                        fontFamily="sans-serif"
+                        alignItems="center"
+                      >
+                        <Text>DATE AND TIME</Text>
+                      </Flex>
+                      <Flex
+                        color="purple.400"
+                        mt={3}
+                        fontSize="18px"
+                        alignItems="center"
+                        gap={2}
+                      >
+                        <AiOutlineCalendar />
+                        <Box>
+                           <Text fontWeight="semibold" fontSize="14px">
+                           <DatePicker date = {date} setDate={setDate}/>
+                          </Text> 
+                        </Box>
+                        <Text fontSize="12px" color="gray.600">
+                          09:00 AM
+                        </Text>
+                      </Flex>
+                    </Box>
+                  
                   <QuoteAccordion
                     noteInput={noteInput}
                     setNoteInput={setNoteInput}
