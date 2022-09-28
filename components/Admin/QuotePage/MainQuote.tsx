@@ -243,7 +243,7 @@ function MainQuote({ isOk, onStop, id, pageNumber, search }) {
 
             {result &&
               result.map((item) => (
-                <Box key={item}>
+                <Box key={item.key}>
                   <Flex alignItems="bottom" justifyContent="space-between">
                     <Box
                       borderBottom="1px solid gray"
