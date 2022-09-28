@@ -79,7 +79,7 @@ const RequestQuote = ({ quote, setQuote }: Props) => {
         steamStairs: steamStairs,
         service:service
       };
-      await fetch("http://localhost:3001/v1/quote", {
+      await fetch("https://wedo-backend.herokuapp.com/v1/quote", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body:JSON.stringify(body),

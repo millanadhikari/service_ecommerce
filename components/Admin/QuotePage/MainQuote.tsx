@@ -89,28 +89,28 @@ const dataItems = [
   },
 ];
 
-interface Result {
-  bathrooms: Number;
-  bedrooms: Number;
-  createdAt: Date;
-  email: String;
-  invoice_inr: number;
-  notes: [];
-  paid: Number;
-  phone: String | Number;
-  products: [];
-  quoteReference: String;
-  service: String;
-  subtotal: Number;
-  timelines: [];
-  updatedAt: Date;
-  __v: Number;
-  _id: String;
-}
-[];
+// interface Result {
+//   bathrooms: Number;
+//   bedrooms: Number;
+//   createdAt: Date;
+//   email: String;
+//   invoice_inr: number;
+//   notes: [];
+//   paid: Number;
+//   phone: String | Number;
+//   products: [];
+//   quoteReference: String;
+//   service: String;
+//   subtotal: Number;
+//   timelines: [];
+//   updatedAt: Date;
+//   __v: Number;
+//   _id: String;
+// }
+// [];
 
 function MainQuote({ isOk, onStop, id, pageNumber, search }) {
-  const [result, setResult] = useState<Result[]>([]);
+  const [result, setResult] = useState([]);
   const [stan, setStan] = useState(dataItems);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const cancelRef = React.useRef();
@@ -132,12 +132,12 @@ function MainQuote({ isOk, onStop, id, pageNumber, search }) {
 
   const handleBooking = async () => {
     try {
-      const result = await axios.post(`http://localhost:3001/v1/booking/${id}`);
+      const result = await axios.post(`https://wedo-backend.herokuapp.com/v1/booking/${id}`);
       console.log(result.data.status);
       if (result.data.status === "success") {
         addBookingTimeline();
         await axios
-          .put(`http://localhost:3001/v1/quote/${id}`, {
+          .put(`https://wedo-backend.herokuapp.com/v1/quote/${id}`, {
             bookingReference: result.data.bookingReference,
           })
           .then((data) => {
@@ -174,14 +174,14 @@ function MainQuote({ isOk, onStop, id, pageNumber, search }) {
     };
     console.log(timelines);
     await axios
-      .put(`http://localhost:3001/v1/quote/${id}`, timelines)
+      .put(`https://wedo-backend.herokuapp.com/v1/quote/${id}`, timelines)
       .then((data) => {
         data.data.status === "success";
         fetchData();
       });
   };
   const saveFile = () => {
-    saveAs(`http://localhost:3001/v1/quote/aldi/${id}`, "quote.pdf");
+    saveAs(`https://wedo-backend.herokuapp.com/v1/quote/aldi/${id}`, "quote.pdf");
   };
   const addNote = async () => {
     let notes = {};
@@ -203,7 +203,7 @@ function MainQuote({ isOk, onStop, id, pageNumber, search }) {
 
     setPost(true);
     await axios
-      .put(`http://localhost:3001/v1/quote/${id}`, notes)
+      .put(`https://wedo-backend.herokuapp.com/v1/quote/${id}`, notes)
       .then((data) => {
         data.data.status === "success" && setNoteInput("");
         fetchData();
@@ -212,7 +212,7 @@ function MainQuote({ isOk, onStop, id, pageNumber, search }) {
   };
   const fetchData = async () => {
     await axios
-      .get(`http://localhost:3001/v1/quote/${id}`)
+      .get(`https://wedo-backend.herokuapp.com/v1/quote/${id}`)
       .then((data) => setResult(data.data.result));
   };
   useEffect(() => {
@@ -243,7 +243,7 @@ function MainQuote({ isOk, onStop, id, pageNumber, search }) {
 
             {result &&
               result.map((item) => (
-                <Box key={item.key}>
+                <Box key={item._id}>
                   <Flex alignItems="bottom" justifyContent="space-between">
                     <Box
                       borderBottom="1px solid gray"
@@ -551,15 +551,15 @@ function MainQuote({ isOk, onStop, id, pageNumber, search }) {
   );
 }
 
-export async function getServerSideProps() {
-  // Fetch data from external API
-  const res = await fetch(
-    `http:localhost:3001/v1/quote/62df73c0b394b66da04723bd}`
-  );
-  const data = await res.json();
-  console.log(data);
-  // Pass data to the page via props
-  return { props: { data } };
-}
+// export async function getServerSideProps() {
+//   // Fetch data from external API
+//   const res = await fetch(
+//     `http:localhost:3001/v1/quote/62df73c0b394b66da04723bd}`
+//   );
+//   const data = await res.json();
+//   console.log(data);
+//   // Pass data to the page via props
+//   return { props: { data } };
+// }
 
 export default MainQuote;
