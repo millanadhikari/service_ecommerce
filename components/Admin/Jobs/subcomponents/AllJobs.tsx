@@ -49,12 +49,12 @@ const AllJobs = ({all, setAll, selected, setSelected}) => {
       <Flex alignItems="center" gap={3} my={6}>
         <Text fontSize="15px" fontWeight="semibold">Sort By</Text>
         <Select  w={44} fontSize="14px" color="gray.500">
-          <option value="option1">Service Date Z-> A</option>
-          <option value="option2">Service Date A-> Z</option>
-          <option value="option2">Created Date Z-> A</option>
-          <option value="option2">Created Date A-> Z</option>
-          <option value="option2">Status Z-> A</option>
-          <option value="option2">Status A-> Z</option>
+          <option value="option1">Service Date Z-{'>'} A</option>
+          <option value="option2">Service Date A-{'>'} Z</option>
+          <option value="option2">Created Date Z-{'>'} A</option>
+          <option value="option2">Created Date A-{'>'} Z</option>
+          <option value="option2">Status Z-{'>'} A</option>
+          <option value="option2">Status A-{'>'} Z</option>
 
         </Select>
       </Flex>
