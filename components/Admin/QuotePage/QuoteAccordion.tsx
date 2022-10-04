@@ -77,7 +77,7 @@ const QuoteAccordion = ({
               color="gray.500"
               letterSpacing="1px"
             >
-              NOTES ({notes.length })
+              NOTES ({notes?.length })
             </Box>
             <AccordionIcon />
           </AccordionButton>

@@ -42,7 +42,7 @@ import { saveAs } from "file-saver";
 import QuoteAccordion from "./QuoteAccordion";
 import uuid from "react-uuid";
 import { useAppSelector } from "../app/hooks";
-import DatePicker from './SubComp/DatePicker'
+import DatePicker from "./SubComp/DatePicker";
 import { AiOutlineCalendar } from "react-icons/ai";
 const dataItems = [
   {
@@ -118,7 +118,6 @@ function MainQuote({ isOk, onStop, id, pageNumber, search }) {
   const [post, setPost] = useState(false);
   const [date, setDate] = useState(new Date());
 
-
   const user = useAppSelector((state) => state.user) || undefined;
 
   // const handlePdf = async (e: any) => {
@@ -132,7 +131,9 @@ function MainQuote({ isOk, onStop, id, pageNumber, search }) {
 
   const handleBooking = async () => {
     try {
-      const result = await axios.post(`https://wedo-backend.herokuapp.com/v1/booking/${id}`);
+      const result = await axios.post(
+        `https://wedo-backend.herokuapp.com/v1/booking/${id}`
+      );
       console.log(result.data.status);
       if (result.data.status === "success") {
         addBookingTimeline();
@@ -181,7 +182,10 @@ function MainQuote({ isOk, onStop, id, pageNumber, search }) {
       });
   };
   const saveFile = () => {
-    saveAs(`https://wedo-backend.herokuapp.com/v1/quote/aldi/${id}`, "quote.pdf");
+    saveAs(
+      `https://wedo-backend.herokuapp.com/v1/quote/aldi/${id}`,
+      "quote.pdf"
+    );
   };
   const addNote = async () => {
     let notes = {};
@@ -457,7 +461,7 @@ function MainQuote({ isOk, onStop, id, pageNumber, search }) {
                       gap={2}
                     >
                       <MdAttachMoney />
-                      
+
                       <Box>
                         <Text fontWeight="semibold" fontSize="14px">
                           {item?.subtotal?.toString().split("", 3)}
@@ -468,41 +472,41 @@ function MainQuote({ isOk, onStop, id, pageNumber, search }) {
                       </Text>
                     </Flex>
                   </Box>
-                  
-                    <Box
-                      borderBottom="1px solid gray"
-                      borderColor="gray.200"
-                      py={4}
+
+                  <Box
+                    borderBottom="1px solid gray"
+                    borderColor="gray.200"
+                    py={4}
+                  >
+                    <Flex
+                      fontSize="12px"
+                      color="gray.500"
+                      fontWeight="semibold"
+                      gap="2"
+                      fontFamily="sans-serif"
+                      alignItems="center"
                     >
-                      <Flex
-                        fontSize="12px"
-                        color="gray.500"
-                        fontWeight="semibold"
-                        gap="2"
-                        fontFamily="sans-serif"
-                        alignItems="center"
-                      >
-                        <Text>DATE AND TIME</Text>
-                      </Flex>
-                      <Flex
-                        color="purple.400"
-                        mt={3}
-                        fontSize="18px"
-                        alignItems="center"
-                        gap={2}
-                      >
-                        <AiOutlineCalendar />
-                        <Box>
-                           <Text fontWeight="semibold" fontSize="14px">
-                           <DatePicker date = {date} setDate={setDate}/>
-                          </Text> 
-                        </Box>
-                        <Text fontSize="12px" color="gray.600">
-                          09:00 AM
+                      <Text>DATE AND TIME</Text>
+                    </Flex>
+                    <Flex
+                      color="purple.400"
+                      mt={3}
+                      fontSize="18px"
+                      alignItems="center"
+                      gap={2}
+                    >
+                      <AiOutlineCalendar />
+                      <Box>
+                        <Text fontWeight="semibold" fontSize="14px">
+                          <DatePicker date={date} setDate={setDate} />
                         </Text>
-                      </Flex>
-                    </Box>
-                  
+                      </Box>
+                      <Text fontSize="12px" color="gray.600">
+                        09:00 AM
+                      </Text>
+                    </Flex>
+                  </Box>
+
                   <QuoteAccordion
                     noteInput={noteInput}
                     setNoteInput={setNoteInput}

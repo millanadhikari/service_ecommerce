@@ -21,6 +21,7 @@ const SidebarLink = ({ item }) => {
         cursor="pointer"
         fontSize="13px"
         letterSpacing="0.5px"
+        gap={2}
         _hover={{
           backgroundColor:
             router.asPath === item.href ? "#e1ddf8" : "gray.100",
@@ -31,15 +32,17 @@ const SidebarLink = ({ item }) => {
       >
         <Icon
           fontSize="20px"
+          maxW="30px"
           aria-label="Search database"
           textAlign="center"
           color={router.asPath === item.href ? "#7c68ee" : "none"}
-          mr="3"
+          
           as={router.asPath === item.href ? item.icon1 : item.icon2}
         />
         <Text
           fontWeight={router.asPath === item.href ? "semibold" : "none"}
           color={router.asPath === item.href ? "#7c68ee" : "none"}
+          ml={2}
         >
          {sidebarOpen && item.title}
         </Text>
