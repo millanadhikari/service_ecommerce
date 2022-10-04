@@ -12,16 +12,15 @@ import {
 import React from "react";
 import JobsTable from "./JobsTable";
 
-const AllJobs = ({all, setAll, selected, setSelected}) => {
+const AllJobs = ({ all, setAll, selected, setSelected }) => {
   return (
     <Box>
       <Flex alignItems="center" gap={2} my={3}>
         <InputGroup>
-          <InputLeftElement
-            pointerEvents="none"
-            ml={3}
-            children={<SearchIcon color="puprle.300" />}
-          />
+          <InputLeftElement pointerEvents="none" ml={3}>
+            {" "}
+            <SearchIcon color="puprle.300" />
+          </InputLeftElement>
           <Input
             pl="55px"
             rounded="full"
@@ -47,25 +46,80 @@ const AllJobs = ({all, setAll, selected, setSelected}) => {
         </Button>
       </Flex>
       <Flex alignItems="center" gap={3} my={6}>
-        <Text fontSize="15px" fontWeight="semibold">Sort By</Text>
-        <Select  w={44} fontSize="14px" color="gray.500">
-          <option value="option1">Service Date Z-{'>'} A</option>
-          <option value="option2">Service Date A-{'>'} Z</option>
-          <option value="option2">Created Date Z-{'>'} A</option>
-          <option value="option2">Created Date A-{'>'} Z</option>
-          <option value="option2">Status Z-{'>'} A</option>
-          <option value="option2">Status A-{'>'} Z</option>
-
+        <Text fontSize="15px" fontWeight="semibold">
+          Sort By
+        </Text>
+        <Select w={44} fontSize="14px" color="gray.500">
+          <option value="option1">Service Date Z-{">"} A</option>
+          <option value="option2">Service Date A-{">"} Z</option>
+          <option value="option2">Created Date Z-{">"} A</option>
+          <option value="option2">Created Date A-{">"} Z</option>
+          <option value="option2">Status Z-{">"} A</option>
+          <option value="option2">Status A-{">"} Z</option>
         </Select>
       </Flex>
-      <Flex gap={4} my={10} >
-        <Button isDisabled={selected.length < 1} _focus={{outline:"none"}} _hover={{bg:"blue.800", color:"white"}} rounded="md" bg="white" color="blue.700" border="1px solid gray" borderColor="gray.300" px={8} letterSpacing="1px" fontSize="13px">{selected.length} Selected</Button>
-        <Button isDisabled={selected.length < 1} _focus={{outline:"none"}} _hover={{bg:"blue.800"}} rounded="full" bg="blue.700" color="white" px={6} letterSpacing="1px" fontSize="13px">Delete jobs</Button>
-        <Button  isDisabled={selected.length < 1} _focus={{outline:"none"}} _hover={{bg:"blue.800"}} rounded="full" bg="blue.700" color="white" px={6} letterSpacing="1px" fontSize="13px">Cancel Jobs</Button>
-        <Button isDisabled={selected.length < 1} _focus={{outline:"none"}} _hover={{bg:"blue.800"}} rounded="full" bg="blue.700" color="white" px={6} letterSpacing="1px" fontSize="13px">Charge</Button>
+      <Flex gap={4} my={10}>
+        <Button
+          isDisabled={selected.length < 1}
+          _focus={{ outline: "none" }}
+          _hover={{ bg: "blue.800", color: "white" }}
+          rounded="md"
+          bg="white"
+          color="blue.700"
+          border="1px solid gray"
+          borderColor="gray.300"
+          px={8}
+          letterSpacing="1px"
+          fontSize="13px"
+        >
+          {selected.length} Selected
+        </Button>
+        <Button
+          isDisabled={selected.length < 1}
+          _focus={{ outline: "none" }}
+          _hover={{ bg: "blue.800" }}
+          rounded="full"
+          bg="blue.700"
+          color="white"
+          px={6}
+          letterSpacing="1px"
+          fontSize="13px"
+        >
+          Delete jobs
+        </Button>
+        <Button
+          isDisabled={selected.length < 1}
+          _focus={{ outline: "none" }}
+          _hover={{ bg: "blue.800" }}
+          rounded="full"
+          bg="blue.700"
+          color="white"
+          px={6}
+          letterSpacing="1px"
+          fontSize="13px"
+        >
+          Cancel Jobs
+        </Button>
+        <Button
+          isDisabled={selected.length < 1}
+          _focus={{ outline: "none" }}
+          _hover={{ bg: "blue.800" }}
+          rounded="full"
+          bg="blue.700"
+          color="white"
+          px={6}
+          letterSpacing="1px"
+          fontSize="13px"
+        >
+          Charge
+        </Button>
       </Flex>
-            <JobsTable all={all} setAll={setAll}  selected={selected} setSelected={setSelected} />
-      
+      <JobsTable
+        all={all}
+        setAll={setAll}
+        selected={selected}
+        setSelected={setSelected}
+      />
     </Box>
   );
 };

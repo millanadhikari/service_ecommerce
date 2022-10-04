@@ -20,7 +20,6 @@ const JobsTable = ({ all, setAll, selected, setSelected }) => {
 
   const handleCheckbox = (e) => {
     const { value, checked } = e.target;
-    console.log(selected);
     if (checked) {
       setSelected([...selected, value]);
     } else {
