@@ -11,7 +11,7 @@ import {
 import React, { useState } from "react";
 import { BiHelpCircle } from "react-icons/bi";
 
-const Notes = () => {
+const Notes = ({item}) => {
   const [input, setInput] = useState("");
   return (
     <Box
