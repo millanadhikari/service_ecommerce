@@ -161,7 +161,12 @@ const Bookings = () => {
       <SubNav />
       <JobsCard />
 
-      <JobsTab all={all} selected={selected} setSelected={setSelected} />
+      <JobsTab
+        all={all}
+        setAll={setAll}
+        selected={selected}
+        setSelected={setSelected}
+      />
     </Box>
   );
 };
