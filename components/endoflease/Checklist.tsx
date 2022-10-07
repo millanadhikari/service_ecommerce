@@ -124,6 +124,7 @@ function Checklist() {
           {data.map((item) => (
             <ChecklistAccordion
               title={item.title}
+              key={item.id}
               description={item.description}
             />
           ))}
@@ -137,7 +138,7 @@ export default Checklist;
 
 const ChecklistAccordion = ({ title, description }) => {
   return (
-    <Box mb={2} mx={{md:20, lg:40}}>
+    <Box mb={2} mx={{ md: 20, lg: 40 }}>
       <Accordion defaultIndex={[0]} allowMultiple>
         <AccordionItem>
           <h2>
