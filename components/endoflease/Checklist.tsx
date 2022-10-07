@@ -139,7 +139,7 @@ export default Checklist;
 const ChecklistAccordion = ({ title, description }) => {
   return (
     <Box mb={2} mx={{ md: 20, lg: 40 }}>
-      <Accordion defaultIndex={[0]} allowMultiple>
+      <Accordion  allowMultiple>
         <AccordionItem>
           <h2>
             <AccordionButton
