@@ -35,12 +35,12 @@ const RequestQuote = ({ quote, setQuote }: Props) => {
   const [steamBedroom, setSteamBedroom] = useState(0);
   const [steamStairs, setSteamStairs] = useState(0);
   const [steamHallway, setSteamHallway] = useState(0);
-  const [service, setService] = useState('endoflease')
+  const [service, setService] = useState("endoflease");
 
   const [contact, setContact] = useState({
     name: "",
     email: "",
-    phone:"",
+    phone: "",
     address: "",
   });
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -66,23 +66,23 @@ const RequestQuote = ({ quote, setQuote }: Props) => {
         phone: contact.phone,
         bedrooms: bedroom,
         bathrooms: toilet,
-        balcony:balcony,
-        separateToilet:separateToilet,
+        balcony: balcony,
+        separateToilet: separateToilet,
         studyRoom: studyRoom,
         wallWash: wallWash,
         fridge: fridge,
-        garage:garage,
+        garage: garage,
         blinds: blinds,
         steamLiving: steamLiving,
         steamBedroom: steamBedroom,
         steamHallway: steamHallway,
         steamStairs: steamStairs,
-        service:service
+        service: service,
       };
       await fetch("https://wedo-backend.herokuapp.com/v1/quote", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body:JSON.stringify(body),
+        body: JSON.stringify(body),
       });
       setActive(active + 1);
 
@@ -92,28 +92,28 @@ const RequestQuote = ({ quote, setQuote }: Props) => {
     }
   };
   const handleQuote = () => {
-    setQuote(!quote)
-    setService('endoflease')
-    setBedroom(0)
-    setToilet(0)
-    setBalcony(0)
-    setSeparateToilet(0)
-    setStudyRoom(0)
-    setWallWash(0)
-    setFridge(0)
-    setGarage(0)
-    setBlinds(0)
-    setSteamLiving(0)
-    setSteamBedroom(0)
-    setSteamHallway(0)
-    setSteamStairs(0)
+    setQuote(!quote);
+    setService("endoflease");
+    setBedroom(0);
+    setToilet(0);
+    setBalcony(0);
+    setSeparateToilet(0);
+    setStudyRoom(0);
+    setWallWash(0);
+    setFridge(0);
+    setGarage(0);
+    setBlinds(0);
+    setSteamLiving(0);
+    setSteamBedroom(0);
+    setSteamHallway(0);
+    setSteamStairs(0);
     setContact({
       name: "",
       email: "",
-      phone:"",
+      phone: "",
       address: "",
-    })
-  }
+    });
+  };
 
   return (
     <Modal isOpen={quote} onClose={handleQuote}>
@@ -128,7 +128,13 @@ const RequestQuote = ({ quote, setQuote }: Props) => {
         <ModalBody mt={-5} color="gray.500">
           <Flex fontSize="12" gap={1}>
             <Text>Fill out the form or call</Text>{" "}
-            <Text cursor='pointer' onClick={() => window.open("tel:+61426173439")}color="red">+61415976451</Text>
+            <Text
+              cursor="pointer"
+              onClick={() => window.open("tel:+61426173439")}
+              color="red"
+            >
+              +61415976451
+            </Text>
           </Flex>
           <Text fontSize="12">to get your quote today!</Text>
           <MultiForm
@@ -191,18 +197,19 @@ const RequestQuote = ({ quote, setQuote }: Props) => {
               _focus={{ outline: "none" }}
               _hover={{ backgroundColor: "none" }}
               outline="none"
-              onClick={(e:any) => handleNext(e)}
+              onClick={(e: any) => handleNext(e)}
               disabled={
                 toilet < 1 ||
-                (active === 3 && contact.name === "" || undefined) ||
-                (active === 3 && contact.email === "" || undefined) ||
+                (active === 3 && contact.name === "") ||
+                undefined ||
+                (active === 3 && contact.email === "") ||
+                undefined ||
                 (active === 3 && contact.phone === undefined) ||
                 isLoading
               }
             >
-              {'Next'}
+              {"Next"}
               {isLoading && <Spinner ml={3} />}
-
             </Button>
           )}
           {active === 3 && (
@@ -211,6 +218,14 @@ const RequestQuote = ({ quote, setQuote }: Props) => {
               fontSize="15"
               backgroundColor="blue.700"
               color="gray.200"
+              isDisabled={
+                contact.name === "" ||
+                undefined ||
+                contact.email === "" ||
+                undefined ||
+                contact.phone === "" ||
+                undefined
+              }
               _focus={{ outline: "none" }}
               _hover={{ backgroundColor: "none" }}
               outline="none"
