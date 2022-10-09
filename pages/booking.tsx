@@ -155,7 +155,9 @@ const Booking = () => {
     },
     {
       label: "Addons",
-      content: <Addons addons={addons} setAddons={setAddons} bloading={bloading}/>,
+      content: (
+        <Addons addons={addons} setAddons={setAddons} bloading={bloading} />
+      ),
     },
     {
       label: "Schedule",
@@ -180,7 +182,6 @@ const Booking = () => {
   const { nextStep, prevStep, reset, activeStep, setStep } = useSteps({
     initialStep: 0,
   });
-
 
   useEffect(() => {
     setBloading(true);
@@ -246,17 +247,21 @@ const Booking = () => {
                 Prev
               </Button>
             )}
-           {activeStep !== 4 &&  <Button
-              size="md"
-              onClick={nextStep}
-              colorScheme="blue"
-              fontSize="14px"
-              letterSpacing="1.5px"
-              p="4"
-              isDisabled={postcode === "" || postcode.length <= 3 || bloading}
-            >
-              {activeStep === steps.length - 1 ? "Complete booking" : "Next >"}
-            </Button>}
+            {activeStep !== 4 && (
+              <Button
+                size="md"
+                onClick={nextStep}
+                colorScheme="blue"
+                fontSize="14px"
+                letterSpacing="1.5px"
+                p="4"
+                isDisabled={postcode === "" || postcode.length <= 3 || bloading}
+              >
+                {activeStep === steps.length - 1
+                  ? "Complete booking"
+                  : "Next >"}
+              </Button>
+            )}
           </Flex>
         )}
       </Flex>

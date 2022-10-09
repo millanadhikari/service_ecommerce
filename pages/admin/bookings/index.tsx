@@ -159,7 +159,7 @@ const Bookings = () => {
       h="100%"
     >
       <SubNav />
-      <JobsCard />
+      <JobsCard title={"Jobs"} />
 
       <JobsTab
         all={all}

@@ -6,10 +6,10 @@ import { FaBriefcase, FaBuilding, FaMoneyBill } from "react-icons/fa";
 import { BsFillPersonFill } from "react-icons/bs";
 import { MdCancel } from "react-icons/md";
 
-const JobsCard = () => {
+const JobsCard = ({title}) => {
   return (
     <Box my={4} textAlign="left">
-      <Heading fontSize="23px">Jobs</Heading>
+      <Heading fontSize="23px">{title}</Heading>
       <Grid
         templateColumns={{
           base: "repeat(3, 1fr)",

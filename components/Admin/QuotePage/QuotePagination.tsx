@@ -56,7 +56,7 @@ const QuotePagination = ({ setPageNumber, pageNumber }) => {
                justifyContent="center"
                rounded="full"
                fontSize="11px"
-               backgroundColor={pageNumber == nextPages-1 ? 'purple.500' : 'white'}
+               backgroundColor={pageNumber == nextPages-1 ? 'blue.600' : 'white'}
                color={pageNumber == nextPages-1 ? 'white' : 'gray.600'}
                h={6}
                w={6}

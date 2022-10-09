@@ -10,6 +10,7 @@ const JCard = ({ icon1, icon2, num, title, color, bg }) => {
       <CustomToolTip></CustomToolTip>
       <Flex
         alignItems="center"
+        
         justifyContent="center "
         textAlign="center"
         bg={bg}
