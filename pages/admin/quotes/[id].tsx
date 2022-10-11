@@ -3,14 +3,19 @@ import { useRouter } from "next/router";
 import { AiOutlineDown } from "react-icons/ai";
 import { MdArrowBackIosNew } from "react-icons/md";
 import { useAppSelector } from "../../../components/Admin/app/hooks";
-import JobDetails from "../../../components/Admin/Jobs/subcomponents/JobDetails";
 import SubNav from "../../../components/Admin/Jobs/subcomponents/SubNav";
+import QuoteDetails from "../../../components/Admin/Quotes/QuoteDetails";
 
-const BookingDetail = () => {
+const BookingDetail = ({ data }) => {
   const router = useRouter();
-
+  const details = data.result[0];
   const sidebarOpen =
     useAppSelector((state) => state.user.sidebarOpen) || undefined;
+
+  const changeDateFormat = (ok) => {
+    let l = new Date(ok);
+    return <Text>{l.toString().substring(0, 16)}</Text>;
+  };
   return (
     <Box
       pl={{ base: 0, md: sidebarOpen ? "320px" : "115px" }}
@@ -28,18 +33,20 @@ const BookingDetail = () => {
         position="absolute"
         _hover={{ color: "gray.600" }}
         top="24px"
-        onClick={() => router.push("/admin/bookings")}
+        onClick={() => router.push("/admin/quotes")}
       >
         <Icon as={MdArrowBackIosNew} />
-        <Text color="blue.700">Jobs</Text>
+        <Text fontWeight="semibold" color="blue.700">
+          Quote{" "}
+        </Text>
       </Flex>
       <Flex justifyContent="space-between" mr={2} mx={{ base: "0" }} my={2}>
         <Box>
           <Heading color="gray.600" fontSize="27px">
-            #21212020220
+            #{details.quoteReference}
           </Heading>
           <Text mt={3} color="gray.500" fontSize="14px">
-            20, September 2022
+            {changeDateFormat(details.createdAt)}
           </Text>
         </Box>
         <Flex
@@ -80,7 +87,7 @@ const BookingDetail = () => {
           </Button>
         </Flex>
       </Flex>
-      <JobDetails />
+      <QuoteDetails details={details} />
     </Box>
   );
 };
@@ -123,3 +130,18 @@ const subMenu = () => {
     </Flex>
   );
 };
+
+// This gets called on every request
+export async function getServerSideProps(ctx) {
+  const { params } = ctx;
+  const { id } = params;
+
+  // Fetch data from external API
+  const res = await fetch(`http://localhost:3001/v1/quote/${id}`);
+  // const res = await fetch(`https://wedo-backend.herokuapp.com/v1/quote/${id}`)
+  const data = await res.json();
+  console.log(data);
+
+  // Pass data to the page via props
+  return { props: { data } };
+}

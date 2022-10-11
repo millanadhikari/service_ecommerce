@@ -17,7 +17,7 @@ const QuoteTab = ({
   setPageNumber
 }) => {
   return (
-    <Tabs variant="unstyled" bg="white" py={4} mr={10} shadow="md" mb={10}>
+    <Tabs variant="unstyled" bg="white" py={4} mr={10} shadow="md"  >
       <TabList
         borderBottom="1px solid gray"
         borderColor="gray.300"

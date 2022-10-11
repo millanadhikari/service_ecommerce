@@ -6,7 +6,7 @@ import { FaBriefcase, FaBuilding, FaMoneyBill } from "react-icons/fa";
 import { BsFillPersonFill } from "react-icons/bs";
 import { MdCancel } from "react-icons/md";
 
-const JobsCard = ({title}) => {
+const JobsCard = ({ title }) => {
   return (
     <Box my={4} textAlign="left">
       <Heading fontSize="23px">{title}</Heading>
@@ -61,17 +61,16 @@ const JobsCard = ({title}) => {
           />{" "}
         </GridItem>
         <GridItem>
-        <JCard
+          <JCard
             icon1={BiHelpCircle}
             icon2={MdCancel}
             num={0}
             title={"Cancellations"}
             color="red.500"
             bg="red.100"
-          />{" "}        </GridItem>
-        <GridItem>
-          {/* <JCard /> */}
+          />{" "}
         </GridItem>
+        <GridItem>{/* <JCard /> */}</GridItem>
       </Grid>
     </Box>
   );

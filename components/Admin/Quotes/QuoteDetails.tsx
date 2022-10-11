@@ -13,9 +13,10 @@ import {
 import React from "react";
 import { AiOutlineDown } from "react-icons/ai";
 import { BiHelpCircle } from "react-icons/bi";
-import Checklist from "./Checklist/Checklist";
-import JobTimer from "./JobTimer";
-import Notes from "./Notes/Notes";
+import Checklist from "../Jobs/subcomponents/Checklist/Checklist";
+import JobTimer from "../Jobs/subcomponents/JobTimer";
+import Notes from "../Jobs/subcomponents/Notes/Notes";
+import Timeline from "./subcomponents/Timeline/Timeline";
 
 const data = [
   {
@@ -29,7 +30,8 @@ const data = [
     description: "it's okay to run sometimes.",
   },
 ];
-const JobDetails = ({ details }) => {
+const QuoteDetails = ({ details }) => {
+  console.log(details);
   return (
     <Box>
       <Flex w="100%" justifyContent="space-between" mt={10} gap={8} pr={5}>
@@ -161,7 +163,20 @@ const JobDetails = ({ details }) => {
             />
           </Flex>
           {paymentDetails({ details })}
-          lkjsdfk
+          <Box bg="white" py={7} px={6} shadow="md" mb={3}>
+            <Text
+              mb={4}
+              fontSize="15 px"
+              fontWeight="semibold"
+              color="gray.600"
+            >
+              Timelines
+            </Text>
+
+            {details.timelines.map((timeline) => (
+              <Timeline key={timeline.key} timeline={timeline} />
+            ))}
+          </Box>
         </Flex>{" "}
       </Flex>
       <Checklist />
@@ -172,7 +187,7 @@ const JobDetails = ({ details }) => {
   );
 };
 
-export default JobDetails;
+export default QuoteDetails;
 
 const detailsComp = ({ details }) => {
   return (
@@ -293,8 +308,15 @@ const detailsComp = ({ details }) => {
         borderColor="gray.300"
       >
         <Box>
-          <Text cursor="pointer">Extras</Text>
-          <Text mt={0.5}>No extras</Text>
+          <Text mb={1} cursor="pointer">Extras</Text>
+          {details.products ? details.products.map((lap) => (
+            <Flex gap={8} fontWeight="light" key={lap.id} justifyContent="space-between">
+              <Text fontSize="12px" style={{ marginRight: "10px" }}>
+                {lap.quantity > 0 && lap.description}
+              </Text>
+              <Text fontWeight="light">{lap.quantity > 0 && lap.quantity}</Text>
+            </Flex>
+          )) : <Text>No Extras</Text>}
         </Box>
       </Box>
       <Box

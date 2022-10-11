@@ -33,9 +33,9 @@ const QuotesTable = ({ selected, setSelected }) => {
     }
   };
 
-  const handleRouter = (e) => {
+  const handleRouter = (e, _id) => {
     e.preventDefault();
-    router.push("/admin/bookings/1");
+    router.push(`/admin/quotes/${_id}`);
   };
 
   const changeDateFormat = (ok) => {
@@ -84,18 +84,18 @@ const QuotesTable = ({ selected, setSelected }) => {
                 <Td
                   color="blue.400"
                   fontWeight="semibold"
-                  onClick={(e) => handleRouter(e)}
+                  onClick={(e) => handleRouter(e, item._id)}
                 >
                   <Flex alignItems="center" gap={1}>
                     <Text>#</Text>
                     {item.quoteReference}
                   </Flex>
                 </Td>
-                <Td onClick={(e) => handleRouter(e)}>
+                <Td onClick={(e) => handleRouter(e, item.id)}>
                   {changeDateFormat(item.createdAt)}
                 </Td>
                 <Td
-                  onClick={(e) => handleRouter(e)}
+                  onClick={(e) => handleRouter(e, item._id)}
                   color="blue.400"
                   fontWeight="semibold"
                 >
@@ -149,16 +149,9 @@ const QuotesTable = ({ selected, setSelected }) => {
                   >
                     {/* {item.service === 'eol' || 'endoflease' ? "End of Lease" : 'General Clean'
                       } */}
-                       {item.service === "generalclean"
-                      && "General Clean"
-                      }
-                      {item.service === "endoflease"
-                      && "End of Lease"
-                      }
-                      {item.service === "eol"
-                      && "End of Lease"
-                      }
-
+                    {item.service === "generalclean" && "General Clean"}
+                    {item.service === "endoflease" && "End of Lease"}
+                    {item.service === "eol" && "End of Lease"}
                   </Box>
                 </Td>
                 <Td>
@@ -178,4 +171,3 @@ const QuotesTable = ({ selected, setSelected }) => {
 };
 
 export default QuotesTable;
-

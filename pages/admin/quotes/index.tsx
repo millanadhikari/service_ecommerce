@@ -98,7 +98,8 @@ const initialState = [
   },
 ];
 const Quotes = () => {
-  const sidebarOpen = useAppSelector((state) => state.user.sidebarOpen) || undefined;
+  const sidebarOpen =
+    useAppSelector((state) => state.user.sidebarOpen) || undefined;
   const [all, setAll] = useState([]);
   const [selected, setSelected] = useState([]);
   const [search, setSearch] = useState("");
@@ -110,7 +111,7 @@ const Quotes = () => {
   );
   1;
   useEffect(() => {
-  dispatch(fetchAllQuotes(pageNumber, search));
+    dispatch(fetchAllQuotes(pageNumber, search));
     setAll(quotes);
   }, [dispatch, pageNumber, search]);
 
@@ -120,6 +121,7 @@ const Quotes = () => {
   return (
     <Box
       pl={{ base: 0, md: sidebarOpen ? "320px" : "115px" }}
+      pb={10}
       backgroundColor="gray.100"
       fontFamily="sans-serif"
       w="100%"
@@ -128,16 +130,16 @@ const Quotes = () => {
       <SubNav />
       <JobsCard title="Quotes" />
 
-      <QuoteTab
-       
-        selected={selected}
-        setSelected={setSelected}
-        search={search}
-        setSearch={setSearch}
-        pageNumber={pageNumber}
-        setPageNumber={setPageNumber}
-      />
-   
+      <Box >
+        <QuoteTab
+          selected={selected}
+          setSelected={setSelected}
+          search={search}
+          setSearch={setSearch}
+          pageNumber={pageNumber}
+          setPageNumber={setPageNumber}
+        />
+      </Box>
     </Box>
   );
 };
