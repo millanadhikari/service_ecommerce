@@ -80,7 +80,7 @@ const BookingDetail = () => {
           </Button>
         </Flex>
       </Flex>
-      <JobDetails />
+      {/* <JobDetails /> */}
     </Box>
   );
 };
