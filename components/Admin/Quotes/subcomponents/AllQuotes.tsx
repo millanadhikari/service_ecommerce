@@ -8,17 +8,14 @@ import {
   InputLeftElement,
   Select,
   Text,
+  useDisclosure,
 } from "@chakra-ui/react";
 import React from "react";
+import PromptLayout from "./Prompt/PromptLayout";
 import QuotesTable from "./QuotesTable";
 
-const AllQuotes = ({
-  
-  selected,
-  setSelected,
-  search,
-  setSearch,
-}) => {
+const AllQuotes = ({ selected, setSelected, search, setSearch }) => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <Box>
       <Flex alignItems="center" gap={2} my={3}>
@@ -122,11 +119,8 @@ const AllQuotes = ({
           Convert to booking
         </Button>
       </Flex>
-      <QuotesTable
-      
-        selected={selected}
-        setSelected={setSelected}
-      />
+      <QuotesTable selected={selected} setSelected={setSelected} />
+      <PromptLayout isOpen={isOpen} onClose={onClose} />
     </Box>
   );
 };

@@ -20,7 +20,7 @@ function MyApp({ Component, pageProps }) {
       
         </Box>
         <Box  backgroundColor="white" position="sticky" bottom="0" display={{md:"none"}}>
-        <MobileSidebar/>
+        {/* <MobileSidebar/> */}
         </Box>
     </ChakraProvider>
   </Provider>
