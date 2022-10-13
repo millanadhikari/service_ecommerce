@@ -11,7 +11,6 @@ import {
   Spinner,
 } from "@chakra-ui/react";
 import React from "react";
-import Timeline from "./Timeline/Timeline";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import Notes from "./Notes/Notes";
 
@@ -59,11 +58,11 @@ const QuoteAccordion = ({
           </AccordionButton>
         </h2>
         <AccordionPanel pb={4}>
-          {timelines
+          {/* {timelines
             ? timelines.map((timeline) => (
                 <Timeline key={timeline.id} timeline={timeline} />
               ))
-            : null}
+            : null} */}
         </AccordionPanel>
       </AccordionItem>
       <AccordionItem>
