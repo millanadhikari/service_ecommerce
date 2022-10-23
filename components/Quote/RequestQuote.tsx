@@ -12,7 +12,8 @@ import {
   Spinner,
   Text,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import MultiForm from "./Multiform/MultiForm";
 
 interface Props {
@@ -20,30 +21,45 @@ interface Props {
   setQuote: any;
 }
 
+const mockData = {
+  bathrooms: 0,
+  bedrooms: 0,
+  email: "",
+  companyName: "",
+  firstName: "",
+  lastName: "",
+  address1: "",
+  address2: "",
+  city: "",
+  state: "",
+  postcode: "NSW",
+  startHour: "09",
+  startMin: "00",
+  startMode: "AM",
+  endHour: "12",
+  endMin: "00",
+  endMode: "PM",
+  bookingDate: new Date(),
+  subscription: "One Time Cleaning",
+  customerNotes: "",
+  service: "end of lease",
+  notes: [],
+  phone: "",
+  products: [],
+  quoteStatus: "",
+};
 const RequestQuote = ({ quote, setQuote }: Props) => {
-  const [active, setActive] = useState(1);
-  const [bedroom, setBedroom] = useState(0);
-  const [toilet, setToilet] = useState(0);
-  const [balcony, setBalcony] = useState(0);
-  const [separateToilet, setSeparateToilet] = useState(0);
-  const [studyRoom, setStudyRoom] = useState(0);
-  const [wallWash, setWallWash] = useState(0);
-  const [fridge, setFridge] = useState(0);
-  const [garage, setGarage] = useState(0);
-  const [blinds, setBlinds] = useState(0);
-  const [steamLiving, setSteamLiving] = useState(0);
-  const [steamBedroom, setSteamBedroom] = useState(0);
-  const [steamStairs, setSteamStairs] = useState(0);
-  const [steamHallway, setSteamHallway] = useState(0);
-  const [service, setService] = useState("endoflease");
+  const [display, setDisplay] = useState(mockData);
 
-  const [contact, setContact] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    address: "",
-  });
+  const [active, setActive] = useState(1);
+
   const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const fetchProducts = async () => {
+    await axios.get("http://localhost:3001/v1/product").then((data: any) => {
+      setDisplay({ ...display, products: [...data?.data.result] });
+    });
+  };
 
   const handleNext = (e: any) => {
     e.preventDefault();
@@ -60,29 +76,29 @@ const RequestQuote = ({ quote, setQuote }: Props) => {
     setIsLoading(true);
 
     try {
-      const body = {
-        fullName: contact.name,
-        email: contact.email,
-        phone: contact.phone,
-        bedrooms: bedroom,
-        bathrooms: toilet,
-        balcony: balcony,
-        separateToilet: separateToilet,
-        studyRoom: studyRoom,
-        wallWash: wallWash,
-        fridge: fridge,
-        garage: garage,
-        blinds: blinds,
-        steamLiving: steamLiving,
-        steamBedroom: steamBedroom,
-        steamHallway: steamHallway,
-        steamStairs: steamStairs,
-        service: service,
-      };
-      await fetch("https://wedo-backend.herokuapp.com/v1/quote", {
+      // const body = {
+      //   fullName: contact.name,
+      //   email: contact.email,
+      //   phone: contact.phone,
+      //   bedrooms: bedroom,
+      //   bathrooms: toilet,
+      //   balcony: balcony,
+      //   separateToilet: separateToilet,
+      //   studyRoom: studyRoom,
+      //   wallWash: wallWash,
+      //   fridge: fridge,
+      //   garage: garage,
+      //   blinds: blinds,
+      //   steamLiving: steamLiving,
+      //   steamBedroom: steamBedroom,
+      //   steamHallway: steamHallway,
+      //   steamStairs: steamStairs,
+      //   service: service,
+      // };
+      await fetch("http://localhost:3001/v1/quote", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
+        body: JSON.stringify(display),
       });
       setActive(active + 1);
 
@@ -93,28 +109,11 @@ const RequestQuote = ({ quote, setQuote }: Props) => {
   };
   const handleQuote = () => {
     setQuote(!quote);
-    setService("endoflease");
-    setBedroom(0);
-    setToilet(0);
-    setBalcony(0);
-    setSeparateToilet(0);
-    setStudyRoom(0);
-    setWallWash(0);
-    setFridge(0);
-    setGarage(0);
-    setBlinds(0);
-    setSteamLiving(0);
-    setSteamBedroom(0);
-    setSteamHallway(0);
-    setSteamStairs(0);
-    setContact({
-      name: "",
-      email: "",
-      phone: "",
-      address: "",
-    });
   };
 
+  useEffect(() => {
+    fetchProducts();
+  }, []);
   return (
     <Modal isOpen={quote} onClose={handleQuote}>
       <ModalOverlay />
@@ -138,38 +137,10 @@ const RequestQuote = ({ quote, setQuote }: Props) => {
           </Flex>
           <Text fontSize="12">to get your quote today!</Text>
           <MultiForm
+            display={display}
+            setDisplay={setDisplay}
             active={active}
             setActive={setActive}
-            service={service}
-            setService={setService}
-            toilet={toilet}
-            setToilet={setToilet}
-            bedroom={bedroom}
-            setBedroom={setBedroom}
-            balcony={balcony}
-            setBalcony={setBalcony}
-            separateToilet={separateToilet}
-            setSeparateToilet={setSeparateToilet}
-            studyRoom={studyRoom}
-            setStudyRoom={setStudyRoom}
-            wallWash={wallWash}
-            setWallWash={setWallWash}
-            fridge={fridge}
-            setFridge={setFridge}
-            garage={garage}
-            setGarage={setGarage}
-            blinds={blinds}
-            setBlinds={setBlinds}
-            steamLiving={steamLiving}
-            setSteamLiving={setSteamLiving}
-            steamBedroom={steamBedroom}
-            setSteamBedroom={setSteamBedroom}
-            steamHallway={steamHallway}
-            setSteamHallway={setSteamHallway}
-            steamStairs={steamStairs}
-            setSteamStairs={setSteamStairs}
-            contact={contact}
-            setContact={setContact}
           />
           {active === 4 && (
             <Box
@@ -199,12 +170,11 @@ const RequestQuote = ({ quote, setQuote }: Props) => {
               outline="none"
               onClick={(e: any) => handleNext(e)}
               disabled={
-                toilet < 1 ||
-                (active === 3 && contact.name === "") ||
+                (active === 3 && display.firstName === "") ||
                 undefined ||
-                (active === 3 && contact.email === "") ||
+                (active === 3 && display.email === "") ||
                 undefined ||
-                (active === 3 && contact.phone === undefined) ||
+                (active === 3 && display.phone === undefined) ||
                 isLoading
               }
             >
@@ -219,11 +189,11 @@ const RequestQuote = ({ quote, setQuote }: Props) => {
               backgroundColor="blue.700"
               color="gray.200"
               isDisabled={
-                contact.name === "" ||
+                display.firstName === "" ||
                 undefined ||
-                contact.email === "" ||
+                display.email === "" ||
                 undefined ||
-                contact.phone === "" ||
+                display.phone === "" ||
                 undefined
               }
               _focus={{ outline: "none" }}

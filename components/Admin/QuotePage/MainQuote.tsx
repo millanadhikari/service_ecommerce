@@ -214,6 +214,8 @@ function MainQuote({ isOk, onStop, id, pageNumber, search }) {
         setPost(false);
       });
   };
+
+  
   const fetchData = async () => {
     await axios
       .get(`https://wedo-backend.herokuapp.com/v1/quote/${id}`)

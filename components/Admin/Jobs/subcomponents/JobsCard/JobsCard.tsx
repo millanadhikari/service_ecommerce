@@ -1,4 +1,4 @@
-import { Box, Grid, GridItem, Heading } from "@chakra-ui/react";
+import { Box, Button, Flex, Grid, GridItem, Heading } from "@chakra-ui/react";
 import React from "react";
 import JCard from "./JCard";
 import { BiHelpCircle } from "react-icons/bi";
@@ -6,10 +6,28 @@ import { FaBriefcase, FaBuilding, FaMoneyBill } from "react-icons/fa";
 import { BsFillPersonFill } from "react-icons/bs";
 import { MdCancel } from "react-icons/md";
 
-const JobsCard = ({ title }) => {
+const JobsCard = ({ title, ref, onOpen }) => {
   return (
     <Box my={4} textAlign="left">
-      <Heading fontSize="23px">{title}</Heading>
+      <Flex justifyContent="space-between" pr={5}>
+        <Heading fontSize="23px">{title}</Heading>
+        <Button
+          size="sm"
+          letterSpacing={"1"}
+          _hover={{ bg: "yellow.500" }}
+          _focus={{ outline: "none" }}
+          px={6}
+          py={3}
+          ref={ref}
+          onClick={onOpen}
+          rounded="full"
+          fontSize="12px"
+          bg="#ffba4b"
+          color="white"
+        >
+          Add Quote
+        </Button>
+      </Flex>
       <Grid
         templateColumns={{
           base: "repeat(3, 1fr)",

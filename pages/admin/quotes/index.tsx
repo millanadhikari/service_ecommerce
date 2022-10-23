@@ -1,5 +1,6 @@
-import { Box, Flex } from "@chakra-ui/react";
-import React, { useState, useEffect } from "react";
+import { Box, Flex, useDisclosure } from "@chakra-ui/react";
+import axios from "axios";
+import React, { useState, useEffect, useRef } from "react";
 import {
   useAppDispatch,
   useAppSelector,
@@ -11,6 +12,8 @@ import SubNav from "../../../components/Admin/Jobs/subcomponents/SubNav";
 import { fetchAllQuotes } from "../../../components/Admin/QuotePage/quoteAction";
 import QuotePagination from "../../../components/Admin/QuotePage/QuotePagination";
 import QuoteTab from "../../../components/Admin/Quotes/QuoteTab";
+import Infos from "../../../components/Admin/Quotes/subcomponents/AddQuote/Infos";
+import DrawerLayout from "../../../components/Admin/UI/DrawerLayout";
 
 // import { LinkIcon, LockIcon } from '@chakra-ui/icons';
 // import { Box, Button, Flex, Heading, Spacer, Text } from '@chakra-ui/react';
@@ -97,27 +100,144 @@ const initialState = [
     total: 300,
   },
 ];
+
+const mockData = {
+  bathrooms: 0,
+  bedrooms: 0,
+  email: "",
+  companyName: "",
+  firstName: "",
+  lastName: "",
+  address1: "",
+  address2: "",
+  city: "",
+  state: "",
+  postcode: "",
+  startHour: "09",
+  startMin: "00",
+  startMode: "AM",
+  endHour: "12",
+  endMin: "00",
+  endMode: "PM",
+  bookingDate: new Date(),
+  subscription: "One Time Cleaning",
+  customerNotes: "",
+  service: "End of Lease",
+  notes: [],
+  phone: "",
+  products: [
+    // {
+    //   id: 1,
+    //   title: "Balcony",
+    //   price: 40,
+    //   quantity: 0,
+    // },
+    // {
+    //   id: 2,
+    //   title: "Separate Toilet",
+    //   price: 60,
+    //   quantity: 0,
+    // },
+    // {
+    //   id: 3,
+    //   title: "Study Room",
+    //   price: 40,
+    //   quantity: 0,
+    // },
+    // {
+    //   id: 4,
+    //   title: "Wall Wash",
+    //   price: 40,
+    //   quantity: 0,
+    // },
+    // {
+    //   id: 5,
+    //   title: "Fridge/Freezer",
+    //   price: 40,
+    //   quantity: 0,
+    // },
+    // {
+    //   id: 6,
+    //   title: "Garage",
+    //   price: 40,
+    //   quantity: 0,
+    // },
+    // {
+    //   id: 7,
+    //   title: "Blinds",
+    //   price: 40,
+    //   quantity: 0,
+    // },
+    // {
+    //   id: 8,
+    //   title: "Carpet Steam Stairs",
+    //   price: 40,
+    //   quantity: 0,
+    // },
+    // {
+    //   id: 9,
+    //   title: "Carpet Steam Living Room",
+    //   price: 40,
+    //   quantity: 0,
+    // },
+    // {
+    //   id: 10,
+    //   title: "Carpet Steam Stairs",
+    //   price: 40,
+    //   quantity: 0,
+    // },
+    // {
+    //   id: 11,
+    //   title: "Carpet Steam Hallway",
+    //   price: 40,
+    //   quantity: 0,
+    // },
+  ],
+  quoteStatus: "",
+};
+
+const newData = {
+  ...mockData,
+  products: [],
+};
 const Quotes = () => {
   const sidebarOpen =
     useAppSelector((state) => state.user.sidebarOpen) || undefined;
   const [all, setAll] = useState([]);
   const [selected, setSelected] = useState([]);
   const [search, setSearch] = useState("");
-
+  const [display, setDisplay] = useState(mockData);
   const [pageNumber, setPageNumber] = useState<Number>(1);
   const dispatch = useAppDispatch();
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const btnRef = React.useRef();
+
   const quotes = useAppSelector(
     (state) => state.quotes.quotes.paginatedResults
   );
   1;
+
+  const onSubmit = async (e) => {
+    const result = await axios.post("http://localhost:3001/v1/quote", display);
+    console.log(result);
+  };
+
   useEffect(() => {
     dispatch(fetchAllQuotes(pageNumber, search));
     setAll(quotes);
-  }, [dispatch, pageNumber, search]);
+  }, [dispatch, pageNumber, search, display]);
 
-  // useEffect(() => {
-  //   selected.length && selected.map((item) => item);
-  // }, [selected]);
+  useEffect(() => {
+    const fetchProducts = async () => {
+      await axios.get("http://localhost:3001/v1/product").then((data: any) => {
+        setDisplay({ ...display, products: [...data?.data.result] });
+        console.log("data", data.data.result);
+        console.log(display);
+      });
+    };
+
+    fetchProducts();
+  }, []);
   return (
     <Box
       pl={{ base: 0, md: sidebarOpen ? "320px" : "115px" }}
@@ -128,9 +248,9 @@ const Quotes = () => {
       h="100%"
     >
       <SubNav />
-      <JobsCard title="Quotes" />
+      <JobsCard title="Quotes" ref={btnRef} onOpen={onOpen} />
 
-      <Box >
+      <Box>
         <QuoteTab
           selected={selected}
           setSelected={setSelected}
@@ -140,6 +260,15 @@ const Quotes = () => {
           setPageNumber={setPageNumber}
         />
       </Box>
+      <DrawerLayout
+        isOpen={isOpen}
+        onClose={onClose}
+        ref={btnRef}
+        title="Add Quote"
+        onSubmit={onSubmit}
+      >
+        <Infos display={display} setDisplay={setDisplay} />
+      </DrawerLayout>
     </Box>
   );
 };

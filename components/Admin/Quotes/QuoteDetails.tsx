@@ -32,23 +32,37 @@ const data = [
 ];
 const QuoteDetails = ({ details }) => {
   console.log(details);
+
+  const capital = (word) => {
+    let bword = word;
+    const firstLetter = bword.charAt(0);
+
+    const firstLetterCap = firstLetter.toUpperCase();
+
+    const remainingLetters = bword.slice(1);
+
+    const capitalizedWord = firstLetterCap + remainingLetters;
+
+    return capitalizedWord;
+  };
+
   return (
     <Box>
       <Flex w="100%" justifyContent="space-between" mt={10} gap={8} pr={5}>
         <Flex w="100%" flexDirection="column" gap={6}>
           <Box bg="white" py={7} px={6} shadow="md">
             <Text color="blue.500" fontSize="16px" fontWeight="semibold">
-              {details.name}
+              {details.firstName} {details.lastName}
             </Text>
             <Text fontSize="12px" mt={2} color="gray.500">
-              78 Cannon Hill
+              {details.address1.toUpperCase()}
             </Text>
             <Text fontSize="12px" color="gray.500">
-              Brisbane, Queensland
+              {capital(details.city)}  {details.state.toUpperCase()}
             </Text>
             <Text fontSize="12px" color="gray.500">
               {" "}
-              4182
+              {details.postcode}
             </Text>
             <Text fontSize="12px" color="gray.500">
               {details.phone ? details.phone : "0416 129 129"}
@@ -308,15 +322,28 @@ const detailsComp = ({ details }) => {
         borderColor="gray.300"
       >
         <Box>
-          <Text mb={1} cursor="pointer">Extras</Text>
-          {details.products ? details.products.map((lap) => (
-            <Flex gap={8} fontWeight="light" key={lap.id} justifyContent="space-between">
-              <Text fontSize="12px" style={{ marginRight: "10px" }}>
-                {lap.quantity > 0 && lap.description}
-              </Text>
-              <Text fontWeight="light">{lap.quantity > 0 && lap.quantity}</Text>
-            </Flex>
-          )) : <Text>No Extras</Text>}
+          <Text mb={1} cursor="pointer">
+            Extras
+          </Text>
+          {details.products ? (
+            details.products.map((lap) => (
+              <Flex
+                gap={8}
+                fontWeight="light"
+                key={lap.id}
+                justifyContent="space-between"
+              >
+                <Text fontSize="12px" style={{ marginRight: "10px" }}>
+                  {lap.quantity > 0 && lap.description}
+                </Text>
+                <Text fontWeight="light">
+                  {lap.quantity > 0 && lap.quantity}
+                </Text>
+              </Flex>
+            ))
+          ) : (
+            <Text>No Extras</Text>
+          )}
         </Box>
       </Box>
       <Box

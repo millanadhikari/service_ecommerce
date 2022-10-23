@@ -20,7 +20,7 @@ export const theme = extendTheme({
     config,
     fonts: {
       // heading: 'Open Sans',
-      body: 'Raleway',
+      // body: 'sans-serif',
     },
     styles:{
       global: {
@@ -32,6 +32,7 @@ export const theme = extendTheme({
         //   letterSpacing:"1px"
           
         // }
+      
       }
     },
     components:{

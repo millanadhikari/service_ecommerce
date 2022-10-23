@@ -91,7 +91,7 @@ const QuotesTable = ({ selected, setSelected }) => {
                     {item.quoteReference}
                   </Flex>
                 </Td>
-                <Td onClick={(e) => handleRouter(e, item.id)}>
+                <Td onClick={(e) => handleRouter(e, item._id)}>
                   {changeDateFormat(item.createdAt)}
                 </Td>
                 <Td
@@ -99,7 +99,7 @@ const QuotesTable = ({ selected, setSelected }) => {
                   color="blue.400"
                   fontWeight="semibold"
                 >
-                  {item.name}
+                  {item.firstName} {item.lastName}
                 </Td>
                 <Td py={6}>
                   <Box
@@ -150,7 +150,7 @@ const QuotesTable = ({ selected, setSelected }) => {
                     {/* {item.service === 'eol' || 'endoflease' ? "End of Lease" : 'General Clean'
                       } */}
                     {item.service === "generalclean" && "General Clean"}
-                    {item.service === "endoflease" && "End of Lease"}
+                    {item.service === "end of lease" && "End of Lease"}
                     {item.service === "eol" && "End of Lease"}
                   </Box>
                 </Td>

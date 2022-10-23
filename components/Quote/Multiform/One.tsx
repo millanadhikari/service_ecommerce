@@ -2,34 +2,86 @@ import { Box, Flex, Heading, Text } from "@chakra-ui/react";
 import React from "react";
 import { FaBed, FaToilet } from "react-icons/fa";
 import { GiDogHouse, GiHouseKeys } from "react-icons/gi";
-import {GrFormAdd, GrFormSubtract} from 'react-icons/gr'
+import { GrFormAdd, GrFormSubtract } from "react-icons/gr";
 
-interface Props { 
-    service: string;
-    setService: (service: string) => void;
-    bedroom: number;
-    setBedroom: any
-    toilet:number
-    setToilet: any
-
+interface Props {
+  display: any;
+  setDisplay: any;
 }
 
-const One = ({ service, setService, bedroom, setBedroom, toilet, setToilet }: Props) => {
+const One = ({ display, setDisplay }: Props) => {
+  const totalBedrooms = display.products.find(
+    (item) => item.title == "Bedrooms"
+  );
+  const totalBathrooms = display.products.find(
+    (item) => item.title == "Bathrooms"
+  );
+  const handleAdd = (maya) => {
+    let sewAdd = display?.products.find((item) => item.title === maya);
+    let dewAdd = { ...sewAdd, quantity: sewAdd.quantity + 1 };
+    let replaced = [
+      dewAdd,
+      ...display?.products.filter((i) => i._id !== dewAdd._id),
+    ];
+    replaced.sort(function (a, b) {
+      if (a._id !== b._id) {
+        return a._id - b._id;
+      }
+      if (a.title === b.title) {
+        return 0;
+      }
+      return a.title > b.title ? 1 : -1;
+    });
+    setDisplay({ ...display, products: replaced });
+  };
+
+  const handleDelete = (maya) => {
+    let sewAdd = display?.products.find((item) => item.title === maya);
+    let dewAdd = { ...sewAdd, quantity: sewAdd.quantity - 1 };
+    let replaced = [
+      dewAdd,
+      ...display?.products.filter((i) => i._id !== dewAdd._id),
+    ];
+    replaced.sort(function (a, b) {
+      if (a._id !== b._id) {
+        return a._id - b._id;
+      }
+      if (a.title === b.title) {
+        return 0;
+      }
+      return a.title > b.title ? 1 : -1;
+    });
+    setDisplay({ ...display, products: replaced });
+    console.log(display);
+  };
   return (
     <Box color="gray.500">
       <Heading fontSize="16" fontWeight="semibold">
         Select Service(s)
       </Heading>
-      <Flex gap={8} color="gray.400" alignItems="center" my={4} justifyContent="center">
+      <Flex
+        gap={8}
+        color="gray.400"
+        alignItems="center"
+        my={4}
+        justifyContent="center"
+      >
         <Flex
           gap={2}
           alignItems="center"
           flexDirection="column"
           border="1px solid gray"
-          shadow={service === "endoflease" ? "2xl" : "none"}
-          borderColor={service === "endoflease" ? "blue.700" : "gray.200"}
-          color={service === "endoflease" ? "blue.700" : "gray.200"}
-          onClick={() => setService("endoflease")}
+          shadow={display.service === "end of lease" ? "2xl" : "none"}
+          borderColor={
+            display.service === "end of lease" ? "blue.700" : "gray.200"
+          }
+          color={display.service === "end of lease" ? "blue.700" : "gray.200"}
+          onClick={() =>
+            setDisplay(
+              { ...display, service: "end of lease" },
+              console.log(display)
+            )
+          }
           textAlign="center"
           px={3}
           py={4}
@@ -40,8 +92,10 @@ const One = ({ service, setService, bedroom, setBedroom, toilet, setToilet }: Pr
           </Box>
           <Text
             fontSize="13"
-            fontWeight={service === "endoflease" ? "bold" : "semibold"}
-            color={service === "endoflease" ? "blue.600" : "gray.200"}
+            fontWeight={
+              display.service === "end of lease" ? "bold" : "semibold"
+            }
+            color={display.service === "end of lease" ? "blue.600" : "gray.200"}
           >
             End of Lease Cleaning
           </Text>
@@ -51,10 +105,12 @@ const One = ({ service, setService, bedroom, setBedroom, toilet, setToilet }: Pr
           alignItems="center"
           flexDirection="column"
           border="1px solid gray"
-          shadow={service === "generalclean" ? "2xl" : "none"}
-          borderColor={service === "generalclean" ? "blue.700" : "gray.200"}
-          color={service === "generalclean" ? "blue.700" : "gray.200"}
-          onClick={() => setService("generalclean")}
+          shadow={display.service === "general clean" ? "2xl" : "none"}
+          borderColor={
+            display.service === "general clean" ? "blue.700" : "gray.200"
+          }
+          color={display.service === "general clean" ? "blue.700" : "gray.200"}
+          onClick={() => setDisplay({ ...display, service: "general clean" })}
           textAlign="center"
           px={3}
           py={4}
@@ -68,30 +124,79 @@ const One = ({ service, setService, bedroom, setBedroom, toilet, setToilet }: Pr
           </Text>
         </Flex>
       </Flex>
-      <Flex alignItems="center" justifyContent="space-between" my={6} mt={10} >
+      <Flex alignItems="center" justifyContent="space-between" my={6} mt={10}>
         <Flex alignItems="center" gap={4}>
           <Box fontSize="24" color="blue.700">
-              <FaBed/>
+            <FaBed />
           </Box>
-          <Heading fontSize="16" color="blue.700" fontWeight="semibold">Bedrooms</Heading>
+          <Heading fontSize="16" color="blue.700" fontWeight="semibold">
+            Bedrooms
+          </Heading>
         </Flex>
         <Flex alignItems="center" gap={3}>
-          <Text onClick={() => bedroom > 0 && setBedroom(bedroom - 1)} fontSize={14} backgroundColor="gray.100" px={2.5} py={2.5} rounded="md"><GrFormSubtract/></Text>
-          <Text color="blue.700" fontWeight="semibold">{bedroom}</Text>
-          <Text onClick={() => setBedroom(bedroom + 1)} fontSize={14} backgroundColor="gray.100" px={2.5} py={2.5} rounded="md"><GrFormAdd/></Text>
+          <Text
+            onClick={() =>
+              totalBedrooms?.quantity > 0 && handleDelete("Bedrooms")
+            }
+            fontSize={14}
+            backgroundColor="gray.100"
+            px={2.5}
+            py={2.5}
+            rounded="md"
+          >
+            <GrFormSubtract />
+          </Text>
+          <Text color="blue.700" fontWeight="semibold">
+            {totalBedrooms?.quantity}
+          </Text>
+          <Text
+            // onClick={() => setBedroom(bedroom + 1)}
+            onClick={() => handleAdd("Bedrooms")}
+            fontSize={14}
+            backgroundColor="gray.100"
+            px={2.5}
+            py={2.5}
+            rounded="md"
+          >
+            <GrFormAdd />
+          </Text>
         </Flex>
       </Flex>
       <Flex alignItems="center" justifyContent="space-between" my={6}>
         <Flex alignItems="center" gap={4}>
           <Box fontSize="24" color="blue.700">
-              <FaToilet/>
+            <FaToilet />
           </Box>
-          <Heading fontSize="16" color="blue.700" fontWeight="semibold">Toilets</Heading>
+          <Heading fontSize="16" color="blue.700" fontWeight="semibold">
+            Toilets
+          </Heading>
         </Flex>
         <Flex alignItems="center" gap={3}>
-          <Text onClick={() => toilet > 0 && setToilet(toilet - 1)} fontSize={14} backgroundColor="gray.100" px={2.5} py={2.5} rounded="md"><GrFormSubtract/></Text>
-          <Text color="blue.700" fontWeight="semibold">{toilet}</Text>
-          <Text onClick={() => setToilet(toilet + 1)} fontSize={14} backgroundColor="gray.100" px={2.5} py={2.5} rounded="md"><GrFormAdd/></Text>
+          <Text
+            onClick={() =>
+              totalBathrooms.quantity > 1 && handleDelete("Bathrooms")
+            }
+            fontSize={14}
+            backgroundColor="gray.100"
+            px={2.5}
+            py={2.5}
+            rounded="md"
+          >
+            <GrFormSubtract />
+          </Text>
+          <Text color="blue.700" fontWeight="semibold">
+            {totalBathrooms?.quantity}
+          </Text>
+          <Text
+            onClick={() => handleAdd("Bathrooms")}
+            fontSize={14}
+            backgroundColor="gray.100"
+            px={2.5}
+            py={2.5}
+            rounded="md"
+          >
+            <GrFormAdd />
+          </Text>
         </Flex>
       </Flex>
     </Box>
