@@ -19,7 +19,7 @@ const CustomerInfo = ({ display, setDisplay }) => {
   };
   return (
     <Box fontFamily="sans-serif" mx={-3}>
-      <Accordion allowToggle="true">
+      <Accordion allowToggle={true}>
         <AccordionItem border="none">
           <h2>
             <AccordionButton
