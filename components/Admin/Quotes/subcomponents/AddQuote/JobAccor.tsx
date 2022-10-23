@@ -395,7 +395,6 @@ const JobAccor = ({ display, setDisplay }) => {
 
                     <Text fontSize="12px">:</Text>
                     <Select
-                      icon="none"
                       _focus={{ outline: "none" }}
                       fontSize="12px"
                       value={display.endMode}
