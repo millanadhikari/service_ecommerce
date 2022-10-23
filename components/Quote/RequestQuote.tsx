@@ -56,7 +56,7 @@ const RequestQuote = ({ quote, setQuote }: Props) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const fetchProducts = async () => {
-    await axios.get("http://localhost:3001/v1/product").then((data: any) => {
+    await axios.get("https://wedo-backend.herokuapp.com/v1/product").then((data: any) => {
       setDisplay({ ...display, products: [...data?.data.result] });
     });
   };
@@ -95,7 +95,7 @@ const RequestQuote = ({ quote, setQuote }: Props) => {
       //   steamStairs: steamStairs,
       //   service: service,
       // };
-      await fetch("http://localhost:3001/v1/quote", {
+      await fetch("https://wedo-backend.herokuapp.com/v1/quote", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(display),
