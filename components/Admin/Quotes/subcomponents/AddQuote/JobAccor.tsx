@@ -100,8 +100,8 @@ const JobAccor = ({ display, setDisplay }) => {
   const [extras, setExtras] = useState(data);
   const [showHalf, setShowHalf] = useState([]);
 
-   let BedValue = display.products.find((item) => item.title === "Bedrooms")
-   let bed = BedValue.quantity
+  let BedValue = display.products.find((item) => item.title === "Bedrooms");
+  let bed = BedValue.quantity;
 
   const handleAdd = (e) => {
     let sewAdd = display?.products.find((item) => item.title === "Bedrooms");
@@ -202,7 +202,7 @@ const JobAccor = ({ display, setDisplay }) => {
                   fontSize="12px"
                   type="number"
                   cursor="pointer"
-                  value = {bed}
+                  value={bed}
                   name="bedrooms"
                   onChange={(e) => handleAdd(e)}
                   borderColor="gray.400"
@@ -320,7 +320,6 @@ const JobAccor = ({ display, setDisplay }) => {
 
                     <Text fontSize="12px">:</Text>
                     <Select
-                      icon="none"
                       _focus={{ outline: "none" }}
                       fontSize="12px"
                       pt={1}
