@@ -210,6 +210,7 @@ const Quotes = () => {
   const [pageNumber, setPageNumber] = useState<Number>(1);
   const dispatch = useAppDispatch();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [isLoading, setLoading] = useState<Boolean>(false);
   const btnRef = React.useRef();
 
   const quotes = useAppSelector(
@@ -217,9 +218,15 @@ const Quotes = () => {
   );
   1;
 
-  const onSubmit = async (e) => {
-    const result = await axios.post("http://localhost:3001/v1/quote", display);
-    console.log(result);
+  const onSubmit = async () => {
+    setLoading(true);
+    const result = await axios.post( "https://wedo-backend.herokuapp.com/v1/quote", display);
+    console.log("hey", result.data.status);
+    if (result.data.status === "success") {
+      setLoading(false);
+      onClose();
+      dispatch(fetchAllQuotes(pageNumber, search));
+    }
   };
 
   useEffect(() => {
@@ -229,10 +236,8 @@ const Quotes = () => {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      await axios.get("http://localhost:3001/v1/product").then((data: any) => {
+      await axios.get( "https://wedo-backend.herokuapp.com/v1/product").then((data: any) => {
         setDisplay({ ...display, products: [...data?.data.result] });
-        console.log("data", data.data.result);
-        console.log(display);
       });
     };
 
@@ -266,6 +271,8 @@ const Quotes = () => {
         ref={btnRef}
         title="Add Quote"
         onSubmit={onSubmit}
+        isLoading={isLoading}
+        setLoading={setLoading}
       >
         <Infos display={display} setDisplay={setDisplay} />
       </DrawerLayout>

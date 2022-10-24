@@ -14,7 +14,16 @@ import {
 import React from "react";
 import { GrAnalytics } from "react-icons/gr";
 
-const DrawerLayout = ({ children, isOpen, onClose, ref, onSubmit, title }) => {
+const DrawerLayout = ({
+  children,
+  isOpen,
+  onClose,
+  ref,
+  onSubmit,
+  isLoading,
+  setLoading,
+  title,
+}) => {
   return (
     <Box fontFamily="sans-serif">
       <Drawer
@@ -68,7 +77,7 @@ const DrawerLayout = ({ children, isOpen, onClose, ref, onSubmit, title }) => {
                 w="50%"
                 onClick={onSubmit}
               >
-                Save
+                {isLoading ? "Loading" : "Save"}
               </Button>
             </Flex>
           </DrawerFooter>
