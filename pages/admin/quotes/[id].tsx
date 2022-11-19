@@ -1,4 +1,5 @@
 import { Box, Button, Flex, Heading, Icon, Text } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { AiOutlineDown } from "react-icons/ai";
 import { MdArrowBackIosNew } from "react-icons/md";
@@ -9,12 +10,14 @@ import QuoteDetails from "../../../components/Admin/Quotes/QuoteDetails";
 const BookingDetail = ({ data }) => {
   const router = useRouter();
   const details = data.result[0];
-  const sidebarOpen = useAppSelector((state) => state.user.sidebarOpen) || undefined;
+  const sidebarOpen =
+    useAppSelector((state) => state.user.sidebarOpen) || undefined;
 
   const changeDateFormat = (ok) => {
     let l = new Date(ok);
     return <Text>{l.toString().substring(0, 16)}</Text>;
   };
+
   return (
     <Box
       pl={{ base: 0, md: sidebarOpen ? "320px" : "115px" }}

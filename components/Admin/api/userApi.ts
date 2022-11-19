@@ -1,6 +1,8 @@
 import axios from "axios";
 
 const rootUrl = "https://wedo-backend.herokuapp.com/v1/";
+// const rootUrl = "http://localhost:3001/v1/";
+
 const loginUrl = rootUrl + "customer/login";
 const newAccessJWT = rootUrl + "customer/tokens";
 const userProfileUrl = rootUrl + "customer"

@@ -10,12 +10,24 @@ import {
   Text,
   useDisclosure,
 } from "@chakra-ui/react";
+import axios from "axios";
 import React from "react";
+import { useAppDispatch } from "../../app/hooks";
+import { fetchAllQuotes } from "../../QuotePage/quoteAction";
 import PromptLayout from "./Prompt/PromptLayout";
 import QuotesTable from "./QuotesTable";
 
-const AllQuotes = ({ selected, setSelected, search, setSearch }) => {
+const AllQuotes = ({
+  confirmDelete,
+  setConfirmDelete,
+  selected,
+  setSelected,
+  search,
+  setSearch,
+}) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const dispatch = useAppDispatch();
+
   return (
     <Box>
       <Flex alignItems="center" gap={2} my={3}>
@@ -77,13 +89,14 @@ const AllQuotes = ({ selected, setSelected, search, setSearch }) => {
           letterSpacing="1px"
           fontSize="13px"
         >
-          {selected.length} Selected
+          {selected.length ? selected.length : 0} Selected
         </Button>
         <Button
           isDisabled={selected.length < 1}
           _focus={{ outline: "none" }}
           _hover={{ bg: "blue.800" }}
           rounded="full"
+          onClick={() => setConfirmDelete(!confirmDelete)}
           bg="blue.700"
           color="white"
           px={6}

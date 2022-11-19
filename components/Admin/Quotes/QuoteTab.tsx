@@ -1,4 +1,12 @@
-import { Box, Flex, Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
+} from "@chakra-ui/react";
 import React, { useState, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import NotAssigned from "../Jobs/subcomponents/NotAssigned";
@@ -8,16 +16,17 @@ import QuotePagination from "../QuotePage/QuotePagination";
 import AllQuotes from "./subcomponents/AllQuotes";
 
 const QuoteTab = ({
-  
   selected,
   setSelected,
+  confirmDelete,
+  setConfirmDelete,
   search,
   setSearch,
   pageNumber,
-  setPageNumber
+  setPageNumber,
 }) => {
   return (
-    <Tabs variant="unstyled" bg="white" py={4} mr={10} shadow="md"  >
+    <Tabs variant="unstyled" bg="white" py={4} mr={10} shadow="md">
       <TabList
         borderBottom="1px solid gray"
         borderColor="gray.300"
@@ -62,7 +71,8 @@ const QuoteTab = ({
       <TabPanels>
         <TabPanel>
           <AllQuotes
-       
+            confirmDelete={confirmDelete}
+            setConfirmDelete={setConfirmDelete}
             selected={selected}
             setSelected={setSelected}
             search={search}

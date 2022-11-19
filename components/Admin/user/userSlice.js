@@ -2,9 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   user: {},
+  Socket: null,
   isLoading: false,
   error: "",
-  sidebarOpen:false,
+  sidebarOpen: false,
 };
 
 const userSlice = createSlice({
@@ -23,17 +24,17 @@ const userSlice = createSlice({
       state.isLoading = false;
       state.error = payload;
     },
-    getSidebarStatus:(state, {payload}) => {
-      state.isLoading=true;
-      state.sidebarOpen= payload
+    getSidebarStatus: (state, { payload }) => {
+      state.isLoading = true;
+      state.sidebarOpen = payload
     },
-    passwordChangePending:(state) => {
+    passwordChangePending: (state) => {
       state.isLoading = true;
 
     },
-    passwordChangeSuccess: (state ) => {
+    passwordChangeSuccess: (state) => {
       state.isLoading = false;
-     
+
     },
     passwordChangeFail: (state, { payload }) => {
       state.isLoading = false;
@@ -42,6 +43,9 @@ const userSlice = createSlice({
     logoutSuccess: (state) => {
       state.user = {};
     },
+    getSocketSuccess: (state, { payload }) => {
+      state.Socket = payload
+    }
   },
 });
 
@@ -53,7 +57,8 @@ export const {
   passwordChangePending,
   passwordChangeSuccess,
   passwordChangeFail,
-  logoutSuccess
+  logoutSuccess,
+  getSocketSuccess
 } = userSlice.actions;
 
 export default userSlice.reducer;

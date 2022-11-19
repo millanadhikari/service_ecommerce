@@ -58,7 +58,7 @@ const QuoteDetails = ({ details }) => {
               {details.address1.toUpperCase()}
             </Text>
             <Text fontSize="12px" color="gray.500">
-              {capital(details.city)}  {details.state.toUpperCase()}
+              {capital(details.city)} {details.state.toUpperCase()}
             </Text>
             <Text fontSize="12px" color="gray.500">
               {" "}
@@ -271,7 +271,14 @@ const detailsComp = ({ details }) => {
         borderColor="gray.300"
       >
         <Text cursor="pointer" mb={2}>
-          {details.bedrooms}bd | {details.bathrooms}ba |
+          {details.products.map(
+            (item) => item.title === "Bedrooms" && item.quantity
+          )}
+          bd |{" "}
+          {details.products.map(
+            (item) => item.title === "Bathrooms" && item.quantity
+          )}
+          ba |
         </Text>
         <Flex justifyContent="space-between">
           <Text cursor="pointer">Service Type</Text>

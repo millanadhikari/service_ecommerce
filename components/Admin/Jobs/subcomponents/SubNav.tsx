@@ -13,7 +13,7 @@ import {
   PopoverTrigger,
   Text,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   AiFillBell,
   AiFillSetting,
@@ -21,10 +21,21 @@ import {
   AiOutlineMenuFold,
 } from "react-icons/ai";
 import { BiHelpCircle } from "react-icons/bi";
+import { useAppSelector } from "../../app/hooks";
 import NotificationPopver from "./Popovers/NotificationPopover";
 import ProfilePopover from "./Popovers/ProfilePopover";
 
 const SubNav = () => {
+  const Socket = useAppSelector((state) => state.user.Socket);
+  const [notifications, setNotifications] = useState([]);
+
+  useEffect(() => {
+    Socket?.on("getNotification", (data) => {
+      setNotifications((prev) => [...prev, data]);
+    });
+  }, [Socket, notifications]);
+
+  console.log(notifications);
   return (
     <Flex
       alignItems="center"
@@ -73,7 +84,9 @@ const SubNav = () => {
       >
         <Icon as={AiFillSetting} fontSize="20px" />
       </Flex>
-      <NotificationPopver />
+     
+        <NotificationPopver notifications={notifications} />
+     
     </Flex>
   );
 };

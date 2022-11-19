@@ -115,6 +115,7 @@ const Sidebar = () => {
   const sidebarOpen =
     useAppSelector((state) => state.user.sidebarOpen) || undefined;
   const dispatch = useAppDispatch();
+  const Socket = useAppSelector((state) => state.user.Socket) 
 
   const Router = useRouter();
 
@@ -125,6 +126,8 @@ const Sidebar = () => {
     sessionStorage.removeItem("accessJWT");
     localStorage.removeItem("service_ecommerce");
     userLogout();
+    // Socket?.on("disconnect", () => {});
+    Socket?.disconnect()
     Router.replace("/admin/login");
   };
 

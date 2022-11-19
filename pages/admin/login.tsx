@@ -9,7 +9,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { Router, useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { userLogin } from "../../components/Admin/api/userApi";
 import { useAppSelector } from "../../components/Admin/app/hooks";
@@ -18,38 +18,32 @@ import {
   loginPending,
   loginSuccess,
 } from "../../components/Admin/auth/loginSlice";
-import {getUserProfile} from '../../components/Admin/user/userAction'
-
-interface isAuth {
-  status: string;
-  message: string;
-}
+import { getUserProfile } from "../../components/Admin/user/userAction";
+import { io, Socket } from "socket.io-client";
+import { getSocketSuccess } from "../../components/Admin/user/userSlice";
 
 const Login = () => {
-  const [email, setEmail] = useState("asraf@gmail.com");
-  const [password, setPassword] = useState("Manakamana123");
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
   const [errorEmail, setErroremail] = useState(false);
   const [errorPassword, setErrorpassword] = useState();
 
-const {isLoading} = useAppSelector((state) => state.login)
+  const { isLoading } = useAppSelector((state) => state.login);
   const dispatch = useDispatch();
-  const router = useRouter()
+  const router = useRouter();
+  const userId = useAppSelector((state) => state.user.user._id);
+  // const [socket, setSocket] = useState(null);
+  const Socket = useAppSelector((state) => state.user.Socket);
 
   const handleChange = (e) => {
-    const { name, value } = e.target.value;
-
-    switch (name) {
-      case "email":
-        setEmail(value);
-        break;
-      case "password":
-        setPassword(value);
-        break;
-
-      default:
-        break;
-    }
+     setEmail(e.target.value)
+    
   };
+
+  const handlePassword = (e) => {
+    setPassword(e.target.value)
+   
+ };
   const handleLogin = async (e) => {
     e.preventDefault();
 
@@ -61,19 +55,27 @@ const {isLoading} = useAppSelector((state) => state.login)
     try {
       const isAuth: any = await userLogin({ email, password });
       if (isAuth.status === "error") {
-        setErroremail(true)
-        setErrorpassword(isAuth.message)
+        setErroremail(true);
+        setErrorpassword(isAuth.message);
         return dispatch(loginFail(isAuth.message));
       }
-        dispatch(loginSuccess());
-        dispatch(getUserProfile());
-        router.push("/admin/bookings")
-      
-      
+      dispatch(loginSuccess());
+      dispatch(getUserProfile());
+      // setSocket(io("http://localhost:3001"));
+      dispatch(getSocketSuccess(io("https://wedo-backend.herokuapp.com")));
+      // socket?.emit("sendNotification", userId);
+
+      router.push("/admin/quotes");
     } catch (error) {
       dispatch(loginFail(error.message));
     }
   };
+
+  useEffect(() => {
+    Socket?.emit("newUser", userId);
+    // console.log("milen", socket);
+    // console.log("milen", userId);
+  }, [Socket, userId]);
   return (
     <Box
       position="relative"
@@ -138,13 +140,13 @@ const {isLoading} = useAppSelector((state) => state.login)
             color="gray.600"
             fontSize="14px"
           >
-            Email
+            Email {email}
           </Text>
           <Input
             // mt={2.5}
             value={email}
-            name="email"
-            type="email"
+            name='email'
+            type='email'
             onChange={handleChange}
           />
           {/* {errorEmail && (
@@ -186,7 +188,7 @@ const {isLoading} = useAppSelector((state) => state.login)
             name="password"
             type="password"
             zIndex="999"
-            onChange={handleChange}
+            onChange={handlePassword}
           />
           {errorEmail && (
             <Flex

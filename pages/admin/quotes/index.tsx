@@ -1,4 +1,4 @@
-import { Box, Flex, useDisclosure } from "@chakra-ui/react";
+import { Box, Flex, Text, useDisclosure, useToast } from "@chakra-ui/react";
 import axios from "axios";
 import React, { useState, useEffect, useRef } from "react";
 import {
@@ -13,57 +13,10 @@ import { fetchAllQuotes } from "../../../components/Admin/QuotePage/quoteAction"
 import QuotePagination from "../../../components/Admin/QuotePage/QuotePagination";
 import QuoteTab from "../../../components/Admin/Quotes/QuoteTab";
 import Infos from "../../../components/Admin/Quotes/subcomponents/AddQuote/Infos";
+import PromptLayout from "../../../components/Admin/Quotes/subcomponents/Prompt/PromptLayout";
 import DrawerLayout from "../../../components/Admin/UI/DrawerLayout";
 
-// import { LinkIcon, LockIcon } from '@chakra-ui/icons';
-// import { Box, Button, Flex, Heading, Spacer, Text } from '@chakra-ui/react';
-// import React from 'react';
-// import { AiOutlineFullscreen } from 'react-icons/ai';
-// import { BiRefresh } from 'react-icons/bi';
-// import { useAppDispatch, useAppSelector } from '../../components/Admin/app/hooks';
-// import BookingList from '../../components/Admin/BookingPage/BookingList';
-// import {fetchAllQuotes} from '../../components/Admin/QuotePage/quoteAction'
-// import QuoteList from '../../components/Admin/QuotePage/QuoteList';
-
-// const Quotes = () => {
-
-//     const dispatch = useAppDispatch()
-//     const sidebarOpen = useAppSelector((state) => state.user.sidebarOpen) || undefined;
-
-//     const handleRefresh = (e) => {
-//         e.preventDefault();
-//         dispatch(fetchAllQuotes(1))
-
-//     }
-//     return  <Box pl={{base:0, md:sidebarOpen ? '300px' : '100px'}}   backgroundColor="white" fontFamily='sans-serif' w="100%"  >
-//     <Flex backgroundColor="white"
-//         border="1px solid gray" borderTop="none" borderLeft="none"
-//         borderColor="gray.200" alignItems="center"
-//         justifyContent="space-between"
-//         zIndex="999"
-//         fontSize="15px" pl="5"
-//         position="fixed" w="100%"
-//         pr={sidebarOpen ? 300 : 100}
-//     >
-//         <Heading mr={2} w="100%" fontSize="17px" fontWeight="semibold">Quotes</Heading>
-//         <Flex alignItems="center" cursor="pointer" >
-//             <Flex >
-//                     <Flex onClick={handleRefresh} pl="4" pr="4" _hover={{ backgroundColor: "gray.100", color: "blue.600" }} borderLeft="1px solid gray" borderColor="gray.200" py="12px" alignItems="center" fontSize="13px" justifyContent="center" color="gray.500"><BiRefresh fontSize="18px" /> <Spacer ml="6px" /><Text>Refresh</Text> </Flex>
-
-//                     <Flex alignItems="center" borderLeft="1px solid gray" borderColor="gray.200" _hover={{ backgroundColor: "gray.100", color: "blue.600" }} px="4"><AiOutlineFullscreen /></Flex>
-//                     <Flex display={{base:"none", md:"inline"}} pl="4" pr="4" _hover={{ backgroundColor: "gray.100", color: "blue.600" }} borderLeft="1px solid gray" borderColor="gray.200" py="12px" alignItems="center" fontSize="13px" justifyContent="center" color="gray.500"><LockIcon /> <Spacer ml="6px" /><Text>Private</Text> </Flex>
-//                 </Flex>
-//                 <Button size="sm" fontFamily="sans-serif" fontSize="11px" py="5" px="4" colorScheme="purple">+ Add Quote</Button>
-//             </Flex>
-//         </Flex>
-
-//         <Box backgroundColor="gray.100" h="90vh" py={16}>
-//             <QuoteList />
-//         </Box>
-//     </Box>;
-// };
-
-// export default Quotes
+// please note that the types are reversed
 
 const initialState = [
   {
@@ -125,74 +78,7 @@ const mockData = {
   service: "End of Lease",
   notes: [],
   phone: "",
-  products: [
-    // {
-    //   id: 1,
-    //   title: "Balcony",
-    //   price: 40,
-    //   quantity: 0,
-    // },
-    // {
-    //   id: 2,
-    //   title: "Separate Toilet",
-    //   price: 60,
-    //   quantity: 0,
-    // },
-    // {
-    //   id: 3,
-    //   title: "Study Room",
-    //   price: 40,
-    //   quantity: 0,
-    // },
-    // {
-    //   id: 4,
-    //   title: "Wall Wash",
-    //   price: 40,
-    //   quantity: 0,
-    // },
-    // {
-    //   id: 5,
-    //   title: "Fridge/Freezer",
-    //   price: 40,
-    //   quantity: 0,
-    // },
-    // {
-    //   id: 6,
-    //   title: "Garage",
-    //   price: 40,
-    //   quantity: 0,
-    // },
-    // {
-    //   id: 7,
-    //   title: "Blinds",
-    //   price: 40,
-    //   quantity: 0,
-    // },
-    // {
-    //   id: 8,
-    //   title: "Carpet Steam Stairs",
-    //   price: 40,
-    //   quantity: 0,
-    // },
-    // {
-    //   id: 9,
-    //   title: "Carpet Steam Living Room",
-    //   price: 40,
-    //   quantity: 0,
-    // },
-    // {
-    //   id: 10,
-    //   title: "Carpet Steam Stairs",
-    //   price: 40,
-    //   quantity: 0,
-    // },
-    // {
-    //   id: 11,
-    //   title: "Carpet Steam Hallway",
-    //   price: 40,
-    //   quantity: 0,
-    // },
-  ],
+  products: [],
   quoteStatus: "",
 };
 
@@ -210,39 +96,108 @@ const Quotes = () => {
   const [pageNumber, setPageNumber] = useState<Number>(1);
   const dispatch = useAppDispatch();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [confirmDelete, setConfirmDelete] = useState<Boolean>(false);
+  const [filter, setFilter] = useState(new Date());
+
   const [isLoading, setLoading] = useState<Boolean>(false);
   const btnRef = React.useRef();
-
+  const toast = useToast();
   const quotes = useAppSelector(
     (state) => state.quotes.quotes.paginatedResults
   );
-  1;
+  const Socket = useAppSelector((state) => state.user.Socket);
+
+  const userName = useAppSelector((state) => state.user.user.name) || undefined;
 
   const onSubmit = async () => {
     setLoading(true);
-    const result = await axios.post( "https://wedo-backend.herokuapp.com/v1/quote", display);
+    const result = await axios.post("https://wedo-backend.herokuapp.com/v1/quote", display);
     console.log("hey", result.data.status);
     if (result.data.status === "success") {
+      Socket?.emit("sendNotification", {
+        senderName: userName,
+        type: 1,
+      });
+      console.log("bhayankar", Socket);
+
       setLoading(false);
+
       onClose();
-      dispatch(fetchAllQuotes(pageNumber, search));
+      dispatch(fetchAllQuotes(pageNumber, search, filter));
     }
   };
 
+  const customerToast = () => {
+    return (
+      <Box w={"250px"} bg="white" rounded="xl" mt={4}>
+        <Text
+          color="white"
+          py={2}
+          fontWeight="semibold"
+          roundedTop={"xl"}
+          bg="blue.700"
+          textAlign="center"
+        >
+          Alert
+        </Text>
+        <Text fontSize="13px" py={4} px={4}>
+          Successfully deleted jobs
+        </Text>
+      </Box>
+    );
+  };
+
+  const deleteQuote = async () => {
+    setConfirmDelete(!confirmDelete);
+    const id = selected[0];
+    const result = await axios.delete(`https://wedo-backend.herokuapp.com/v1/quote/${id}`);
+    if (result.data.status === "success") {
+      toast({
+        position: "top-right",
+        render: () => customerToast(),
+        duration: 6000,
+        isClosable: true,
+      });
+      setConfirmDelete(!confirmDelete);
+      // prompt("Success");
+      dispatch(fetchAllQuotes(pageNumber, search, filter));
+      setSelected([]);
+    }
+  };
+
+  // const deleteQuotes = async () => {
+  //   const id = selected;
+  //   // const result = await axios.post(
+  //   //   "http://localhost:3001/v1/quote/deletequotes",
+  //   //   selected
+  //   // );
+  //   // console.log(result);
+  //   // if (result.data.status === "success") {
+  //   //   // prompt("Success");
+  //   //   dispatch(fetchAllQuotes(pageNumber, search));
+  //   //   setSelected([]);
+  //   // }
+  // };
+
   useEffect(() => {
-    dispatch(fetchAllQuotes(pageNumber, search));
+    dispatch(fetchAllQuotes(pageNumber, search, filter));
     setAll(quotes);
   }, [dispatch, pageNumber, search, display]);
 
   useEffect(() => {
     const fetchProducts = async () => {
-      await axios.get( "https://wedo-backend.herokuapp.com/v1/product").then((data: any) => {
-        setDisplay({ ...display, products: [...data?.data.result] });
-      });
+      await axios
+        .get("https://wedo-backend.herokuapp.com/v1/product")
+        .then((data: any) => {
+          setDisplay({ ...display, products: [...data?.data.result] });
+        });
     };
 
     fetchProducts();
   }, []);
+
+  // useEffect(() => {
+  // }, [socket])
   return (
     <Box
       pl={{ base: 0, md: sidebarOpen ? "320px" : "115px" }}
@@ -257,6 +212,8 @@ const Quotes = () => {
 
       <Box>
         <QuoteTab
+          confirmDelete={confirmDelete}
+          setConfirmDelete={setConfirmDelete}
           selected={selected}
           setSelected={setSelected}
           search={search}
@@ -276,6 +233,12 @@ const Quotes = () => {
       >
         <Infos display={display} setDisplay={setDisplay} />
       </DrawerLayout>
+      <PromptLayout
+        isOpen={confirmDelete}
+        onClose={setConfirmDelete}
+        layout={deleteQuote}
+        isLoading={isLoading}
+      />
     </Box>
   );
 };

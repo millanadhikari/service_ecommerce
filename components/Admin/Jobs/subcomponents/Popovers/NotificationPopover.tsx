@@ -21,7 +21,21 @@ import {
   AiOutlineMenuFold,
 } from "react-icons/ai";
 import { MdMessage } from "react-icons/md";
-const NotificationPopver = () => {
+
+const NotificationPopver = ({ notifications }) => {
+  const displayNotifications = ({ senderName, type }) => {
+    let action;
+    if (type === 1) {
+      action = "created";
+    } else {
+      action = "edited";
+    }
+    return (
+      <Box my={4} fontSize="14px" color="gray.500">
+        {`${senderName} ${action} a new quote`}
+      </Box>
+    );
+  };
   return (
     <Popover placement="bottom">
       <PopoverTrigger>
@@ -29,12 +43,29 @@ const NotificationPopver = () => {
           bg="gray.200"
           rounded="xl"
           color="gray.600"
-          px={2}
+          px={2.5}
           py={2}
           cursor="pointer"
+          position="relative"
           _hover={{ bg: "gray.300" }}
         >
           <Icon as={AiFillBell} fontSize="20px" />
+          {notifications.length > 0 && (
+            <Text
+              position="absolute"
+              left="25.5px"
+              top="2"
+              textAlign="center"
+              fontSize="8"
+              bg="red"
+              rounded="full"
+              w={3}
+              h={3}
+              color="white"
+            >
+              {notifications.length}
+            </Text>
+          )}
         </Flex>
       </PopoverTrigger>
       <PopoverContent
@@ -56,10 +87,11 @@ const NotificationPopver = () => {
           >
             Notifications
           </Text>
-          <Box textAlign="center" color="gray.300" mt="20">
+          {/* <Box textAlign="center" color="gray.300" mt="20">
             <Icon fontSize="60px" as={MdMessage} />
             <Text fontWeight="semibold" letterSpacing="1px" fontSize="14px" mt={2}>All clear! No notifications!</Text>
-          </Box>
+          </Box> */}
+          {notifications.map((n) => displayNotifications(n))}
         </PopoverBody>
       </PopoverContent>
     </Popover>
