@@ -127,20 +127,14 @@ const QuotesTable = ({ selected, setSelected }) => {
                     w="100px"
                     textAlign="center"
                     color={
-                      item.service === "end of lease" || "eol"
-                        ? "blue.400"
-                        : "gray.400"
+                      item.service === "end of lease" ? "blue.400" : "red.400"
                     }
                     bg={
-                      item.service === "end of lease" || "eol"
-                        ? "blue.100"
-                        : "gray.400"
+                      item.service === "end of lease" ? "blue.100" : "red.100"
                     }
                     border="1px solid gray"
                     borderColor={
-                      item.service === "End of Lease" || "eol"
-                        ? "blue.500"
-                        : "gray.300"
+                      item.service === "end of lease" ? "blue.400" : "red.400"
                     }
                     rounded="full"
                     py={1}
@@ -150,6 +144,7 @@ const QuotesTable = ({ selected, setSelected }) => {
                     {/* {item.service === 'eol' || 'endoflease' ? "End of Lease" : 'General Clean'
                       } */}
                     {item.service === "generalclean" && "General Clean"}
+                    {item.service === "general clean" && "General Clean"}
                     {item.service === "end of lease" && "End of Lease"}
                     {item.service === "eol" && "End of Lease"}
                   </Box>

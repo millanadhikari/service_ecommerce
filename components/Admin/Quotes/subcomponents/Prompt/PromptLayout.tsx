@@ -13,7 +13,7 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 
-const PromptLayout = ({ isOpen, onClose, layout, isLoading }) => {
+const PromptLayout = ({ isOpen, onClose }) => {
   return (
     <Box>
       <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose}>
@@ -37,7 +37,7 @@ const PromptLayout = ({ isOpen, onClose, layout, isLoading }) => {
               bg="blue.700"
               px={8}
               size="sm"
-              onClick={layout}
+              // onClick={layout}
               fontSize="13px"
               _hover={{ bg: "blue.800" }}
               _focus={{ outline: "none" }}
@@ -45,7 +45,7 @@ const PromptLayout = ({ isOpen, onClose, layout, isLoading }) => {
               rounded="full"
               variant="ghost"
             >
-              {isLoading ? <Spinner /> : "Confirm"}
+             Confirm
             </Button>
             <Button
               size="sm"
