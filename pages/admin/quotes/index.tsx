@@ -111,7 +111,10 @@ const Quotes = () => {
 
   const onSubmit = async () => {
     setLoading(true);
-    const result = await axios.post("https://wedo-backend.herokuapp.com/v1/quote", display);
+    const result = await axios.post(
+      "https://wedo-backend.herokuapp.com/v1/quote",
+      display
+    );
     console.log("hey", result.data.status);
     if (result.data.status === "success") {
       Socket?.emit("sendNotification", {
@@ -150,7 +153,9 @@ const Quotes = () => {
   const deleteQuote = async () => {
     setConfirmDelete(!confirmDelete);
     const id = selected[0];
-    const result = await axios.delete(`https://wedo-backend.herokuapp.com/v1/quote/${id}`);
+    const result = await axios.delete(
+      `https://wedo-backend.herokuapp.com/v1/quote/${id}`
+    );
     if (result.data.status === "success") {
       toast({
         position: "top-right",

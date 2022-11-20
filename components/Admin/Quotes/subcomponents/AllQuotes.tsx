@@ -133,7 +133,7 @@ const AllQuotes = ({
         </Button>
       </Flex>
       <QuotesTable selected={selected} setSelected={setSelected} />
-      <PromptLayout isOpen={isOpen} onClose={onClose} />
+      {/* <PromptLayout isOpen={isOpen} onClose={onClose} /> */}
     </Box>
   );
 };
