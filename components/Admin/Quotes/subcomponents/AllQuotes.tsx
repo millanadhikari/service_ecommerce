@@ -20,6 +20,9 @@ import QuotesTable from "./QuotesTable";
 const AllQuotes = ({
   confirmDelete,
   setConfirmDelete,
+  confirmBook,
+  setConfirmBook,
+
   selected,
   setSelected,
   search,
@@ -125,6 +128,7 @@ const AllQuotes = ({
           rounded="full"
           bg="blue.700"
           color="white"
+          onClick={() => setConfirmBook(!confirmBook)}
           px={6}
           letterSpacing="1px"
           fontSize="13px"

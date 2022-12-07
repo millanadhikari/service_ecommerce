@@ -19,7 +19,12 @@ import React, { useEffect, useState } from "react";
 import Calendar from "react-calendar";
 
 const ScheduleTier = ({ display, setDisplay }) => {
-  const [value, onChange] = useState(new Date());
+  let lm = new Date(display.bookingDate);
+  console.log("now", lm);
+  console.log("never", new Date());
+  console.log("main", display);
+
+  const [value, onChange] = useState(lm);
   const [open, setOpen] = useState(false);
   let tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 1);
@@ -27,6 +32,13 @@ const ScheduleTier = ({ display, setDisplay }) => {
   useEffect(() => {
     setDisplay({ ...display, bookingDate: value });
   }, [value]);
+
+  useEffect(() => {
+    const lam = () => {
+      lm ? onChange(() => lm) : new Date();
+    };
+    lam();
+  }, []);
   return (
     <Box my={4}>
       <Heading fontSize="15px" color="gray.600">
@@ -55,7 +67,7 @@ const ScheduleTier = ({ display, setDisplay }) => {
             >
               <Flex alignItems="center" gap={4}>
                 <CalendarIcon color="gray.500" />
-                <Text>{value.toString().split("", 16)}</Text>
+                <Text>{value?.toString().split("", 16)}</Text>
               </Flex>
               <ChevronDownIcon fontSize="18px" />
             </Flex>

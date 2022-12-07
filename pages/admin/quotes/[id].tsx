@@ -1,15 +1,64 @@
-import { Box, Button, Flex, Heading, Icon, Text } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import {
+  Box,
+  Button,
+  Flex,
+  Heading,
+  Icon,
+  Text,
+  toast,
+  useDisclosure,
+  useToast,
+} from "@chakra-ui/react";
 import { useRouter } from "next/router";
+import React, { useState, useEffect, useRef } from "react";
+
 import { AiOutlineDown } from "react-icons/ai";
 import { MdArrowBackIosNew } from "react-icons/md";
 import { useAppSelector } from "../../../components/Admin/app/hooks";
 import SubNav from "../../../components/Admin/Jobs/subcomponents/SubNav";
 import QuoteDetails from "../../../components/Admin/Quotes/QuoteDetails";
+import DrawerLayout from "../../../components/Admin/UI/DrawerLayout";
+import Infos from "../../../components/Admin/Quotes/subcomponents/AddQuote/Infos";
+import axios from "axios";
+
+const mockData = {
+  bathrooms: 0,
+  bedrooms: 0,
+  email: "",
+  companyName: "",
+  firstName: "",
+  lastName: "",
+  address1: "",
+  address2: "",
+  city: "",
+  state: "",
+  postcode: "",
+  startHour: "09",
+  startMin: "00",
+  startMode: "AM",
+  endHour: "12",
+  endMin: "00",
+  endMode: "PM",
+  bookingDate: new Date(),
+  subscription: "One Time Cleaning",
+  customerNotes: "",
+  service: "End of Lease",
+  notes: [],
+  phone: "",
+  products: [],
+  quoteStatus: "",
+};
 
 const BookingDetail = ({ data }) => {
   const router = useRouter();
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const btnRef = React.useRef();
+  const [isLoading, setLoading] = useState<Boolean>(false);
+  const [display, setDisplay] = useState(mockData);
+
   const details = data.result[0];
+  const toast = useToast();
+
   const sidebarOpen =
     useAppSelector((state) => state.user.sidebarOpen) || undefined;
 
@@ -17,6 +66,51 @@ const BookingDetail = ({ data }) => {
     let l = new Date(ok);
     return <Text>{l.toString().substring(0, 16)}</Text>;
   };
+
+  const onSubmit = async () => {
+    setLoading(true);
+    const result = await axios.put(
+      `http://localhost:3001/v1/quote/${display._id}`,
+      display
+    );
+    console.log("hey", result.data.status);
+    if (result.data.status === "success") {
+      toast({
+        position: "bottom-left",
+        render: () => (
+          <Box w={"250px"} bg="white" rounded="xl" mt={4}>
+            <Text
+              color="white"
+              py={2}
+              fontWeight="semibold"
+              roundedTop={"xl"}
+              bg="blue.700"
+              textAlign="center"
+            >
+              Alert
+            </Text>
+            <Text fontSize="13px" py={4} px={4}>
+              Successfully edited quote.
+            </Text>
+          </Box>
+        ),
+        duration: 6000,
+        isClosable: true,
+      });
+
+      setLoading(false);
+
+      onClose();
+      location.reload();
+    }
+  };
+
+  useEffect(() => {
+    const maintainData = () => {
+      setDisplay({ ...details });
+    };
+    maintainData();
+  }, []);
 
   return (
     <Box
@@ -80,6 +174,7 @@ const BookingDetail = ({ data }) => {
             _hover={{ bg: "yellow.500" }}
             px={6}
             py={3}
+            onClick={onOpen}
             rounded="full"
             fontSize="12px"
             bg="#ffba4b"
@@ -90,6 +185,17 @@ const BookingDetail = ({ data }) => {
         </Flex>
       </Flex>
       <QuoteDetails details={details} />
+      <DrawerLayout
+        isOpen={isOpen}
+        onClose={onClose}
+        ref={btnRef}
+        title="Edit Quote"
+        onSubmit={onSubmit}
+        isLoading={isLoading}
+        setLoading={setLoading}
+      >
+        <Infos display={display} setDisplay={setDisplay} />
+      </DrawerLayout>
     </Box>
   );
 };

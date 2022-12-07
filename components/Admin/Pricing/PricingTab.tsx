@@ -1,32 +1,7 @@
-import {
-  Box,
-  Flex,
-  Tab,
-  TabList,
-  TabPanel,
-  TabPanels,
-  Tabs,
-} from "@chakra-ui/react";
-import React, { useState, useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../app/hooks";
-import NotAssigned from "../Jobs/subcomponents/NotAssigned";
-import Unpaid from "../Jobs/subcomponents/Unpaid";
-import { fetchAllQuotes } from "../QuotePage/quoteAction";
-import QuotePagination from "../QuotePage/QuotePagination";
-import AllQuotes from "./subcomponents/AllQuotes";
+import { Flex, Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
+import AllPricing from "./AllPricing";
 
-const QuoteTab = ({
-  selected,
-  setSelected,
-  confirmDelete,
-  setConfirmDelete,
-  confirmBook,
-  setConfirmBook,
-  search,
-  setSearch,
-  pageNumber,
-  setPageNumber,
-}) => {
+const PricingTab = ({product}) => {
   return (
     <Tabs variant="unstyled" bg="white" py={4} mr={10} shadow="md">
       <TabList
@@ -50,7 +25,7 @@ const QuoteTab = ({
             borderColor: "purple.500",
           }}
         >
-          All
+          Products
         </Tab>
         <Tab
           mr={10}
@@ -67,12 +42,12 @@ const QuoteTab = ({
             borderColor: "purple.500",
           }}
         >
-          Drafts
+          Extras
         </Tab>
       </TabList>
-      <TabPanels>
-        <TabPanel>
-          <AllQuotes
+      <TabPanels >
+        <TabPanel >
+          {/* <AllQuotes
             confirmDelete={confirmDelete}
             setConfirmDelete={setConfirmDelete}
             confirmBook={confirmBook}
@@ -81,23 +56,24 @@ const QuoteTab = ({
             setSelected={setSelected}
             search={search}
             setSearch={setSearch}
-          />
+          /> */}
+          <AllPricing product={product}/>
         </TabPanel>
         <TabPanel>
-          <NotAssigned />
+          {/* <NotAssigned /> */}
         </TabPanel>
         <TabPanel>
-          <Unpaid />
+          {/* <Unpaid /> */}
         </TabPanel>
       </TabPanels>
-      <Flex my={2} w="100%">
-        <QuotePagination
+      <Flex  my={2} w="100%">
+        {/* <QuotePagination
           pageNumber={pageNumber}
           setPageNumber={setPageNumber}
-        />
+        /> */}
       </Flex>
     </Tabs>
   );
 };
 
-export default QuoteTab;
+export default PricingTab

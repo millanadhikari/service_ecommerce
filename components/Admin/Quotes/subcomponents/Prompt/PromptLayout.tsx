@@ -13,7 +13,7 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 
-const PromptLayout = ({ isOpen, onClose, layout, isLoading }) => {
+const PromptLayout = ({ isOpen, onClose, layout, isLoading, title }) => {
   return (
     <Box>
       <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose}>
@@ -26,7 +26,7 @@ const PromptLayout = ({ isOpen, onClose, layout, isLoading }) => {
           <ModalBody borderBottom="1px solid gray" borderColor="gray.300">
             <Box textAlign={"center"} fontSize="14px" py={6}>
               <Text>
-                Do you want to delete this quote? This cannot be undone.
+                Do you want to {title} this quote? This cannot be undone.
               </Text>
               <Text> If so, please CONFIRM below </Text>
             </Box>

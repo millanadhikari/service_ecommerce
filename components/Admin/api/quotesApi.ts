@@ -5,9 +5,13 @@ const rootUrl = "http://localhost:3001/v1/";
 
 const closeTicketUrl = rootUrl + "ticket/close-ticket/";
 
-export const getAllQuotes = (pageNumber: number, search: string, filter:string) => {
+export const getAllQuotes = (
+  pageNumber: number,
+  search: string,
+  filter: string
+) => {
   const bookingsUrl =
-    rootUrl + `quote/all?page=${pageNumber}&limit=5&search=${search}&filter=${filter}`;
+    rootUrl + `quote/all?page=${pageNumber}&limit=5&search=${search}`;
   return new Promise(async (resolve, reject) => {
     try {
       const result = await axios.get(bookingsUrl);

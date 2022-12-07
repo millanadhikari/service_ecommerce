@@ -42,7 +42,7 @@ const DrawerLayout = ({
               fontFamily="sans-serif"
               ml={-6}
             >
-              Add Quote
+              {title}
             </DrawerHeader>
             <DrawerCloseButton _focus={{ outline: "none" }} />
           </Box>

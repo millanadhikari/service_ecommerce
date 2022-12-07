@@ -97,6 +97,8 @@ const Quotes = () => {
   const dispatch = useAppDispatch();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [confirmDelete, setConfirmDelete] = useState<Boolean>(false);
+  const [confirmBook, setConfirmBook] = useState<Boolean>(false);
+
   const [filter, setFilter] = useState(new Date());
 
   const [isLoading, setLoading] = useState<Boolean>(false);
@@ -111,11 +113,7 @@ const Quotes = () => {
 
   const onSubmit = async () => {
     setLoading(true);
-    const result = await axios.post(
-      "https://wedo-backend.herokuapp.com/v1/quote",
-      display
-    );
-    console.log("hey", result.data.status);
+    const result = await axios.post("http://localhost:3001/v1/quote", display);
     if (result.data.status === "success") {
       Socket?.emit("sendNotification", {
         senderName: userName,
@@ -164,6 +162,24 @@ const Quotes = () => {
         isClosable: true,
       });
       setConfirmDelete(!confirmDelete);
+      // prompt("Success");
+      dispatch(fetchAllQuotes(pageNumber, search, filter));
+      setSelected([]);
+    }
+  };
+
+  const bookQuote = async () => {
+    setConfirmBook(!confirmBook);
+    const id = selected[0];
+    const result = await axios.post(`http://localhost:3001/v1/booking/${id}`);
+    if (result.data.status === "success") {
+      toast({
+        position: "top-right",
+        render: () => customerToast(),
+        duration: 6000,
+        isClosable: true,
+      });
+      setConfirmBook(!confirmBook);
       // prompt("Success");
       dispatch(fetchAllQuotes(pageNumber, search, filter));
       setSelected([]);
@@ -219,6 +235,8 @@ const Quotes = () => {
         <QuoteTab
           confirmDelete={confirmDelete}
           setConfirmDelete={setConfirmDelete}
+          confirmBook={confirmBook}
+          setConfirmBook={setConfirmBook}
           selected={selected}
           setSelected={setSelected}
           search={search}
@@ -242,6 +260,15 @@ const Quotes = () => {
         isOpen={confirmDelete}
         onClose={setConfirmDelete}
         layout={deleteQuote}
+        title="delete"
+        isLoading={isLoading}
+      />
+
+      <PromptLayout
+        isOpen={confirmBook}
+        onClose={setConfirmBook}
+        layout={bookQuote}
+        title="book"
         isLoading={isLoading}
       />
     </Box>
