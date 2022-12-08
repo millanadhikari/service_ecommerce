@@ -55,8 +55,8 @@ const BookingDetail = ({ data }) => {
   const btnRef = React.useRef();
   const [isLoading, setLoading] = useState<Boolean>(false);
   const [display, setDisplay] = useState(mockData);
-
-  const details = data.result[0];
+  
+  let details = data.result[0];
   const toast = useToast();
 
   const sidebarOpen =
@@ -70,10 +70,10 @@ const BookingDetail = ({ data }) => {
   const onSubmit = async () => {
     setLoading(true);
     const result = await axios.put(
-      `http://localhost:3001/v1/quote/${display._id}`,
+      `https://wedo-backend.herokuapp.com/v1/quote/${details._id}`,
       display
     );
-    console.log("hey", result.data.status);
+    console.log('haha', result.data)
     if (result.data.status === "success") {
       toast({
         position: "bottom-left",
@@ -101,7 +101,7 @@ const BookingDetail = ({ data }) => {
       setLoading(false);
 
       onClose();
-      location.reload();
+      router.replace(router.asPath)
     }
   };
 
@@ -110,7 +110,11 @@ const BookingDetail = ({ data }) => {
       setDisplay({ ...details });
     };
     maintainData();
-  }, []);
+  }, [data]);
+
+  // useEffect(() => {
+  //   details = data.result[0]
+  // }, [data])
 
   return (
     <Box
@@ -245,8 +249,8 @@ export async function getServerSideProps(ctx) {
   const { id } = params;
 
   // Fetch data from external API
+  const res = await fetch(`http://localhost:3001/v1/quote/${id}`);
   // const res = await fetch(`http://localhost:3001/v1/quote/${id}`);
-  const res = await fetch(`https://wedo-backend.herokuapp.com/v1/quote/${id}`);
   const data = await res.json();
   console.log(data);
 

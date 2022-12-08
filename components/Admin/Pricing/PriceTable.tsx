@@ -37,7 +37,6 @@ const PriceTable = ({ product, onOpen, isOpen, onClose }) => {
       `https://wedo-backend.herokuapp.com/v1/product/${laya[0]._id}`,
       newProduct
     );
-    console.log("hey", result.data.status);
     if (result.data.status === "success") {
       toast({
         position: "bottom-left",
@@ -47,7 +46,7 @@ const PriceTable = ({ product, onOpen, isOpen, onClose }) => {
               color="white"
               py={2}
               fontWeight="semibold"
-              roundedTop={"xl"}
+              roundedTop={"xl"} 
               bg="blue.700"
               textAlign="center"
             >
