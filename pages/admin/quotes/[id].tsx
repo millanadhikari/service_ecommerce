@@ -249,7 +249,7 @@ export async function getServerSideProps(ctx) {
   const { id } = params;
 
   // Fetch data from external API
-  const res = await fetch(`http://localhost:3001/v1/quote/${id}`);
+  const res = await fetch(`https://wedo-backend.herokuapp.com/v1/quote/${id}`);
   // const res = await fetch(`http://localhost:3001/v1/quote/${id}`);
   const data = await res.json();
   console.log(data);

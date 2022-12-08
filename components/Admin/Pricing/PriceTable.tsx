@@ -14,6 +14,7 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import axios from "axios";
+import { useRouter } from "next/router";
 import React, { useState, useEffect } from "react";
 import { AiOutlineQuestionCircle } from "react-icons/ai";
 import DrawerLayout from "../UI/DrawerLayout";
@@ -24,6 +25,7 @@ const PriceTable = ({ product, onOpen, isOpen, onClose }) => {
   const ltf = React.useRef();
   const [laya, setLaya] = useState([]);
   const toast = useToast();
+  const router = useRouter();
 
   const onSubmit = async () => {
     setLoading(true);
@@ -64,7 +66,7 @@ const PriceTable = ({ product, onOpen, isOpen, onClose }) => {
       setLoading(false);
 
       onClose();
-      location.reload();
+      router.replace(router.asPath)
     }
   };
   const onLaya = ({ item }) => {
