@@ -1,7 +1,25 @@
-import { Flex, Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
+  useDisclosure,
+} from "@chakra-ui/react";
 import AllPricing from "./AllPricing";
+import React, { useState, useEffect, useRef } from "react";
+import DrawerLayout from "../UI/DrawerLayout";
+import ProductInfo from "./ProductInfo";
 
-const PricingTab = ({product}) => {
+const PricingTab = ({ product }) => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const btnRef = React.useRef();
+  const [isLoading, setLoading] = useState<Boolean>(false);
+
+  const onSubmit = () => {};
+
   return (
     <Tabs variant="unstyled" bg="white" py={4} mr={10} shadow="md">
       <TabList
@@ -45,8 +63,8 @@ const PricingTab = ({product}) => {
           Extras
         </Tab>
       </TabList>
-      <TabPanels >
-        <TabPanel >
+      <TabPanels>
+        <TabPanel>
           {/* <AllQuotes
             confirmDelete={confirmDelete}
             setConfirmDelete={setConfirmDelete}
@@ -57,23 +75,43 @@ const PricingTab = ({product}) => {
             search={search}
             setSearch={setSearch}
           /> */}
-          <AllPricing product={product}/>
+          <AllPricing product={product} onOpen={onOpen} isOpen={isOpen} onClose={onClose} />
         </TabPanel>
-        <TabPanel>
-          {/* <NotAssigned /> */}
-        </TabPanel>
-        <TabPanel>
-          {/* <Unpaid /> */}
-        </TabPanel>
+        <TabPanel>{/* <NotAssigned /> */}</TabPanel>
+        <TabPanel>{/* <Unpaid /> */}</TabPanel>
       </TabPanels>
-      <Flex  my={2} w="100%">
-        {/* <QuotePagination
-          pageNumber={pageNumber}
-          setPageNumber={setPageNumber}
-        /> */}
-      </Flex>
+
+
+
     </Tabs>
   );
 };
 
-export default PricingTab
+export default PricingTab;
+
+
+
+      
+// {product.map((item) => (
+//   <Flex my={2} w="100%" id={item._id}>
+//     {/* <QuotePagination
+//     pageNumber={pageNumber}
+//     setPageNumber={setPageNumber}
+//   /> */}
+
+//     <Box>
+//       <DrawerLayout
+//         isOpen={isOpen}
+//         onClose={onClose}
+//         ref={btnRef}
+//         title="Manage Product"
+//         onSubmit={onSubmit}
+//         isLoading={isLoading}
+//         setLoading={setLoading}
+//       >
+//         {" "}
+//         <ProductInfo item={item} />
+//       </DrawerLayout>
+//     </Box>
+//   </Flex>
+// ))}

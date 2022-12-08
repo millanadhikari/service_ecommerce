@@ -15,15 +15,16 @@ const Pricing = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
   const [product, setProduct] = useState([]);
+  
 
   useEffect(() => {
     const fetchProducts = async () => {
       await axios
         .get("https://wedo-backend.herokuapp.com/v1/product")
         .then((data) => {
-            console.log(data)
+          console.log(data);
           setProduct(data?.data.result);
-          console.log(product)
+          console.log(product);
         });
     };
 

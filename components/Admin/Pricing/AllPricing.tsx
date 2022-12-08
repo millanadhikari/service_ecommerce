@@ -1,9 +1,16 @@
 import { SearchIcon } from "@chakra-ui/icons";
-import { Box, Button, Flex, Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Flex,
+  Input,
+  InputGroup,
+  InputLeftElement,
+} from "@chakra-ui/react";
 import React from "react";
 import PriceTable from "./PriceTable";
 
-const AllPricing = ({product}) => {
+const AllPricing = ({ product, onOpen, isOpen, onClose }) => {
   return (
     <Box>
       <Flex alignItems="center" gap={2} my={6}>
@@ -38,7 +45,12 @@ const AllPricing = ({product}) => {
           Search
         </Button>
       </Flex>
-      <PriceTable product={product}/>
+      <PriceTable
+        product={product}
+        onOpen={onOpen}
+        isOpen={isOpen}
+        onClose={onClose}
+      />
     </Box>
   );
 };
