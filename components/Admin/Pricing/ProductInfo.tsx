@@ -1,10 +1,17 @@
-import { Box, Flex, Input, Select, Text } from "@chakra-ui/react";
-import React from "react";
+import { ChatIcon } from "@chakra-ui/icons";
+import { Box, Flex, Icon, Input, Select, Text } from "@chakra-ui/react";
+import React, { useState } from "react";
 import { AiOutlineQuestionCircle } from "react-icons/ai";
+import { MdGroupWork } from "react-icons/md";
 import StandardInput from "../Quotes/subcomponents/AddQuote/StandardInput";
 
+const data = [
+  { id: 1, title: MdGroupWork },
+  { id: 2, title: ChatIcon },
+];
 const ProductInfo = ({ item, setLaya }) => {
   const handleChange = () => {};
+  const [icon, setIcon] = useState([]);
   return (
     <Box>
       <Text fontWeight="semibold">Product Info</Text>
@@ -55,7 +62,7 @@ const ProductInfo = ({ item, setLaya }) => {
         <Select
           my={2}
           rounded="full"
-          onChange={(e) => setLaya([{...item[0], status:e.target.value}])}
+          onChange={(e) => setLaya([{ ...item[0], status: e.target.value }])}
           value={item[0]?.status}
           name="state"
           size="sm"
@@ -69,6 +76,26 @@ const ProductInfo = ({ item, setLaya }) => {
           <option value="Inactive">Inactive</option>
         </Select>
       </Box>
+      {/* <Box my={3}>
+        <Flex alignItems="center" gap={2}>
+          <Text>Icon 1</Text>
+          <Box color="gray.500" cursor="pointer" _hover={{ color: "blue.600" }}>
+            <AiOutlineQuestionCircle />
+          </Box>
+        </Flex>
+        <Box
+          border="1px solid gray"
+          p={5}
+          rounded="full"
+          borderColor="gray.400"
+          my={2}
+          mx={10}
+        >
+          {data.map((item) => (
+            <Icon as={item?.title} w={8} h={8} color="blue.600" onClick={()=> setIcon(item)} />
+          ))}
+        </Box>
+      </Box> */}
     </Box>
   );
 };

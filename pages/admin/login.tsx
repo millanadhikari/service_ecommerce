@@ -23,8 +23,8 @@ import { io, Socket } from "socket.io-client";
 import { getSocketSuccess } from "../../components/Admin/user/userSlice";
 
 const Login = () => {
-  const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
   const [errorEmail, setErroremail] = useState(false);
   const [errorPassword, setErrorpassword] = useState();
 
@@ -36,14 +36,12 @@ const Login = () => {
   const Socket = useAppSelector((state) => state.user.Socket);
 
   const handleChange = (e) => {
-     setEmail(e.target.value)
-    
+    setEmail(e.target.value);
   };
 
   const handlePassword = (e) => {
-    setPassword(e.target.value)
-   
- };
+    setPassword(e.target.value);
+  };
   const handleLogin = async (e) => {
     e.preventDefault();
 
@@ -54,6 +52,7 @@ const Login = () => {
 
     try {
       const isAuth: any = await userLogin({ email, password });
+      console.log("heylkjdf", isAuth);
       if (isAuth.status === "error") {
         setErroremail(true);
         setErrorpassword(isAuth.message);
@@ -62,7 +61,7 @@ const Login = () => {
       dispatch(loginSuccess());
       dispatch(getUserProfile());
       // setSocket(io("http://localhost:3001"));
-      dispatch(getSocketSuccess(io("https://wedo-backend.herokuapp.com")));
+      // dispatch(getSocketSuccess(io("https://wedo-backend.herokuapp.com")));
       // socket?.emit("sendNotification", userId);
 
       router.push("/admin/quotes");
@@ -71,11 +70,11 @@ const Login = () => {
     }
   };
 
-  useEffect(() => {
-    Socket?.emit("newUser", userId);
-    // console.log("milen", socket);
-    // console.log("milen", userId);
-  }, [Socket, userId]);
+  // useEffect(() => {
+  //   Socket?.emit("newUser", userId);
+  //   // console.log("milen", socket);
+  //   // console.log("milen", userId);
+  // }, [Socket, userId]);
   return (
     <Box
       position="relative"
@@ -145,8 +144,8 @@ const Login = () => {
           <Input
             // mt={2.5}
             value={email}
-            name='email'
-            type='email'
+            name="email"
+            type="email"
             onChange={handleChange}
           />
           {/* {errorEmail && (

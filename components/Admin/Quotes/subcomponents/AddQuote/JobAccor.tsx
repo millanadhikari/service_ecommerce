@@ -100,6 +100,8 @@ const JobAccor = ({ display, setDisplay }) => {
   const [extras, setExtras] = useState(data);
   const [showHalf, setShowHalf] = useState([]);
 
+  console.log(display)
+
   let BedValue = display.products.find((item) => item.title === "Bedrooms");
   let bed = BedValue.quantity;
 

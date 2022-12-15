@@ -89,7 +89,7 @@ const newData = {
 const Quotes = () => {
   const sidebarOpen =
     useAppSelector((state) => state.user.sidebarOpen) || undefined;
-  const [all, setAll] = useState([]);
+  const [all, setAll] = useState();
   const [selected, setSelected] = useState([]);
   const [search, setSearch] = useState("");
   const [display, setDisplay] = useState(mockData);
@@ -113,7 +113,7 @@ const Quotes = () => {
 
   const onSubmit = async () => {
     setLoading(true);
-    const result = await axios.post("http://localhost:3001/v1/quote", display);
+    const result = await axios.post("https://wedo-backend.herokuapp.com/v1/quote", display);
     if (result.data.status === "success") {
       Socket?.emit("sendNotification", {
         senderName: userName,
@@ -171,7 +171,7 @@ const Quotes = () => {
   const bookQuote = async () => {
     setConfirmBook(!confirmBook);
     const id = selected[0];
-    const result = await axios.post(`http://localhost:3001/v1/booking/${id}`);
+    const result = await axios.post(`https://wedo-backend.herokuapp.com/booking/${id}`);
     if (result.data.status === "success") {
       toast({
         position: "top-right",
@@ -202,7 +202,7 @@ const Quotes = () => {
 
   useEffect(() => {
     dispatch(fetchAllQuotes(pageNumber, search, filter));
-    setAll(quotes);
+    // setAll(quotes);
   }, [dispatch, pageNumber, search, display]);
 
   useEffect(() => {

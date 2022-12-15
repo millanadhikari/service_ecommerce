@@ -1,7 +1,7 @@
 import axios from "axios";
 
-// const rootUrl = "https://wedo-backend.herokuapp.com/v1/";
-const rootUrl = "http://localhost:3001/v1/";
+const rootUrl = "https://wedo-backend.herokuapp.com/v1/";
+// const rootUrl = "http://localhost:3001/v1/";
 
 const loginUrl = rootUrl + "customer/login";
 const newAccessJWT = rootUrl + "customer/tokens";
@@ -13,8 +13,9 @@ export const userRegistration = (frmData) => {
   return new Promise(async (resolve, reject) => {
     try {
       const res = await axios.post(userProfileUrl, frmData);
-
+      console.log(res.data)
       resolve(res.data);
+
 
       if (res.data.status === "success") {
         resolve(res.data);
@@ -59,8 +60,8 @@ export const fetchUser = () => {
           Authorization: accessJWT,
         },
       });
-
-      resolve(res.data);
+        console.log('handyman', res.data.user._doc)
+      resolve(res.data.user._doc);
     } catch (error) {
       console.log(error);
       reject(error.message);

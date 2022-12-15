@@ -12,7 +12,17 @@ import {
 import React from "react";
 import JobsTable from "./JobsTable";
 
-const AllJobs = ({ all, setAll, selected, setSelected }) => {
+const AllJobs = ({
+  confirmDelete,
+  setConfirmDelete,
+  confirmBook,
+  setConfirmBook,
+
+  selected,
+  setSelected,
+  search,
+  setSearch,
+}) => {
   return (
     <Box>
       <Flex alignItems="center" gap={2} my={3}>
@@ -26,6 +36,10 @@ const AllJobs = ({ all, setAll, selected, setSelected }) => {
             rounded="full"
             type="tel"
             placeholder="Search Jobs"
+            value={search}
+
+            onChange={(e) => setSearch(e.target.value)}
+
             _placeholder={{
               color: "gray.300",
               fontWeight: "semibold",
@@ -72,7 +86,7 @@ const AllJobs = ({ all, setAll, selected, setSelected }) => {
           letterSpacing="1px"
           fontSize="13px"
         >
-          {selected.length} Selected
+          {selected.length ? selected.length : 0} Selected
         </Button>
         <Button
           isDisabled={selected.length < 1}
@@ -80,12 +94,15 @@ const AllJobs = ({ all, setAll, selected, setSelected }) => {
           _hover={{ bg: "blue.800" }}
           rounded="full"
           bg="blue.700"
+          onClick={() => setConfirmDelete(!confirmDelete)}
+
           color="white"
           px={6}
           letterSpacing="1px"
           fontSize="13px"
         >
-          Delete jobs
+                    {selected.length <= 1 ? "Delete job" : "Delete jobs"}
+
         </Button>
         <Button
           isDisabled={selected.length < 1}
@@ -115,10 +132,7 @@ const AllJobs = ({ all, setAll, selected, setSelected }) => {
         </Button>
       </Flex>
       <JobsTable
-        all={all}
-        setAll={setAll}
-        selected={selected}
-        setSelected={setSelected}
+       selected={selected} setSelected={setSelected}
       />
     </Box>
   );

@@ -1,16 +1,115 @@
-import { Box, Button, Flex, Heading, Icon, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Flex,
+  Heading,
+  Icon,
+  Text,
+  useDisclosure,
+  useToast,
+} from "@chakra-ui/react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { AiOutlineDown } from "react-icons/ai";
 import { MdArrowBackIosNew } from "react-icons/md";
 import { useAppSelector } from "../../../components/Admin/app/hooks";
 import JobDetails from "../../../components/Admin/Jobs/subcomponents/JobDetails";
 import SubNav from "../../../components/Admin/Jobs/subcomponents/SubNav";
+import axios from "axios";
+import DrawerLayout from "../../../components/Admin/UI/DrawerLayout";
+import Infos from "../../../components/Admin/Quotes/subcomponents/AddQuote/Infos";
 
-const BookingDetail = () => {
+const mockData = {
+  bathrooms: 0,
+  bedrooms: 0,
+  email: "",
+  companyName: "",
+  firstName: "",
+  lastName: "",
+  address1: "",
+  address2: "",
+  city: "",
+  state: "",
+  postcode: "",
+  startHour: "09",
+  startMin: "00",
+  startMode: "AM",
+  endHour: "12",
+  endMin: "00",
+  endMode: "PM",
+  bookingDate: new Date(),
+  subscription: "One Time Cleaning",
+  bookingReference: "",
+  customerNotes: "",
+  service: "End of Lease",
+  notes: [],
+  phone: "",
+  products: [],
+  quoteStatus: "",
+};
+const QuoteDetail = ({ data }) => {
   const router = useRouter();
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const btnRef = React.useRef();
+  const [isLoading, setLoading] = useState<Boolean>(false);
+  const [display, setDisplay] = useState(mockData);
+
+  let details = data.result[0];
+  const toast = useToast();
 
   const sidebarOpen =
     useAppSelector((state) => state.user.sidebarOpen) || undefined;
+
+  const changeDateFormat = (ok) => {
+    let l = new Date(ok);
+    return <Text>{l.toString().substring(0, 16)}</Text>;
+  };
+
+  const onSubmit = async () => {
+    setLoading(true);
+    const result = await axios.put(
+      `https://wedo-backend.herokuapp.com/v1/booking/${details._id}`,
+      display
+    );
+    console.log(result.data)
+    if (result.data.status === "success") {
+      toast({
+        position: "bottom-left",
+        render: () => (
+          <Box w={"250px"} bg="white" rounded="xl" mt={4}>
+            <Text
+              color="white"
+              py={2}
+              fontWeight="semibold"
+              roundedTop={"xl"}
+              bg="blue.700"
+              textAlign="center"
+            >
+              Alert
+            </Text>
+            <Text fontSize="13px" py={4} px={4}>
+              Successfully edited quote.
+            </Text>
+          </Box>
+        ),
+        duration: 6000,
+        isClosable: true,
+      });
+
+      setLoading(false);
+
+      onClose();
+      router.replace(router.asPath);
+    }
+  };
+
+  useEffect(() => {
+    const maintainData = () => {
+      setDisplay({ ...details });
+    };
+    maintainData();
+  }, [data]);
+
   return (
     <Box
       pl={{ base: 0, md: sidebarOpen ? "320px" : "115px" }}
@@ -36,10 +135,10 @@ const BookingDetail = () => {
       <Flex justifyContent="space-between" mr={2} mx={{ base: "0" }} my={2}>
         <Box>
           <Heading color="gray.600" fontSize="27px">
-            #21212020220
+            #{display?.bookingReference}
           </Heading>
           <Text mt={3} color="gray.500" fontSize="14px">
-            20, September 2022
+            {new Date(display.bookingDate).toString().substring(0, 16)}
           </Text>
         </Box>
         <Flex
@@ -71,6 +170,7 @@ const BookingDetail = () => {
             _hover={{ bg: "yellow.500" }}
             px={6}
             py={3}
+            onClick={onOpen}
             rounded="full"
             fontSize="12px"
             bg="#ffba4b"
@@ -80,12 +180,24 @@ const BookingDetail = () => {
           </Button>
         </Flex>
       </Flex>
+      <JobDetails details={details} />
+      <DrawerLayout
+        isOpen={isOpen}
+        onClose={onClose}
+        ref={btnRef}
+        title="Edit Jobs"
+        onSubmit={onSubmit}
+        isLoading={isLoading}
+        setLoading={setLoading}
+      >
+        <Infos display={display} setDisplay={setDisplay} />
+      </DrawerLayout>
       {/* <JobDetails /> */}
     </Box>
   );
 };
 
-export default BookingDetail;
+export default QuoteDetail;
 
 const subMenu = () => {
   return (
@@ -123,3 +235,20 @@ const subMenu = () => {
     </Flex>
   );
 };
+
+// This gets called on every request
+export async function getServerSideProps(ctx) {
+  const { params } = ctx;
+  const { id } = params;
+
+  // Fetch data from external API
+  const res = await fetch(`https://wedo-backend.herokuapp.com/v1/quote/${id}`);
+  // const res = await fetch(`http://localhost:3001/v1/booking/${id}`);
+  const data = await res.json();
+  console.log(data);
+
+  // Pass data to the page via props
+  return { props: { data } };
+}
+
+// const rootUrl = "https://wedo-backend.herokuapp.com/v1/";

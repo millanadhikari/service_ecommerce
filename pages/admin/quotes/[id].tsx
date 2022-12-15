@@ -21,6 +21,8 @@ import DrawerLayout from "../../../components/Admin/UI/DrawerLayout";
 import Infos from "../../../components/Admin/Quotes/subcomponents/AddQuote/Infos";
 import axios from "axios";
 
+
+
 const mockData = {
   bathrooms: 0,
   bedrooms: 0,
@@ -73,7 +75,6 @@ const BookingDetail = ({ data }) => {
       `https://wedo-backend.herokuapp.com/v1/quote/${details._id}`,
       display
     );
-    console.log('haha', result.data)
     if (result.data.status === "success") {
       toast({
         position: "bottom-left",

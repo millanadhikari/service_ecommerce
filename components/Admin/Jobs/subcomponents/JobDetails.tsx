@@ -36,7 +36,7 @@ const JobDetails = ({ details }) => {
         <Flex w="100%" flexDirection="column" gap={6}>
           <Box bg="white" py={7} px={6} shadow="md">
             <Text color="blue.500" fontSize="16px" fontWeight="semibold">
-              {details.name}
+              {details?.firstName}
             </Text>
             <Text fontSize="12px" mt={2} color="gray.500">
               78 Cannon Hill
@@ -49,10 +49,10 @@ const JobDetails = ({ details }) => {
               4182
             </Text>
             <Text fontSize="12px" color="gray.500">
-              {details.phone ? details.phone : "0416 129 129"}
+              {details?.phone ? details.phone : "0416 129 129"}
             </Text>
             <Text fontSize="12px" color="gray.500">
-              {details.email}
+              {details?.email}
             </Text>
           </Box>
           <JobTimer />
@@ -81,7 +81,7 @@ const JobDetails = ({ details }) => {
                       fontWeight="semibold"
                       mr={2}
                     >
-                      {details.quoteStatus}
+                      {details?.bookingStatus}
                     </Text>
                   </Flex>
                 </MenuButton>
@@ -242,13 +242,13 @@ const detailsComp = ({ details }) => {
         borderColor="gray.300"
       >
         <Text cursor="pointer" mb={2}>
-          {details.bedrooms}bd | {details.bathrooms}ba |
+          {details?.bedrooms}bd | {details?.bathrooms}ba |
         </Text>
         <Flex justifyContent="space-between">
           <Text cursor="pointer">Service Type</Text>
           <Text>
             {" "}
-            {details.service === "endoflease"
+            {details?.service === "endoflease"
               ? "End of Lease"
               : "General Clean"}
           </Text>
@@ -306,7 +306,7 @@ const detailsComp = ({ details }) => {
         borderColor="gray.300"
       >
         <Box>
-          <Text cursor="pointer">Customer quote notes</Text>
+          <Text cursor="pointer">Customer booking notes</Text>
           <Text mt={0.5}>No notes</Text>
         </Box>
       </Box>
@@ -378,7 +378,7 @@ const paymentDetails = ({ details }) => {
         <Flex justifyContent="space-between">
           <Text cursor="pointer">Sub Total</Text>
           <Text>
-            $ {details.subtotal.toString().substring(0, 3)}
+            $ {details?.subtotal.toString().substring(0, 3)}
             .00
           </Text>
         </Flex>
@@ -386,7 +386,7 @@ const paymentDetails = ({ details }) => {
           <Text cursor="pointer">Total</Text>
           <Text>
             {" "}
-            $ {details.subtotal.toString().substring(0, 3)}
+            $ {details?.subtotal.toString().substring(0, 3)}
             .00
           </Text>
         </Flex>
@@ -401,7 +401,7 @@ const paymentDetails = ({ details }) => {
         <Flex justifyContent="space-between">
           <Text cursor="pointer">To be paid by customer</Text>
           <Text>
-            $ {details.subtotal.toString().substring(0, 3)}
+            $ {details?.subtotal.toString().substring(0, 3)}
             .00
           </Text>
         </Flex>

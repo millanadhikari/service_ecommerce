@@ -4,7 +4,18 @@ import AllJobs from "./subcomponents/AllJobs";
 import NotAssigned from "./subcomponents/NotAssigned";
 import Unpaid from "./subcomponents/Unpaid";
 
-const JobsTab = ({all, setAll, selected, setSelected}) => {
+const JobsTab = ({
+  selected,
+  setSelected,
+  confirmDelete,
+  setConfirmDelete,
+  confirmBook,
+  setConfirmBook,
+  search,
+  setSearch,
+  pageNumber,
+  setPageNumber,
+}) => {
   return (
     <Tabs variant="unstyled" bg="white" py={4} mr={10} shadow="md">
       <TabList
@@ -67,7 +78,16 @@ const JobsTab = ({all, setAll, selected, setSelected}) => {
       </TabList>
       <TabPanels>
         <TabPanel>
-         <AllJobs all={all} setAll={setAll} selected={selected} setSelected={setSelected}/>
+          <AllJobs
+          confirmDelete={confirmDelete}
+          setConfirmDelete={setConfirmDelete}
+          confirmBook={confirmBook}
+          setConfirmBook={setConfirmBook}
+          selected={selected}
+          setSelected={setSelected}
+          search={search}
+          setSearch={setSearch}
+          />
         </TabPanel>
         <TabPanel>
           <NotAssigned />

@@ -20,13 +20,16 @@ import {
   AiOutlineCaretDown,
   AiOutlineMenuFold,
 } from "react-icons/ai";
+import { useRouter } from "next/router";
 const ProfilePopover = () => {
+  const router = useRouter();
+
   return (
     <Popover>
       <PopoverTrigger>
         <Flex gap={4} alignItems="center" cursor="pointer">
           <Text fontWeight="semibold" color="gray.600">
-            Milan
+            Milan 
           </Text>
           <Flex alignItems="center" gap={2}>
             <Image
@@ -74,6 +77,7 @@ const ProfilePopover = () => {
               fontWeight="semibold"
               color="gray.600"
               fontSize="14px"
+              onClick={()=>router.push('/admin/Viewprofile')}
             >
               View Profile
             </Text>
@@ -81,6 +85,7 @@ const ProfilePopover = () => {
               textAlign="center"
               color="gray.400"
               fontWeight="semibold"
+              onClick={() => prompt('hello')}
               cursor="pointer"
             >
               Sign Out

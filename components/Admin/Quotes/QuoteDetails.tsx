@@ -329,7 +329,7 @@ const detailsComp = ({ details }) => {
         borderColor="gray.300"
       >
         <Box>
-          <Text mb={1} cursor="pointer">
+          <Text mb={2} cursor="pointer">
             Extras
           </Text>
           {details.products ? (
@@ -341,7 +341,9 @@ const detailsComp = ({ details }) => {
                 justifyContent="space-between"
               >
                 <Text fontSize="12px" style={{ marginRight: "10px" }}>
-                  {lap.quantity > 0 && lap.description}
+                  {lap.quantity > 0 && lap.title}
+                  
+
                 </Text>
                 <Text fontWeight="light">
                   {lap.quantity > 0 && lap.quantity}

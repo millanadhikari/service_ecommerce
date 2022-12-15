@@ -115,7 +115,7 @@ const Sidebar = () => {
   const sidebarOpen =
     useAppSelector((state) => state.user.sidebarOpen) || undefined;
   const dispatch = useAppDispatch();
-  const Socket = useAppSelector((state) => state.user.Socket) 
+  const Socket = useAppSelector((state) => state.user.Socket);
 
   const Router = useRouter();
 
@@ -127,7 +127,7 @@ const Sidebar = () => {
     localStorage.removeItem("service_ecommerce");
     userLogout();
     // Socket?.on("disconnect", () => {});
-    Socket?.disconnect()
+    Socket?.disconnect();
     Router.replace("/admin/login");
   };
 
@@ -261,11 +261,14 @@ const Sidebar = () => {
                   h={9}
                   w={9}
                 >
-                  {user.user.name &&
-                    user.user.name
-                      .split(" ")
-                      .map((n) => n[0])
-                      .join("")}{" "}
+                  {user.user.firstName
+                    .split(" ")
+                    .map((n) => n[0])
+                    .join("")}
+                  {user.user.lastName
+                    .split(" ")
+                    .map((n) => n[0])
+                    .join("")}
                   <Box
                     backgroundColor="green.500"
                     border="0.5px solid white"
@@ -302,11 +305,14 @@ const Sidebar = () => {
                   h={8}
                   w={8}
                 >
-                  {user.user.name &&
-                    user.user.name
-                      .split(" ")
-                      .map((n) => n[0])
-                      .join("")}{" "}
+                  {user.user.firstName
+                    .split(" ")
+                    .map((n) => n[0])
+                    .join("")}
+                  {user.user.lastName
+                    .split(" ")
+                    .map((n) => n[0])
+                    .join("")}
                   <Box
                     backgroundColor="green.500"
                     border="0.5px solid white"
@@ -324,7 +330,9 @@ const Sidebar = () => {
                   fontWeight="semibold"
                   color="gray.600"
                 >
-                  {user.user.name}
+                  {user.user.firstName}
+                  {"  "}
+                  {user.user.lastName}
                 </Text>
               </Flex>
               <Box
