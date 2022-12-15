@@ -5,7 +5,6 @@ import BlogContents from "../../components/Blogs/BlogContents";
 import BlogHeader from "../../components/Blogs/BlogHeader";
 import BlogsHorizontal from "../../components/Blogs/BlogsHorizontal";
 
-import Navbar from "../components/Entry/Navbar";
 
 const data = [
   {
