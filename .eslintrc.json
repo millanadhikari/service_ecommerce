@@ -2,7 +2,8 @@
   "extends": "next/core-web-vitals",
   "rules": {
     "react/prop-types": 0,
-    "react/display-name": "off" 
+    "react/display-name": "off" ,
+    "react/no-unescaped-entities": 0
   }
   
 }
