@@ -62,11 +62,12 @@ const MobileNavMenu = ({ openMenu, setOpenMenu }) => {
       isOpen={true}
       placement="right"
       onClose={() => setOpenMenu(false)}
+      
       // size="sm"
       // finalFocusRef={btnRef}
     >
-      <DrawerOverlay />
-      <DrawerContent backgroundColor="blue.50" px="-10px">
+      <DrawerOverlay minH={'100%'} />
+      <DrawerContent backgroundColor="blue.50" px="-10px" minH={"100%"}>
         <DrawerCloseButton _focus={{ outline: "none" }} />
         <DrawerHeader display="flex" mt="10" ml="-2">
           <Flex justifyContent="space-between" alignItems="center" width="100%">
