@@ -3,6 +3,7 @@ import {
   Badge,
   Box,
   Button,
+  chakra,
   Flex,
   FormControl,
   FormLabel,
@@ -13,14 +14,23 @@ import {
   InputLeftElement,
   InputRightElement,
   Select,
+  shouldForwardProp,
   Spacer,
   Stack,
   Text,
 } from "@chakra-ui/react";
+import { isValidMotionProp, motion } from "framer-motion";
 import React from "react";
 import { BiCurrentLocation } from "react-icons/bi";
 import { MdAttachMoney } from "react-icons/md";
 
+const ChakraBox = chakra(motion.div, {
+  /**
+   * Allow motion props and non-Chakra props to be forwarded.
+   */
+  shouldForwardProp: (prop) =>
+    isValidMotionProp(prop) || shouldForwardProp(prop),
+});
 const Banner = ({ heading, desc }) => {
   return (
     <Box
@@ -208,29 +218,43 @@ const Banner = ({ heading, desc }) => {
               zIndex="-1"
               rounded="100%"
             ></Box>
-
-            <Flex
-              alignItems="center"
-              justifyContent="center"
-              backgroundColor="#f9bf16"
-              zIndex="2"
-              h={16}
-              w={16}
-              m={1}
-              mx="auto"
-              rounded="100%"
+            <ChakraBox
+              animate={{
+                scale: [1, 1, 1, 1, 1],
+                rotate: [0, 0, 270, 270, 0],
+                borderRadius: ["20%", "20%", "50%", "50%", "20%"],
+              }}
+              // @ts-ignore no problem in operation, although type error appears.
+              transition={{
+                duration: 3,
+                ease: "easeInOut",
+                // repeat: Infinity,
+                repeatType: "loop",
+              }}
             >
               <Flex
-                backgroundColor="white"
-                color="#f9bf16"
                 alignItems="center"
-                rounded="100%"
-                p={2}
+                justifyContent="center"
+                backgroundColor="#f9bf16"
                 zIndex="2"
+                h={16}
+                w={16}
+                m={1}
+                mx="auto"
+                rounded="100%"
               >
-                <MdAttachMoney />
+                <Flex
+                  backgroundColor="white"
+                  color="#f9bf16"
+                  alignItems="center"
+                  rounded="100%"
+                  p={2}
+                  zIndex="2"
+                >
+                  <MdAttachMoney />
+                </Flex>
               </Flex>
-            </Flex>
+            </ChakraBox>
           </Box>
           <Box
             zIndex="1"

@@ -29,7 +29,13 @@ const data = [
     description: "it's okay to run sometimes.",
   },
 ];
-const JobDetails = ({ details, changeStatus, changeTime, setDetails, saveTime }) => {
+const JobDetails = ({
+  details,
+  changeStatus,
+  changeTime,
+  setDetails,
+  saveTime,
+}) => {
   return (
     <Box>
       <Flex w="100%" justifyContent="space-between" mt={10} gap={8} pr={5}>
@@ -39,15 +45,17 @@ const JobDetails = ({ details, changeStatus, changeTime, setDetails, saveTime })
               {details?.firstName} {details?.lastName}
             </Text>
             <Text fontSize="12px" mt={2} color="gray.500">
-              {details?.address1.charAt(0).toUpperCase() + details?.address1.slice(1)}
+              {details?.address1.charAt(0).toUpperCase() +
+                details?.address1.slice(1)}
             </Text>
             <Text fontSize="12px" color="gray.500">
-              {details?.address2.charAt(0).toUpperCase() + details?.address2.slice(1)}
+              {details?.address2.charAt(0).toUpperCase() +
+                details?.address2.slice(1)}
             </Text>
             <Text fontSize="12px" color="gray.500">
               {" "}
               {details?.postcode}
-            </Text>   
+            </Text>
             <Text fontSize="12px" color="gray.500">
               {details?.phone ? details.phone : "No Number given"}
             </Text>
@@ -55,9 +63,10 @@ const JobDetails = ({ details, changeStatus, changeTime, setDetails, saveTime })
               {details?.email}
             </Text>
           </Box>
-          <JobTimer details={details}
-          //  changeTime={changeTime} setDetails={setDetails} saveTime={saveTime} 
-           />
+          <JobTimer
+            details={details}
+            //  changeTime={changeTime} setDetails={setDetails} saveTime={saveTime}
+          />
         </Flex>
         <Flex w="100%" flexDirection="column" gap={6}>
           <Flex bg="white" py={7} px={6} shadow="md" alignItems="center">
@@ -108,7 +117,6 @@ const JobDetails = ({ details, changeStatus, changeTime, setDetails, saveTime })
                     fontWeight="semibold"
                     fontSize="13px"
                     onClick={() => changeStatus("In Progress")}
-
                   >
                     In Progress
                   </MenuItem>
@@ -117,7 +125,6 @@ const JobDetails = ({ details, changeStatus, changeTime, setDetails, saveTime })
                     fontWeight="semibold"
                     fontSize="13px"
                     onClick={() => changeStatus("Completed")}
-
                   >
                     Completed
                   </MenuItem>
@@ -274,7 +281,11 @@ const detailsComp = ({ details }) => {
         </Flex>
         <Flex justifyContent="space-between" mt={2}>
           <Text cursor="pointer">Job time</Text>
-          <Text> {details?.startHour}:00 {details?.startMode} - {details?.endHour}:00 {details?.endMode}</Text>
+          <Text>
+            {" "}
+            {details?.startHour}:00 {details?.startMode} - {details?.endHour}:00{" "}
+            {details?.endMode}
+          </Text>
         </Flex>
       </Box>
       <Box
@@ -287,7 +298,10 @@ const detailsComp = ({ details }) => {
       >
         <Flex justifyContent="space-between">
           <Text cursor="pointer">Arrival time</Text>
-          <Text> {details.startHour}:00 {details?.startMode}</Text>
+          <Text>
+            {" "}
+            {details.startHour}:00 {details?.startMode}
+          </Text>
         </Flex>
       </Box>
       <Box

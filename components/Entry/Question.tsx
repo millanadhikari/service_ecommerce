@@ -44,7 +44,6 @@ const Question = () => {
         </Flex>
       </Flex>
       <EntryTabs />
-
     </Box>
   );
 };
