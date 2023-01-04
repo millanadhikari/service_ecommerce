@@ -53,25 +53,59 @@ const Banner = ({ heading, desc }) => {
         pb={5}
       >
         <Box w={{ base: "100%", md: "80%", lg: "90%" }} px={{ base: "20px" }}>
-          <Heading
-            fontSize={{ base: "29px", md: "42px" }}
-            textAlign={{ base: "center", sm: "left" }}
-            letterSpacing="0.9px"
-            color="white"
-            fontWeight="bold"
+          <ChakraBox
+            initial={{
+              opacity: 0,
+              y: 50,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
+            // @ts-ignore no problem in operation, although type error appears.
+            transition={{
+              delay: 0.3,
+              duration: 1,
+              ease: [0.6, 0.05, -0.01, 0.9],
+            }}
           >
-            {heading}
-          </Heading>
-          <Text
-            mt={4}
-            fontSize="15px"
-            lineHeight={1.5}
-            letterSpacing="0.9px"
-            color="gray.200"
-            textAlign={{ base: "center", sm: "left" }}
+            <Heading
+              fontSize={{ base: "29px", md: "42px" }}
+              textAlign={{ base: "center", sm: "left" }}
+              letterSpacing="0.9px"
+              color="white"
+              fontWeight="bold"
+            >
+              {heading}
+            </Heading>
+          </ChakraBox>
+          <ChakraBox
+            initial={{
+              opacity: 0,
+              y: 50,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
+            // @ts-ignore no problem in operation, although type error appears.
+            transition={{
+              delay: 0.5,
+              duration: 1,
+              ease: [0.6, 0.05, -0.01, 0.9],
+            }}
           >
-            {desc}
-          </Text>
+            <Text
+              mt={4}
+              fontSize="15px"
+              lineHeight={1.5}
+              letterSpacing="0.9px"
+              color="gray.200"
+              textAlign={{ base: "center", sm: "left" }}
+            >
+              {desc}
+            </Text>
+          </ChakraBox>
           <Stack
             mt={9}
             fontSize="12px"

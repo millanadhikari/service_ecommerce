@@ -33,6 +33,8 @@ const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [quote, setQuote] = useState<boolean>(false);
+  const [scroll, setScroll] = useState(false);
+
 
   const router = useRouter();
 
@@ -63,12 +65,16 @@ const Navbar = () => {
       zIndex="999"
       position="fixed"
       top="0"
-      backgroundColor={show && "white"}
-      shadow={show ? "md" : "none"}
+      bg={{ base: "none", md: show ? "white" : "none" }}
+      shadow={{ base: "none", md: show ? "md" : "none" }}
     >
       <RequestQuote quote={quote} setQuote={setQuote} />
 
-      <Flex alignItems="center" onClick={() => router.push("/")}>
+      <Flex
+        alignItems="center"
+        onClick={() => router.push("/")}
+        display={{ base: show ? "none" : "flex", md: "flex" }}
+      >
         <Flex
           alignItems="center"
           justifyContent="right"
@@ -199,8 +205,7 @@ const Navbar = () => {
         Get Quote
       </Button>
       {openMenu && (
-        <Box h='100vh'>
-      
+        <Box h="100vh">
           <MobileNavMenu openMenu={openMenu} setOpenMenu={setOpenMenu} />
         </Box>
       )}
