@@ -55,7 +55,9 @@ const JobDetails = ({ details, changeStatus, changeTime, setDetails, saveTime })
               {details?.email}
             </Text>
           </Box>
-          <JobTimer details={details} changeTime={changeTime} setDetails={setDetails} saveTime={saveTime} />
+          <JobTimer details={details}
+          //  changeTime={changeTime} setDetails={setDetails} saveTime={saveTime} 
+           />
         </Flex>
         <Flex w="100%" flexDirection="column" gap={6}>
           <Flex bg="white" py={7} px={6} shadow="md" alignItems="center">
