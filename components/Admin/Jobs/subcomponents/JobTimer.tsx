@@ -13,7 +13,7 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 
-const JobTimer = ({ details, changeTime, setDetails, saveTime }) => {
+const JobTimer = ({ details }) => {
   console.log(details);
   return (
     <Box bg="white" py={4} shadow="md" w="100%">
@@ -45,9 +45,9 @@ const JobTimer = ({ details, changeTime, setDetails, saveTime }) => {
                 size="sm"
                 border="none"
                 w="20px"
-                onChange={(e) =>
-                  setDetails({ ...details, startHour: e.target.value })
-                }
+                // onChange={(e) =>
+                //   setDetails({ ...details, startHour: e.target.value })
+                // }
                 p={0}
                 value={details?.startHour}
               ></Input>
@@ -57,9 +57,9 @@ const JobTimer = ({ details, changeTime, setDetails, saveTime }) => {
                 size="sm"
                 border="none"
                 w="19px"
-                onChange={(e) =>
-                  setDetails({ ...details, startMin: e.target.value })
-                }
+                // onChange={(e) =>
+                //   setDetails({ ...details, startMin: e.target.value })
+                // }
                 p={0}
                 value={details?.startMin}
               ></Input>
@@ -72,9 +72,9 @@ const JobTimer = ({ details, changeTime, setDetails, saveTime }) => {
               border="none"
               w="23px"
               ml={1}
-              onChange={(e) =>
-                setDetails({ ...details, startMode: e.target.value })
-              }
+              // onChange={(e) =>
+              //   setDetails({ ...details, startMode: e.target.value })
+              // }
               p={0}
               value={details?.startMode}
             ></Input>
@@ -99,9 +99,9 @@ const JobTimer = ({ details, changeTime, setDetails, saveTime }) => {
                 border="none"
                 w="20px"
                 p={0}
-                onChange={(e) =>
-                  setDetails({ ...details, endHour: e.target.value })
-                }
+                // onChange={(e) =>
+                //   setDetails({ ...details, endHour: e.target.value })
+                // }
                 value={details?.endHour}
               ></Input>
               <Text mr={1}>:</Text>
@@ -110,9 +110,9 @@ const JobTimer = ({ details, changeTime, setDetails, saveTime }) => {
                 size="sm"
                 border="none"
                 w="19px"
-                onChange={(e) =>
-                  setDetails({ ...details, endMin: e.target.value })
-                }
+                // onChange={(e) =>
+                //   setDetails({ ...details, endMin: e.target.value })
+                // }
                 p={0}
                 value={details?.endMin}
               ></Input>
@@ -124,9 +124,9 @@ const JobTimer = ({ details, changeTime, setDetails, saveTime }) => {
               border="none"
               w="23px"
               ml={1}
-              onChange={(e) =>
-                setDetails({ ...details, endMode: e.target.value })
-              }
+              // onChange={(e) =>
+              //   setDetails({ ...details, endMode: e.target.value })
+              // }
               p={0}
               value={details?.endMode}
             ></Input>{" "}
@@ -141,7 +141,7 @@ const JobTimer = ({ details, changeTime, setDetails, saveTime }) => {
           color="white"
           fontSize="14px"
           size="sm"
-          onClick={saveTime}
+          // onClick={saveTime}
           rounded="md"
           my={1}
         >
