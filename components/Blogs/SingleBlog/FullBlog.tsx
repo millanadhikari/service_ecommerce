@@ -1,3 +1,5 @@
+/* eslint no-use-before-define: 2 */  // --> ON
+
 import { Box, Flex, Heading, Image, Text } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import React from "react";
