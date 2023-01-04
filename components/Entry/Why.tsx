@@ -14,17 +14,17 @@ import { AiFillCheckCircle } from "react-icons/ai";
 const Why = () => {
   return (
     <Box
-      position="absolute"
-      w={{ md: "100%" }}
-      top={{ base: "2060px", sm: "2050", md: "1200px", lg: "1200px" }}
+      position="relative"
+      w={{ base: "100%", md: "100%" }}
+      top={{ base: "2230px", sm: "2150", md: "1350px", lg: "1300px" }}
       mx={{ base: "4", sm: "4", md: "auto" }}
-      my={{md:10}}
+      my={{ md: 10 }}
     >
       <Flex
         position="relative"
         textAlign="center"
         backgroundColor="#418bf7"
-        w={{ base: "100%", md: "760px", lg: "1000px" }}
+        w={{ base: "350px", sm:'400px', md: "760px", lg: "1000px" }}
         mx="auto"
         color="white"
         py={12}

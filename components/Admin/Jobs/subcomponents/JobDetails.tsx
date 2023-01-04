@@ -29,33 +29,33 @@ const data = [
     description: "it's okay to run sometimes.",
   },
 ];
-const JobDetails = ({ details }) => {
+const JobDetails = ({ details, changeStatus, changeTime, setDetails, saveTime }) => {
   return (
     <Box>
       <Flex w="100%" justifyContent="space-between" mt={10} gap={8} pr={5}>
         <Flex w="100%" flexDirection="column" gap={6}>
           <Box bg="white" py={7} px={6} shadow="md">
             <Text color="blue.500" fontSize="16px" fontWeight="semibold">
-              {details?.firstName}
+              {details?.firstName} {details?.lastName}
             </Text>
             <Text fontSize="12px" mt={2} color="gray.500">
-              78 Cannon Hill
+              {details?.address1.charAt(0).toUpperCase() + details?.address1.slice(1)}
             </Text>
             <Text fontSize="12px" color="gray.500">
-              Brisbane, Queensland
+              {details?.address2.charAt(0).toUpperCase() + details?.address2.slice(1)}
             </Text>
             <Text fontSize="12px" color="gray.500">
               {" "}
-              4182
-            </Text>
+              {details?.postcode}
+            </Text>   
             <Text fontSize="12px" color="gray.500">
-              {details?.phone ? details.phone : "0416 129 129"}
+              {details?.phone ? details.phone : "No Number given"}
             </Text>
             <Text fontSize="12px" color="gray.500">
               {details?.email}
             </Text>
           </Box>
-          <JobTimer />
+          <JobTimer details={details} changeTime={changeTime} setDetails={setDetails} saveTime={saveTime} />
         </Flex>
         <Flex w="100%" flexDirection="column" gap={6}>
           <Flex bg="white" py={7} px={6} shadow="md" alignItems="center">
@@ -97,6 +97,7 @@ const JobDetails = ({ details }) => {
                     color="blue.500"
                     fontWeight="semibold"
                     fontSize="13px"
+                    onClick={() => changeStatus("Scheduled")}
                   >
                     Scheduled
                   </MenuItem>
@@ -104,6 +105,8 @@ const JobDetails = ({ details }) => {
                     color="blue.500"
                     fontWeight="semibold"
                     fontSize="13px"
+                    onClick={() => changeStatus("In Progress")}
+
                   >
                     In Progress
                   </MenuItem>
@@ -111,6 +114,8 @@ const JobDetails = ({ details }) => {
                     color="blue.500"
                     fontWeight="semibold"
                     fontSize="13px"
+                    onClick={() => changeStatus("Completed")}
+
                   >
                     Completed
                   </MenuItem>
@@ -161,7 +166,6 @@ const JobDetails = ({ details }) => {
             />
           </Flex>
           {paymentDetails({ details })}
-          lkjsdfk
         </Flex>{" "}
       </Flex>
       <Checklist />
@@ -264,11 +268,11 @@ const detailsComp = ({ details }) => {
       >
         <Flex justifyContent="space-between">
           <Text cursor="pointer">Job duration</Text>
-          <Text> 1.00 hours(s)</Text>
+          <Text> {details.endHour - details.startHour}.00 hours(s)</Text>
         </Flex>
         <Flex justifyContent="space-between" mt={2}>
           <Text cursor="pointer">Job time</Text>
-          <Text> 11:00am - 12:00pm</Text>
+          <Text> {details?.startHour}:00 {details?.startMode} - {details?.endHour}:00 {details?.endMode}</Text>
         </Flex>
       </Box>
       <Box
@@ -281,7 +285,7 @@ const detailsComp = ({ details }) => {
       >
         <Flex justifyContent="space-between">
           <Text cursor="pointer">Arrival time</Text>
-          <Text> 11:00am - 12:00pm</Text>
+          <Text> {details.startHour}:00 {details?.startMode}</Text>
         </Flex>
       </Box>
       <Box
@@ -378,7 +382,7 @@ const paymentDetails = ({ details }) => {
         <Flex justifyContent="space-between">
           <Text cursor="pointer">Sub Total</Text>
           <Text>
-            $ {details?.subtotal.toString().substring(0, 3)}
+            $ {details?.subtotal}
             .00
           </Text>
         </Flex>
@@ -386,7 +390,7 @@ const paymentDetails = ({ details }) => {
           <Text cursor="pointer">Total</Text>
           <Text>
             {" "}
-            $ {details?.subtotal.toString().substring(0, 3)}
+            $ {details?.subtotal}
             .00
           </Text>
         </Flex>
@@ -401,7 +405,7 @@ const paymentDetails = ({ details }) => {
         <Flex justifyContent="space-between">
           <Text cursor="pointer">To be paid by customer</Text>
           <Text>
-            $ {details?.subtotal.toString().substring(0, 3)}
+            $ {details?.subtotal}
             .00
           </Text>
         </Flex>

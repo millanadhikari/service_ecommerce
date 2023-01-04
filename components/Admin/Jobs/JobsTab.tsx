@@ -1,6 +1,16 @@
-import { Box, Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
+} from "@chakra-ui/react";
 import React from "react";
+import QuotePagination from "../QuotePage/QuotePagination";
 import AllJobs from "./subcomponents/AllJobs";
+import JobPagination from "./subcomponents/JobPagination";
 import NotAssigned from "./subcomponents/NotAssigned";
 import Unpaid from "./subcomponents/Unpaid";
 
@@ -15,6 +25,10 @@ const JobsTab = ({
   setSearch,
   pageNumber,
   setPageNumber,
+  onDateFilter,
+  date,
+  setDate,
+  onDateChange,
 }) => {
   return (
     <Tabs variant="unstyled" bg="white" py={4} mr={10} shadow="md">
@@ -79,14 +93,18 @@ const JobsTab = ({
       <TabPanels>
         <TabPanel>
           <AllJobs
-          confirmDelete={confirmDelete}
-          setConfirmDelete={setConfirmDelete}
-          confirmBook={confirmBook}
-          setConfirmBook={setConfirmBook}
-          selected={selected}
-          setSelected={setSelected}
-          search={search}
-          setSearch={setSearch}
+            confirmDelete={confirmDelete}
+            onDateChange={onDateChange}
+            setConfirmDelete={setConfirmDelete}
+            confirmBook={confirmBook}
+            setConfirmBook={setConfirmBook}
+            selected={selected}
+            setSelected={setSelected}
+            search={search}
+            onDateFilter={onDateFilter}
+            setSearch={setSearch}
+            date={date}
+            setDate={setDate}
           />
         </TabPanel>
         <TabPanel>
@@ -96,6 +114,12 @@ const JobsTab = ({
           <Unpaid />
         </TabPanel>
       </TabPanels>
+      <Flex my={2} w="100%">
+        <JobPagination
+          pageNumber={pageNumber}
+          setPageNumber={setPageNumber}
+        />
+      </Flex>
     </Tabs>
   );
 };

@@ -21,31 +21,45 @@ import React from "react";
 import { BiCurrentLocation } from "react-icons/bi";
 import { MdAttachMoney } from "react-icons/md";
 
-const Banner = ({heading, desc}) => {
+const Banner = ({ heading, desc }) => {
   return (
     <Box
-      // position="absolute"
-      // top="0"
-      mt="-110px"
-      w="100%"
+      position="absolute"
+      top="-20"
+      left="0"
+      right="0"
+      // mt="-110px"
+      minW="378px"
       zIndex="-1"
       backgroundColor="#5395f6"
-      pb={{base:"280px", sm:"305px", md:"83px", lg:"130px"}}
+      pb={{ base: "280px", sm: "305px", md: "83px", lg: "130px" }}
       color="white"
     >
       <Box
         pt={48}
-        display={{ base: "block", md: "flex" }}
+        display={{ base: "", md: "flex" }}
         w={{ base: "100%", md: "800px", lg: "1100px" }}
         mx="auto"
         pb={5}
       >
-        <Box w={{ base: "100%", md: "80%", lg:"90%" }} px={{ base: "20px" }} 
->
-          <Heading fontSize={{ base: "29px",  md: "42px" }} textAlign={{base:"center", sm:"left"}} letterSpacing="0.9px" color="white" fontWeight="bold">
+        <Box w={{ base: "100%", md: "80%", lg: "90%" }} px={{ base: "20px" }}>
+          <Heading
+            fontSize={{ base: "29px", md: "42px" }}
+            textAlign={{ base: "center", sm: "left" }}
+            letterSpacing="0.9px"
+            color="white"
+            fontWeight="bold"
+          >
             {heading}
           </Heading>
-          <Text mt={4} fontSize="15px" lineHeight={1.5} letterSpacing="0.9px" color="gray.200"  textAlign={{base:"center", sm:"left"}}>
+          <Text
+            mt={4}
+            fontSize="15px"
+            lineHeight={1.5}
+            letterSpacing="0.9px"
+            color="gray.200"
+            textAlign={{ base: "center", sm: "left" }}
+          >
             {desc}
           </Text>
           <Stack
@@ -55,10 +69,7 @@ const Banner = ({heading, desc}) => {
             direction={["row", "row"]}
             spacing="10px"
             textAlign="center"
-            px={{base:3, sm:0}}
-            
-            
-            
+            px={{ base: 3, sm: 0 }}
           >
             <Flex
               alignItems="center"
@@ -116,29 +127,26 @@ const Banner = ({heading, desc}) => {
             w={{ base: "300px", md: "400px" }}
             backgroundColor="#3979db"
             rounded="100%"
-            
             top="0"
             left="5"
             zIndex="1"
             color="white"
             overflow="hidden"
-            
-            
           >
-          <Image
-            position="absolute"
-            src="/girl.png"
-            objectFit="cover"
-            h={{ base: "300px", sm:"324px", md: "418px", lg:"400px" }}
-            pt={6}
-            left={5}
-            mx="auto"
-            zIndex="1"
-          />
+            <Image
+              position="absolute"
+              src="/girl.png"
+              objectFit="cover"
+              h={{ base: "300px", sm: "324px", md: "418px", lg: "400px" }}
+              pt={6}
+              left={5}
+              mx="auto"
+              zIndex="1"
+            />
           </Box>
           <Flex
             position="absolute"
-            top={{base:"200px", md:"260px"}}
+            top={{ base: "200px", md: "260px" }}
             left={{ base: "150px", sm: "200px", md: "300" }}
             backgroundColor="white"
             color="black"
@@ -151,9 +159,8 @@ const Banner = ({heading, desc}) => {
             boxShadow="md"
           >
             <Image
-
-              borderRadius='full'
-              boxSize='40px'
+              borderRadius="full"
+              boxSize="40px"
               mr={3}
               objectFit="fill"
               src="/Saroj.jpg"
@@ -171,7 +178,7 @@ const Banner = ({heading, desc}) => {
                 <StarIcon />
                 <StarIcon />
               </Stack>
-              <Heading mt={1.5} mb={.5} fontSize="16px">
+              <Heading mt={1.5} mb={0.5} fontSize="16px">
                 Saroj KP
               </Heading>
               <Text fontSize="11px" color="gray.500" fontWeight="semibold">
@@ -229,7 +236,7 @@ const Banner = ({heading, desc}) => {
             zIndex="1"
             position="absolute"
             top="10"
-            left={{base:"280", sm:"290px"}}
+            left={{ base: "280", sm: "290px" }}
             display="flex"
             alignItems="center"
             justifyContent="center"
@@ -271,9 +278,7 @@ const Banner = ({heading, desc}) => {
             </Flex>
           </Box>
         </Box>
-  
       </Box>
-      
     </Box>
   );
 };

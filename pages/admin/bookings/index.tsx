@@ -10,6 +10,7 @@ import JobsTab from "../../../components/Admin/Jobs/JobsTab";
 import JobsCard from "../../../components/Admin/Jobs/subcomponents/JobsCard/JobsCard";
 import SubNav from "../../../components/Admin/Jobs/subcomponents/SubNav";
 import { fetchAllQuotes } from "../../../components/Admin/QuotePage/quoteAction";
+import PromptLayout from "../../../components/Admin/Quotes/subcomponents/Prompt/PromptLayout";
 
 // import withAuth from '../../components/Admin/privateRoute/withAuth';
 
@@ -188,6 +189,7 @@ const Bookings = () => {
   const [confirmDelete, setConfirmDelete] = useState<Boolean>(false);
   const [confirmBook, setConfirmBook] = useState<Boolean>(false);
   const btnRef = React.useRef();
+  const [date, setDate] = useState(new Date());
 
   const [filter, setFilter] = useState(new Date());
 
@@ -199,7 +201,9 @@ const Bookings = () => {
   const Socket = useAppSelector((state) => state.user.Socket);
 
   const userName = useAppSelector((state) => state.user.user.name) || undefined;
+  let bookingDate = date[0] ? date[0] : null;
 
+  let to = date[1] ? date[1] : null;
   const onSubmit = async () => {
     setLoading(true);
     const result = await axios.post("http://localhost:3001/v1/quote", display);
@@ -213,7 +217,7 @@ const Bookings = () => {
       setLoading(false);
 
       onClose();
-      dispatch(fetchAllBookings(pageNumber, search, filter));
+      dispatch(fetchAllBookings(pageNumber, search, bookingDate, to));
     }
   };
 
@@ -237,12 +241,10 @@ const Bookings = () => {
   //   );
   // };
 
-  const deleteQuote = async () => {
+  const deleteBooking = async () => {
     setConfirmDelete(!confirmDelete);
     const id = selected[0];
-    const result = await axios.delete(
-      `https://wedo-backend.herokuapp.com/v1/booking/${id}`
-    );
+    const result = await axios.delete(`http://localhost:3001/v1/booking/${id}`);
     if (result.data.status === "success") {
       // toast({
       //   position: "top-right",
@@ -252,7 +254,7 @@ const Bookings = () => {
       // });
       setConfirmDelete(!confirmDelete);
       // prompt("Success");
-      dispatch(fetchAllQuotes(pageNumber, search, filter));
+      dispatch(fetchAllBookings(pageNumber, search, bookingDate, to));
       setSelected([]);
     }
   };
@@ -270,9 +272,18 @@ const Bookings = () => {
       // });
       setConfirmBook(!confirmBook);
       // prompt("Success");
-      dispatch(fetchAllBookings(pageNumber, search, filter));
+      dispatch(fetchAllBookings(pageNumber, search, bookingDate, to));
       setSelected([]);
     }
+  };
+
+  const onDateChange = (newDate) => {
+    setDate(newDate);
+    console.log(newDate);
+  };
+
+  const onDateFilter = () => {
+    dispatch(fetchAllBookings(pageNumber, search, bookingDate, to));
   };
 
   // const deleteQuotes = async () => {
@@ -290,23 +301,22 @@ const Bookings = () => {
   // };
 
   useEffect(() => {
-    dispatch(fetchAllBookings(pageNumber, search, filter));
+    dispatch(fetchAllBookings(pageNumber, search, bookingDate, to));
     // setAll(quotes);
-  }, [dispatch, pageNumber, search, display]);
+    console.log("mera", date);
+  }, [dispatch, pageNumber, display]);
 
   useEffect(() => {
     const fetchProducts = async () => {
       await axios
         .get("https://wedo-backend.herokuapp.com/v1/product")
-        .then((data: any) => {
+        .then((data) => {
           setDisplay({ ...display, products: [...data?.data.result] });
         });
     };
 
     fetchProducts();
   }, []);
-
-
 
   return (
     <Box
@@ -321,6 +331,8 @@ const Bookings = () => {
 
       <JobsTab
         confirmDelete={confirmDelete}
+        date={date}
+        setDate={setDate}
         setConfirmDelete={setConfirmDelete}
         confirmBook={confirmBook}
         setConfirmBook={setConfirmBook}
@@ -329,7 +341,17 @@ const Bookings = () => {
         search={search}
         setSearch={setSearch}
         pageNumber={pageNumber}
+        onDateFilter={onDateFilter}
         setPageNumber={setPageNumber}
+        onDateChange={onDateChange}
+      />
+
+      <PromptLayout
+        isOpen={confirmDelete}
+        onClose={setConfirmDelete}
+        layout={deleteBooking}
+        title="delete"
+        isLoading={isLoading}
       />
     </Box>
   );

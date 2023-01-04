@@ -1,13 +1,13 @@
 import { Box, Button, Image, Text } from "@chakra-ui/react";
 import React from "react";
 
-const BlogsSlide = () => {
+const BlogsSlide = ({ item }) => {
   return (
-    <Box w="240px">
+    <Box w="240px" >
       <Box my={5}>
         <Image
           src={
-            "https://cdn.mos.cms.futurecdn.net/bM54NtBQwS7QR4T8M2AjCo-768-80.jpg"
+            item.img
           }
           h={140}
           w={240}
@@ -21,7 +21,7 @@ const BlogsSlide = () => {
           fontWeight="bold"
           color="blue.700"
         >
-          Chemical Free Cleaning
+         {item?.title}
         </Text>
         <Text fontSize="14px" color="blue.700">
           {" "}

@@ -7,8 +7,9 @@ import Question from "./Question";
 const Service = () => {
   return (
     <Box
-      mt={{ base: "1900px", sm: "1850px", md: "1300px", lg: "1150px" }}
+      mt={{ base: "2300px", sm: "2200px", md: "1400px", lg: "1350px" }}
       textAlign="center"
+      w={{base:"380px",sm:"100%"}}
       zIndex="2"
     >
       <Image src="./thumb.png" h={7} w={7} mx="auto" mb={3} />
@@ -33,7 +34,7 @@ const Service = () => {
         are three tyopes of options to suit your needs.
       </Text>
 
-      <Box display={{ md: "flex" }} w={{ md: "1000px" }} mx="auto" zIndex="-1" >
+      <Box display={{ md: "flex" }} w={{ md: "1000px" }} mx="auto" zIndex="-1">
         <Flex
           my={8}
           flexDirection="column"
@@ -100,7 +101,12 @@ const Service = () => {
           </Text>
         </Flex>
       </Box>
-      <Flex  alignItems="center" backgroundColor="#e4f0ff" mt={{base:"14", md:"-160"}} pt={{base:"10", md:"160"}}  >
+      <Flex
+        alignItems="center"
+        backgroundColor="#e4f0ff"
+        mt={{ base: "14", md: "-160" }}
+        pt={{ base: "10", md: "160" }}
+      >
         {" "}
         <Question />
       </Flex>

@@ -1,10 +1,13 @@
-import { Box, Flex, Heading, Text } from "@chakra-ui/react";
-import React from "react";
+import { Box, Button, Flex, Heading, Image, Text } from "@chakra-ui/react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { GiToolbox } from "react-icons/gi";
 import BlogContents from "../../components/Blogs/BlogContents";
 import BlogHeader from "../../components/Blogs/BlogHeader";
+import BlogsBottom from "../../components/Blogs/BlogsBottom";
 import BlogsHorizontal from "../../components/Blogs/BlogsHorizontal";
-
+import Footer from "../../components/Entry/Footer";
+import Navbar from "../../components/Entry/Navbar";
 
 const data = [
   {
@@ -22,37 +25,74 @@ const data = [
 ];
 
 const Blogs = () => {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios.get("http://localhost:3001/v1/blog/all");
+      console.log(result);
+      result.data.status === "success" && setData(result.data.paginatedResults);
+    };
+
+    fetchData();
+  }, []);
   return (
-    <Box w="100%">
-      <Box backgroundColor="#5395f6">{/* <Navbar /> */}</Box>
-      <Box mx="auto" w={{ md: "1160px" }}>
-        <BlogHeader />
-        <Flex flexDirection={{ sm: "column", md: "row" }}>
-          {data.map((item) => (
-            <BlogContents key={item.id} item={item} />
-          ))}
-          <Box mx={{ base: 5 }} my={{ base: 0, md: 7 }}>
-            <Box>
-              <Heading fontSize="17px" color="gray.700">
-                The Benefits of Using UV-C Light in the Hospitality industry
-              </Heading>
-              <Text my={2} fontSize="15px" color="gray.400">
-                Experience clean air and easier breathing at your restaurant
-                with the latest in chemical free cleaning technology.
-              </Text>
-              <Text
-                w="39%"
-                fontSize="15px"
-                color="blue.600"
-                borderBottom="1px solid gray"
-                borderColor="blue.600"
-                cursor="pointer"
-                fontWeight="semibold"
-              >
-                Read in 3 minutes
-              </Text>
-            </Box>
-            <Box my={8}>
+    <Box>
+      <Box backgroundColor="#5395f6">
+        <Navbar />
+      </Box>
+
+      <Box w={{ base: "100%", md: "1160px" }} mx="auto">
+        {data &&
+          data.map(
+            (item) =>
+              item.label === "main" && (
+                <BlogHeader key={item._id} item={item} />
+              )
+          )}
+        <Flex flexDirection={{ base: "column", md: "row" }}>
+          <Flex flexDirection={{ base: "column", md: "row" }}>
+            {data &&
+              data.map(
+                (item) =>
+                  item.label === "blog_contents" && (
+                    <BlogContents key={item._id} item={item} />
+                  )
+              )}
+          </Flex>
+          <Box mx={{ base: 5 }} my={{ base: 0 }} w={{ md: "50%" }}>
+            {data &&
+              data.map(
+                (item) =>
+                  item.label === "blog_contents_right" && (
+                    <Box key={item._id} mb={5}>
+                      <Heading fontSize="17px" color="gray.700">
+                        {item.title}
+                      </Heading>
+                      <Text
+                        my={2}
+                        fontSize="15px"
+                        color="gray.400"
+                        noOfLines={[3, 4]}
+                      >
+                        {item.subTitle}
+                      </Text>
+                      <Text
+                        w={{ base: "40%", sm: "30%", md: "35%" }}
+                        fontSize="15px"
+                        color="blue.600"
+                        borderBottom="1px solid gray"
+                        borderColor="blue.600"
+                        cursor="pointer"
+                        fontWeight="semibold"
+                      >
+                        Read in {item.author.minRead} minutes
+                      </Text>
+                    </Box>
+                  )
+              )}
+
+            {/* <Box my={8}>
               <Heading fontSize="17px" color="gray.700">
                 What is UV-C Light
               </Heading>
@@ -61,7 +101,7 @@ const Blogs = () => {
                 with the latest in chemical free cleaning technology.
               </Text>
               <Text
-                w="39%"
+                w="25%"
                 fontSize="15px"
                 color="blue.600"
                 borderBottom="1px solid gray"
@@ -71,11 +111,45 @@ const Blogs = () => {
               >
                 Read in 5 minutes
               </Text>
-            </Box>
+            </Box> */}
+          </Box>
+        </Flex>
+        <BlogsHorizontal />
+        <Flex alignItems="top" flexDir={{ base: "column", md: "row" }}>
+          <BlogsBottom />
+          <Box w="90%" mx={{ base: "5" }}>
+            <Image
+              rounded="xl"
+              w={550}
+              h={320}
+              mb={6}
+              src="https://cdn.mos.cms.futurecdn.net/bM54NtBQwS7QR4T8M2AjCo-768-80.jpg"
+            />
+            <Heading fontSize="17px" color="gray.700">
+              The Benefits of Using UV-C Light in the Hospitality industry
+            </Heading>
+            <Text my={2} fontSize="15px" color="gray.400">
+              Experience clean air and easier breathing at your restaurant with
+              the latest in chemical free cleaning technology.
+            </Text>
+            <Button
+              cursor="pointer"
+              my={4}
+              size="sm"
+              color="blue.400"
+              backgroundColor="white"
+              border="1px solid gray"
+              fontSize="12px"
+              borderColor="blue.600"
+            >
+              Read Article
+            </Button>
           </Box>
         </Flex>
         <BlogsHorizontal />
       </Box>
+
+      <Footer />
     </Box>
   );
 };

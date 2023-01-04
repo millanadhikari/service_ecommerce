@@ -71,7 +71,7 @@ const QuoteDetails = ({ details }) => {
               {details.email}
             </Text>
           </Box>
-          <JobTimer />
+          <JobTimer details={details} />
         </Flex>
         <Flex w="100%" flexDirection="column" gap={6}>
           <Flex bg="white" py={7} px={6} shadow="md" alignItems="center">

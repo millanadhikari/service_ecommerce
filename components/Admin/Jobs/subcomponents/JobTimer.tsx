@@ -13,7 +13,8 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 
-const JobTimer = () => {
+const JobTimer = ({ details, changeTime, setDetails, saveTime }) => {
+  console.log(details);
   return (
     <Box bg="white" py={4} shadow="md" w="100%">
       <Box
@@ -44,8 +45,11 @@ const JobTimer = () => {
                 size="sm"
                 border="none"
                 w="20px"
+                onChange={(e) =>
+                  setDetails({ ...details, startHour: e.target.value })
+                }
                 p={0}
-                value={11}
+                value={details?.startHour}
               ></Input>
               <Text mr={1}>:</Text>
               <Input
@@ -53,13 +57,27 @@ const JobTimer = () => {
                 size="sm"
                 border="none"
                 w="19px"
+                onChange={(e) =>
+                  setDetails({ ...details, startMin: e.target.value })
+                }
                 p={0}
-                value={"00"}
+                value={details?.startMin}
               ></Input>
             </Flex>
 
             <Text>:</Text>
-            <Text ml={1}>PM</Text>
+            <Input
+              _focus={{ outline: "none" }}
+              size="sm"
+              border="none"
+              w="23px"
+              ml={1}
+              onChange={(e) =>
+                setDetails({ ...details, startMode: e.target.value })
+              }
+              p={0}
+              value={details?.startMode}
+            ></Input>
           </Flex>
         </Box>
         <Box fontSize="13px" px={3} py={2} w="50%">
@@ -81,7 +99,10 @@ const JobTimer = () => {
                 border="none"
                 w="20px"
                 p={0}
-                value={11}
+                onChange={(e) =>
+                  setDetails({ ...details, endHour: e.target.value })
+                }
+                value={details?.endHour}
               ></Input>
               <Text mr={1}>:</Text>
               <Input
@@ -89,13 +110,26 @@ const JobTimer = () => {
                 size="sm"
                 border="none"
                 w="19px"
+                onChange={(e) =>
+                  setDetails({ ...details, endMin: e.target.value })
+                }
                 p={0}
-                value={"00"}
+                value={details?.endMin}
               ></Input>
             </Flex>
-
             <Text>:</Text>
-            <Text ml={1}>PM</Text>
+            <Input
+              _focus={{ outline: "none" }}
+              size="sm"
+              border="none"
+              w="23px"
+              ml={1}
+              onChange={(e) =>
+                setDetails({ ...details, endMode: e.target.value })
+              }
+              p={0}
+              value={details?.endMode}
+            ></Input>{" "}
           </Flex>
         </Box>
       </Flex>
@@ -107,6 +141,7 @@ const JobTimer = () => {
           color="white"
           fontSize="14px"
           size="sm"
+          onClick={saveTime}
           rounded="md"
           my={1}
         >
@@ -115,7 +150,7 @@ const JobTimer = () => {
       </Box>
       {clockDetails()}
       <Box mx={3} shadow="md">
-        <Image src="/nirvana.jpg" alt="maps"  w="full" />
+        <Image src="/nirvana.jpg" alt="maps" w="full" />
       </Box>
     </Box>
   );

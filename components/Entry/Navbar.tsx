@@ -58,8 +58,8 @@ const Navbar = () => {
       py={2}
       alignItems="center"
       px={{ base: "20px", md: "40px" }}
-      w={{ base: "100%", md: "100%", lg: "100%" }}
-      mx="auto"
+      w={{base:"100%"}}
+      mx="auto"      
       zIndex="999"
       position="fixed"
       top="0"

@@ -7,7 +7,12 @@ import Question from "./Question";
 
 const Review = () => {
   return (
-    <Box textAlign="center" zIndex="2">
+    <Box
+      textAlign="center"
+      zIndex="2"
+      mx="auto"
+      w={{ base: "380px", sm: "400px", md: "100%" }}
+    >
       <Image src="./thumb.png" h={7} w={7} mx="auto" mb={3} />
       <Text mb={6} fontWeight="bold">
         TESTIMONIALS
@@ -33,7 +38,13 @@ const Review = () => {
         are three types of options to suit your needs.
       </Text>
 
-      <Box display={{ md: "flex" }} w={{ md: "1000px" }} mx="auto" zIndex="-1" my={10}>
+      <Box
+        display={{ md: "flex" }}
+        w={{ md: "1000px" }}
+        mx="auto"
+        zIndex="-1"
+        my={10}
+      >
         <Box w="100%">
           <Box
             backgroundColor="#080927"
@@ -43,8 +54,6 @@ const Review = () => {
             rounded="lg"
             m={5}
             pb={32}
-            
-            
           >
             <Flex alignItems="center" justifyContent="space-between" w="100%">
               <Flex alignItems="center" gap={4}>
@@ -59,7 +68,7 @@ const Review = () => {
                 />
                 <Box textAlign="left">
                   <Text fontSize="15px" fontWeight="semibold">
-                   Shree Ram Thapa
+                    Shree Ram Thapa
                   </Text>
                   <Text mt={1} fontSize="11px" color="gray.400">
                     Surry Hills, Sydney NSW
@@ -72,19 +81,42 @@ const Review = () => {
                 <StarIcon />
                 <StarIcon />
                 <StarIcon />
-
               </Flex>
             </Flex>
-            
           </Box>
-          <Box backgroundColor="white" mx={14} mt="-32" rounded="lg" p={6} shadow="lg">
-            <Heading fontSize="15px" fontFamily="Raleway" textAlign="left" lineHeight="1.6rem">
-             5 star deserved cleaning company. Well done team! House is Sparkling.
+          <Box
+            backgroundColor="white"
+            mx={14}
+            mt="-32"
+            rounded="lg"
+            p={6}
+            shadow="lg"
+          >
+            <Heading
+              fontSize="15px"
+              fontFamily="Raleway"
+              textAlign="left"
+              lineHeight="1.6rem"
+            >
+              5 star deserved cleaning company. Well done team! House is
+              Sparkling.
             </Heading>
-            <Text fontSize="11px" lineHeight="1.5rem" textAlign="left" mt={7} fontWeight="semibold" color="gray.400"> This guys has cleaned my house beyond my expectation. I celebrated my great festival with a very clean house. Thank you WeDo for your five star service. Will definately recommend to the colleagues.</Text>
+            <Text
+              fontSize="11px"
+              lineHeight="1.5rem"
+              textAlign="left"
+              mt={7}
+              fontWeight="semibold"
+              color="gray.400"
+            >
+              {" "}
+              This guys has cleaned my house beyond my expectation. I celebrated
+              my great festival with a very clean house. Thank you WeDo for your
+              five star service. Will definately recommend to the colleagues.
+            </Text>
           </Box>
         </Box>
-        <Box w="100%" mt={{base:16, md:"0"}} >
+        <Box w="100%" mt={{ base: 16, md: "0" }}>
           <Box
             backgroundColor="#080927"
             color="gray.100"
@@ -93,11 +125,9 @@ const Review = () => {
             rounded="lg"
             m={5}
             pb={32}
-            
-            
           >
             <Flex alignItems="center" justifyContent="space-between" w="100%">
-              <Flex alignItems="center" gap={4} >
+              <Flex alignItems="center" gap={4}>
                 <Image
                   src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJ5EzCyKyGdakrRPUyCG--o4_PywNz22ahgg&usqp=CAU"
                   h={12}
@@ -109,7 +139,7 @@ const Review = () => {
                 />
                 <Box textAlign="left">
                   <Text fontSize="15px" fontWeight="semibold">
-                   S. Prasai
+                    S. Prasai
                   </Text>
                   <Text mt={1} fontSize="11px" color="gray.400">
                     Rockdale, Sydney NSW
@@ -122,16 +152,39 @@ const Review = () => {
                 <StarIcon />
                 <StarIcon />
                 <StarIcon />
-
               </Flex>
             </Flex>
-            
           </Box>
-          <Box backgroundColor="white" mx={14} mt="-32" rounded="lg" p={6} shadow="lg">
-            <Heading fontSize="15px" fontFamily="Raleway" textAlign="left" lineHeight="1.6rem">
+          <Box
+            backgroundColor="white"
+            mx={14}
+            mt="-32"
+            rounded="lg"
+            p={6}
+            shadow="lg"
+          >
+            <Heading
+              fontSize="15px"
+              fontFamily="Raleway"
+              textAlign="left"
+              lineHeight="1.6rem"
+            >
               Thank you very much for excellent and very professional job today!
             </Heading>
-            <Text fontSize="11px" lineHeight="1.5rem" textAlign="left" mt={7} fontWeight="semibold" color="gray.400"> Really Appreciate and Thank you very much for excellent and very professional job today! You always do more than we expecting. Will recommend to friends and family. I wish you Merry Christmas! THANKS!</Text>
+            <Text
+              fontSize="11px"
+              lineHeight="1.5rem"
+              textAlign="left"
+              mt={7}
+              fontWeight="semibold"
+              color="gray.400"
+            >
+              {" "}
+              Really Appreciate and Thank you very much for excellent and very
+              professional job today! You always do more than we expecting. Will
+              recommend to friends and family. I wish you Merry Christmas!
+              THANKS!
+            </Text>
           </Box>
         </Box>
       </Box>

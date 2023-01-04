@@ -19,23 +19,33 @@ import React, { useEffect, useState } from "react";
 import Calendar from "react-calendar";
 
 const ScheduleTier = ({ display, setDisplay }) => {
-  let lm = new Date(display.bookingDate);
+  let lm = new Date(display.bookingDate)
   console.log("now", lm);
   console.log("never", new Date());
   console.log("main", display);
 
   const [value, onChange] = useState(lm);
   const [open, setOpen] = useState(false);
-  let tomorrow = new Date();
+
+  let tomorrow = new Date(value)
   tomorrow.setDate(tomorrow.getDate() + 1);
 
+  let yesterday = new Date(lm)
+  tomorrow.setDate(tomorrow.getDate() -1);
+
+  console.log('hef', tomorrow)
+  // // let yesterday = display.bookingDate;
+  // yesterday.setDate(yesterday.getDate() - 1);
+
   useEffect(() => {
-    setDisplay({ ...display, bookingDate: value });
+    setDisplay({ ...display, bookingDate: value.toISOString() });
+    console.log("main", display);
+    console.log("achi", value);
   }, [value]);
 
   useEffect(() => {
     const lam = () => {
-      lm ? onChange(() => lm) : new Date();
+      lm ? onChange(() => yesterday) : new Date();
     };
     lam();
   }, []);
@@ -78,9 +88,9 @@ const ScheduleTier = ({ display, setDisplay }) => {
               <PopoverBody>
                 <Calendar
                   value={value}
-                  minDate={tomorrow}
+                  minDate={new Date()}
                   onChange={onChange}
-                  activeStartDate={value}
+                  // activeStartDate={value}
                 />{" "}
               </PopoverBody>
             </PopoverContent>

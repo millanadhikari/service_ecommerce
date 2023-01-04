@@ -114,6 +114,10 @@ const RequestQuote = ({ quote, setQuote }: Props) => {
   useEffect(() => {
     fetchProducts();
   }, []);
+
+  useEffect(() => {
+    console.log('akash', display)
+  }, [display])
   return (
     <Modal isOpen={quote} onClose={handleQuote}>
       <ModalOverlay />

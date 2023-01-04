@@ -22,11 +22,10 @@ import Review from "./Entry/Review";
 import Footer from "./Entry/Footer";
 
 function Entry() {
-  const [maintenance, setMaintenance] = useState(true);
   const [quote, setQuote] = useState<boolean>(false);
 
   return (
-    <Box>
+    <Box position="relative">
       <Navbar />
       <Banner
         heading="Make your home as comfortable"
@@ -38,39 +37,12 @@ function Entry() {
 
       <Ways quote={quote} setQuote={setQuote} />
       <Why />
-      <Service />
-      <EntryTabs />
+       <Service />
+      {/* <EntryTabs /> */}
       <Newsletter />
       <Review />
-      <Footer />
-      <Box>
-        {/* <Modal
-          isOpen={maintenance}
-          onClose={() => setMaintenance(!maintenance)}
-        >
-          <ModalOverlay />
-          <ModalContent>
-            <ModalHeader>Site Under maintenace</ModalHeader>
-            <ModalCloseButton />
-            <ModalBody>
-              <Text>
-                This Website is under construction. Please Call 0415976451 to
-                book or get a quote.
-              </Text>
-            </ModalBody>
-
-            <ModalFooter>
-              <Button
-                colorScheme="blue"
-                mr={3}
-                onClick={() => window.open("tel:+61415976451")}
-              >
-                Call Us
-              </Button>
-            </ModalFooter>
-          </ModalContent>
-        </Modal> */}
-      </Box>
+      <Footer /> 
+      <Box></Box>
     </Box>
   );
 }

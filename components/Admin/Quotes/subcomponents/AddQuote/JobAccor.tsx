@@ -146,7 +146,7 @@ const JobAccor = ({ display, setDisplay }) => {
     console.log(display);
   }, [display]);
   return (
-    <Box fontFamily="sans-serif" mx={-3} my={4}>
+    <Box fontFamily="sans-serif" mx={-3} mt={4}>
       <Accordion allowToggle={true}>
         <AccordionItem border="none">
           <h2>

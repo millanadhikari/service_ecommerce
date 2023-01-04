@@ -75,7 +75,7 @@ const Ways = ({ quote, setQuote }) => {
             mx={{ base: "auto" }}
             ml={{ md: 3, lg: -8 }}
             backgroundColor="white"
-            w={{ base: "100%", sm: "400px", md: "400px" }}
+            w={{ base: "330px", sm: "400px", md: "400px" }}
             color="black"
             p={6}
             pt={8}
@@ -165,8 +165,8 @@ const Ways = ({ quote, setQuote }) => {
           </Heading>
           <Text
             color="gray.400"
-            w={{ base: "90%", md: "40%" }}
-            fontSize={{ base: "13px", md: "15px" }}
+            w={{ base: "100%", md: "40%" }}
+            fontSize={{ base: "14px", md: "16px" }}
           >
             The system carried out by WeDoCleaning can make it easier for those
             of you who are confused about finding workers to clean your home,
@@ -186,7 +186,7 @@ const Ways = ({ quote, setQuote }) => {
               pb={8}
               pl={8}
               pr={{ md: "20px" }}
-              w={{ base: "360px", sm: "280", md: "370px" }}
+              w={{ base: "348px", sm: "280", md: "370px" }}
               mx="auto"
               my={3}
               rounded="lg"

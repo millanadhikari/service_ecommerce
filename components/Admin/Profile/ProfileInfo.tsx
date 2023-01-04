@@ -4,8 +4,7 @@ import { useAppSelector } from "../app/hooks";
 
 const ProfileInfo = () => {
   const user = useAppSelector((state) => state.user.user);
-  const [data, setData] = useState(user)
-
+  const [data, setData] = useState(user);
 
   return (
     <Box px={5} my={5}>
@@ -17,13 +16,27 @@ const ProfileInfo = () => {
           <Text fontWeight="semibold" fontSize="14" color="gray.500">
             First name
           </Text>
-          <Input my={2} bg="white" value={data.firstName} onChange={(e) => setData({...data, firstName:e.target.value})} size="sm" rounded="full" />
+          <Input
+            my={2}
+            bg="white"
+            value={data.firstName}
+            onChange={(e) => setData({ ...data, firstName: e.target.value })}
+            size="sm"
+            rounded="full"
+          />
         </Box>
         <Box bg="white" px={5} pt={3} shadow="md">
           <Text fontWeight="semibold" fontSize="14" color="gray.500">
             Last name
           </Text>
-          <Input my={2}  value={data.lastName} onChange={(e) => setData({...data, lastName:e.target.value})} bg="white" size="sm" rounded="full" />
+          <Input
+            my={2}
+            value={data.lastName}
+            onChange={(e) => setData({ ...data, lastName: e.target.value })}
+            bg="white"
+            size="sm"
+            rounded="full"
+          />
         </Box>
         <Box bg="white" px={5} pt={3} shadow="md">
           <Text fontWeight="semibold" fontSize="14" color="gray.500">
@@ -31,7 +44,8 @@ const ProfileInfo = () => {
           </Text>
           <Input
             my={2}
-            value={data.phone} onChange={(e) => setData({...data, phone:e.target.value})}
+            value={data.phone}
+            onChange={(e) => setData({ ...data, phone: e.target.value })}
             bg="white"
             size="sm"
             rounded="full"
@@ -45,7 +59,8 @@ const ProfileInfo = () => {
             my={2}
             bg="white"
             size="sm"
-            value={data.email} onChange={(e) => setData({...data, email:e.target.value})}
+            value={data.email}
+            onChange={(e) => setData({ ...data, email: e.target.value })}
             rounded="full"
           />
         </Box>

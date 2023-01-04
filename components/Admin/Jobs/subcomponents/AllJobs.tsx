@@ -1,4 +1,5 @@
-import { PhoneIcon, SearchIcon } from "@chakra-ui/icons";
+import { useState } from "react";
+import { ChevronDownIcon, PhoneIcon, SearchIcon } from "@chakra-ui/icons";
 import {
   Box,
   Button,
@@ -6,22 +7,31 @@ import {
   Input,
   InputGroup,
   InputLeftElement,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
   Select,
   Text,
 } from "@chakra-ui/react";
 import React from "react";
+import DatePicker from "../../QuotePage/SubComp/DatePicker";
 import JobsTable from "./JobsTable";
+import Calendar from "react-calendar";
 
 const AllJobs = ({
   confirmDelete,
   setConfirmDelete,
   confirmBook,
   setConfirmBook,
-
+  onDateFilter,
   selected,
   setSelected,
   search,
   setSearch,
+  date,
+  setDate,
+  onDateChange,
 }) => {
   return (
     <Box>
@@ -37,9 +47,7 @@ const AllJobs = ({
             type="tel"
             placeholder="Search Jobs"
             value={search}
-
             onChange={(e) => setSearch(e.target.value)}
-
             _placeholder={{
               color: "gray.300",
               fontWeight: "semibold",
@@ -55,6 +63,7 @@ const AllJobs = ({
           letterSpacing="1px"
           _hover={{ bg: "blue.400" }}
           px={10}
+          onClick={onDateFilter}
         >
           Search
         </Button>
@@ -71,6 +80,50 @@ const AllJobs = ({
           <option value="option2">Status Z-{">"} A</option>
           <option value="option2">Status A-{">"} Z</option>
         </Select>
+        <Flex alignItems="center">
+          <Menu>
+            <MenuButton
+              as={Button}
+              fontSize="15"
+              bg="white"
+              rightIcon={<ChevronDownIcon />}
+            >
+              Service Date
+            </MenuButton>
+            <MenuList>
+              <Calendar
+                onChange={onDateChange}
+                value={date}
+                showNeighboringMonth={false}
+                locale={"en-US"}
+                selectRange={true}
+              />
+            </MenuList>
+          </Menu>
+          <Button
+            bg="blue.600"
+            color="white"
+            rounded="full"
+            fontSize="14px"
+            ml="10"
+            onClick={onDateFilter}
+            letterSpacing="1px"
+            _hover={{ bg: "blue.400" }}
+            px={10}
+          >
+            Filter
+          </Button>
+          <Text
+            ml={8}
+            color="blue.800"
+            cursor="pointer"
+            _hover={{ color: "blue.500" }}
+            textDecor="underline"
+            onClick={()=>setDate(new Date())}
+          >
+            Reset
+          </Text>
+        </Flex>
       </Flex>
       <Flex gap={4} my={10}>
         <Button
@@ -95,14 +148,12 @@ const AllJobs = ({
           rounded="full"
           bg="blue.700"
           onClick={() => setConfirmDelete(!confirmDelete)}
-
           color="white"
           px={6}
           letterSpacing="1px"
           fontSize="13px"
         >
-                    {selected.length <= 1 ? "Delete job" : "Delete jobs"}
-
+          {selected.length <= 1 ? "Delete job" : "Delete jobs"}
         </Button>
         <Button
           isDisabled={selected.length < 1}
@@ -131,9 +182,7 @@ const AllJobs = ({
           Charge
         </Button>
       </Flex>
-      <JobsTable
-       selected={selected} setSelected={setSelected}
-      />
+      <JobsTable selected={selected} setSelected={setSelected} />
     </Box>
   );
 };

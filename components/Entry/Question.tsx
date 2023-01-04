@@ -43,7 +43,7 @@ const Question = () => {
           </Text>
         </Flex>
       </Flex>
-      {/* <EntryTabs /> */}
+      <EntryTabs />
 
     </Box>
   );

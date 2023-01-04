@@ -20,10 +20,10 @@ const WhyOrder = () => {
   return (
     <Box
       position="absolute"
-      w={{ base: "100%", md: "100%" }}
-      top={{ base: "2060px", sm: "2050", md: "1200px", lg: "1200px" }}
-      mx={{ sm: "4", md: "auto" }}
+      w={{ base: "380px", sm:"100%", md: "100%" }}
+      top={{ base: "2130px", sm: "2050", md: "1200px", lg: "1200px" }}
       my={{ md: 10 }}
+      mx="auto"
     >
       <Checklist />
 
@@ -153,8 +153,8 @@ const WhyOrder = () => {
           </Box>
         </Box>
       </Flex>
-      <Question />
-      <PriceTabs />
+      {/* <Question /> */}
+      {/* <PriceTabs /> */}
       <Review />
       <Footer />
     </Box>

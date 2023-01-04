@@ -15,8 +15,8 @@ const Newsletter = () => {
   return (
     <Flex
       backgroundColor="#418bf7"
-      w={{ base: "90%", lg: "1000px" }}
-      mx="auto"
+      w={{ base: "360px", sm:"380px", lg: "1000px" }}
+      mx={{base:"2.5", sm:"auto"}}
       my={10}
       mt={20}
       color="white"

@@ -45,7 +45,7 @@ const mockData = {
   notes: [],
   phone: "",
   products: [],
-  quoteStatus: "",
+  bookingStatus: "",
 };
 const QuoteDetail = ({ data }) => {
   const router = useRouter();
@@ -71,7 +71,7 @@ const QuoteDetail = ({ data }) => {
       `https://wedo-backend.herokuapp.com/v1/booking/${details._id}`,
       display
     );
-    console.log(result.data)
+    console.log(result.data);
     if (result.data.status === "success") {
       toast({
         position: "bottom-left",
@@ -102,6 +102,90 @@ const QuoteDetail = ({ data }) => {
       router.replace(router.asPath);
     }
   };
+
+  const changeStatus = async (lm) => {
+    setDisplay({ ...display, bookingStatus: lm });
+    setLoading(true);
+
+    const result = await axios.put(
+      `http://localhost:3001/v1/booking/${details._id}`,
+      {...display, bookingStatus:lm}
+    );
+    console.log(result.data);
+    if (result.data.status === "success") {
+      toast({
+        position: "bottom-left",
+        render: () => (
+          <Box w={"250px"} bg="white" rounded="xl" mt={4}>
+            <Text
+              color="white"
+              py={2}
+              fontWeight="semibold"
+              roundedTop={"xl"}
+              bg="blue.700"
+              textAlign="center"
+            >
+              Alert
+            </Text>
+            <Text fontSize="13px" py={4} px={4}>
+              Successfully edited Quote Status.
+            </Text>
+          </Box>
+        ),
+        duration: 6000,
+        isClosable: true,
+      });
+
+      setLoading(false);
+
+      router.replace(router.asPath);
+    }
+  };
+
+  const changeTime = async (e, value) => {
+    setDisplay({ ...display, [value]: e.target.value });
+    setLoading(true);
+ 
+  }
+
+  const saveTime = async () => {
+    setLoading(true);
+
+    const result = await axios.put(
+          `http://localhost:3001/v1/booking/${details._id}`,
+          {...display}
+        );
+        console.log(result.data);
+        if (result.data.status === "success") {
+          toast({
+            position: "bottom-left",
+            render: () => (
+              <Box w={"250px"} bg="white" rounded="xl" mt={4}>
+                <Text
+                  color="white"
+                  py={2}
+                  fontWeight="semibold"
+                  roundedTop={"xl"}
+                  bg="blue.700"
+                  textAlign="center"
+                >
+                  Alert
+                </Text>
+                <Text fontSize="13px" py={4} px={4}>
+                  Successfully edited Job Time.
+                </Text>
+              </Box>
+            ),
+            duration: 6000,
+            isClosable: true,
+          });
+    
+          setLoading(false);
+    
+          router.replace(router.asPath);
+        }
+      
+  }
 
   useEffect(() => {
     const maintainData = () => {
@@ -139,6 +223,7 @@ const QuoteDetail = ({ data }) => {
           </Heading>
           <Text mt={3} color="gray.500" fontSize="14px">
             {new Date(display.bookingDate).toString().substring(0, 16)}
+            
           </Text>
         </Box>
         <Flex
@@ -180,7 +265,7 @@ const QuoteDetail = ({ data }) => {
           </Button>
         </Flex>
       </Flex>
-      <JobDetails details={details} />
+      <JobDetails details={display} changeStatus={changeStatus} saveTime={saveTime} setDetails={setDisplay} changeTime={changeTime} />
       <DrawerLayout
         isOpen={isOpen}
         onClose={onClose}
@@ -242,7 +327,9 @@ export async function getServerSideProps(ctx) {
   const { id } = params;
 
   // Fetch data from external API
-  const res = await fetch(`https://wedo-backend.herokuapp.com/v1/booking/${id}`);
+  const res = await fetch(
+    `https://wedo-backend.herokuapp.com/v1/booking/${id}`
+  );
   // const res = await fetch(`http://localhost:3001/v1/booking/${id}`);
   const data = await res.json();
   console.log(data);

@@ -62,7 +62,7 @@ const MobileNavMenu = ({ openMenu, setOpenMenu }) => {
       isOpen={true}
       placement="right"
       onClose={() => setOpenMenu(false)}
-
+      // size="sm"
       // finalFocusRef={btnRef}
     >
       <DrawerOverlay />

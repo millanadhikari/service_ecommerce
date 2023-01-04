@@ -3,11 +3,11 @@ import { useAppDispatch } from '../app/hooks'
 import { fetchBookingFail, fetchBookingLoading, fetchBookingSuccess } from './bookingsSlice';
 
 
-export const fetchAllBookings = (pageNumber, search, filter) => async (dispatch) => {
+export const fetchAllBookings = (pageNumber, search, bookingDate, to) => async (dispatch) => {
 
   dispatch(fetchBookingLoading());
   try {
-    const result = await getAllBookings(pageNumber, search, filter);
+    const result = await getAllBookings(pageNumber, search, bookingDate, to);
 
     result.data.paginatedResults.length &&
       dispatch(fetchBookingSuccess(result.data));
