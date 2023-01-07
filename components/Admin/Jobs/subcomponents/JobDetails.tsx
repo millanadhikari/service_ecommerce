@@ -178,9 +178,9 @@ const JobDetails = ({
         </Flex>{" "}
       </Flex>
       <Checklist />
-      {data.map((item) => (
-        <Notes item={item} key={item.id} />
-      ))}
+      {/* {data.map((item) => ( */}
+        <Notes />
+      {/* ))} */}
     </Box>
   );
 };

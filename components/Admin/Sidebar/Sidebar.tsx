@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Box,
   Flex,
@@ -15,6 +15,7 @@ import {
   PopoverCloseButton,
   Slide,
   Fade,
+  keyframes,
 } from "@chakra-ui/react";
 import {
   ArrowLeftIcon,
@@ -57,6 +58,7 @@ import {
 } from "react-icons/ri";
 import { VscRequestChanges } from "react-icons/vsc";
 import { MdOutlineRequestPage, MdRequestQuote } from "react-icons/md";
+import { useAnimation, motion } from "framer-motion";
 
 const menuItems = [
   {
@@ -108,6 +110,14 @@ const menuItems = [
     icon1: RiFilePaperFill,
   },
 ];
+
+const animationKeyframes = keyframes`
+  0% {transform: translateX(30%)}
+  
+`;
+
+const animation = `${animationKeyframes} 1.5s ease-out infinite`;
+
 const Sidebar = () => {
   const { isAuth } = useAppSelector((state) => state.login) || undefined;
   const user = useAppSelector((state) => state.user) || undefined;
@@ -118,6 +128,8 @@ const Sidebar = () => {
   const Socket = useAppSelector((state) => state.user.Socket);
 
   const Router = useRouter();
+
+  const sidebarControls = useAnimation();
 
   const handleSidebar = () => {
     dispatch(getSidebarStatus(!sidebarOpen));
@@ -130,16 +142,27 @@ const Sidebar = () => {
     Socket?.disconnect();
     Router.replace("/admin/login");
   };
-
-  // console.log(user);
+  // useEffect(() => {
+  //   if (sidebarOpen) {
+  //     sidebarControls.start({ width: "0px", backgroundColor: "black" });
+  //   } else {
+  //     sidebarControls.start({ width: "400px" });
+  //   }
+  // }, [sidebarOpen]);
+  // // console.log(user);
 
   return (
-    <>
+    <Box>
       <Box
         position="fixed"
         // display={{base:"hidden", md:"inline"}}
         top="0"
         w={sidebarOpen ? "300px" : "80px"}
+        as={motion.div}
+        initial={{ width: "80px" }}
+        animate={{ width: sidebarOpen ? "300px" : "80px" }}
+        transition="0.2s linear"
+        bg="white"
         h="100vh"
         borderRight="1px solid "
         borderColor="gray.200"
@@ -162,7 +185,7 @@ const Sidebar = () => {
             )}
           </Flex>
           <Spacer />
-          <Flex alignItems="center">
+          <Flex alignItems="center" gap={2}>
             {sidebarOpen && (
               <IconButton
                 backgroundColor="white"
@@ -182,14 +205,41 @@ const Sidebar = () => {
               ml={!sidebarOpen && 2}
               icon={
                 sidebarOpen ? (
-                  <ArrowLeftIcon w={3} h={3} cursor="pointer" color="#7b68ee" />
+                  <Box
+                    as={motion.div}
+                    // initial={{ marginLeft: "0px" }}
+                    animation={animation}
+                    // animate={{ marginLeft: [0, 5, 3, 2, 0] }}
+                    transition="3s Infinity loop"
+                  >
+                    <ArrowLeftIcon
+                      w={3}
+                      h={3}
+                      cursor="pointer"
+                      color="#7b68ee"
+                    />{" "}
+                  </Box>
                 ) : (
-                  <ArrowRightIcon
-                    w={3}
-                    h={3}
-                    cursor="pointer"
-                    color="#7b68ee"
-                  />
+                  <Box
+                    as={motion.div}
+                    // initial={{ marginLeft: "0px" }}
+                    animation={animation}
+                    // animate={{ marginLeft: [0, 5, 3, 2, 0] }}
+                    transition="3s Infinity loop"
+                    // {{
+                    //   duration: "3s",
+                    //   ease: "easeInOut",
+                    //   repeat: "Infinity",
+                    //   repeatType: "loop",
+                    // }}
+                  >
+                    <ArrowRightIcon
+                      w={3}
+                      h={3}
+                      cursor="pointer"
+                      color="#7b68ee"
+                    />
+                  </Box>
                 )
               }
             />
@@ -303,16 +353,26 @@ const Sidebar = () => {
                   backgroundColor="red"
                   rounded="full"
                   h={8}
-                  w={8}
                 >
-                  {user.user.firstName
-                    .split(" ")
-                    .map((n) => n[0])
-                    .join("")}
-                  {user.user.lastName
-                    .split(" ")
-                    .map((n) => n[0])
-                    .join("")}
+                  {user.user.profilePic?.src ? (
+                    <Image
+                      h={10}
+                      w={10}
+                      rounded="full"
+                      src={user.user.profilePic.src}
+                    />
+                  ) : (
+                    <>
+                      {user.user.firstName
+                        .split(" ")
+                        .map((n) => n[0])
+                        .join("")}
+                      {user.user.lastName
+                        .split(" ")
+                        .map((n) => n[0])
+                        .join("")}
+                    </>
+                  )}
                   <Box
                     backgroundColor="green.500"
                     border="0.5px solid white"
@@ -324,6 +384,7 @@ const Sidebar = () => {
                     right="0.5"
                   ></Box>
                 </Flex>
+
                 <Text
                   fontSize="12px"
                   fontFamily="sans-serif"
@@ -379,7 +440,7 @@ const Sidebar = () => {
           )}
         </Flex>
       </Box>
-    </>
+    </Box>
   );
 };
 

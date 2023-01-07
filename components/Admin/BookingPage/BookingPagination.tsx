@@ -68,7 +68,7 @@ const BookingPagination = ({ setPageNumber, pageNumber }) => {
           ))}
         </Flex>
         <Button
-          disabled={isLoading || nextPages > totalPages}
+          disabled={isLoading || nextPages == 0}
           onClick={(e)=> handleNext(e)}
         >
           <ChevronRightIcon />

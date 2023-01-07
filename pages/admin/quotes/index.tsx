@@ -113,7 +113,7 @@ const Quotes = () => {
 
   const onSubmit = async () => {
     setLoading(true);
-    const result = await axios.post("http://localhost:3001/v1/quote", display);
+    const result = await axios.post("https://wedo-backend.herokuapp.com/v1/quote", display);
     if (result.data.status === "success") {
       Socket?.emit("sendNotification", {
         senderName: userName,

@@ -65,11 +65,11 @@ const JobPagination = ({ setPageNumber, pageNumber }) => {
           w={6}
           m={3}
         >
-          {nextPages - 1}
+          {pageNumber}
         </Flex>
 
         <Button
-          disabled={isLoading || nextPages > totalPages}
+          disabled={isLoading || nextPages == 0}
           onClick={(e) => handleNext(e)}
           size="sm"
         >

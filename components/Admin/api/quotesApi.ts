@@ -11,7 +11,7 @@ export const getAllQuotes = (
   filter: string
 ) => {
   const bookingsUrl =
-    rootUrl + `quote/all?page=${pageNumber}&limit=5&search=${search}`;
+    rootUrl + `quote/all?page=${pageNumber}&limit=4&search=${search}`;
   return new Promise(async (resolve, reject) => {
     try {
       const result = await axios.get(bookingsUrl);

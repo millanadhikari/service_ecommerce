@@ -1,11 +1,14 @@
 import { Box, Button, Input, Select, Text } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useAppSelector } from "../app/hooks";
 
-const ProfileInfo = () => {
+const ProfileInfo = ({ display, setDisplay, editProfile }) => {
   const user = useAppSelector((state) => state.user.user);
   const [data, setData] = useState(user);
 
+  useEffect(() => {
+    console.log("lyamma", display);
+  }, [display]);
   return (
     <Box px={5} my={5}>
       <Text mb={5} fontWeight="semibold" fontSize="16" color="blue.700">
@@ -19,8 +22,10 @@ const ProfileInfo = () => {
           <Input
             my={2}
             bg="white"
-            value={data.firstName}
-            onChange={(e) => setData({ ...data, firstName: e.target.value })}
+            value={display?.firstName}
+            onChange={(e) =>
+              setDisplay({ ...display, firstName: e.target.value })
+            }
             size="sm"
             rounded="full"
           />
@@ -31,8 +36,10 @@ const ProfileInfo = () => {
           </Text>
           <Input
             my={2}
-            value={data.lastName}
-            onChange={(e) => setData({ ...data, lastName: e.target.value })}
+            value={display?.lastName}
+            onChange={(e) =>
+              setDisplay({ ...display, lastName: e.target.value })
+            }
             bg="white"
             size="sm"
             rounded="full"
@@ -44,8 +51,8 @@ const ProfileInfo = () => {
           </Text>
           <Input
             my={2}
-            value={data.phone}
-            onChange={(e) => setData({ ...data, phone: e.target.value })}
+            value={display?.phone}
+            onChange={(e) => setDisplay({ ...display, phone: e.target.value })}
             bg="white"
             size="sm"
             rounded="full"
@@ -59,8 +66,8 @@ const ProfileInfo = () => {
             my={2}
             bg="white"
             size="sm"
-            value={data.email}
-            onChange={(e) => setData({ ...data, email: e.target.value })}
+            value={display?.email}
+            onChange={(e) => setDisplay({ ...display, email: e.target.value })}
             rounded="full"
           />
         </Box>
@@ -68,7 +75,16 @@ const ProfileInfo = () => {
           <Text fontWeight="semibold" fontSize="14" color="gray.500">
             Username
           </Text>
-          <Input my={2} bg="white" size="sm" rounded="full" />
+          <Input
+            my={2}
+            value={display?.username}
+            onChange={(e) =>
+              setDisplay({ ...display, username: e.target.value })
+            }
+            bg="white"
+            size="sm"
+            rounded="full"
+          />
         </Box>
         <Box bg="white" px={5} pt={3} shadow="md">
           <Text fontWeight="semibold" fontSize="14" color="gray.500">
@@ -86,7 +102,16 @@ const ProfileInfo = () => {
           <Text fontWeight="semibold" fontSize="14" color="gray.500">
             Address
           </Text>
-          <Input my={2} bg="white" size="sm" rounded="full" />
+          <Input
+            my={2}
+            bg="white"
+            value={display?.address}
+            onChange={(e) =>
+              setDisplay({ ...display, address: e.target.value })
+            }
+            size="sm"
+            rounded="full"
+          />
         </Box>
         <Box bg="white" px={5} pt={3} shadow="md">
           <Text fontWeight="semibold" fontSize="14" color="gray.500">
@@ -96,6 +121,8 @@ const ProfileInfo = () => {
             rounded="full"
             //   onChange={handleChange}
             //   value={display.state}
+            value={display?.state}
+            onChange={(e) => setDisplay({ ...display, state: e.target.value })}
             name="state"
             size="sm"
             placeholder="Select State"
@@ -116,7 +143,16 @@ const ProfileInfo = () => {
           <Text fontWeight="semibold" fontSize="14" color="gray.500">
             Post code
           </Text>
-          <Input my={2} bg="white" size="sm" rounded="full" />
+          <Input
+            my={2}
+            bg="white"
+            value={display?.postcode}
+            onChange={(e) =>
+              setDisplay({ ...display, postcode: e.target.value })
+            }
+            size="sm"
+            rounded="full"
+          />
         </Box>
       </Box>
       <Button
@@ -125,6 +161,7 @@ const ProfileInfo = () => {
         bg="blue.700"
         rounded="full"
         px={6}
+        onClick={editProfile}
         color="white"
       >
         Save

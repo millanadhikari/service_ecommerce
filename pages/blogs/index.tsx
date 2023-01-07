@@ -29,7 +29,7 @@ const Blogs = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await axios.get("http://localhost:3001/v1/blog/all");
+      const result = await axios.get("https://wedo-backend.herokuapp.com/v1/blog/all");
       console.log(result);
       result.data.status === "success" && setData(result.data.paginatedResults);
     };
@@ -46,9 +46,7 @@ const Blogs = () => {
         {data &&
           data.map(
             (item) =>
-              item.label === "main" && (
-                <BlogHeader key={item._id} item={item} />
-              )
+              item.label === "main" && <BlogHeader key={item._id} item={item} />
           )}
         <Flex flexDirection={{ base: "column", md: "row" }}>
           <Flex flexDirection={{ base: "column", md: "row" }}>

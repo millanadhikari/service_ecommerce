@@ -265,7 +265,7 @@ const QuoteDetail = ({ data }) => {
           </Button>
         </Flex>
       </Flex>
-      <JobDetails details={display} changeStatus={changeStatus} saveTime={saveTime} setDetails={setDisplay} changeTime={changeTime} />
+      <JobDe details={display} changeStatus={changeStatus} saveTime={saveTime} setDetails={setDisplay} changeTime={changeTime} />
       <DrawerLayout
         isOpen={isOpen}
         onClose={onClose}

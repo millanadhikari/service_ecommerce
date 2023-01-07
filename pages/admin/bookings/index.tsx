@@ -206,7 +206,7 @@ const Bookings = () => {
   let to = date[1] ? date[1] : null;
   const onSubmit = async () => {
     setLoading(true);
-    const result = await axios.post("http://localhost:3001/v1/quote", display);
+    const result = await axios.post("https://wedo-backend.herokuapp.com/v1/booking", display);
     if (result.data.status === "success") {
       Socket?.emit("sendNotification", {
         senderName: userName,
@@ -244,7 +244,7 @@ const Bookings = () => {
   const deleteBooking = async () => {
     setConfirmDelete(!confirmDelete);
     const id = selected[0];
-    const result = await axios.delete(`http://localhost:3001/v1/booking/${id}`);
+    const result = await axios.delete(`https://wedo-backend.herokuapp.com/v1/booking/${id}`);
     if (result.data.status === "success") {
       // toast({
       //   position: "top-right",
@@ -262,7 +262,7 @@ const Bookings = () => {
   const bookQuote = async () => {
     setConfirmBook(!confirmBook);
     const id = selected[0];
-    const result = await axios.post(`http://localhost:3001/v1/booking/${id}`);
+    const result = await axios.post(`https://wedo-backend.herokuapp.com/v1/${id}`);
     if (result.data.status === "success") {
       // toast({
       //   position: "top-right",

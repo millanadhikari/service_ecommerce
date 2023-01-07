@@ -21,26 +21,41 @@ import {
   AiOutlineMenuFold,
 } from "react-icons/ai";
 import { useRouter } from "next/router";
+import { useAppSelector } from "../../../app/hooks";
+import { userLogout } from "../../../api/userApi";
 const ProfilePopover = () => {
   const router = useRouter();
+  const user = useAppSelector((state) => state.user.user);
 
+  const logmeOut = () => {
+    sessionStorage.removeItem("accessJWT");
+    localStorage.removeItem("service_ecommerce");
+    userLogout();
+    // Socket?.on("disconnect", () => {});
+
+    router.replace("/admin/login");
+  };
   return (
     <Popover>
       <PopoverTrigger>
         <Flex gap={4} alignItems="center" cursor="pointer">
           <Text fontWeight="semibold" color="gray.600">
-            Milan 
+            {user?.firstName}
           </Text>
           <Flex alignItems="center" gap={2}>
-            <Image
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRr0iCpiWXk0d2jGf57Uskp8MVgYJBrYK-f3w&usqp=CAU"
-              alt=""
-              height="30px"
-              border="2px solid blue"
-              borderColor="purple.500"
-              rounded="full"
-              width="30px"
-            />
+            {user?.profilePic?.src !== "" ? (
+              <Image h={10} w={10} rounded="full" src={user?.profilePic.src} />
+            ) : (
+              <Image
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRr0iCpiWXk0d2jGf57Uskp8MVgYJBrYK-f3w&usqp=CAU"
+                alt=""
+                height="30px"
+                border="2px solid blue"
+                borderColor="purple.500"
+                rounded="full"
+                width="30px"
+              />
+            )}
             <Icon as={AiOutlineCaretDown} />
           </Flex>
         </Flex>
@@ -51,18 +66,29 @@ const ProfilePopover = () => {
         <PopoverBody>
           <Box>
             <Flex alignItems="center" gap={4}>
-              <Image
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRr0iCpiWXk0d2jGf57Uskp8MVgYJBrYK-f3w&usqp=CAU"
-                alt=""
-                height="60px"
-                border="2px solid blue"
-                borderColor="purple.500"
-                rounded="full"
-                width="60px"
-              />
+              {user?.profilePic?.src !== "" ? (
+                <Image
+                  height="60px"
+                  border="2px solid blue"
+                  borderColor="purple.500"
+                  rounded="full"
+                  width="60px"
+                  src={user?.profilePic.src}
+                />
+              ) : (
+                <Image
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRr0iCpiWXk0d2jGf57Uskp8MVgYJBrYK-f3w&usqp=CAU"
+                  alt=""
+                  height="60px"
+                  border="2px solid blue"
+                  borderColor="purple.500"
+                  rounded="full"
+                  width="60px"
+                />
+              )}
               <Box fontSize="14px">
                 <Text mb={1} fontWeight="semibold">
-                  Milan
+                  {user.firstName} {user.lastName}
                 </Text>
                 <Text>Admin</Text>
               </Box>
@@ -77,7 +103,7 @@ const ProfilePopover = () => {
               fontWeight="semibold"
               color="gray.600"
               fontSize="14px"
-              onClick={()=>router.push('/admin/Viewprofile')}
+              onClick={() => router.push("/admin/Viewprofile")}
             >
               View Profile
             </Text>
@@ -85,7 +111,7 @@ const ProfilePopover = () => {
               textAlign="center"
               color="gray.400"
               fontWeight="semibold"
-              onClick={() => prompt('hello')}
+              onClick={logmeOut}
               cursor="pointer"
             >
               Sign Out
