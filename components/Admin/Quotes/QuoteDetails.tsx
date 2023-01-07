@@ -195,7 +195,7 @@ const QuoteDetails = ({ details }) => {
       </Flex>
       <Checklist />
       {data.map((item) => (
-        <Notes item={item} key={item.id} />
+        <Notes key={item.id} />
       ))}
     </Box>
   );
