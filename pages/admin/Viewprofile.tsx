@@ -38,7 +38,7 @@ const ViewProfile = () => {
   const [preview, setPreview] = useState("");
   const [display, setDisplay] = useState({});
   const dispatch = useDispatch();
-  const router = useRouter()
+  const router = useRouter();
   let ok = user._id;
 
   const editProfile = () => {

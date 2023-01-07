@@ -29,7 +29,9 @@ const Blogs = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await axios.get("https://wedo-backend.herokuapp.com/v1/blog/all");
+      const result = await axios.get(
+        "https://wedo-backend.herokuapp.com/v1/blog/all"
+      );
       console.log(result);
       result.data.status === "success" && setData(result.data.paginatedResults);
     };

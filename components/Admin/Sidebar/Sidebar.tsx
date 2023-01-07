@@ -35,11 +35,7 @@ import {
 import { BiChevronDown } from "react-icons/bi";
 import { useAppDispatch, useAppSelector } from "../../Admin/app/hooks";
 import {
-  BsBookmarkCheck,
-  BsBookmarkCheckFill,
-  BsFillPeopleFill,
-  BsPeople,
-  BsPeopleFill,
+
   BsPersonDash,
   BsPersonDashFill,
   BsToggleOn,
@@ -51,12 +47,17 @@ import withAuth from "../privateRoute/withAuth";
 import SidebarLink from "./Menu/SidebarLink";
 import { AiFillHome, AiOutlineHome } from "react-icons/ai";
 import {
+  RiBook2Fill,
+  RiBook2Line,
+  RiCurrencyFill,
+  RiCurrencyLine,
   RiFilePaper2Line,
   RiFilePaperFill,
+  RiMailStarFill,
+  RiMailStarLine,
   RiMoneyDollarBoxFill,
   RiMoneyDollarBoxLine,
 } from "react-icons/ri";
-import { VscRequestChanges } from "react-icons/vsc";
 import { MdOutlineRequestPage, MdRequestQuote } from "react-icons/md";
 import { useAnimation, motion } from "framer-motion";
 
@@ -70,14 +71,14 @@ const menuItems = [
   {
     href: "/admin/bookings",
     title: "Bookings",
-    icon1: BsFillPeopleFill,
-    icon2: BsPeople,
+    icon1: RiBook2Fill,
+    icon2: RiBook2Line,
   },
   {
     href: "/admin/quotes",
     title: "Quotes",
-    icon2: MdOutlineRequestPage,
-    icon1: MdRequestQuote,
+    icon2: RiMailStarLine,
+    icon1: RiMailStarFill
   },
   {
     href: "/admin/scheduling",
@@ -100,8 +101,8 @@ const menuItems = [
   {
     href: "/admin/pricing",
     title: "Pricing",
-    icon2: BsBookmarkCheck,
-    icon1: BsBookmarkCheckFill,
+    icon2: RiCurrencyFill,
+    icon1: RiCurrencyLine,
   },
   {
     href: "/admin/reports",
