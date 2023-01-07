@@ -35,14 +35,11 @@ const Home = () => {
       w="100%"
       h="100vh"
     >
-    <SubNav/>
-      <Box w="100%" backgroundColor="gray.100"  zIndex="999" h="100vh" pt="10px" >
+      <SubNav />
+      <Box w="100%" backgroundColor="gray.100" zIndex="999" h="100vh" pt="10px">
         <DashbboardTabs />
-        <Analytics/>
+        <Analytics />
       </Box>
-      
-  
-
     </Box>
   );
 };

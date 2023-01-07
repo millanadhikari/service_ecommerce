@@ -84,9 +84,8 @@ const SubNav = () => {
       >
         <Icon as={AiFillSetting} fontSize="20px" />
       </Flex>
-     
-        <NotificationPopver notifications={notifications} />
-     
+
+      <NotificationPopver notifications={notifications} />
     </Flex>
   );
 };

@@ -44,7 +44,7 @@ const ProfilePopover = () => {
           </Text>
           <Flex alignItems="center" gap={2}>
             {user?.profilePic?.src !== "" ? (
-              <Image h={10} w={10} rounded="full" src={user?.profilePic.src} />
+              <Image h={10} w={10} rounded="full" src={user?.profilePic?.src} />
             ) : (
               <Image
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRr0iCpiWXk0d2jGf57Uskp8MVgYJBrYK-f3w&usqp=CAU"
@@ -73,7 +73,7 @@ const ProfilePopover = () => {
                   borderColor="purple.500"
                   rounded="full"
                   width="60px"
-                  src={user?.profilePic.src}
+                  src={user?.profilePic?.src}
                 />
               ) : (
                 <Image
@@ -88,7 +88,7 @@ const ProfilePopover = () => {
               )}
               <Box fontSize="14px">
                 <Text mb={1} fontWeight="semibold">
-                  {user.firstName} {user.lastName}
+                  {user?.firstName} {user?.lastName}
                 </Text>
                 <Text>Admin</Text>
               </Box>

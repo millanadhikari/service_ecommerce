@@ -39,7 +39,7 @@ const PriceTable = ({ product, onOpen, isOpen, onClose }) => {
       `https://wedo-backend.herokuapp.com/v1/product/${laya[0]._id}`,
       newProduct
     );
-    if (result.data.status === "success") {
+    if (result?.data?.status === "success") {
       toast({
         position: "bottom-left",
         render: () => (
@@ -48,7 +48,7 @@ const PriceTable = ({ product, onOpen, isOpen, onClose }) => {
               color="white"
               py={2}
               fontWeight="semibold"
-              roundedTop={"xl"} 
+              roundedTop={"xl"}
               bg="blue.700"
               textAlign="center"
             >
@@ -66,7 +66,7 @@ const PriceTable = ({ product, onOpen, isOpen, onClose }) => {
       setLoading(false);
 
       onClose();
-      router.replace(router.asPath)
+      router.replace(router.asPath);
     }
   };
   const onLaya = ({ item }) => {
@@ -136,7 +136,9 @@ const PriceTable = ({ product, onOpen, isOpen, onClose }) => {
                     {item?.status}
                   </Text>
                 </Td>
-                <Td fontSize="14px" color="blue.700">Standard</Td>
+                <Td fontSize="14px" color="blue.700">
+                  Standard
+                </Td>
                 <Td fontSize="14px">
                   <Flex alignItems="center" gap={4}>
                     <Text>$ {item.price}</Text>
