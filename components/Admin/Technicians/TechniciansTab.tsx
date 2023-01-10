@@ -11,8 +11,7 @@ import React from "react";
 import QuotePagination from "../QuotePage/QuotePagination";
 import AllTechnicians from "./subcomponents/AllTechnicians";
 import AllJobs from "./subcomponents/AllTechnicians";
-import JobPagination from "./subcomponents/JobPagination";
-import NotAssigned from "./subcomponents/NotAssigned";
+
 // import Unpaid from "./subcomponents/Unpaid";
 
 const TechniciansTab
