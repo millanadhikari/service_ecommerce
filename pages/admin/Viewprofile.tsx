@@ -100,6 +100,7 @@ const ViewProfile = () => {
 
     // I've kept this example simple by using the first image instead of multiple
     setSelectedFile(e.target.files[0]);
+    console.log('file', e.target.files[0])
   };
 
   // create a preview as a side effect, whenever selected file is changed

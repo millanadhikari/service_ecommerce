@@ -281,7 +281,7 @@ const Sidebar = () => {
           ))}
         </Box>
         {sidebarOpen && (
-          <Box mt="20rem">
+          <Box mt="10rem">
             <SpaceAccordion />
           </Box>
         )}

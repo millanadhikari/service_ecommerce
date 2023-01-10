@@ -7,6 +7,7 @@ import spacesReducer from '../Admin/space/spaceSlice'
 import cBookingReducer from '../Booking/customerBookingSlice'
 import customerRegistrationReducer from '../customerAuth/customerRegistrationSlice'
 import quotesReducer from '../Admin/QuotePage/quoteSlice'
+import techniciansReducer from '../Admin/Technicians/techniciansSlice'
 
 const store = configureStore({
     reducer: {
@@ -16,7 +17,8 @@ const store = configureStore({
         spaces:spacesReducer,
         cBookings:cBookingReducer,
         customerRegistration:customerRegistrationReducer,
-        quotes:quotesReducer
+        quotes:quotesReducer,
+        technicians:techniciansReducer
     },
     middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

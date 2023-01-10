@@ -49,7 +49,9 @@ const SidebarLink = ({ item }) => {
           
             aria-label="Search database"
             textAlign="left"
-            mx={sidebarOpen ? 0 : "auto"}
+            mx={sidebarOpen ? 0 : router.asPath === item.href
+              ? "2.4px"
+              : "6px"}
             color={router.asPath === item.href ? "#7c68ee" : "none"}
             as={router.asPath === item.href ? item.icon1 : item.icon2}
           />

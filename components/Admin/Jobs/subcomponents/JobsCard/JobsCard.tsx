@@ -1,12 +1,28 @@
 import { Box, Button, Flex, Grid, GridItem, Heading } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import JCard from "./JCard";
 import { BiHelpCircle } from "react-icons/bi";
 import { FaBriefcase, FaBuilding, FaMoneyBill } from "react-icons/fa";
 import { BsFillPersonFill } from "react-icons/bs";
 import { MdCancel } from "react-icons/md";
+import axios from "axios";
 
 const JobsCard = ({ title, ref, onOpen }) => {
+  const [display, setDisplay] = useState([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      await axios
+        .get("https://wedo-backend.herokuapp.com/v1/booking/count")
+        .then((data) => {
+          console.log("ilaila", data.data.result);
+          setDisplay(data?.data?.result);
+        });
+    };
+
+    fetchProducts();
+  }, []);
+
   return (
     <Box my={4} textAlign="left">
       <Flex justifyContent="space-between" pr={5}>
@@ -95,3 +111,22 @@ const JobsCard = ({ title, ref, onOpen }) => {
 };
 
 export default JobsCard;
+
+// This gets called on every request
+export async function getServerSideProps(ctx) {
+  const { params } = ctx;
+  const { id } = params;
+
+  // Fetch data from external API
+  const res = await fetch(
+    `https://wedo-backend.herokuapp.com/v1/booking/count`
+  );
+  // const res = await fetch(`http://localhost:3001/v1/booking/${id}`);
+  const data = await res.json();
+  console.log("hellopuja", data);
+
+  // Pass data to the page via props
+  return { props: { data } };
+}
+
+// const rootUrl = "https://wedo-backend.herokuapp.com/v1/";

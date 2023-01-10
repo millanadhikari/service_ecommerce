@@ -44,7 +44,7 @@ const ProfilePopover = () => {
           </Text>
           <Flex alignItems="center" gap={2}>
             {user?.profilePic?.src !== "" ? (
-              <Image h={10} w={10} rounded="full" src={user?.profilePic?.src} />
+              <Image h={10} w={10} rounded="full" src={user?.profilePic?.src ? user?.profilePic?.src : ''} />
             ) : (
               <Image
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRr0iCpiWXk0d2jGf57Uskp8MVgYJBrYK-f3w&usqp=CAU"

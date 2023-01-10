@@ -5,23 +5,18 @@ const rootUrl = "http://localhost:3001/v1/";
 
 const closeTicketUrl = rootUrl + "ticket/close-ticket/";
 
-export const getAllBookings = (
+export const getAllTechnicians = (
   pageNumber: number,
   search: string,
-  bookingDate: Date,
-  to: Date
+  filter: string,
+  word: string
 ) => {
-  let newbook = bookingDate ? bookingDate.toISOString().slice(0, 10) : "";
-  let oldbook = to ? to.toISOString().slice(0, 10) : "";
-
-  console.log("newbook", newbook);
-  console.log("oldbook", oldbook);
-  const bookingsUrl =
+  const techniciansUrl =
     rootUrl +
-    `booking/all?page=${pageNumber}&limit=4&search=${search}&bookingDate=${newbook}&to=${oldbook}`;
+    `technician/all?page=${pageNumber}&limit=4&search=${search}&filter=${filter}&word=${word}`;
   return new Promise(async (resolve, reject) => {
     try {
-      const result = await axios.get(bookingsUrl, {
+      const result = await axios.get(techniciansUrl, {
         headers: {
           Authorization: sessionStorage.getItem("accessJWT"),
         },

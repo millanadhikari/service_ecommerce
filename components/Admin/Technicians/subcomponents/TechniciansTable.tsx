@@ -2,6 +2,7 @@ import {
   Box,
   Checkbox,
   Flex,
+  Image,
   Spinner,
   Table,
   TableCaption,
@@ -18,11 +19,11 @@ import { Router, useRouter } from "next/router";
 import React from "react";
 import { useAppSelector } from "../../app/hooks";
 
-const JobsTable = ({ selected, setSelected }) => {
+const TechniciansTable = ({ selected, setSelected }) => {
   const router = useRouter();
-  const isLoading = useAppSelector((state) => state.quotes.isLoading);
-  const bookings = useAppSelector(
-    (state) => state.bookings.bookings.paginatedResults
+  const isLoading = useAppSelector((state) => state.technicians?.isLoading);
+  const technicians = useAppSelector(
+    (state) => state.technicians?.technicians?.paginatedResults
   );
   const handleCheckbox = (e) => {
     const { value, checked } = e.target;
@@ -35,7 +36,7 @@ const JobsTable = ({ selected, setSelected }) => {
 
   const handleRouter = (e, _id) => {
     e.preventDefault();
-    router.push(`/admin/bookings/${_id}`);
+    router.push(`/admin/technicians/${_id}`);
   };
 
   const changeDateFormat = (ok) => {
@@ -54,32 +55,44 @@ const JobsTable = ({ selected, setSelected }) => {
           display: "none",
         },
       }}
+      my={10}
     >
       <Table variant="simple">
         <Thead>
           <Tr color="gray.900">
             <Th>
-              <Checkbox _focus={{ outline: "none" }} />
+              <Text color="white">lan</Text>
             </Th>
-            <Th>Job</Th>
-            <Th>Booking Date</Th>
-            <Th>Customer</Th>
-            <Th>Status</Th>
-            <Th>Requested Service</Th>
-            <Th>Total</Th>
+            <Th fontSize="11px">Name</Th>
+            <Th fontSize="11px">Birthday</Th>
+            <Th fontSize="11px">Customer</Th>
+            <Th fontSize="11px">Total Booking</Th>
+            <Th fontSize="11px">Cancellations</Th>
+            <Th fontSize="11px">Revenue Generated</Th>
           </Tr>
         </Thead>
         {!isLoading ? (
-          bookings?.map((item) => (
+          technicians?.map((item) => (
             <Tbody key={item._id} fontSize="15px">
               <Tr fontSize="14px" cursor="pointer" _hover={{ bg: "gray.100" }}>
                 <Td>
-                  <Checkbox
-                    value={item._id}
-                    isChecked={item.isChecked}
-                    onChange={(e) => handleCheckbox(e)}
-                    _focus={{ outline: "none" }}
-                  />
+                <Flex
+                  position="relative"
+                  
+                  alignItems="center"
+                  justifyContent="center"
+                  color="white"
+                  fontSize="10px"
+                  
+                  border="2px solid gray"
+                  borderColor="blue.500"
+
+                  rounded="full"
+                  h={10}
+                  w={10}
+                >
+                  <Image h={8} w={8} rounded="full" src={item?.profilePic?.src !== "" ? item?.profilePic?.src : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRr0iCpiWXk0d2jGf57Uskp8MVgYJBrYK-f3w&usqp=CAU'}/>
+                  </Flex>
                 </Td>
                 <Td
                   color="blue.400"
@@ -87,19 +100,19 @@ const JobsTable = ({ selected, setSelected }) => {
                   onClick={(e) => handleRouter(e, item._id)}
                 >
                   <Flex alignItems="center" gap={1}>
-                    <Text>#</Text>
-                    {item.bookingReference}
+                    {item.firstName} {item.lastName}
                   </Flex>
                 </Td>
                 <Td onClick={(e) => handleRouter(e, item._id)}>
-                  <Text color="gray.400">{item?.bookingDate !== "" ? changeDateFormat(item?.bookingDate) : 'N/A'}</Text>
+                  {/* {changeDateFormat(item.createdAt)} */}
+                  <Text color="gray.400">N/A</Text>
                 </Td>
                 <Td
                   onClick={(e) => handleRouter(e, item._id)}
                   color="blue.400"
                   fontWeight="semibold"
                 >
-                  {item.firstName} {item.lastName}
+                  <Text color="gray.400">N/A</Text>
                 </Td>
                 <Td py={6}>
                   <Box
@@ -107,18 +120,22 @@ const JobsTable = ({ selected, setSelected }) => {
                     w="100px"
                     textAlign="center"
                     color={
-                      item.bookingStatus === "In Progress" ? "blue.500" : "gray.400"
+                      item.bookingStatus === "In Progress"
+                        ? "blue.500"
+                        : "gray.400"
                     }
                     border="1px solid gray"
                     borderColor={
-                      item.bookingStatus === "In Progress" ? "blue.500" : "gray.300"
+                      item.bookingStatus === "In Progress"
+                        ? "blue.500"
+                        : "gray.300"
                     }
                     rounded="full"
                     py={1}
                     fontSize="12px"
                     px={3}
                   >
-                    {item.bookingStatus}
+                    {2}
                   </Box>
                 </Td>
                 <Td>
@@ -141,17 +158,12 @@ const JobsTable = ({ selected, setSelected }) => {
                     fontSize="11px"
                     px={3}
                   >
-                    {/* {item.service === 'eol' || 'endoflease' ? "End of Lease" : 'General Clean'
-                      } */}
-                    {item.service === "generalclean" && "General Clean"}
-                    {item.service === "general clean" && "General Clean"}
-                    {item.service === "end of lease" && "End of Lease"}
-                    {item.service === "eol" && "End of Lease"}
+                 {0}
                   </Box>
                 </Td>
                 <Td>
                   <Text fontWeight={"semibold"} color="gray.500">
-                    $ {item?.subtotal?.toString().substring(0, 3)}
+                    $ {2100}
                   </Text>
                 </Td>
               </Tr>
@@ -165,4 +177,4 @@ const JobsTable = ({ selected, setSelected }) => {
   );
 };
 
-export default JobsTable;
+export default TechniciansTable;
