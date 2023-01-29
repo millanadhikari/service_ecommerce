@@ -40,7 +40,7 @@ const Pricing = () => {
       h="100%"
     >
       <SubNav />
-      <JobsCard title="Pricing" ref={btnRef} onOpen={onOpen} />
+      <JobsCard title="Pricing" ref={btnRef} onOpen={onOpen} buttonTitle="Add Product" />
 
       <Box>
         <PricingTab product={product} />
