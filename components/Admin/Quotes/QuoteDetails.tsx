@@ -194,9 +194,9 @@ const QuoteDetails = ({ details }) => {
         </Flex>{" "}
       </Flex>
       <Checklist />
-      {data.map((item) => (
+      {/* {data.map((item) => (
         <Notes key={item.id} />
-      ))}
+      ))} */}
     </Box>
   );
 };
