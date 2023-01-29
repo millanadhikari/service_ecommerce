@@ -18,41 +18,6 @@ import DrawerLayout from "../../../components/Admin/UI/DrawerLayout";
 
 // please note that the types are reversed
 
-const initialState = [
-  {
-    _id: 1,
-    job: "112122323232",
-    serviceDate: "09/30/2022",
-    createDate: "09/09/2022",
-    customer: "Grace Silwal",
-    status: "Scheduled",
-    selected: false,
-    assigned: "Not Assigned",
-    total: 240,
-  },
-  {
-    _id: 2,
-    job: "232122323232",
-    serviceDate: "20/30/2022",
-    createDate: "10/09/2022",
-    customer: "Binod Adhikari",
-    status: "In Progress",
-    selected: false,
-    assigned: "Not Assigned",
-    total: 240,
-  },
-  {
-    _id: 3,
-    job: "242122323232",
-    serviceDate: "20/30/2022",
-    createDate: "10/09/2022",
-    customer: "Amy Shrestha",
-    status: "In Progress",
-    selected: false,
-    assigned: "Not Assigned",
-    total: 300,
-  },
-];
 
 const mockData = {
   bathrooms: 0,
@@ -82,10 +47,7 @@ const mockData = {
   quoteStatus: "",
 };
 
-const newData = {
-  ...mockData,
-  products: [],
-};
+
 const Quotes = () => {
   const sidebarOpen =
     useAppSelector((state) => state.user.sidebarOpen) || undefined;
@@ -115,11 +77,11 @@ const Quotes = () => {
     setLoading(true);
     const result = await axios.post("https://wedo-backend.herokuapp.com/v1/quote", display);
     if (result.data.status === "success") {
-      Socket?.emit("sendNotification", {
-        senderName: userName,
-        type: 1,
-      });
-      console.log("bhayankar", Socket);
+      // Socket?.emit("sendNotification", {
+      //   senderName: userName,
+      //   type: 1,
+      // });
+      // console.log("bhayankar", Socket);
 
       setLoading(false);
 
@@ -191,7 +153,7 @@ const Quotes = () => {
   // const deleteQuotes = async () => {
   //   const id = selected;
   //   // const result = await axios.post(
-  //   //   "http://localhost:3001/v1/quote/deletequotes",
+  //   //   "https://wedo-backend.herokuapp.com/v1/quote/deletequotes",
   //   //   selected
   //   // );
   //   // console.log(result);
@@ -231,7 +193,7 @@ const Quotes = () => {
       h="100%"
     >
       <SubNav />
-      <JobsCard title="Quotes" ref={btnRef} onOpen={onOpen} />
+      <JobsCard title="Quotes" buttonTitle="Add Quote" ref={btnRef} onOpen={onOpen} />
 
       <Box>
         <QuoteTab
@@ -256,7 +218,7 @@ const Quotes = () => {
         isLoading={isLoading}
         setLoading={setLoading}
       >
-        <Infos display={display} setDisplay={setDisplay} />
+        <Infos title="Customer" display={display} setDisplay={setDisplay} />
       </DrawerLayout>
       <PromptLayout
         isOpen={confirmDelete}

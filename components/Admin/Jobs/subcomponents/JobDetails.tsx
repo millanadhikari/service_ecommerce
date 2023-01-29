@@ -4,15 +4,18 @@ import {
   Button,
   Flex,
   Icon,
+  Image,
   Menu,
   MenuButton,
   MenuItem,
   MenuList,
   Text,
+  useDisclosure,
 } from "@chakra-ui/react";
 import React from "react";
 import { AiOutlineDown } from "react-icons/ai";
 import { BiHelpCircle } from "react-icons/bi";
+import AssignTech from "./AssignTech";
 import Checklist from "./Checklist/Checklist";
 import JobTimer from "./JobTimer";
 import Notes from "./Notes/Notes";
@@ -179,7 +182,7 @@ const JobDetails = ({
       </Flex>
       <Checklist />
       {/* {data.map((item) => ( */}
-        <Notes />
+      <Notes details={details} setDetails={setDetails} />
       {/* ))} */}
     </Box>
   );
@@ -188,6 +191,7 @@ const JobDetails = ({
 export default JobDetails;
 
 const detailsComp = ({ details }) => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <Box bg="white" py={7} px={6} shadow="md" mb={3}>
       <Flex
@@ -203,7 +207,7 @@ const detailsComp = ({ details }) => {
           fontWeight="semibold"
           whiteSpace="nowrap"
         >
-          Quote details
+          Job details
         </Text>
         <Flex alignItems="center" cursor="pointer">
           <Text
@@ -241,9 +245,28 @@ const detailsComp = ({ details }) => {
         borderBottom="1px solid gray"
         borderColor="gray.300"
       >
-        <Text cursor="pointer" mb={2}>
+        {details?.assignedTech?.length > 0 && (
+          <Flex my={3} alignItems="center" gap={4}>
+             <Image
+                    maxW="60px"
+                    border="2px solid blue"
+                    borderColor="#013d82"
+                    rounded="full"
+                    src={details?.assignedTech[0].profilePic?.src !== "" ? details?.assignedTech[0].profilePic?.src : "https://st.depositphotos.com/1779253/5140/v/600/depositphotos_51405259-stock-illustration-male-avatar-profile-picture-use.jpg"}
+                  />
+            <Text>Assigned to:</Text>
+            <Text ml={3} fontWeight="semibold">
+              {details?.assignedTech[0].firstName} {' '}
+              {details?.assignedTech[0].lastName}
+            </Text>
+          </Flex>
+        )}
+        <Text cursor="pointer" mb={2} onClick={onOpen}>
           Assign technician/team
         </Text>
+        {isOpen && (
+          <AssignTech isOpen={isOpen} onClose={onClose} details={details} />
+        )}
         <Text cursor="pointer">Adjust pay</Text>
       </Box>
       <Box

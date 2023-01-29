@@ -13,7 +13,7 @@ import {
 import React from "react";
 import StandardInput from "./StandardInput";
 
-const CustomerInfo = ({ display, setDisplay }) => {
+const CustomerInfo = ({title, display, setDisplay }) => {
   const handleChange = (e) => {
     setDisplay({ ...display, [e.target.name]: e.target.value });
   };
@@ -42,7 +42,7 @@ const CustomerInfo = ({ display, setDisplay }) => {
                 />
                 <Text fontSize="15px" fontWeight="semibold">
                   {" "}
-                  Customer Info
+                 {title} Info
                 </Text>
               </Flex>
             </AccordionButton>

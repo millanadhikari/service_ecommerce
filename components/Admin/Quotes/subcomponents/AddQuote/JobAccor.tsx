@@ -100,10 +100,10 @@ const JobAccor = ({ display, setDisplay }) => {
   const [extras, setExtras] = useState(data);
   const [showHalf, setShowHalf] = useState([]);
 
-  console.log(display)
+  console.log(display);
 
-  let BedValue = display.products.find((item) => item.title === "Bedrooms");
-  let bed = BedValue.quantity;
+  let BedValue = display?.products?.find((item) => item.title === "Bedrooms");
+  let bed = BedValue?.quantity;
 
   const handleAdd = (e) => {
     let sewAdd = display?.products.find((item) => item.title === "Bedrooms");
@@ -422,7 +422,7 @@ const JobAccor = ({ display, setDisplay }) => {
               <Heading fontSize="15px" color="gray.600">
                 Extras
               </Heading>
-              {display?.products.map((item) => (
+              {display?.products?.map((item) => (
                 <Extras
                   key={item._id}
                   item={item}

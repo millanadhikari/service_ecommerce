@@ -4,13 +4,13 @@ import CustomerInfo from "./CustomerInfo";
 import JobAccor from "./JobAccor";
 import Total from "./Total";
 
-const Infos = ({ display, setDisplay }) => {
+const Infos = ({title, display, setDisplay }) => {
   return (
     <Box mx={-2} my={2}>
       <Box>
-        <CustomerInfo display={display} setDisplay={setDisplay} />
+        <CustomerInfo title={title} display={display} setDisplay={setDisplay} />
         <JobAccor display={display} setDisplay={setDisplay} />
-        <Total/>
+        <Total display={display} setDisplay={setDisplay}/>
       </Box>
     </Box>
   );

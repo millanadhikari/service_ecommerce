@@ -11,7 +11,7 @@ import { BiHelpCircle } from "react-icons/bi";
 // ));
 
 const CustomToolTip = () => (
-  <div>lkjsdf</div>
+  <div></div>
   // <Tooltip label="Total number of jobs completed and paid year-to-date">
   //   <CustomCard>
   //     <span>

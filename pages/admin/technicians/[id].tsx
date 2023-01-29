@@ -25,6 +25,7 @@ import axios from "axios";
 import TechnicianDetails from "../../../components/Admin/Technicians/TechnicianDetails";
 import JobsCard from "../../../components/Admin/Jobs/subcomponents/JobsCard/JobsCard";
 import BookingHistory from "../../../components/Admin/Technicians/subcomponents/BookingHistory";
+import TechInfos from "../../../components/Admin/Technicians/subcomponents/TechInfos";
 
 const mockData = {
   bathrooms: 0,
@@ -59,7 +60,7 @@ const TechnicianDetail = ({ data }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
   const [isLoading, setLoading] = useState<Boolean>(false);
-  const [display, setDisplay] = useState(mockData);
+  const [display, setDisplay] = useState(data.result[0]);
   let details = data.result[0];
   const toast = useToast();
 
@@ -74,7 +75,7 @@ const TechnicianDetail = ({ data }) => {
   const onSubmit = async () => {
     setLoading(true);
     const result = await axios.put(
-      `http://localhost:3001/v1/${details._id}`,
+      `http://localhost:3001/v1/technician/${details._id}`,
       display
     );
     if (result.data.status === "success") {
@@ -132,7 +133,7 @@ const TechnicianDetail = ({ data }) => {
       <Heading fontSize="22">
         {details.firstName} {details.lastName}
       </Heading>
-      <JobsCard title={data.firstName} ref={btnRef} onOpen={onOpen} />
+      <JobsCard buttonTitle={'Edit Technician'} title={data.firstName} ref={btnRef} onOpen={onOpen} />
 
       <Flex
         alignItems="center"
@@ -248,17 +249,17 @@ const TechnicianDetail = ({ data }) => {
         </Box>
       </Flex>
 
-      {/* <DrawerLayout
+       <DrawerLayout
         isOpen={isOpen}
         onClose={onClose}
         ref={btnRef}
-        title="Edit Quote"
+        title="Edit Technician"
         onSubmit={onSubmit}
         isLoading={isLoading}
         setLoading={setLoading}
       >
-        <Infos display={display} setDisplay={setDisplay} />
-      </DrawerLayout> */}
+      <TechInfos title="Technician" display={display} setDisplay={setDisplay}/>
+      </DrawerLayout>
     </Box>
   );
 };

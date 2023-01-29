@@ -92,7 +92,11 @@ const JobsTable = ({ selected, setSelected }) => {
                   </Flex>
                 </Td>
                 <Td onClick={(e) => handleRouter(e, item._id)}>
-                  <Text color="gray.400">{item?.bookingDate !== "" ? changeDateFormat(item?.bookingDate) : 'N/A'}</Text>
+                  <Text color="gray.400">
+                    {item?.bookingDate !== ""
+                      ? changeDateFormat(item?.bookingDate)
+                      : "N/A"}
+                  </Text>
                 </Td>
                 <Td
                   onClick={(e) => handleRouter(e, item._id)}
@@ -106,16 +110,14 @@ const JobsTable = ({ selected, setSelected }) => {
                     fontWeight={"semibold"}
                     w="100px"
                     textAlign="center"
-                    color={
-                      item.bookingStatus === "In Progress" ? "blue.500" : "gray.400"
-                    }
+                    color={colorPicker(item?.bookingStatus)}
                     border="1px solid gray"
-                    borderColor={
-                      item.bookingStatus === "In Progress" ? "blue.500" : "gray.300"
-                    }
+                    borderColor={colorPicker(item?.bookingStatus)}
+                    
+
                     rounded="full"
                     py={1}
-                    fontSize="12px"
+                    fontSize="11px"
                     px={3}
                   >
                     {item.bookingStatus}
@@ -163,6 +165,18 @@ const JobsTable = ({ selected, setSelected }) => {
       </Table>
     </TableContainer>
   );
+};
+
+const colorPicker = (status) => {
+  if (status === "In Progress") {
+    return `blue.500`;
+  } else if (status === "Scheduled") {
+    return `yellow.400`;
+  } else if (status === "Completed") {
+    return `green.400`;
+  } else {
+    return `red.500`;
+  }
 };
 
 export default JobsTable;

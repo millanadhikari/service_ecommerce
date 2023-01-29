@@ -45,6 +45,8 @@ const ViewProfile = () => {
     updateDetails(ok, display);
     dispatch(getUserProfile());
   };
+
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     const file = e.target[0]?.files[0];
@@ -67,10 +69,10 @@ const ViewProfile = () => {
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
           setImgUrl(downloadURL);
-          user?.profilePic.src !== ""
+          user?.profilePic.src.length !== 0
             ? deleteObject(deleteRef).then(async () => {
                 await axios.put(
-                  `http://localhost:3001/v1/customer/${user._id}`,
+                  `https://wedo-backend.herokuapp.com/v1/customer/${user._id}`,
                   {
                     profilePic: {
                       src: downloadURL,
@@ -80,7 +82,7 @@ const ViewProfile = () => {
                 setSelectedFile(undefined);
                 dispatch(getUserProfile());
               })
-            : await axios.put(`http://localhost:3001/v1/customer/${user._id}`, {
+            : await axios.put(`https://wedo-backend.herokuapp.com/v1/customer/${user._id}`, {
                 profilePic: {
                   src: downloadURL,
                 },
@@ -92,6 +94,8 @@ const ViewProfile = () => {
     );
   };
 
+  console.log("file selected", selectedFile);
+
   const onSelectFile = (e) => {
     if (!e.target.files || e.target.files.length === 0) {
       setSelectedFile(undefined);
@@ -100,7 +104,7 @@ const ViewProfile = () => {
 
     // I've kept this example simple by using the first image instead of multiple
     setSelectedFile(e.target.files[0]);
-    console.log('file', e.target.files[0])
+    console.log("file selected", e.target.files[0]);
   };
 
   // create a preview as a side effect, whenever selected file is changed

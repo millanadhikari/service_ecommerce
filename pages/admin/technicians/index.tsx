@@ -12,6 +12,8 @@ import SubNav from "../../../components/Admin/Jobs/subcomponents/SubNav";
 import { fetchAllTechnicians } from "../../../components/Admin/Technicians/TechniciansAction";
 import PromptLayout from "../../../components/Admin/Quotes/subcomponents/Prompt/PromptLayout";
 import TechniciansTab from "../../../components/Admin/Technicians/TechniciansTab";
+import DrawerLayout from "../../../components/Admin/UI/DrawerLayout";
+import TechInfos from "../../../components/Admin/Technicians/subcomponents/TechInfos";
 
 const mockData = {
   bathrooms: 0,
@@ -68,18 +70,16 @@ const Technicians = () => {
   let bookingDate = date[0] ? date[0] : null;
 
   let to = date[1] ? date[1] : null;
+
+
   const onSubmit = async () => {
     setLoading(true);
     const result = await axios.post(
-      "https://wedo-backend.herokuapp.com/v1/booking",
+      "https://wedo-backend.herokuapp.com/v1/technician",
       display
     );
     if (result.data.status === "success") {
-      Socket?.emit("sendNotification", {
-        senderName: userName,
-        type: 1,
-      });
-      console.log("bhayankar", Socket);
+    
 
       setLoading(false);
 
@@ -160,7 +160,7 @@ const Technicians = () => {
   // const deleteQuotes = async () => {
   //   const id = selected;
   //   // const result = await axios.post(
-  //   //   "http://localhost:3001/v1/quote/deletequotes",
+  //   //   "https://wedo-backend.herokuapp.com/v1/quote/deletequotes",
   //   //   selected
   //   // );
   //   // console.log(result);
@@ -197,7 +197,7 @@ const Technicians = () => {
       h="100%"
     >
       <SubNav />
-      <JobsCard title="Technicians" ref={btnRef} onOpen={onOpen} />
+      <JobsCard title="Technicians" ref={btnRef} buttonTitle="Add Technician" onOpen={onOpen} />
 
       <TechniciansTab
         confirmDelete={confirmDelete}
@@ -215,7 +215,17 @@ const Technicians = () => {
         setPageNumber={setPageNumber}
         onDateChange={onDateChange}
       />
-
+      <DrawerLayout
+        isOpen={isOpen}
+        onClose={onClose}
+        ref={btnRef}
+        title="Add Technician"
+        onSubmit={onSubmit}
+        isLoading={isLoading}
+        setLoading={setLoading}
+      >
+      <TechInfos title="Technician" display={display} setDisplay={setDisplay}/>
+      </DrawerLayout>
       <PromptLayout
         isOpen={confirmDelete}
         onClose={setConfirmDelete}

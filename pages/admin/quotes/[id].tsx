@@ -21,8 +21,6 @@ import DrawerLayout from "../../../components/Admin/UI/DrawerLayout";
 import Infos from "../../../components/Admin/Quotes/subcomponents/AddQuote/Infos";
 import axios from "axios";
 
-
-
 const mockData = {
   bathrooms: 0,
   bedrooms: 0,
@@ -51,13 +49,13 @@ const mockData = {
   quoteStatus: "",
 };
 
-const BookingDetail = ({ data }) => {
+const QuoteDetail = ({ data }) => {
   const router = useRouter();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
   const [isLoading, setLoading] = useState<Boolean>(false);
   const [display, setDisplay] = useState(mockData);
-  
+
   let details = data.result[0];
   const toast = useToast();
 
@@ -102,7 +100,7 @@ const BookingDetail = ({ data }) => {
       setLoading(false);
 
       onClose();
-      router.replace(router.asPath)
+      router.replace(router.asPath);
     }
   };
 
@@ -199,13 +197,13 @@ const BookingDetail = ({ data }) => {
         isLoading={isLoading}
         setLoading={setLoading}
       >
-        <Infos display={display} setDisplay={setDisplay} />
+        <Infos title={"Quote"} display={display} setDisplay={setDisplay} />
       </DrawerLayout>
     </Box>
   );
 };
 
-export default BookingDetail;
+export default QuoteDetail;
 
 const subMenu = () => {
   return (

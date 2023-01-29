@@ -84,11 +84,17 @@ const AllJobs = ({
           <Menu>
             <MenuButton
               as={Button}
-              fontSize="15"
+              fontSize="13"
+              color="gray.700"
+              fontWeight="normal"
               bg="white"
               rightIcon={<ChevronDownIcon />}
             >
-              Service Date
+              {date[0] ? (
+                <Box>{date[0].toString().split(0, 1)} - {date[1].toString().split(0, 1)}</Box>
+              ) : (
+                "Select Dates"
+              )}
             </MenuButton>
             <MenuList>
               <Calendar
@@ -119,7 +125,7 @@ const AllJobs = ({
             cursor="pointer"
             _hover={{ color: "blue.500" }}
             textDecor="underline"
-            onClick={()=>setDate(new Date())}
+            onClick={() => setDate(new Date())}
           >
             Reset
           </Text>

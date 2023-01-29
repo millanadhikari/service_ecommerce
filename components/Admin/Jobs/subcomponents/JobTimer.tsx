@@ -14,7 +14,6 @@ import {
 import React from "react";
 
 const JobTimer = ({ details }) => {
-  console.log(details);
   return (
     <Box bg="white" py={4} shadow="md" w="100%">
       <Box

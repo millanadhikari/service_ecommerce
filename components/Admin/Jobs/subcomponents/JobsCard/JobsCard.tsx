@@ -7,7 +7,7 @@ import { BsFillPersonFill } from "react-icons/bs";
 import { MdCancel } from "react-icons/md";
 import axios from "axios";
 
-const JobsCard = ({ title, ref, onOpen }) => {
+const JobsCard = ({ title, ref, onOpen, buttonTitle }) => {
   const [display, setDisplay] = useState([]);
 
   useEffect(() => {
@@ -41,7 +41,7 @@ const JobsCard = ({ title, ref, onOpen }) => {
           bg="#ffba4b"
           color="white"
         >
-          Add Quote
+         {buttonTitle}
         </Button>
       </Flex>
       <Grid
