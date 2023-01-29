@@ -215,6 +215,7 @@ const Notes = ({ details, setDetails }) => {
               {details?.notes.map((item) => (
                 <Flex
                   alignItems="center"
+                  key={item.id}
                   justifyContent="space-between"
                   pt={5}
                   w="60%"
