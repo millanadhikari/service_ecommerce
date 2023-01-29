@@ -146,7 +146,7 @@ const JobDetails = ({
               fontSize="14px"
             />
           </Flex>
-          {detailsComp({ details })}
+          {<DetailsComp details={details} />}
         </Flex>{" "}
         <Flex w="100%" flexDirection="column" gap={6}>
           <Flex bg="white" py={7} px={6} shadow="md">
@@ -190,7 +190,7 @@ const JobDetails = ({
 
 export default JobDetails;
 
-const detailsComp = ({ details }) => {
+const DetailsComp = ({ details }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <Box bg="white" py={7} px={6} shadow="md" mb={3}>
@@ -247,16 +247,20 @@ const detailsComp = ({ details }) => {
       >
         {details?.assignedTech?.length > 0 && (
           <Flex my={3} alignItems="center" gap={4}>
-             <Image
-                    maxW="60px"
-                    border="2px solid blue"
-                    borderColor="#013d82"
-                    rounded="full"
-                    src={details?.assignedTech[0].profilePic?.src !== "" ? details?.assignedTech[0].profilePic?.src : "https://st.depositphotos.com/1779253/5140/v/600/depositphotos_51405259-stock-illustration-male-avatar-profile-picture-use.jpg"}
-                  />
+            <Image
+              maxW="60px"
+              border="2px solid blue"
+              borderColor="#013d82"
+              rounded="full"
+              src={
+                details?.assignedTech[0].profilePic?.src !== ""
+                  ? details?.assignedTech[0].profilePic?.src
+                  : "https://st.depositphotos.com/1779253/5140/v/600/depositphotos_51405259-stock-illustration-male-avatar-profile-picture-use.jpg"
+              }
+            />
             <Text>Assigned to:</Text>
             <Text ml={3} fontWeight="semibold">
-              {details?.assignedTech[0].firstName} {' '}
+              {details?.assignedTech[0].firstName}{" "}
               {details?.assignedTech[0].lastName}
             </Text>
           </Flex>

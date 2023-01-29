@@ -37,7 +37,6 @@ const AssignTech = ({ isOpen, onClose, details }) => {
         assignedTech: selectedTech,
       }
     );
-    console.log(result.data);
     if (result.data.status === "success") {
       onClose();
       toast({
@@ -88,8 +87,7 @@ const AssignTech = ({ isOpen, onClose, details }) => {
   useEffect(() => {
     details?.assignedTech?.length > 0 &&
       setSelectedTech(details.assignedTech[0]);
-    console.log("naina", selectedTech);
-  }, []);
+  }, [details.assignedTech]);
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
@@ -136,7 +134,7 @@ const AssignTech = ({ isOpen, onClose, details }) => {
                   // bg={selectedTech?._id === item._id ? "red.300" : "white"}
                   onClick={() => setSelectedTech({ ...item })}
                   px={5}
-                  id={item._id}
+                  key={item._id}
                   textAlign="center"
                   py={4}
                   shadow={ selectedTech?._id === item._id ? "lg" : "sm"}
@@ -201,7 +199,6 @@ export async function getServerSideProps() {
   );
   // const res = await fetch(`http://localhost:3001/v1/booking/${id}`);
   const data = await res.json();
-  console.log("love", data);
 
   // Pass data to the page via props
   return { props: { data } };
