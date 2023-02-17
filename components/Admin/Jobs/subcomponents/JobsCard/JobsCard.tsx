@@ -123,7 +123,6 @@ export async function getServerSideProps(ctx) {
   );
   // const res = await fetch(`http://localhost:3001/v1/booking/${id}`);
   const data = await res.json();
-  console.log("hellopuja", data);
 
   // Pass data to the page via props
   return { props: { data } };

@@ -3,7 +3,9 @@ import { getStorage } from "firebase/storage";
  
 // Initialize Firebase
 const firebaseConfig = {
-    apiKey: "AIzaSyBcQW_2ZuwfwwNaovO9JJ09fHrkFJDGGX4",
+    // apiKey: "AIzaSyBcQW_2ZuwfwwNaovO9JJ09fHrkFJDGGX4",
+        apiKey: "AIzaSyBcQW_2ZuwfwwNaovO9JJ09fHrkFJDGGX4",
+
     authDomain: "wedocleaning-a6143.firebaseapp.com",
     projectId: "wedocleaning-a6143",
     storageBucket: "wedocleaning-a6143.appspot.com",

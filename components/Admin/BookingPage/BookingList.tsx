@@ -28,7 +28,6 @@ const BookingList = () => {
 
   function randomColor() {
     let randomize = Math.floor(Math.random() * 16777215).toString(16);
-    console.log(randomize);
     if (randomize !== "ffffff") {
       return randomize;
     }

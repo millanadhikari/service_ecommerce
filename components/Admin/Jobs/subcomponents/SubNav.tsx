@@ -13,6 +13,7 @@ import {
   PopoverTrigger,
   Text,
 } from "@chakra-ui/react";
+import { useRouter } from "next/router";
 import React, { useState, useEffect } from "react";
 import {
   AiFillBell,
@@ -28,6 +29,7 @@ import ProfilePopover from "./Popovers/ProfilePopover";
 const SubNav = () => {
   const Socket = useAppSelector((state) => state.user.Socket);
   const [notifications, setNotifications] = useState([]);
+  const router = useRouter();
 
   useEffect(() => {
     Socket?.on("getNotification", (data) => {
@@ -35,7 +37,6 @@ const SubNav = () => {
     });
   }, [Socket, notifications]);
 
-  console.log(notifications);
   return (
     <Flex
       alignItems="center"
@@ -80,6 +81,7 @@ const SubNav = () => {
         px={2}
         py={2}
         cursor="pointer"
+        onClick={() => router.push("/admin/application")}
         _hover={{ bg: "gray.300" }}
       >
         <Icon as={AiFillSetting} fontSize="20px" />

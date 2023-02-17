@@ -71,7 +71,6 @@ const Technicians = () => {
 
   let to = date[1] ? date[1] : null;
 
-
   const onSubmit = async () => {
     setLoading(true);
     const result = await axios.post(
@@ -79,8 +78,6 @@ const Technicians = () => {
       display
     );
     if (result.data.status === "success") {
-    
-
       setLoading(false);
 
       onClose();
@@ -197,7 +194,12 @@ const Technicians = () => {
       h="100%"
     >
       <SubNav />
-      <JobsCard title="Technicians" ref={btnRef} buttonTitle="Add Technician" onOpen={onOpen} />
+      <JobsCard
+        title="Technicians"
+        ref={btnRef}
+        buttonTitle="Add Technician"
+        onOpen={onOpen}
+      />
 
       <TechniciansTab
         confirmDelete={confirmDelete}
@@ -224,7 +226,11 @@ const Technicians = () => {
         isLoading={isLoading}
         setLoading={setLoading}
       >
-      <TechInfos title="Technician" display={display} setDisplay={setDisplay}/>
+        <TechInfos
+          title="Technician"
+          display={display}
+          setDisplay={setDisplay}
+        />
       </DrawerLayout>
       <PromptLayout
         isOpen={confirmDelete}

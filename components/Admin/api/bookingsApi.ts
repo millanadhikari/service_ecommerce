@@ -14,8 +14,7 @@ export const getAllBookings = (
   let newbook = bookingDate ? bookingDate.toISOString().slice(0, 10) : "";
   let oldbook = to ? to.toISOString().slice(0, 10) : "";
 
-  console.log("newbook", newbook);
-  console.log("oldbook", oldbook);
+  
   const bookingsUrl =
     rootUrl +
     `booking/all?page=${pageNumber}&limit=4&search=${search}&bookingDate=${newbook}&to=${oldbook}`;
@@ -26,7 +25,6 @@ export const getAllBookings = (
           Authorization: sessionStorage.getItem("accessJWT"),
         },
       });
-      console.log(result);
       resolve(result);
     } catch (error) {
       reject(error);

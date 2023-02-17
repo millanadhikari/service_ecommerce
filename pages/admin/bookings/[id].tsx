@@ -330,10 +330,12 @@ export async function getServerSideProps(ctx) {
   const { id } = params;
 
   // Fetch data from external API
+  const res = await fetch(
+    `http://localhost:3001/v1/booking/${id}`
+  );
   // const res = await fetch(
   //   `https://wedo-backend.herokuapp.com/v1/booking/${id}`
   // );
-  const res = await fetch(`https://wedo-backend.herokuapp.com/v1/booking/${id}`);
   const data = await res.json();
 
   // Pass data to the page via props

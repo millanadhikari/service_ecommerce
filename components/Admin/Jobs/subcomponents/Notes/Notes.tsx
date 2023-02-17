@@ -5,6 +5,7 @@ import {
   Heading,
   Icon,
   Input,
+  Spinner,
   Tab,
   TabList,
   TabPanel,
@@ -142,9 +143,12 @@ const Notes = ({ details, setDetails }) => {
     const deleteRef = ref(storage, url);
     deleteObject(deleteRef).then(async () => {
       let maya = details?.files.filter((item) => url !== item);
-      await axios.put(`https://wedo-backend.herokuapp.com/v1/booking/${details._id}`, {
-        files: [...maya],
-      });
+      await axios.put(
+        `https://wedo-backend.herokuapp.com/v1/booking/${details._id}`,
+        {
+          files: [...maya],
+        }
+      );
       router.replace(router.asPath);
     });
   };
@@ -203,12 +207,15 @@ const Notes = ({ details, setDetails }) => {
                 fontSize="13px"
                 rounded="full"
                 px={6}
+                w="100px"
+                disabled={input === ""}
                 _hover={{ bg: "blue.600", color: "gray.200" }}
                 onClick={handleNote}
+                _focus={{outline:"none"}}
                 size="sm"
                 color="white"
               >
-                Save note
+                {isLoading ? <Spinner /> : "Save note"}
               </Button>
             </Flex>
             <Box my={6} borderTop="1px solid gray" borderColor="gray.300">

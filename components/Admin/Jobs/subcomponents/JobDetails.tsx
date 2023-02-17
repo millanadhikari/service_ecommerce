@@ -248,7 +248,9 @@ const DetailsComp = ({ details }) => {
         {details?.assignedTech?.length > 0 && (
           <Flex my={3} alignItems="center" gap={4}>
             <Image
-              maxW="60px"
+              w="60px"
+              h="60px"
+              objectFit={'fill'}
               border="2px solid blue"
               borderColor="#013d82"
               rounded="full"

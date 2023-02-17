@@ -45,6 +45,44 @@ const mockData = {
   phone: "",
   products: [],
   quoteStatus: "",
+  totals: [
+    {
+      _id: 1,
+      title: 'Base Price',
+      amount: 0,
+      quantity: 0
+    },
+    {
+      _id: 2,
+      title: '1 Bathroom',
+      amount: 0,
+      quantity: 0
+    },
+    {
+      _id: 3,
+      title: '1 Bedroom',
+      amount: 100,
+      quantity: 0
+    },
+    {
+      _id: 4,
+      title: 'Extras',
+      amount: 0,
+      quantity: 0
+    },
+    {
+      _id: 5,
+      title: 'Tip',
+      amount: 0,
+      quantity: 0
+    },
+    {
+      _id: 6,
+      title: 'To be paid by customer',
+      amount: 0,
+      quantity: 0
+    }
+  ]
 };
 
 
@@ -75,7 +113,7 @@ const Quotes = () => {
 
   const onSubmit = async () => {
     setLoading(true);
-    const result = await axios.post("https://wedo-backend.herokuapp.com/v1/quote", display);
+    const result = await axios.post("http://localhost:3001/v1/quote", display);
     if (result.data.status === "success") {
       // Socket?.emit("sendNotification", {
       //   senderName: userName,
@@ -134,7 +172,9 @@ const Quotes = () => {
     setConfirmBook(!confirmBook);
     const id = selected[0];
     const result = await axios.post(
-      `https://wedo-backend.herokuapp.com/v1/booking/${id}`
+      // `https://wedo-backend.herokuapp.com/v1/booking/${id}`
+      `http://localhost:3001/v1/booking/${id}`
+
     );
     if (result.data.status === "success") {
       toast({
