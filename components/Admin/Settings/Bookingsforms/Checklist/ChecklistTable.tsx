@@ -1,12 +1,20 @@
-import { Table, TableContainer } from "@chakra-ui/react";
+import {
+  Table,
+  TableContainer,
+  Tbody,
+  Td,
+  Tfoot,
+  Th,
+  Thead,
+  Tr,
+} from "@chakra-ui/react";
 import React from "react";
 
 const ChecklistTable = () => {
   return (
     <TableContainer>
       <Table variant="simple">
-        
-        <Thead>
+        {/* <Thead>
           <Tr>
             <Th>To convert</Th>
             <Th>into</Th>
@@ -36,7 +44,7 @@ const ChecklistTable = () => {
             <Th>into</Th>
             <Th isNumeric>multiply by</Th>
           </Tr>
-        </Tfoot>
+        </Tfoot> */}
       </Table>
     </TableContainer>
   );
