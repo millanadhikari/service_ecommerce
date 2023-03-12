@@ -47,44 +47,57 @@ const mockData = {
   phone: "",
   products: [],
   quoteStatus: "",
-  totals: [
-    {
-      _id: 1,
-      title: 'Base Price',
-      amount: 0,
-      quantity: 0
-    },
-    {
-      _id: 2,
-      title: '1 Bathroom',
-      amount: 0,
-      quantity: 0
-    },
-    {
-      _id: 3,
-      title: '1 Bedroom',
-      amount: 100,
-      quantity: 0
-    },
-    {
-      _id: 4,
-      title: 'Extras',
-      amount: 0,
-      quantity: 0
-    },
-    {
-      _id: 5,
-      title: 'Tip',
-      amount: 0,
-      quantity: 0
-    },
-    {
-      _id: 6,
-      title: 'To be paid by customer',
-      amount: 0,
-      quantity: 0
-    }
-  ]
+     totals: [
+        {
+            _id: 1,
+            title: "Base Price",
+            amount: 0,
+            quantity: 0
+        },
+        {
+            _id: 2,
+            title: "1 Bathroom",
+            amount: 0,
+            quantity: 0
+        },
+        {
+            _id: 3,
+            title: "1 Bedroom",
+            amount: 0,
+            quantity: 0
+        },
+        {
+            _id: 4,
+            title: "Extras",
+            amount: 0,
+            quantity: 0
+        },
+        {
+            _id: 5,
+            title: "Tip",
+            amount: 0,
+            quantity: 0
+        },
+        {
+            _id: 6,
+            title: "To be paid by customer",
+            amount: 0,
+            quantity: 0
+        },
+        {
+            _id: 7,
+            title: "Discount",
+            amount: 0,
+            quantity: 0
+        },
+        {
+            _id: 8,
+            title: "Payment received",
+            amount: 0,
+            quantity: 0
+        },
+
+    ]
 };
 const RequestQuote = ({ quote, setQuote }: Props) => {
   const [display, setDisplay] = useState(mockData);
